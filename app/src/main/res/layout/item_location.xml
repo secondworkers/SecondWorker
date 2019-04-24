@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bg_btn_white"
+    android:layout_margin="@dimen/base15dp"
+    android:padding="@dimen/base10dp"
+    >
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="泰山国际大厦  9楼c-02"
+        android:textColor="@color/deep_black"
+        android:textSize="16sp"
+        />
+    <TextView
+        android:id="@+id/tv_username_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="秒工  186888888888"
+        android:textColor="@color/deep_black"
+        android:textSize="12sp"
+        android:layout_below="@+id/tv_location"
+        />
+    <ImageView
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_edit"
+        android:src="@mipmap/iv_edit"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

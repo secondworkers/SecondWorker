@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#333333</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#3F51B5</color>
+
+    <color name="tab_selected_text_color">#3F51B5</color>
+    <color name="tab_unselected_text_color">#797979</color>
+    <color name="white">#FCFDFF</color>
+    <color name="text_grey">#666666</color>
+    <color name="deep_black">#212121</color>
+    <color name="tv_deep_black">#212121</color>
+    <color name="text_white">#FFFFFF</color>
+</resources>

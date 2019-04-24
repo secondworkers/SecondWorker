@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SecondWorker</string>
+    <string name="trice_exit">再按一次，退出程序</string>
+    <string name="shake">摇一摇</string>
+</resources>

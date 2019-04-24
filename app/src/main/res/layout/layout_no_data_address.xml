@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_fast_service"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/iv_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/no_address" />
+
+    <TextView
+        android:id="@+id/tv_no_summery"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_grey"
+        android:text="您还没有添加服务地址" />
+
+    <TextView
+        android:id="@+id/tv_fast_service"
+        android:layout_marginTop="30dp"
+        android:layout_width="@dimen/base180dp"
+        android:layout_height="@dimen/base40dp"
+        android:text="添加地址"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:clickable="true"
+        android:background="@drawable/shape_gradient_little_left_blue" />
+
+</LinearLayout>
