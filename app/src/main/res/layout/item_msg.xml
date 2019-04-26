@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+<!--我的信息-item-->
+    <RelativeLayout
+        android:id="@+id/relative_img"
+        android:layout_width="@dimen/base50dp"
+        android:layout_height="@dimen/base50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/shape_cycle_blue"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_tp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@mipmap/iv_trumpet" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_system_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="23dp"
+        android:text="系统消息"
+        android:textColor="#ff212121"
+        android:textSize="16sp"
+
+        tools:ignore="NotSibling" />
+
+    <TextView
+        android:id="@+id/tv_system_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/base26dp"
+        android:layout_marginRight="@dimen/base10dp"
+        android:text="2019-04-24 15:55"
+        android:textColor="#ff999999"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tv_messgae"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_system_title"
+        android:layout_marginLeft="@dimen/base70dp"
+        android:layout_marginTop="@dimen/base14dp"
+        android:text="您发布的需求信息已有人接单啦~快去看看"
+        android:textColor="#ff666666"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>
+
+
+
+
+
+
+

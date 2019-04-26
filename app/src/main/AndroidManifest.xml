@@ -2,26 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.qiaoyi.secondworker">
+
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEM"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name=".SecondWorkerApplication"
         android:allowBackup="true"
@@ -30,32 +34,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--适配全面屏手机-->
-        <meta-data android:name="android.max_aspect"
-            android:value="2.1"/>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="key">
-        </meta-data>
-        <activity android:name="com.qiaoyi.secondworker.MainActivity">
+        <activity android:name=".ui.center.ContactActivity"></activity>
+        <activity android:name=".ui.center.AboutUsActivity" />
+        <activity android:name=".ui.center.AccountSafeActivity"></activity>
+        <activity android:name=".ui.center.SystemSettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.shake.activity.BindMobileActivity" />
-        <activity android:name=".ui.shake.activity.LoginActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:screenOrientation="portrait">
+        <activity android:name=".ui.center.PersonalDetailsActivity" />
+        <activity
+            android:name=".ui.center.HistoricalStepActivity"
+            android:label="@string/title_activity_historical_step"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.center.CollectActivity" />
+        <activity android:name=".ui.center.RequirementActivity" />
+        <activity android:name=".ui.center.MessggeActivity" /> <!-- 适配全面屏手机 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="key" />
 
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ui.shake.activity.BindMobileActivity" />
+        <activity
+            android:name=".ui.shake.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".ui.shake.activity.VoiceIdentifyActivity" />
         <activity android:name=".ui.shake.activity.ShakeActivity" />
         <activity android:name=".ui.shake.activity.ServiceIntroduceActivity" />
-        <activity android:name=".ui.center.LocationActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity
+            android:name=".ui.center.LocationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".ui.center.SelectLocationActivity" />
         <activity android:name=".ui.center.GetAddressActivity" />
     </application>

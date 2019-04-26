@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.center.PersonalDetailsActivity">
+    <!--个人信息-->
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_head_photos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base20dp"
+            android:background="@color/text_white"
+            android:text="@string/tv_avatar"
+            android:textColor="#ff212121"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_allow_go1"
+            android:layout_width="@dimen/base6dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginLeft="@dimen/base335dp"
+            android:layout_marginTop="@dimen/base25dp"
+            android:src="@mipmap/arrow_go" />
+
+        <ImageView
+            android:id="@+id/iv_head_picture"
+            android:layout_width="@dimen/base24dp"
+            android:layout_height="@dimen/base24dp"
+            android:layout_marginLeft="@dimen/base300dp"
+            android:layout_marginTop="@dimen/base20dp"
+            android:background="@mipmap/ic_wechat" />
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_nick_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base24dp"
+            android:background="@color/text_white"
+            android:text="昵称"
+            android:textColor="#ff212121"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="袁攀"
+            android:layout_marginLeft="@dimen/base300dp"
+            android:layout_marginTop="@dimen/base24dp"
+            android:textColor="#ff212121"
+            android:textSize="15sp"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/iv_allow_go2"
+            android:layout_width="@dimen/base6dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginLeft="@dimen/base335dp"
+            android:layout_marginTop="@dimen/base30dp"
+            android:src="@mipmap/arrow_go" />
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nick_name"
+            android:layout_marginTop="@dimen/base30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:background="@drawable/shape_gradient_little_left_blue"
+            android:text="保存"
+            android:textColor="#ffffffff"
+            android:textSize="15sp"
+            />
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
