@@ -23,6 +23,14 @@
       android:layout_centerHorizontal="true"
       android:text="首页"
       android:textColor="@drawable/selector_home_tab_text"
-      android:textSize="15sp"
+      android:textSize="12sp"
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/imageview"
+      android:layout_centerHorizontal="true"
+      android:textColor="@drawable/selector_home_tab_text"
+      android:textSize="5sp"
       />
 </LinearLayout>

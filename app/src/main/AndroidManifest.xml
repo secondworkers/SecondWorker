@@ -20,7 +20,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <application
         android:name=".SecondWorkerApplication"
@@ -33,17 +32,28 @@
         <!--适配全面屏手机-->
         <meta-data android:name="android.max_aspect"
             android:value="2.1"/>
-        <meta-data android:name="com.amap.api.v2.apikey" android:value="key">
+        <meta-data android:name="com.amap.api.v2.apikey"
+            android:value="776e12bff83c57e204b019b067aff222">
         </meta-data>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5cbfcf584ca35779e40005ee"/>
+        <!--<meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value=""/>-->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}"/>
+        <service android:name="com.amap.api.location.APSService"/>
         <activity android:name="com.qiaoyi.secondworker.MainActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".ui.shake.activity.BindMobileActivity" />
-        <activity android:name=".ui.shake.activity.LoginActivity"
+        <activity android:name=".ui.center.activity.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:screenOrientation="portrait">
 
@@ -51,13 +61,29 @@
         <activity android:name=".ui.shake.activity.VoiceIdentifyActivity" />
         <activity android:name=".ui.shake.activity.ShakeActivity" />
         <activity android:name=".ui.shake.activity.ServiceIntroduceActivity" />
-        <activity android:name=".ui.center.LocationActivity"
+        <activity android:name=".ui.center.activity.LocationActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.center.activity.SelectLocationActivity" />
+        <activity android:name=".ui.center.activity.GetAddressActivity"
+                android:windowSoftInputMode="stateHidden|adjustPan"
+                android:screenOrientation="portrait"
+            />
 
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ui.center.SelectLocationActivity" />
-        <activity android:name=".ui.center.GetAddressActivity" />
+        <activity android:name=".ui.map.AmapActivity" >
+    </activity>
+        <activity android:name=".ui.shake.activity.PostSuccessActivity" />
+        <activity android:name=".ui.center.activity.OrderDetailsActivity"  >
+    </activity>
     </application>
 
 </manifest>

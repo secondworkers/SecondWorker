@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff">
-    <include layout="@layout/layout_top_title"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/include"/>
-
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base15dp"
+        android:background="@color/text_white"/>
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"
+       />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/base10dp"
+    android:background="@color/text_white">
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base15dp"
-        android:background="@drawable/shape_gradient_white"
+
         android:clickable="true"
         android:drawablePadding="@dimen/base5dp"
         android:drawableRight="@mipmap/iv_location_right"
         android:padding="@dimen/base5dp"
         android:text="济南"
         android:textColor="@color/deep_black"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
+        android:textSize="15sp" />
     <EditText
         android:id="@+id/et_search"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base15dp"
         android:background="@drawable/shape_gradient_all_grey"
         android:drawableLeft="@mipmap/iv_search"
         android:hint="请您输入服务地址"
         android:drawablePadding="@dimen/base5dp"
         android:padding="@dimen/base5dp"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_location"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-    <com.qiaoyi.secondworker.view.MyMapView
+        android:layout_toRightOf="@+id/tv_location" />
+</RelativeLayout>
+    <com.amap.api.maps2d.MapView
         android:id="@+id/mapview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base260dp"
-        app:layout_constraintTop_toBottomOf="@+id/et_search"
-        android:layout_marginTop="@dimen/base10dp"/>
+        />
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_list"
-            app:layout_constraintTop_toBottomOf="@+id/mapview"/>
-</android.support.constraint.ConstraintLayout>
+            />
+</LinearLayout>

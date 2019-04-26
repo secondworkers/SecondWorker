@@ -59,8 +59,8 @@ public abstract class ServiceCallBack<T> extends CallBack {
         throw new Exception("response is null");
       }
       RespBean resp = mGson.fromJson(o.toString(), RespBean.class);
-      int code = resp.getRspInfo().getRspCode();
-      String desc = resp.getRspInfo().getRspDesc();
+      int code = resp.getCode();
+      String desc = resp.getMessage();
       ALog.e("======response::desc::" + desc);
       T payLoad = null;
       try {

@@ -6,23 +6,32 @@ package com.qiaoyi.secondworker.net;
 
 public class RespBean<T> {
 
-  private RspInfoBean rspInfo;
-  private T rspData;
+  private int code;
+  private String message;
+  private T result;
 
-  public RspInfoBean getRspInfo() {
-    return rspInfo;
+  public int getCode() {
+    return code;
   }
 
-  public void setRspInfo(RspInfoBean rspInfo) {
-    this.rspInfo = rspInfo;
+  public void setCode(int code) {
+    this.code = code;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   public T getRspData() {
-    return rspData;
+    return result;
   }
 
-  public void setRspData(T rspData) {
-    this.rspData = rspData;
+  public void setRspData(T result) {
+    this.result = result;
   }
 
   public static class RspInfoBean {

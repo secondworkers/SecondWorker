@@ -31,14 +31,27 @@
 
         </com.qiaoyi.secondworker.ui.MyFragmentTabHost>
     </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="-20dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/iv_voice"
+        android:layout_width="@dimen/base50dp"
+        android:layout_height="@dimen/base50dp"
+        android:clickable="true"
+        android:onClick="onCameraClick"
+        android:src="@mipmap/toolbar_voice_highlighted"
+        />
+    <TextView
+        android:id="@+id/tv_oneKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_blue"
+        android:text="一键呼叫"/>
+</LinearLayout>
 
-     <ImageView
-         android:id="@+id/iv_voice"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_centerHorizontal="true"
-         android:clickable="true"
-         android:onClick="onCameraClick"
-         android:src="@mipmap/toolbar_voice_highlighted" />
 </RelativeLayout>

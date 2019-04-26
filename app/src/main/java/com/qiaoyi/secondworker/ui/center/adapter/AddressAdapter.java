@@ -1,8 +1,6 @@
 package com.qiaoyi.secondworker.ui.center.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -10,8 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.AddressBean;
-import com.qiaoyi.secondworker.ui.center.LocationActivity;
-import com.qiaoyi.secondworker.ui.center.SelectLocationActivity;
+import com.qiaoyi.secondworker.ui.center.activity.LocationActivity;
 
 
 /**

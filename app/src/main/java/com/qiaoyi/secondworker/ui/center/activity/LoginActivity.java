@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.shake.activity;
+package com.qiaoyi.secondworker.ui.center.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
-import com.qiaoyi.secondworker.ui.center.LocationActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 
 import java.util.regex.Pattern;
@@ -98,6 +97,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 @Override
                 public void success(RespBean resp, Response payload) {
+                    Object body = payload.body();
                     ALog.e("成功");
                 }
             });

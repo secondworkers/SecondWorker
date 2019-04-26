@@ -9,6 +9,11 @@
     <color name="white">#FCFDFF</color>
     <color name="text_grey">#666666</color>
     <color name="deep_black">#212121</color>
-    <color name="tv_deep_black">#212121</color>
+    <color name="text_black">#333333</color>
     <color name="text_white">#FFFFFF</color>
+    <color name="select_marker">#00A2FF</color>
+    <color name="text_blue">#00A2FF</color>
+    <color name="transparent">#00000000</color>
+    <color name="line_color">#F5F5F5</color>
+    <color name="text_red">#FF0000</color>
 </resources>

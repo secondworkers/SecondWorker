@@ -2,7 +2,6 @@ package com.qiaoyi.secondworker.ui.shake.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.ui.center.activity.LoginActivity;
 
 /**
  * Created on 2019/4/20

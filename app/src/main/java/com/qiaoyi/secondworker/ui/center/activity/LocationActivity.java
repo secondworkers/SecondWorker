@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.center;
+package com.qiaoyi.secondworker.ui.center.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,10 +14,7 @@ import android.widget.Toast;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.ui.shake.activity.LoginActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
-
-import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/4/23

@@ -21,11 +21,12 @@ import android.widget.Toast;
 import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.ui.MyFragmentTabHost;
 import com.qiaoyi.secondworker.ui.shake.activity.BindMobileActivity;
-import com.qiaoyi.secondworker.ui.shake.activity.LoginActivity;
+import com.qiaoyi.secondworker.ui.center.activity.LoginActivity;
 import com.qiaoyi.secondworker.ui.shake.activity.VoiceIdentifyActivity;
 import com.qiaoyi.secondworker.ui.fragment.CenterFragment;
 import com.qiaoyi.secondworker.ui.homepage.HomeBaseFragment;
 import com.qiaoyi.secondworker.ui.map.MapFragment;
+import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.view.ShakeDialog;
 
 import cn.isif.alibs.utils.ToastUtils;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     };
     LogoutBroadcastReceiver mBroadcastReceiver;
     private MyFragmentTabHost mTabHost;
-    private String bottomStr[] = { "首页", "识别", "我的" };
+    private String bottomStr[] = { "首页", "", "我的" };
     private int icons[] = {
             R.drawable.selector_home_tab_home,
             R.drawable.selector_home_tab_camera,
@@ -60,11 +61,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public int currentIndicator;
     public static final int REQUEST_CODE = 9;
     private ImageView iv_voice;
+    private TextView tv_oneKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarUtil.setTranslucentStatus(this);
+        StatusBarUtil.setStatusBarDarkTheme(this, true);
         initView();
         new ShakeDialog(this).show();
     }
@@ -88,7 +92,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
     private void initView() {
         iv_voice = findViewById(R.id.iv_voice);
+        tv_oneKey = findViewById(R.id.tv_oneKey);
         iv_voice.setImageDrawable(getResources().getDrawable(R.mipmap.toolbar_voice_highlighted));
+        tv_oneKey.setTextColor(getResources().getColor(R.color.text_blue));
         layoutInflater = LayoutInflater.from(this);
         mTabHost = findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.content);
@@ -112,9 +118,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }*/
                 if (bottomStr[0] == tabId || bottomStr[2] == tabId){
                     iv_voice.setImageDrawable(getResources().getDrawable(R.mipmap.toolbar_voice));
+                    tv_oneKey.setTextColor(getResources().getColor(R.color.text_grey));
                     currentIndicator = mTabHost.getCurrentTab();
                 }else {
                     iv_voice.setImageDrawable(getResources().getDrawable(R.mipmap.toolbar_voice_highlighted));
+                    tv_oneKey.setTextColor(getResources().getColor(R.color.text_blue));
                 }
             }
         });
@@ -161,11 +169,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mTabHost.setCurrentTab(1);
             currentIndicator = 1;
         }
-        if (null == AccountHandler.checkLogin()) {
+       /* if (null == AccountHandler.checkLogin()) {
             LoginActivity.startLoginActivity(MainActivity.this, 7002);
         } else {
             toRecognition();
-        }
+        }*/
     }
 
     private void toRecognition() {
