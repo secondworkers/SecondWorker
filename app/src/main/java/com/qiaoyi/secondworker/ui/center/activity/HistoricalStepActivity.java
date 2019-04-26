@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.center;
+package com.qiaoyi.secondworker.ui.center.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 /**
  * oncreate 2019/4/25
  * ling
  * 历史足迹
  */
-public class HistoricalStepActivity extends AppCompatActivity {
+public class HistoricalStepActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

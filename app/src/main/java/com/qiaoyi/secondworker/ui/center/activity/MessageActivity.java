@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.center;
+package com.qiaoyi.secondworker.ui.center.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
@@ -15,7 +16,7 @@ import com.qiaoyi.secondworker.R;
  * 我的信息
  */
 
-public class MessggeActivity extends AppCompatActivity implements View.OnClickListener {
+public class MessageActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_title_txt;
     private RelativeLayout view_back;

@@ -52,25 +52,22 @@
             android:value="${UMENG_CHANNEL_VALUE}"/>
         <service android:name="com.amap.api.location.APSService"/>
         <activity android:name="com.qiaoyi.secondworker.MainActivity">
-            <!--<intent-filter>
-        <activity android:name=".ui.center.ContactActivity"></activity>
-        <activity android:name=".ui.center.AboutUsActivity" />
-        <activity android:name=".ui.center.AccountSafeActivity"></activity>
-        <activity android:name=".ui.center.SystemSettingsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
-        <activity android:name=".ui.center.PersonalDetailsActivity" />
+
+        <activity android:name=".ui.center.activity.ContactActivity"/>
+        <activity android:name=".ui.center.activity.AboutUsActivity" />
+        <activity android:name=".ui.center.activity.AccountSafeActivity"/>
+        <activity android:name=".ui.center.activity.SystemSettingsActivity">
+        </activity>
+
+        <activity android:name=".ui.center.activity.PersonalDetailsActivity" />
         <activity
-            android:name=".ui.center.HistoricalStepActivity"
+            android:name=".ui.center.activity.HistoricalStepActivity"
             android:label="@string/title_activity_historical_step"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.center.CollectActivity" />
-        <activity android:name=".ui.center.RequirementActivity" />
-        <activity android:name=".ui.center.MessggeActivity" />
+        <activity android:name=".ui.center.activity.CollectActivity" />
+        <activity android:name=".ui.center.activity.RequirementActivity" />
+        <activity android:name=".ui.center.activity.MessageActivity" />
         <activity android:name=".ui.shake.activity.BindMobileActivity" />
         <activity android:name=".ui.shake.activity.VoiceIdentifyActivity" />
         <activity android:name=".ui.shake.activity.ShakeActivity" />

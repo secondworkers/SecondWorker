@@ -1,8 +1,8 @@
-package com.qiaoyi.secondworker.ui.center;
+package com.qiaoyi.secondworker.ui.center.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
@@ -10,7 +10,7 @@ import com.qiaoyi.secondworker.R;
  * ling
  * 我的收藏
  */
-public class CollectActivity extends AppCompatActivity {
+public class CollectActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

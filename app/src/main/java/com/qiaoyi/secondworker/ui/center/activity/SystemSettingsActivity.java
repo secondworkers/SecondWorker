@@ -1,14 +1,12 @@
-package com.qiaoyi.secondworker.ui.center;
+package com.qiaoyi.secondworker.ui.center.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.umeng.socialize.media.Base;
 
 /**
  * create on 2019/4/25

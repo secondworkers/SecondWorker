@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.center.CollectActivity">
+    tools:context=".ui.center.activity.CollectActivity">
 
     <include
         android:id="@+id/include"
