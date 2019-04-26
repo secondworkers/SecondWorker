@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_location1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="獒牙众创空间"
+        android:layout_marginLeft="@dimen/base48dp"
+        android:layout_marginTop="@dimen/base14dp"
+        android:textColor="#ff00a2ff"
+        android:textSize="17sp"
+        />
+    <TextView
+        android:id="@+id/tv_location2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="经七路843号泰山国际大厦9楼"
+        android:layout_below="@+id/tv_location1"
+        android:layout_alignLeft="@+id/tv_location1"
+        android:layout_marginTop="@dimen/base14dp"
+        android:textColor="#ff212121"
+        android:textSize="13sp"
+        />
+
+</RelativeLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.center.AccountSafeActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_wechat"
+            android:layout_width="@dimen/base26dp"
+            android:layout_height="@dimen/base26dp"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base25dp"
+            android:src="@mipmap/ic_wechat" />
+
+
+        <TextView
+            android:id="@+id/tv_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base7dp"
+            android:layout_marginTop="@dimen/base32dp"
+            android:layout_toRightOf="@+id/iv_wechat"
+            android:text="微信"
+            android:textColor="#ff212121"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_unbound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="@dimen/base240dp"
+            android:layout_marginTop="@dimen/base32dp"
+            android:layout_toRightOf="@+id/tv_wechat"
+            android:text="未绑定"
+            android:textColor="#ff212121"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/iv_arrow_go1"
+            android:layout_width="@dimen/base60dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginTop="@dimen/base35dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_toRightOf="@+id/tv_unbound"
+            android:src="@mipmap/arrow_go" />
+
+
+        <ImageView
+            android:id="@+id/iv_arrow_go2"
+            android:layout_width="@dimen/base60dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginTop="@dimen/base88dp"
+            android:layout_marginRight="@dimen/base11dp"
+            android:layout_toRightOf="@+id/tv_phone_number"
+            android:src="@mipmap/arrow_go" />
+
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_width="@dimen/base26dp"
+            android:layout_height="@dimen/base26dp"
+            android:layout_below="@+id/iv_wechat"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+
+            android:src="@mipmap/ic_phone" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_wechat"
+            android:layout_marginLeft="@dimen/base7dp"
+            android:layout_marginTop="@dimen/base34dp"
+            android:layout_toRightOf="@+id/iv_phone"
+            android:text="手机"
+            android:textColor="#ff212121"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_unbound"
+
+            android:layout_marginLeft="@dimen/base275dp"
+            android:layout_marginTop="@dimen/base36dp"
+
+            android:text="15290797706"
+            android:textColor="#ff212121"
+            android:textSize="13sp" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
