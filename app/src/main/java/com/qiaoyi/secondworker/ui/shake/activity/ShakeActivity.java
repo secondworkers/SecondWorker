@@ -47,12 +47,16 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
     private ObjectAnimator anim;
     private TextView tv_goto_shake;
     private RelativeLayout view_back;
+    private RelativeLayout rl_bg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentStatus(this);
         StatusBarUtil.setStatusBarDarkTheme(this, true);
+        //不要忘记了, 在当前activity onCreate中设置 取消padding,  因为这个padding 我们用代码实现了,不需要系统帮我
+        StatusBarUtil.setRootViewFitsSystemWindows(this,false);
+
         setContentView(R.layout.activity_shake);
         initView();
         imgHand = findViewById(R.id.iv_shake_phone);
@@ -91,6 +95,8 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
         view_back = (RelativeLayout) findViewById(R.id.view_back);
 
         view_back.setOnClickListener(this);
+        rl_bg = (RelativeLayout) findViewById(R.id.rl_bg);
+        rl_bg.setOnClickListener(this);
     }
 
     @Override
@@ -148,7 +154,7 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void run() {
                 //弹框
-                new ShakeCardDialog(ShakeActivity.this).show();
+                new ShakeCardDialog(ShakeActivity.this).show();//传服务的id
                 //动画取消
                 anim.cancel();
             }

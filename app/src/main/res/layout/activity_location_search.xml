@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/base10dp"
+        android:background="@color/text_white">
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="@dimen/base268dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_gradient_all_grey"
+            android:drawableLeft="@mipmap/iv_search"
+            android:hint="请您输入服务地址"
+            android:drawablePadding="@dimen/base5dp"
+            android:padding="@dimen/base5dp"
+            android:textSize="12sp"
+            android:imeOptions="actionSearch"
+             />
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:padding="@dimen/base5dp"
+            android:text="取消"
+            android:layout_toRightOf="@+id/et_search"
+            android:textColor="@color/deep_black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_search"/>
+</RelativeLayout>

@@ -12,8 +12,8 @@ public class ApiUserService {
     //登录
     public static Call login(String mobile, String smscode, ServiceCallBack callBack) {
         Params params = new Params.Builder().json().build();
-        params.put("mobile", mobile);
-        params.put("smscode", smscode);
+        params.put("phone", mobile);
+        params.put("code", smscode);
         return IfOkNet.getInstance().post(Contact.LOGIN, params, callBack);
     }
 

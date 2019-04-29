@@ -29,16 +29,17 @@
         android:text="济南"
         android:textColor="@color/deep_black"
         android:textSize="15sp" />
-    <EditText
+    <TextView
         android:id="@+id/et_search"
         android:layout_width="258dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_gradient_all_grey"
         android:drawableLeft="@mipmap/iv_search"
-        android:hint="请您输入服务地址"
+        android:text="请您输入服务地址"
         android:drawablePadding="@dimen/base5dp"
         android:padding="@dimen/base5dp"
         android:textSize="12sp"
+        android:clickable="true"
         android:layout_toRightOf="@+id/tv_location" />
 </RelativeLayout>
     <com.amap.api.maps2d.MapView
@@ -48,7 +49,7 @@
         />
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/rv_list"
             />
 </LinearLayout>

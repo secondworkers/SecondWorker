@@ -3,6 +3,9 @@ package com.qiaoyi.secondworker.ui.center.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.net.Contacts;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
@@ -20,6 +24,10 @@ import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Timer;
 import java.util.regex.Pattern;
 
 import cn.isif.alibs.utils.ALog;
@@ -37,6 +45,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_getcode;
     private TextView tv_login;
     private ImageView iv_wechat;
+    private String phone;
 
     public static void startLoginActivity(Activity context, int requestCode) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -61,8 +70,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         iv_wechat = (ImageView) findViewById(R.id.iv_wechat);
 
         tv_getcode.setOnClickListener(this);
+        tv_getcode.setClickable(true);
         tv_login.setOnClickListener(this);
         iv_wechat.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -70,6 +82,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.tv_getcode:
                 regexPhone();
+                tv_getcode.setClickable(false);
                 break;
             case R.id.tv_login:
                 submit();
@@ -84,14 +97,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * 验证手机号
      */
     private void regexPhone() {
-        String phone = et_phone.getText().toString().trim();
-        if (TextUtils.isEmpty(phone) || Pattern.matches(Contacts.REGEX_PHONE_NUM,phone)) {
+        phone = et_phone.getText().toString().trim();
+        if (TextUtils.isEmpty(phone) || phone.length() != 11) {
             Toast.makeText(this, "请填写正确的手机号", Toast.LENGTH_SHORT).show();
+            tv_getcode.setClickable(true);
             return;
-        }else
+        }else{
             ApiUserService.sendSms(phone, new ServiceCallBack() {
                 @Override
                 public void failed(int code, String errorInfo, String source) {
+                    ToastUtils.showShort(errorInfo);
+                    tv_getcode.setClickable(true);
                     ALog.e("失败");
                 }
 
@@ -99,11 +115,47 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 public void success(RespBean resp, Response payload) {
                     Object body = payload.body();
                     ALog.e("成功");
+                    new Thread(new ScheduledRunnable()).start();
                 }
             });
 
-    }
+        }
 
+    }
+    Handler handler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            int what = msg.what;
+            if (what > 0) {
+                tv_getcode.setClickable(false);
+                tv_getcode.setText(what + "s");
+            }else {
+                tv_getcode.setClickable(true);
+                tv_getcode.setText("获取验证码");
+            }
+        }
+    };
+
+    class ScheduledRunnable implements Runnable {
+        boolean stop = false;
+        int step = 60;
+
+        @Override public void run() {
+            while (!stop) {
+                try {
+                    Thread.sleep(1_000);
+                    --step;
+                    handler.sendEmptyMessage(step);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (step < 0) {
+                    stop = true;
+                }
+            }
+            handler.sendEmptyMessage(step);
+        }
+    }
     private void submit() {
         // validate
         String code = et_code.getText().toString().trim();
@@ -113,11 +165,52 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
 
         // TODO validate success, do something
+        ApiUserService.login(phone, code, new ServiceCallBack() {
+            @Override public void failed(int code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
 
+            @Override public void success(RespBean resp, Response payload) {
+                String response = payload.body().toString();
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    JSONObject rspData = jsonObject.getJSONObject("rspData");
+                    loginSuccess(rspData.toString());
+                    ALog.d(payload.body().toString());
+                    ALog.e(payload.body().toString());
+                    ALog.i(payload.body().toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
-    public void gotoLocationManger(){
-       startActivity(new Intent(this,LocationActivity.class));
+    /**
+     * 登录、三方登录成功
+     * @param response
+     */
+    private void loginSuccess(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONObject result = jsonObject.getJSONObject("result");
+            String id = result.getString("uid");
+            if (!TextUtils.isEmpty(id)) {
+                AccountHandler.saveLoginInLocal(response);
+                setResult(RESULT_OK);
+//                bindPush(id);
+                finish();
+            } else {
+                ToastUtils.showShort("未知异常");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public  void gotoLocationManger(){
+       startActivity(new Intent(this,SelectLocationActivity.class));
        finish();
     }
 }

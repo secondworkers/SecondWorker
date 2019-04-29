@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.homepage;
+package com.qiaoyi.secondworker.ui.homepage.adapter;
 
 import android.app.Activity;
 

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include
+    layout="@layout/layout_top_title"
+    android:id="@+id/include"/>
+    <RelativeLayout
+        android:id="@+id/rl_service_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="@dimen/base15dp"
+        android:background="@drawable/shape_bg_btn_white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/base15dp"
+        android:paddingTop="@dimen/base15dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base8dp"
+            android:text="选择服务地点"
+            android:textColor="@color/deep_black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_username_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_address"
+            android:layout_marginStart="@dimen/base8dp"
+            android:text="秒工  186888888888"
+            android:textColor="@color/deep_black"
+            android:textSize="12sp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_go"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/base10dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_service_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base50dp"
+        android:layout_marginEnd="@dimen/base15dp"
+        android:layout_marginStart="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base8dp"
+        android:background="@drawable/shape_bg_btn_white"
+        android:layout_below="@+id/rl_service_location"
+        android:gravity="center_vertical"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base8dp"
+            android:text="服务时间"
+            android:textColor="@color/deep_black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_service_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="选择服务时间"
+            android:textColor="@color/text_grey"
+            android:textSize="13sp"
+            android:drawableRight="@mipmap/arrow_go"
+            android:drawablePadding="@dimen/base5dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_service_type"
+        android:layout_below="@+id/rl_service_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base50dp"
+        android:layout_marginEnd="@dimen/base15dp"
+        android:layout_marginStart="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base8dp"
+        android:background="@drawable/shape_bg_btn_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/base8dp"
+            android:text="服务项目"
+            android:textColor="@color/deep_black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="日常保洁"
+            android:textColor="@color/text_blue"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_service_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/base15dp"
+        android:layout_marginStart="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base8dp"
+        android:background="@drawable/shape_bg_btn_white"
+        android:gravity="center_vertical"
+        android:padding="@dimen/base15dp">
+
+        <TextView
+            android:id="@+id/tv_order_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账单明细"
+            android:textColor="@color/deep_black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_order_detail"
+            android:layout_margin="@dimen/base15dp"
+            android:background="@color/line_color" />
+
+        <TextView
+            android:id="@+id/tv_single_price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:text="项目单价"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_single_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/view"
+            android:text="9.9元"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/deep_black"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_service_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_single_price"
+            android:text="服务时长"
+            android:layout_marginTop="@dimen/base5dp"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_service_time_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_single_price"
+            android:text="9.9元"
+            android:layout_marginTop="@dimen/base5dp"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/deep_black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_single_vip_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_single_price_title"
+            android:layout_marginTop="@dimen/base5dp"
+            android:text="会员卡"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_vip_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tv_single_price"
+            android:layout_marginTop="@dimen/base5dp"
+            android:layout_toEndOf="@id/tv_single_vip_title"
+            android:text="减9.9元"
+            android:textColor="@color/text_blue"
+            android:textSize="13sp"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_need_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_service_time_long"
+            android:layout_marginTop="@dimen/base20dp"
+            android:text="需支付 "
+            android:textColor="@color/text_grey"
+            android:layout_toStartOf="@+id/tv_total_price"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tv_service_time_long"
+            android:layout_marginTop="@dimen/base20dp"
+            android:text="9.9元"
+            android:textColor="@color/text_red"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/text_white"
+        >
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="还需支付"
+            android:textSize="14sp"
+            android:layout_marginStart="@dimen/base15dp"
+            android:textColor="@color/text_grey"
+            />
+        <TextView
+            android:id="@+id/tv_total_price1"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/text_red"
+            android:layout_toEndOf="@+id/text"
+            android:text="9.00元"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/base5dp"/>
+        <TextView
+            android:id="@+id/tv_goto_pay"
+            android:layout_toEndOf="@+id/tv_total_price1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_gradient_little_no_coners_blue"
+            android:text="去支付"
+            android:gravity="center"
+            android:textColor="@color/text_white"
+            android:textSize="16sp"
+            android:clickable="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

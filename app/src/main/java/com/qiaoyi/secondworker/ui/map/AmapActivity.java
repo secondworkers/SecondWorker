@@ -131,8 +131,8 @@ public class AmapActivity extends AppCompatActivity implements LocationSource, P
         if (resultCode == AMapException.CODE_AMAP_SUCCESS) {
             if (poiResult != null && poiResult.getPois().size() > 0) {
                 List<PoiItem> poiItems = poiResult.getPois();
-                /*datas.addAll(poiItems);
-                adapter.notifyDataSetChanged();*/
+//                datas.addAll(poiItems);
+//                adapter.notifyDataSetChanged();
                 for (int i = 0; i < poiItems.size(); i++) {
                     ALog.e("第 "+i +"个"+poiItems.get(i)+"");
                 }
@@ -160,7 +160,6 @@ public class AmapActivity extends AppCompatActivity implements LocationSource, P
         double latitude = cameraPosition.target.latitude;
         double longitude = cameraPosition.target.longitude;
         aMap.addMarker(locationUtil.getMarkerOption("",latitude,longitude));
-
         doSearchQuery(new LatLonPoint(latitude,longitude));
     }
 }

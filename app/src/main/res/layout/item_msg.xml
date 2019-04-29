@@ -17,7 +17,6 @@
             android:id="@+id/img_tp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:src="@mipmap/iv_trumpet" />
     </RelativeLayout>
 
@@ -30,7 +29,6 @@
         android:text="系统消息"
         android:textColor="#ff212121"
         android:textSize="16sp"
-
         tools:ignore="NotSibling" />
 
     <TextView

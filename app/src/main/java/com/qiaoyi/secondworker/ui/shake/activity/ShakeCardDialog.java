@@ -15,7 +15,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.ui.center.activity.LoginActivity;
+import com.qiaoyi.secondworker.ui.center.activity.SelectLocationActivity;
 
 /**
  * Created on 2019/4/20
@@ -91,7 +93,12 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                 dismiss();
                 break;
             case R.id.tv_choose_it:
-                LoginActivity.startLoginActivity(context,9000);
+                if (null == AccountHandler.checkLogin()){
+                    LoginActivity.startLoginActivity(context,1001);
+                }else {
+                    context.startActivity(new Intent(context,SelectLocationActivity.class));
+                    dismiss();
+                }
                 break;
             case R.id.tv_service_introduce:
                 Intent intent = new Intent(context, ServiceIntroduceActivity.class);

@@ -79,7 +79,9 @@
         <activity android:name=".ui.center.activity.GetAddressActivity"
                 android:windowSoftInputMode="stateHidden|adjustPan"
                 android:screenOrientation="portrait"
-            />
+            >
+
+        </activity>
         <activity android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
             >
@@ -94,6 +96,15 @@
         <activity android:name=".ui.shake.activity.PostSuccessActivity" />
         <activity android:name=".ui.center.activity.OrderDetailsActivity"  >
     </activity>
+        <activity android:name=".ui.center.activity.LoginActivity" >
+        </activity>
+        <activity android:name=".ui.center.activity.ConfirmOrderActivity" />
+        <activity android:name=".ui.center.activity.PrePayActivity" />
+        <activity android:name=".ui.center.activity.CityPickerActivity"
+            android:theme="@style/DefaultCityPickerTheme"/>
+        <activity android:name=".ui.center.activity.LocationSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

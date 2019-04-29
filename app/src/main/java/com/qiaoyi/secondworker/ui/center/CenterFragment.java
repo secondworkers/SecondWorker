@@ -1,4 +1,4 @@
-package com.qiaoyi.secondworker.ui.fragment;
+package com.qiaoyi.secondworker.ui.center;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.ui.BaseFragment;
@@ -20,7 +19,7 @@ import com.qiaoyi.secondworker.ui.BaseFragment;
 public class CenterFragment extends BaseFragment {
     public static final String BROADCAST_LOGOUT_ACTION = "action.LOGOUT";
     private View rootView;
-    private TextView tv_textview;
+
 
     public CenterFragment() {
         // Required empty public constructor
@@ -57,7 +56,6 @@ public class CenterFragment extends BaseFragment {
     }
 
     private void initView(View rootView) {
-        tv_textview = (TextView) rootView.findViewById(R.id.tv_textview);
-        tv_textview.setText("个人页");
+
     }
 }

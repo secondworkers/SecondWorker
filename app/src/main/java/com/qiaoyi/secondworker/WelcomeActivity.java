@@ -80,7 +80,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                 finish();
             }
-        },3500);
+        },3000);
     }
 
 }

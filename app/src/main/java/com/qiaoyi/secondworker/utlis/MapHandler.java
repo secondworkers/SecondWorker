@@ -26,7 +26,7 @@ import java.util.List;
 import cn.isif.alibs.utils.ALog;
 
 /**
- * Created by ISIF on 2018/4/5.
+ * Created by Spirit on 2018/4/5.
  */
 
 public class MapHandler {
@@ -36,7 +36,7 @@ public class MapHandler {
     /**
      * 通过drawable获取一个用来显示marker icon的bitmap
      */
-   /* public static Bitmap getMarkerBitmap(Context context, Drawable drawable,boolean isSelect) {
+    public static Bitmap getMarkerBitmap(Context context, Drawable drawable,boolean isSelect) {
         Bitmap result;
         Bitmap original = AdjustBitmap.drawableToBitmap(drawable);//获得原始bitmap
         float width = DisplayUtil.dip2px(context, MARKER_WIDTH);
@@ -50,7 +50,7 @@ public class MapHandler {
         }else {
             return drawBorderMarkerBitmap4White(result, Color.WHITE);
         }
-    }*/
+    }
 
     /**
      * 为BitMap添加边框

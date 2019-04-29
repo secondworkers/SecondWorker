@@ -26,8 +26,9 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
-import com.qiaoyi.secondworker.utlis.ACache;
+import com.qiaoyi.secondworker.cache.ACache;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +44,12 @@ public class BaseActivity extends AppCompatActivity {
   public ProgressDialog progressDialog;
 
   public AMapLocationClient mLocationClient = null;
-  public double lat,lng;
-  public String address;
-  private String township;
-  private String formatAddress;
+  public double lat,lng;//定位坐标
+  public String address;//定位地址
+  public String township;//
+  public String formatAddress;
+  public String city;//定位城市
+  public String province;
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState,
       @Nullable PersistableBundle persistentState) {
@@ -69,9 +72,8 @@ public class BaseActivity extends AppCompatActivity {
 
   @Override protected void onResume() {
     super.onResume();
-//    MobclickAgent.onResume(this);
+    MobclickAgent.onResume(this);
   }
-
   @Override protected void onDestroy() {
     if (mLocationClient != null) {
       mLocationClient.onDestroy();
@@ -104,7 +106,9 @@ public class BaseActivity extends AppCompatActivity {
           //详情地址
           address = amapLocation.getAddress();
           //市区
-          address = amapLocation.getCity() + amapLocation.getDistrict();
+          //城市信息
+          city = amapLocation.getCity();
+          address = city + amapLocation.getDistrict();
           //逆地理编码通过坐标获取地理位置
           GeocodeSearch geocoderSearch = new GeocodeSearch(getApplication());
 
@@ -129,7 +133,9 @@ public class BaseActivity extends AppCompatActivity {
           // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
           RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200, GeocodeSearch.AMAP);
           geocoderSearch.getFromLocationAsyn(query);
-          String districtAddress = amapLocation.getProvince()+","+amapLocation.getCity()+","+amapLocation.getDistrict()+","+township;
+          //省信息
+          province = amapLocation.getProvince();
+          String districtAddress = province +","+ city +","+amapLocation.getDistrict()+","+township;
           ALog.e("定位：" + address + "," + lat + "," + lng+"---"+amapLocation.getStreet());
           try {
             ACache mCache = ACache.get(getApplication());
@@ -145,13 +151,11 @@ public class BaseActivity extends AppCompatActivity {
           //amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
           //amapLocation.getAccuracy();//获取精度信息
           //amapLocation.getCountry();//国家信息
-//          amapLocation.getProvince();//省信息
-//          amapLocation.getCity();//城市信息
-//          amapLocation.getDistrict();//城区信息
+          //          amapLocation.getDistrict();//城区信息
           //amapLocation.getStreet();//街道信息
           //amapLocation.getStreetNum();//街道门牌号信息
-          //amapLocation.getCityCode();//城市编码
-          //amapLocation.getAdCode();//地区编码
+//          amapLocation.getCityCode();//城市编码
+//          amapLocation.getAdCode();//地区编码
           //amapLocation.getAoiName();//获取当前定位点的AOI信息
           //amapLocation.getBuildingId();//获取当前室内定位的建筑物Id
           //amapLocation.getFloor();//获取当前室内定位的楼层
@@ -160,7 +164,7 @@ public class BaseActivity extends AppCompatActivity {
           //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE).format(
           //    new Date(amapLocation.getTime()));
         } else {
-          ALog.d("定位：失败");
+          ALog.e("定位：失败");
         }
 
       }
@@ -222,7 +226,7 @@ public class BaseActivity extends AppCompatActivity {
 
   @Override public void onPause() {
     super.onPause();
-//    MobclickAgent.onPause(this);
+    MobclickAgent.onPause(this);
     closeToast();
   }
 

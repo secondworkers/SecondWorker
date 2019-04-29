@@ -15,15 +15,26 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.ServiceBean;
 import com.qiaoyi.secondworker.ui.BaseFragment;
 import com.qiaoyi.secondworker.ui.ItemDecoration.GridSpacingItemDecoration;
 import com.qiaoyi.secondworker.ui.center.activity.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.activity.MessageActivity;
+import com.qiaoyi.secondworker.ui.homepage.adapter.AllServiceAdapter;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.stx.xhb.xbanner.XBanner;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
+
+import cn.isif.alibs.utils.ALog;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created on 2019/4/19
@@ -51,7 +62,8 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentStatus(getActivity());
-        StatusBarUtil.setStatusBarDarkTheme(getActivity(), true);
+
+        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -102,15 +114,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     private void initView(View rootView) {
 
@@ -137,11 +141,11 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
             case R.id.iv_location:
             case R.id.tv_location:
                 Intent intent = new Intent(getActivity(), GetAddressActivity.class);
-                intent.putExtra("","");
+                intent.putExtra("from","home");
                 startActivityForResult(intent,9999);
                 break;
             case R.id.iv_msg:
-//                new Intent(getActivity(),);
+                startActivity(new Intent(getActivity(), MessageActivity.class));
                 break;
             case R.id.tv_search:
 
@@ -150,5 +154,40 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
 
                 break;
         }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void  onLocationSelect(LocationBean location){
+        double lat = location.getLat();
+        double lng = location.getLng();
+        String address_msg = location.getAddress_msg();
+        String address_title = location.getAddress_title();
+        ALog.e("lat="+lat+",lng="+lng+"\naddress_msg="+address_msg+"address_title="+address_title);
+        tv_location.setText(address_title);
+        //重新根据请求数据
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == 9999){
+                String address_title = data.getStringExtra("title");
+                double lat = data.getDoubleExtra("lat", 0.0);
+                double lng = data.getDoubleExtra("lng", 0.0);
+                tv_location.setText(address_title);
+                //重新根据请求数据
+            }
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     >
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<ImageView
+    android:id="@+id/iv_dian"
+    android:layout_width="@dimen/base10dp"
+    android:layout_height="@dimen/base10dp"
+    android:layout_marginTop="@dimen/base25dp"
+    android:layout_marginLeft="@dimen/base20dp"
+    android:src="@drawable/shape_gradient_lr_blue"/>
     <TextView
-        android:id="@+id/tv_location1"
+        android:id="@+id/tv_location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="獒牙众创空间"
-        android:layout_marginLeft="@dimen/base48dp"
+        android:layout_marginLeft="@dimen/base20dp"
         android:layout_marginTop="@dimen/base14dp"
-        android:textColor="#ff00a2ff"
+        android:textColor="@color/text_blue"
+        android:layout_toEndOf="@+id/iv_dian"
         android:textSize="17sp"
         />
     <TextView
-        android:id="@+id/tv_location2"
+        android:id="@+id/tv_location_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="经七路843号泰山国际大厦9楼"
-        android:layout_below="@+id/tv_location1"
-        android:layout_alignLeft="@+id/tv_location1"
-        android:layout_marginTop="@dimen/base14dp"
-        android:textColor="#ff212121"
+        android:layout_below="@+id/tv_location_title"
+        android:layout_alignLeft="@+id/tv_location_title"
+        android:layout_marginTop="@dimen/base10dp"
+        android:textColor="@color/deep_black"
         android:textSize="13sp"
         />
 
 </RelativeLayout>
-
-
-
-</LinearLayout>

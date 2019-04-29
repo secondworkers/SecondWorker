@@ -5,7 +5,8 @@ public class Contact {
 ///
 //    public static final String BASE_URL = "http://irapi.sndistinguish.com/";//release主机
 //    public static final String BASE_URL = "http://irapi-test.sndistinguish.com/";//预发布
-  public static final String BASE_URL = "http://192.168.0.104:8090/";//debug主机
+//  public static final String BASE_URL = "http://192.168.0.104:8090/";//debug主机
+  public static final String BASE_URL = "http://192.168.0.103:8066/";//debug主机
 
 
   public static final String ANDROID = "android";
@@ -25,7 +26,7 @@ public class Contact {
     }*/
 
 
-  public static final String LOGIN = BASE_URL + "/login";//登录
+  public static final String LOGIN = BASE_URL + "user/login";//登录
   public static final String SEND_SMS = BASE_URL + "user/code";//发送验证码
   public static final String THIRD_LOGIN = BASE_URL + "/thirdLogin";//第三方登录
 

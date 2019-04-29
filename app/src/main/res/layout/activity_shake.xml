@@ -1,80 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/shake_bg"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-    <RelativeLayout
-        android:id="@+id/rl_bg"
-        android:layout_height="48dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <ImageView
         android:layout_width="match_parent"
-        android:background="#1979F4"
-        >
-        <TextView
-            android:id="@+id/tv_title_txt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/shake"
-            android:textColor="@color/text_white"
-            android:textSize="18sp"
-            />
+        android:layout_height="wrap_content"
+        android:src="@mipmap/shake_title_bg"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/base50dp"
+        android:gravity="center_horizontal"
+        android:background="@mipmap/shake_bg">
         <RelativeLayout
-            android:id="@+id/view_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:clickable="true"
-            >
+            android:layout_width="@dimen/base177dp"
+            android:layout_height="@dimen/base177dp"
+            android:layout_marginTop="@dimen/base40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_gradient_white">
             <ImageView
-                android:id="@+id/iv_title_back"
+                android:id="@+id/iv_shake_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/iv_back_white"
+                android:src="@mipmap/shake_phone"
                 />
         </RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="@dimen/base177dp"
-        android:layout_height="@dimen/base177dp"
-        android:layout_marginTop="@dimen/base40dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape_gradient_white">
         <ImageView
-            android:id="@+id/iv_shake_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@mipmap/shake_phone"
+            android:layout_marginTop="@dimen/base40dp"
+            android:src="@mipmap/shake_text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每天仅有6次摇特价服务机会"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginTop="@dimen/base13dp"
             />
-    </RelativeLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base40dp"
-        android:src="@mipmap/shake_text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="每天仅有6次摇特价服务机会"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:layout_marginTop="@dimen/base13dp"
-        />
-    <TextView
-        android:id="@+id/tv_goto_shake"
-        android:layout_width="@dimen/base170dp"
-        android:layout_height="@dimen/base44dp"
-        android:text="点击摇一摇"
-        android:textColor="@color/text_grey"
-        android:gravity="center"
-        android:textSize="15sp"
-        android:layout_marginTop="@dimen/base60dp"
-        android:background="@drawable/shape_bg_btn_white"
-        android:onClick="onShakeClick"
-        />
+        <TextView
+            android:id="@+id/tv_goto_shake"
+            android:layout_width="@dimen/base170dp"
+            android:layout_height="@dimen/base44dp"
+            android:text="点击摇一摇"
+            android:textColor="@color/text_grey"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="@dimen/base60dp"
+            android:background="@drawable/shape_bg_btn_white"
+            android:onClick="onShakeClick"
+            />
+    </LinearLayout>
 
-</LinearLayout>
+    <com.qiaoyi.secondworker.view.StatusBarHeightView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:use_type="use_padding_top"
+        android:orientation="vertical" >
+        <RelativeLayout
+            android:id="@+id/rl_bg"
+            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            >
+            <TextView
+                android:id="@+id/tv_title_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/shake"
+                android:textColor="@color/text_white"
+                android:textSize="18sp"
+                />
+            <RelativeLayout
+                android:id="@+id/view_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true"
+                >
+                <ImageView
+                    android:id="@+id/iv_title_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/iv_back_white"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.qiaoyi.secondworker.view.StatusBarHeightView>
+</RelativeLayout>

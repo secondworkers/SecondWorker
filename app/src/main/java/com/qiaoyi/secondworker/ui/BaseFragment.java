@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 
+import com.umeng.analytics.MobclickAgent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,11 +74,11 @@ public class BaseFragment extends Fragment {
 
   public void onResume() {
     super.onResume();
-//    MobclickAgent.onResume(this.getActivity()); //统计时长
+    MobclickAgent.onResume(this.getActivity()); //统计时长
   }
   public void onPause() {
     super.onPause();
     closeToast();
-//    MobclickAgent.onPause(this.getActivity()); //统计时长
+    MobclickAgent.onPause(this.getActivity()); //统计时长
   }
 }

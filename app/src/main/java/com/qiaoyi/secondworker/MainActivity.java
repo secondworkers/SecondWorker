@@ -20,10 +20,10 @@ import android.widget.Toast;
 
 import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.ui.MyFragmentTabHost;
+import com.qiaoyi.secondworker.ui.map.MapFragment2;
 import com.qiaoyi.secondworker.ui.shake.activity.BindMobileActivity;
-import com.qiaoyi.secondworker.ui.center.activity.LoginActivity;
 import com.qiaoyi.secondworker.ui.shake.activity.VoiceIdentifyActivity;
-import com.qiaoyi.secondworker.ui.fragment.CenterFragment;
+import com.qiaoyi.secondworker.ui.center.CenterFragment;
 import com.qiaoyi.secondworker.ui.homepage.HomeBaseFragment;
 import com.qiaoyi.secondworker.ui.map.MapFragment;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
@@ -31,7 +31,7 @@ import com.qiaoyi.secondworker.view.ShakeDialog;
 
 import cn.isif.alibs.utils.ToastUtils;
 
-import static com.qiaoyi.secondworker.ui.fragment.CenterFragment.BROADCAST_LOGOUT_ACTION;
+import static com.qiaoyi.secondworker.ui.center.CenterFragment.BROADCAST_LOGOUT_ACTION;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         StatusBarUtil.setTranslucentStatus(this);
         StatusBarUtil.setStatusBarDarkTheme(this, true);
         initView();
-        new ShakeDialog(this).show();
+//        new ShakeDialog(this).show();
     }
 
     @Override protected void onResume() {
@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabHost.addTab(mTabHost.newTabSpec(bottomStr[0]).setIndicator(getTabItemView(0)),
                 HomeBaseFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec(bottomStr[1]).setIndicator(getTabItemView(1)),
-                MapFragment.class, null);
+                MapFragment2.class, null);
         mTabHost.addTab(mTabHost.newTabSpec(bottomStr[2]).setIndicator(getTabItemView(2)),
                 CenterFragment.class, null);
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
