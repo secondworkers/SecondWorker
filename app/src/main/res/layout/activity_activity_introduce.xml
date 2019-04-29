@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_background"
+    android:orientation="vertical">
+    <!--活动介绍-->
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
+    <TextView
+        android:id="@+id/tv_font_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/base25dp"
+        android:text="手机摇一摇"
+        android:textColor="#FCFDFF"
+        android:textSize="47sp" />
+
+    <TextView
+        android:id="@+id/tv_font_small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_font_big"
+        android:layout_centerInParent="true"
+        android:text="优惠送不停"
+        android:textColor="#FCFDFF"
+        android:textSize="32sp" />
+
+    <ImageView
+        android:id="@+id/iv_gift"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_font_small"
+        android:layout_marginLeft="@dimen/base78dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="@dimen/base73dp"
+        android:src="@mipmap/ic_gift" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base23dp"
+            android:layout_marginTop="@dimen/base325dp"
+            android:layout_marginRight="@dimen/base23dp"
+            android:layout_marginBottom="@dimen/base28dp"
+            android:background="@drawable/shape_bg_btn_white">
+
+            <!--活动说明-->
+            <ImageView
+                android:id="@+id/iv_star"
+                android:layout_width="@dimen/base24dp"
+                android:layout_height="@dimen/base25dp"
+                android:layout_marginLeft="@dimen/base93dp"
+                android:layout_marginTop="@dimen/base23dp"
+                android:src="@mipmap/ic_star" />
+
+            <TextView
+                android:id="@id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base132dp"
+                android:layout_marginTop="@dimen/base20dp"
+                android:layout_marginRight="@dimen/base94dp"
+                android:text="活动说明"
+                android:textColor="#1979F4"
+                android:textSize="22sp" />
+
+
+            <!--什么是秒工-->
+            <ImageView
+                android:id="@+id/iv_allow_go_1"
+                android:layout_width="@dimen/base5dp"
+                android:layout_height="@dimen/base10dp"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base65dp"
+                android:background="@drawable/shape_gradient_little_left_blue" />
+
+            <TextView
+                android:id="@+id/tv_why"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base10dp"
+                android:text="什么是秒工？"
+                android:textColor="#242D39"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_why"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base9dp"
+                android:layout_marginRight="@dimen/base25dp"
+                android:text="“秒工APP”是同城综合性即时服务平台，随叫随到，只要你有需求，可以即时帮你解决，技能变现，时间变现【提高生活品质，降低生活成本】让生活变得更加美好。"
+                android:textColor="#242D39"
+                android:textSize="15sp" />
+
+
+            <!--手机摇优惠-->
+            <ImageView
+                android:id="@+id/iv_allow_go_2"
+                android:layout_width="@dimen/base5dp"
+                android:layout_height="@dimen/base10dp"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base176dp"
+                android:background="@drawable/shape_gradient_little_left_blue" />
+
+            <TextView
+                android:id="@+id/tv_favorable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base170dp"
+                android:text="手机摇优惠"
+                android:textColor="#242D39"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_favorable"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base9dp"
+                android:layout_marginRight="@dimen/base25dp"
+                android:text="每人每天都可摇六次特价优惠活动，如（免费代收垃圾，9.9元送餐上门特价早餐；9.9元半小时保洁服务）等等，活动多多欢迎来摇~"
+                android:textColor="#242D39"
+                android:textSize="14sp" />
+
+
+            <!--邀请有礼-->
+            <ImageView
+                android:id="@+id/iv_allow_go_3"
+                android:layout_width="@dimen/base5dp"
+                android:layout_height="@dimen/base10dp"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base275dp"
+                android:background="@drawable/shape_gradient_little_left_blue" />
+
+            <TextView
+                android:id="@+id/tv_invite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base270dp"
+                android:text="邀请有礼，最高可获¥88红包！！"
+                android:textColor="#242D39"
+                android:textSize="@dimen/base15dp" />
+
+            <TextView
+                android:id="@+id/tv_text_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_invite"
+                android:layout_marginLeft="@dimen/base28dp"
+                android:layout_marginTop="@dimen/base9dp"
+                android:layout_marginRight="@dimen/base25dp"
+                android:text="活动期间每成功邀请一名用户注册并登陆APP,可随机获得￥5~88现金红包！！多邀多得，不设上限。"
+                android:textColor="#242D39"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="@dimen/base280dp"
+        android:layout_height="@dimen/base40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_gradient_little_left_blue"
+        android:gravity="center"
+        android:text="去摇一摇" />
+
+</RelativeLayout>
+
+
