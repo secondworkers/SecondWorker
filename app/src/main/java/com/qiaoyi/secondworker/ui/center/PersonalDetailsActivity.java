@@ -1,8 +1,8 @@
 package com.qiaoyi.secondworker.ui.center;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 /**
  * oncreate 2019/4/25
@@ -10,7 +10,7 @@ import com.qiaoyi.secondworker.R;
  * 个人信息
  */
 
-public class PersonalDetailsActivity extends AppCompatActivity {
+public class PersonalDetailsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

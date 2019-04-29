@@ -5,15 +5,15 @@ import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
- * oncreate 2019/4/25
+ * create on 2019/4/28
  * ling
- * 我的收藏
+ * 发布需求
  */
-public class CollectActivity extends BaseActivity {
+public class PostDemandActivity extends BaseActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect);
+        setContentView(R.layout.activity_evaluate);
     }
 }

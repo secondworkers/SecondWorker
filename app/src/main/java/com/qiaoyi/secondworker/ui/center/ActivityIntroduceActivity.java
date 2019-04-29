@@ -1,19 +1,20 @@
 package com.qiaoyi.secondworker.ui.center;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-
 /**
- * oncreate 2019/4/25
+ * create on 2019/4/27
  * ling
- * 我的收藏
+ *活动介绍
  */
-public class CollectActivity extends BaseActivity {
+public class ActivityIntroduceActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect);
+        setContentView(R.layout.activity_activity_introduce);
     }
 }

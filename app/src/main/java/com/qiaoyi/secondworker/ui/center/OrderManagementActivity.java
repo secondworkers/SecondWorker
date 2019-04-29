@@ -5,15 +5,15 @@ import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
- * oncreate 2019/4/25
+ * create on  2196/4/27
  * ling
- * 我的收藏
+ * 我的订单
  */
-public class CollectActivity extends BaseActivity {
+public class OrderManagementActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect);
+        setContentView(R.layout.activity_order_management);
     }
 }

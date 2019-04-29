@@ -1,19 +1,21 @@
 package com.qiaoyi.secondworker.ui.center;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
- * oncreate 2019/4/25
+ * create on 2019/4/28
  * ling
- * 我的收藏
+ * 语音识别
  */
-public class CollectActivity extends BaseActivity {
+public class VoiceRecognitionActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collect);
+        setContentView(R.layout.activity_voice_recognition);
     }
 }

@@ -1,13 +1,11 @@
 package com.qiaoyi.secondworker.ui.center;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
@@ -15,7 +13,7 @@ import com.qiaoyi.secondworker.R;
  * ling
  * 我的发布需求
  */
-public class RequirementActivity extends AppCompatActivity implements View.OnClickListener {
+public class RequirementActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView tv_title_txt;
 

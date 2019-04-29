@@ -9,10 +9,7 @@
     <!--个人信息-->
     <include
         android:id="@+id/include"
-        layout="@layout/layout_top_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        layout="@layout/layout_top_title"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

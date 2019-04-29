@@ -1,12 +1,12 @@
 package com.qiaoyi.secondworker.ui.center;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 
 /**
@@ -15,9 +15,8 @@ import com.qiaoyi.secondworker.R;
  * 我的信息
  */
 
-public class MessggeActivity extends AppCompatActivity implements View.OnClickListener {
+public class MessggeActivity extends BaseActivity implements View.OnClickListener {
 
-    private TextView tv_title_txt;
     private RelativeLayout view_back;
     private View view_title_line;
     private RecyclerView rv_list;
@@ -33,7 +32,7 @@ public class MessggeActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initView() {
-        tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
+        TextView tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         rv_list =  findViewById(R.id.rv_list);
         view_back = (RelativeLayout) findViewById(R.id.view_back);
         view_title_line = (View) findViewById(R.id.view_title_line);

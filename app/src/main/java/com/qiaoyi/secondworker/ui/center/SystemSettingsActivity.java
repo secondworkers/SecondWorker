@@ -1,14 +1,12 @@
 package com.qiaoyi.secondworker.ui.center;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.umeng.socialize.media.Base;
 
 /**
  * create on 2019/4/25
@@ -20,7 +18,7 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_settings);
+        setContentView(R.layout.activity_activity_introduce);
         TextView textView = findViewById(R.id.tv_safe);
         TextView textView1 = findViewById(R.id.tv_us);
         textView.setOnClickListener(this);

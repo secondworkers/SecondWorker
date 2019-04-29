@@ -8,8 +8,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/layout_top_title"
-        />
+        layout="@layout/layout_top_title" />
 
 
     <RelativeLayout
