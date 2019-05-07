@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_gradient_little_no_coners_deep_blue">
+
+    <!--审核状态:正在审核-->
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/rl_audit_status"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_gradient_little_no_coners_deep_blue">
+
+        <TextView
+            android:id="@+id/tv_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="审核状态"
+            android:textColor="@color/text_white"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/view_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/iv_back_white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_auditing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_audit_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base30dp"
+        android:src="@mipmap/ic_auditing" />
+
+    <TextView
+        android:id="@+id/tv_auditing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_audit_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base95dp"
+        android:text="正在审核中"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv_wave_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_auditing"
+        android:layout_marginTop="@dimen/base20dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_wave_background" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/iv_wave_background"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rl_top_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base52dp">
+
+            <TextView
+                android:id="@+id/tv_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您的信息资料"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_text_1"
+                android:text="正在审核中,"
+                android:textColor="#5654F3"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_text_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_text_2"
+                android:text="请耐心等待"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_text_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_top_text"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/base55dp"
+            android:layout_marginTop="@dimen/base18dp"
+            android:layout_marginRight="@dimen/base55dp"
+            android:text="预计1个工作日内审核完毕"
+            android:textColor="#888888"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_text_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_text_4"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/base10dp"
+            android:text="审核结果会短信通知到您的注册手机上"
+            android:textColor="#888888"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

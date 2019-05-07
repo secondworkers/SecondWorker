@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:background="#F5F5F5">
     <!--评价-->
+
     <include
         android:id="@+id/include"
         layout="@layout/layout_top_title" />
@@ -12,7 +13,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/base15dp"
         android:layout_marginTop="@dimen/base15dp"
         android:layout_marginRight="@dimen/base15dp"
@@ -29,7 +29,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
+        <com.qiaoyi.secondworker.view.CircularImageView
             android:id="@+id/iv_user_photo"
             android:layout_width="@dimen/base36dp"
             android:layout_height="@dimen/base36dp"
@@ -77,9 +77,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
-            android:layout_marginLeft="@dimen/base270dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base12dp"
             android:layout_marginTop="@dimen/base43dp"
-            android:drawableLeft="@mipmap/ic_add"
+            android:drawableLeft="@mipmap/ic_select_logo"
             android:drawablePadding="5dp"
             android:text="匿名评价"
             android:textColor="#888888"
@@ -110,54 +111,57 @@
 
 
         <!--添加图片框-->
-        <EditText
-            android:id="@+id/tv_background"
-            android:layout_width="@dimen/base321dp"
-            android:layout_height="@dimen/base187dp"
-            android:layout_below="@+id/tv_evaluat_font"
-            android:layout_centerInParent="true"
-            android:hint="您的认可是我们的动力，请留下宝贵意见"
-            android:paddingLeft="@dimen/base13dp"
-            android:paddingBottom="@dimen/base157dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginBottom="@dimen/base16dp"
-           android:textSize="12sp"
-            android:textColor="#888888"
-            android:background="#F5F5F5" />
-
-        <ImageView
-            android:id="@+id/iv_add_images"
-            android:layout_width="@dimen/base36dp"
-            android:layout_height="@dimen/base26dp"
-            android:layout_below="@+id/tv_evaluat_font"
-            android:layout_marginLeft="@dimen/base25dp"
-            android:layout_marginTop="@dimen/base140dp"
-            android:src="@mipmap/ic_add_images" />
-
-        <TextView
-            android:id="@+id/tv_add_images"
+        <RelativeLayout
+            android:id="@+id/rl_edit_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_add_images"
-            android:layout_marginLeft="@dimen/base26dp"
-            android:layout_marginTop="@dimen/base5dp"
-            android:text="添加照片"
-            android:textColor="#888888"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_fint_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_add_images"
-            android:layout_marginLeft="@dimen/base211dp"
+            android:layout_below="@+id/tv_evaluat_font"
+            android:layout_marginLeft="@dimen/base12dp"
+            android:layout_marginTop="@dimen/base30dp"
             android:layout_marginRight="@dimen/base12dp"
-            android:text="您的评价会帮助更多的人"
-            android:textColor="#666666"
-            android:textSize="10sp" />
+            android:background="#F5F5F5">
+
+            <EditText
+                android:id="@+id/et_import"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base110dp"
+                android:background="#F5F5F5"
+                android:hint="您的认可是我们的动力，请留下宝贵意见"
+                android:paddingLeft="@dimen/base26dp"
+                android:paddingBottom="@dimen/base80dp"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_add_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_import"
+                android:layout_marginLeft="@dimen/base26dp"
+                android:drawableTop="@mipmap/ic_add_images"
+                android:drawablePadding="@dimen/base5dp"
+                android:gravity="center"
+                android:text="添加照片"
+                android:textColor="#888888"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_hint_font_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/base150dp"
+                android:layout_marginRight="@dimen/base24dp"
+                android:layout_marginBottom="@dimen/base18dp"
+                android:text="您的评价会帮助更多的人"
+                android:textColor="#666666"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
+    <!--底部按钮-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -179,6 +183,7 @@
             android:text="立即发布"
             android:textColor="#FFFFFF"
             android:textSize="15sp" />
+
     </LinearLayout>
 
 </LinearLayout>

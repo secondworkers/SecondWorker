@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!--服务搜索-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_service_photo"
+            android:layout_width="@dimen/base100dp"
+            android:layout_height="@dimen/base105dp"
+            android:layout_marginLeft="@dimen/base12dp"
+            android:layout_marginTop="@dimen/base15dp"
+            android:layout_marginBottom="@dimen/base15dp"
+            android:background="@color/text_blue" />
+
+        <TextView
+            android:id="@+id/tv_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base10dp"
+            android:layout_marginTop="@dimen/base15dp"
+            android:layout_toRightOf="@+id/iv_service_photo"
+            android:text="日常保洁钟点工"
+            android:textColor="#212121"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_service_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_service"
+            android:layout_alignLeft="@+id/tv_service"
+            android:layout_marginTop="@dimen/base5dp"
+            android:layout_marginRight="@dimen/base16dp"
+            android:text="我们主要服务项目有日常保洁,开荒保洁、擦玻璃..."
+            android:textColor="#666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_service_detail"
+            android:layout_alignLeft="@+id/tv_service"
+            android:layout_marginTop="@dimen/base5dp"
+            android:text="50元/小时"
+            android:textColor="#FF0000"
+            android:textSize="14sp" />
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            style="@style/footRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_price"
+            android:layout_alignLeft="@+id/tv_service"
+            android:layout_marginTop="@dimen/base6dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize="2.0" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_price"
+            android:layout_marginLeft="@dimen/base5dp"
+            android:layout_marginTop="@dimen/base3dp"
+            android:layout_toRightOf="@+id/ratingbar"
+            android:text="10分"
+            android:textColor="#888888"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tv_order_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_price"
+            android:layout_marginRight="@dimen/base16dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/base3dp"
+            android:text="已售95"
+            android:textColor="#888888"
+            android:textSize="11sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
