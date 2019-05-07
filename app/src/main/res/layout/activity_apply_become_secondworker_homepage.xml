@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_gradient_little_no_coners_blue">
+
+    <!--申请成为秒工人主页-->
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/rl_apply_become_secondworker"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_gradient_little_no_coners_blue">
+
+        <TextView
+            android:id="@+id/tv_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="申请成为秒工人"
+            android:textColor="@color/text_white"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/view_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/iv_back_white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_title_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_apply_become_secondworker"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/base33dp"
+        android:src="@mipmap/ic_become_secondworker" />
+
+    <RelativeLayout
+        android:id="@+id/rl_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_title_font"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/base23dp"
+        android:layout_marginTop="@dimen/base25dp"
+        android:layout_marginRight="@dimen/base23dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="@dimen/base5dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginLeft="@dimen/base20dp"
+            android:layout_marginTop="@dimen/base22dp"
+            android:background="#00A2FF" />
+
+        <TextView
+            android:id="@+id/tv_what_secondworker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base35dp"
+            android:layout_marginTop="@dimen/base18dp"
+            android:text="什么是秒工人"
+            android:textColor="#242D39"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_what_secondworker"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/base30dp"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_marginRight="@dimen/base30dp"
+            android:text="秒工人是直属秒工APP管理的内部人员，为给用户提供更好更便捷服务的专员；"
+            android:textColor="#242D39"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="@dimen/base5dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_below="@+id/tv_text_1"
+            android:layout_marginLeft="@dimen/base20dp"
+            android:layout_marginTop="@dimen/base34dp"
+            android:background="#00A2FF" />
+
+        <TextView
+            android:id="@+id/tv_why_become_secondworker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_text_1"
+            android:layout_alignLeft="@+id/tv_what_secondworker"
+            android:layout_marginTop="@dimen/base29dp"
+            android:text="为什么要成为秒工人"
+            android:textColor="#242D39"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_why_become_secondworker"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/base30dp"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_marginRight="@dimen/base30dp"
+            android:text="1.专业的运营团队可保证平台的使用率；
+                         2.不再拿死工资，一人分管一片区域，区域内用户所产生的费用全部纳入自己手里，多劳多得；
+                         3.不用来公司上班，坐在家里就可以接活；
+                         4.入职培训，每月一次全员培训，根据效益进行评选最佳秒工人；"
+            android:textColor="#242D39"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_release_immediately"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base39dp"
+            android:layout_below="@+id/tv_text_2"
+            android:layout_marginTop="@dimen/base40dp"
+            android:layout_marginBottom="@dimen/base20dp"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_bg_btn_blue"
+            android:gravity="center"
+            android:text="立即去申请"
+            android:clickable="true"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

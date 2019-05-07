@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--申请成为秒工人填写个人信息页-->
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include">
+
+        <RelativeLayout
+            android:id="@+id/rl_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_small_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/base30dp"
+                android:text="第一步:填写实名信息"
+                android:textColor="#212121"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_real_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_small_title"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base40dp"
+                android:text="真实姓名"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_input_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_small_title"
+                android:layout_marginLeft="@dimen/base33dp"
+                android:layout_marginTop="@dimen/base40dp"
+                android:layout_toRightOf="@+id/tv_real_name"
+                android:background="@null"
+                android:hint="请输写真实姓名"
+                android:textColor="#888888"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base1dp"
+                android:layout_below="@+id/et_input_name"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base18dp"
+                android:layout_marginRight="@dimen/base16dp"
+                android:background="#F5F5F5" />
+
+            <TextView
+                android:id="@+id/tv_ID_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line"
+                android:layout_alignLeft="@+id/tv_real_name"
+                android:layout_marginTop="@dimen/base18dp"
+                android:text="身份证号"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_input_ID_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_input_name"
+                android:layout_marginLeft="@dimen/base33dp"
+                android:layout_marginTop="@dimen/base36dp"
+                android:layout_toRightOf="@+id/tv_real_name"
+                android:background="@null"
+                android:hint="请输入18位身份证号"
+                android:textColor="#888888"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_interval_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base5dp"
+                android:layout_below="@+id/tv_ID_number"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base25dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:background="#F5F5F5" />
+
+            <!--上传身份证照片-->
+            <TextView
+                android:id="@+id/tv_upload_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_interval_1"
+                android:layout_alignLeft="@+id/tv_real_name"
+                android:layout_marginTop="@dimen/base25dp"
+                android:text="上传身份证照片"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_upload_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_upload_photo"
+                android:layout_marginTop="@dimen/base18dp">
+
+                <ImageView
+                    android:id="@+id/iv_upload_front"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@mipmap/ic_front_photograph" />
+
+                <ImageView
+                    android:id="@+id/iv_upload_reverse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base13dp"
+                    android:layout_marginRight="@dimen/base15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@mipmap/ic_reverse_photograph" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_interval_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base5dp"
+                android:layout_below="@+id/ll_upload_photo"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base25dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:background="#F5F5F5" />
+
+            <!--上传手持身份证半身照-->
+            <TextView
+                android:id="@+id/tv_upload_hand_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_interval_2"
+                android:layout_alignLeft="@+id/tv_upload_photo"
+                android:layout_marginTop="@dimen/base25dp"
+                android:text="上传手持身份证半身照"
+                android:textColor="#333333"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_upload_hand_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_upload_hand_photo"
+                android:layout_marginTop="@dimen/base18dp">
+
+                <ImageView
+                    android:id="@+id/iv_upload_hand_front"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginBottom="@dimen/base25dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@mipmap/ic_hand_front_photograph" />
+
+                <ImageView
+                    android:id="@+id/iv_upload_hand_reverse"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base13dp"
+                    android:layout_marginRight="@dimen/base15dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:src="@mipmap/ic_hand_reverse_photograph" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_next_step"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base39dp"
+                android:layout_below="@+id/ll_upload_hand_photo"
+                android:layout_marginTop="@dimen/base15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/base48dp"
+                android:layout_marginRight="@dimen/base48dp"
+                android:background="@drawable/shape_bg_btn_blue"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

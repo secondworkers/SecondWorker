@@ -14,6 +14,10 @@ public class PostDemandActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_evaluate);
+        setContentView(R.layout.activity_service_details);
+        //activity_personal_center
+        //activity_service_details
+        //activity_personal_homepage
+        //activity_evaluate
     }
 }

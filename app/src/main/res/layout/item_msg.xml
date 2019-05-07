@@ -30,7 +30,6 @@
         android:text="系统消息"
         android:textColor="#ff212121"
         android:textSize="16sp"
-
         tools:ignore="NotSibling" />
 
     <TextView

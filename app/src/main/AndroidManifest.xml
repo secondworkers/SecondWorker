@@ -96,17 +96,18 @@
         <activity android:name=".ui.center.activity.OrderDetailsActivity" />
         <activity android:name=".ui.center.ActivityIntroduceActivity" />
         <activity android:name=".ui.center.PostDemandActivity">
+
+        </activity>
+        <activity android:name=".ui.center.CancelOrderActivity" />
+        <activity android:name=".ui.center.VoiceRecognitionActivity" />
+        <activity android:name=".ui.center.OrderManagementActivity" />
+        <activity android:name=".TestRunActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".ui.center.CancelOrderActivity">
-
-        </activity>
-        <activity android:name=".ui.center.VoiceRecognitionActivity"></activity>
-        <activity android:name=".ui.center.OrderManagementActivity" />
     </application>
 
 </manifest>

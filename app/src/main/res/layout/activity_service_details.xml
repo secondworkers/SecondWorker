@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--服务详情-->
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
+    <ScrollView
+        android:id="@+id/sv_service_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include"
+        android:background="@color/text_white">
+
+        <RelativeLayout
+            android:id="@+id/rl_total"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--上部分-->
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_shop_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginRight="@dimen/base15dp"
+                    android:src="@mipmap/ic_banner" />
+
+                <TextView
+                    android:id="@+id/tv_service_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_shop_image"
+                    android:layout_alignLeft="@+id/iv_shop_image"
+                    android:layout_marginTop="@dimen/base20dp"
+                    android:text="日常保洁"
+                    android:textColor="#212121"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_service_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_service_type"
+                    android:layout_alignLeft="@+id/tv_service_type"
+                    android:layout_marginTop="@dimen/base8dp"
+                    android:text="室内清洁，物品整理，除尘除垢"
+                    android:textColor="#666666"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_collect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_shop_image"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/base20dp"
+                    android:layout_marginRight="@dimen/base30dp"
+                    android:clickable="true"
+                    android:drawableTop="@mipmap/ic_uncollect_heart"
+                    android:drawablePadding="@dimen/base3dp"
+                    android:gravity="center"
+                    android:text="收藏"
+                    android:textColor="#888888"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_service_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_service_detail"
+                    android:layout_alignLeft="@+id/iv_shop_image"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:layout_marginBottom="@dimen/base17dp"
+                    android:text="20元/小时"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_service_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_service_detail"
+                    android:layout_marginLeft="@dimen/base80dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:background="@drawable/shape_gradient_little_no_coners_blue"
+                    android:paddingLeft="@dimen/base6dp"
+                    android:paddingTop="@dimen/base3dp"
+                    android:paddingRight="@dimen/base6dp"
+                    android:paddingBottom="@dimen/base3dp"
+                    android:text="2小时起"
+                    android:textColor="#FFFFFF"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/tv_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_collect"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/base35dp"
+                    android:layout_marginRight="@dimen/base16dp"
+                    android:text="已售105单"
+                    android:textColor="#888888"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_interval_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base6dp"
+                android:layout_below="@+id/rl_top"
+                android:background="#F5F5F5" />
+
+            <!--中间部分 -->
+            <RelativeLayout
+                android:id="@+id/rl_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_interval_1">
+
+                <TextView
+                    android:id="@+id/tv_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:layout_marginBottom="@dimen/base14dp"
+                    android:text="会员"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_member_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base58dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:text="冲900送100，充9000送1000"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_allow_go"
+                    android:layout_width="@dimen/base8dp"
+                    android:layout_height="@dimen/base13dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:layout_marginRight="@dimen/base16dp"
+                    android:clickable="true"
+                    android:src="@mipmap/arrow_go" />
+
+                <TextView
+                    android:id="@+id/tv_line_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base1dp"
+                    android:layout_below="@+id/tv_member"
+                    android:background="#F5F5F5" />
+
+                <TextView
+                    android:id="@+id/tv_safeguard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_1"
+                    android:layout_alignLeft="@+id/tv_member"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:layout_marginBottom="@dimen/base16dp"
+                    android:text="保障"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_no_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_1"
+                    android:layout_marginLeft="@dimen/base70dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:drawableLeft="@mipmap/ic_no_money"
+                    android:drawablePadding="@dimen/base5dp"
+                    android:text="15分钟内免费取消"
+                    android:textColor="#888888"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_health_certificate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_1"
+                    android:layout_marginLeft="@dimen/base195dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:drawableLeft="@mipmap/ic_health_certificate"
+                    android:drawablePadding="@dimen/base5dp"
+                    android:text="健康证明"
+                    android:textColor="#888888"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_recordation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_1"
+                    android:layout_marginLeft="@dimen/base275dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:drawableLeft="@mipmap/ic_recordtion"
+                    android:drawablePadding="@dimen/base5dp"
+                    android:text="公安备案"
+                    android:textColor="#888888"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_interval_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base6dp"
+                    android:layout_below="@+id/tv_safeguard"
+                    android:background="#F5F5F5" />
+
+                <TextView
+                    android:id="@+id/tv_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_2"
+                    android:layout_alignLeft="@id/tv_member"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:text="已选"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_2"
+                    android:layout_alignLeft="@+id/tv_member_card"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:text="日常保洁"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_else"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_2"
+                    android:layout_alignRight="@+id/iv_allow_go"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/arrow_go"
+                    android:drawablePadding="@dimen/base10dp"
+                    android:text="其他可选"
+                    android:textColor="#666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_interval_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base6dp"
+                    android:layout_below="@+id/tv_selected"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="14dp"
+                    android:background="#F5F5F5" />
+
+                <TextView
+                    android:id="@+id/tv_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_3"
+                    android:layout_alignLeft="@+id/tv_member"
+                    android:layout_marginTop="@dimen/base24dp"
+                    android:text="店铺"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_shop_logo"
+                    android:layout_width="@dimen/base30dp"
+                    android:layout_height="@dimen/base30dp"
+                    android:layout_below="@+id/tv_interval_3"
+                    android:layout_alignLeft="@+id/tv_member_card"
+                    android:layout_marginTop="@dimen/base15dp"
+                    android:layout_marginBottom="@dimen/base18dp"
+                    android:src="@mipmap/ic_shop_logo" />
+
+
+                <TextView
+                    android:id="@+id/tv_shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_3"
+                    android:layout_marginLeft="@dimen/base94dp"
+                    android:layout_marginTop="@dimen/base16dp"
+                    android:text="秒工自营"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingbar"
+                    style="@style/footRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_shop_name"
+                    android:layout_marginLeft="@dimen/base99dp"
+                    android:layout_marginTop="@dimen/base3dp"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:stepSize="2.0" />
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_shop_name"
+                    android:layout_marginLeft="@dimen/base150dp"
+                    android:text="10分"
+                    android:textColor="#888888"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_come_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_3"
+                    android:layout_alignRight="@+id/iv_allow_go"
+                    android:layout_marginTop="@dimen/base24dp"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/arrow_go"
+                    android:drawablePadding="@dimen/base10dp"
+                    android:text="进店"
+                    android:textColor="#666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_interval_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base6dp"
+                    android:layout_below="@+id/tv_come_shop"
+                    android:layout_marginTop="14dp"
+                    android:background="#F5F5F5" />
+
+                <TextView
+                    android:id="@+id/tv_content_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_interval_4"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginTop="@dimen/base34dp"
+                    android:layout_marginRight="@dimen/base20dp"
+                    android:layout_marginBottom="@dimen/base34dp"
+                    android:text="1.参考时间：60平以下（2-3小时），61-123平方米（3-4小时），121-180平方米（4-5小时），181-220平方米（5-6小时）。
+                    2.服务范围：客厅清洁、卧室清洁、厨房清洁、卫生间清洁。
+                    3.注意事项：本服务2小时起，不满2小时按2小时计算。以上参考时间仅供参考。"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <!--下部分-->
+            <RelativeLayout
+                android:id="@+id/rl_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_center"
+                android:background="#F6FDFF">
+
+                <TextView
+                    android:id="@+id/tv_ordering_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base16dp"
+                    android:layout_marginTop="@dimen/base20dp"
+                    android:layout_marginBottom="@dimen/base15dp"
+                    android:text="订购须知："
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_refund"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/base20dp"
+                    android:layout_marginRight="@dimen/base16dp"
+                    android:layout_marginBottom="@dimen/base14dp"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/arrow_go"
+                    android:drawablePadding="@dimen/base9dp"
+                    android:text="取消，退款赔付规则"
+                    android:textColor="#00A2FF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_line_blue"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base1dp"
+                    android:layout_below="@+id/tv_refund"
+                    android:background="#F5F5F5" />
+
+                <TextView
+                    android:id="@+id/tv_content_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_blue"
+                    android:layout_marginLeft="@dimen/base14dp"
+                    android:layout_marginTop="@dimen/base18dp"
+                    android:layout_marginRight="@dimen/base14dp"
+                    android:layout_marginBottom="@dimen/base18dp"
+                    android:text="1.商家将在您下单后30分钟内确认接单；
+                    2.订单确认后，若需要修改或取消订单需提前2小时；
+                    3.商家接单15分钟后再取消订单将收取一定的空单损失费；若在预约前30分钟内取消订单将扣除一半服务费以补偿商家；
+                    4.如商家接单后在预约时间2个小时内不到的，将视为爽约，将全额退款并赔付您订单金额百分之十的等待费；
+                    5.为保障您的权益，所有费用请通过秒工平台支付，如不通过秒工平台支付发生的一切纠纷秒工平台概不负责。"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_interval_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base6dp"
+                android:layout_below="@+id/rl_bottom"
+                android:layout_marginTop="14dp"
+                android:background="#F5F5F5" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_user_evaluation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_interval_5">
+
+                <TextView
+                    android:layout_width="@dimen/base3dp"
+                    android:layout_height="@dimen/base10dp"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginTop="@dimen/base35dp"
+                    android:background="#00A2FF" />
+
+                <TextView
+                    android:id="@+id/tv_user_evaluation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base23dp"
+                    android:layout_marginTop="@dimen/base29dp"
+                    android:layout_marginBottom="@dimen/base17dp"
+                    android:text="用户评价"
+                    android:textColor="#212121"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_comment_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/base29dp"
+                    android:layout_marginRight="@dimen/base16dp"
+                    android:clickable="true"
+                    android:drawableRight="@mipmap/arrow_go"
+                    android:drawablePadding="@dimen/base10dp"
+                    android:text="15条评论"
+                    android:textColor="#888888"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base1dp"
+                    android:layout_below="@+id/tv_user_evaluation"
+                    android:background="#F5F5F5" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_line_2"
+                    android:layout_marginTop="@dimen/base6dp"></android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+    <!--底部工具栏-->
+    <LinearLayout
+        android:id="@+id/rl_tool"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base50dp"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/tv_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base8dp"
+                android:layout_marginBottom="@dimen/base8dp"
+                android:clickable="true"
+                android:drawableTop="@mipmap/ic_shop_black"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:text="商铺"
+                android:textColor="#666666"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/tv_shopping_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base30dp"
+                android:layout_marginTop="@dimen/base8dp"
+                android:layout_marginBottom="@dimen/base8dp"
+                android:clickable="true"
+                android:drawableTop="@mipmap/ic_shopping_cart_black"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="#666666"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_add_cart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F2B34A"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_place_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FF352B"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="去下单"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

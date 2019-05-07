@@ -37,8 +37,7 @@
             android:layout_marginTop="@dimen/base13dp"
             android:text="20元/小时"
             android:textColor="#ffff0000"
-            android:textSize="13sp"
-            />
+            android:textSize="13sp" />
 
 
     </RelativeLayout>
