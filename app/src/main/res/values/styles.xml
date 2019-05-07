@@ -84,4 +84,12 @@
     <style name="MyCheckboxStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
             <item name="android:button">@drawable/selector_pay_checkbox</item>
     </style>
+
+    <style name="TimePickerDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/text_white</item>
+    </style>
 </resources>

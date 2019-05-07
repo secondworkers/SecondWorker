@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:state_checked="true" android:state_window_focused="false"-->
+        <!--android:drawable="@drawable/tab_left" />-->
+    <!--<item android:state_checked="false" android:state_window_focused="false"-->
+        <!--android:drawable="@drawable/tab_left_highlighted" />-->
+
+    <!--<item android:state_checked="true" android:state_pressed="true"-->
+        <!--android:drawable="@drawable/tab_left_pressed" />-->
+    <!--<item android:state_checked="false" android:state_pressed="true"-->
+        <!--android:drawable="@drawable/tab_left_highlighted_pressed" />-->
+
+    <!--<item android:state_checked="true" android:state_focused="true"-->
+        <!--android:drawable="@drawable/tab_left" />-->
+    <!--<item android:state_checked="false" android:state_focused="true"-->
+        <!--android:drawable="@drawable/tab_left_highlighted" />-->
+
+    <item android:state_checked="false" android:color="@color/text_grey" />
+    <item android:state_checked="true" android:color="@color/text_blue" />
+</selector>

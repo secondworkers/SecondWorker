@@ -35,11 +35,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.ui.center.adapter.PoiAdapter;
 import com.qiaoyi.secondworker.utlis.LocationUtil;
 import com.qiaoyi.secondworker.utlis.MapHandler;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.view.MyMapView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +82,6 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getaddress);
-        Intent intent = getIntent();
-        from = intent.getStringExtra("from");
         StatusBarUtil.setTranslucentStatus(this);
         StatusBarUtil.setStatusBarDarkTheme(this, true);
         initView();
@@ -100,11 +101,16 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 PoiItem item = (PoiItem) adapter.getItem(position);
-                Intent intent = new Intent();
-                intent.putExtra("title",item.getTitle());
-                intent.putExtra("lat",item.getLatLonPoint().getLatitude());
-                intent.putExtra("lng",item.getLatLonPoint().getLongitude());
-                setResult(RESULT_OK);
+//                Intent intent = new Intent();
+//                intent.putExtra("title",item.getTitle());
+//                intent.putExtra("lat",item.getLatLonPoint().getLatitude());
+//                intent.putExtra("lng",item.getLatLonPoint().getLongitude());
+//                setResult(RESULT_OK);
+                EventBus.getDefault().post(new LocationBean(item.getLatLonPoint().getLatitude(),
+                        item.getLatLonPoint().getLongitude(),
+                        item.getTitle(),
+                        item.getSnippet()));
+                finish();
             }
         });
     }
@@ -151,7 +157,7 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
         mapview = (MapView) findViewById(R.id.mapview);
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
         tv_title_txt.setText("选择地址");
-
+        tv_location.setText(city);
         view_back.setOnClickListener(this);
         tv_location.setOnClickListener(this);
         et_search.setOnClickListener(this);
@@ -170,9 +176,7 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.et_search:
                 //搜索地址页面
-                Intent intent1 = new Intent(this, LocationSearchActivity.class);
-                intent1.putExtra("from",from);
-                startActivity(intent1);
+                startActivity(new Intent(this, LocationSearchActivity.class));
                 finish();
                 break;
         }

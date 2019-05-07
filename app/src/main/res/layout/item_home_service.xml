@@ -99,7 +99,6 @@
                 android:id="@+id/iv_service3"
                 android:layout_width="@dimen/base90dp"
                 android:layout_height="@dimen/base90dp"
-                android:src="@color/deep_black"
                 />
             <TextView
                 android:layout_width="wrap_content"

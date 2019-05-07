@@ -34,8 +34,6 @@ import java.util.ArrayList;
 
 import cn.isif.alibs.utils.ALog;
 
-import static android.app.Activity.RESULT_OK;
-
 /**
  * Created on 2019/4/19
  *  首页
@@ -140,9 +138,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         switch (v.getId()) {
             case R.id.iv_location:
             case R.id.tv_location:
-                Intent intent = new Intent(getActivity(), GetAddressActivity.class);
-                intent.putExtra("from","home");
-                startActivityForResult(intent,9999);
+                startActivity(new Intent(getActivity(), GetAddressActivity.class));
                 break;
             case R.id.iv_msg:
                 startActivity(new Intent(getActivity(), MessageActivity.class));
@@ -164,20 +160,6 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         ALog.e("lat="+lat+",lng="+lng+"\naddress_msg="+address_msg+"address_title="+address_title);
         tv_location.setText(address_title);
         //重新根据请求数据
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK){
-            if (requestCode == 9999){
-                String address_title = data.getStringExtra("title");
-                double lat = data.getDoubleExtra("lat", 0.0);
-                double lng = data.getDoubleExtra("lng", 0.0);
-                tv_location.setText(address_title);
-                //重新根据请求数据
-            }
-        }
     }
 
     @Override

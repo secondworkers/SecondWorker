@@ -1,6 +1,7 @@
 package com.qiaoyi.secondworker.ui.map;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -35,15 +36,24 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.WorkerBean;
 import com.qiaoyi.secondworker.cache.ACache;
 import com.qiaoyi.secondworker.ui.BaseFragment;
+import com.qiaoyi.secondworker.ui.center.activity.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.activity.MessageActivity;
 import com.qiaoyi.secondworker.utlis.*;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
 import cn.isif.alibs.utils.ToastUtils;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created on 2019/4/19
@@ -85,6 +95,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         super.onCreate(savedInstanceState);
         StatusBarUtil.setTranslucentStatus(getActivity());
         StatusBarUtil.setStatusBarDarkTheme(getActivity(), true);
+        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -149,6 +160,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         aMap = null;
         mlocationClient.onDestroy();
         mapView.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -333,15 +345,24 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_location:
-
-                break;
             case R.id.tv_location:
-
+                startActivity(new Intent(getActivity(), GetAddressActivity.class));
                 break;
             case R.id.iv_msg:
-
+                startActivity(new Intent(getActivity(), MessageActivity.class));
                 break;
         }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void  onLocation(LocationBean location){
+        double lat = location.getLat();
+        double lng = location.getLng();
+        String address_msg = location.getAddress_msg();
+        String address_title = location.getAddress_title();
+        ALog.e("lat="+lat+",lng="+lng+"\naddress_msg="+address_msg+"address_title="+address_title);
+        tv_location.setText(address_title);
+        //重新根据请求数据
+        moveCameraWithMap(new LatLng(lat,lng),ZOOM);
     }
 
     @Override
@@ -397,7 +418,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         ALog.e(area[0].latitude + "-" + area[0].longitude);
         ALog.e(area[1].latitude + "-" + area[1].longitude);
         CameraPosition cameraPosition = aMap.getCameraPosition();
-        ToastUtils.showShort("yidong ");
+        ToastUtils.showShort("请求");
 //        requestData(service_id); initMarkersOnMap
     }
 

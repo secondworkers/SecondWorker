@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include
+    layout="@layout/layout_top_title"
+    android:id="@+id/include"
+    />
+    <LinearLayout
+        android:id="@+id/ll_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base40dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/include"
+        android:background="@color/text_white">
+        <LinearLayout
+            android:id="@+id/ll_sort"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_sort"
+                android:text="综合排序"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="@dimen/base11dp"
+                android:id="@+id/iv_sort"
+                android:layout_height="@dimen/base6dp"
+                android:layout_marginLeft="@dimen/base5dp"
+                android:src="@mipmap/iv_location_right"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_service_type"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_service_type"
+                android:text="服务类型"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="@dimen/base11dp"
+                android:id="@+id/iv_service_type"
+                android:text="距离"
+                android:layout_height="@dimen/base6dp"
+                android:layout_marginLeft="@dimen/base5dp"
+                android:src="@mipmap/iv_location_right"/>
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_below="@+id/ll_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

@@ -1,6 +1,5 @@
 package com.qiaoyi.secondworker.ui.center.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.qiaoyi.secondworker.BaseActivity;

@@ -23,7 +23,7 @@
             android:layout_marginLeft="@dimen/base5dp"
             />
         <TextView
-            android:id="@+id/tv_posting"
+            android:id="@+id/tv_req_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -38,8 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_posting"
+            android:layout_below="@+id/tv_req_status"
             android:layout_marginTop="12dp"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
             android:background="#f5f5f5" />
         <TextView
             android:id="@+id/tv_post_type"
@@ -52,6 +54,7 @@
             android:layout_below="@+id/view"
             android:textSize="15sp" />
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tv_valid_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +63,6 @@
             android:layout_marginRight="@dimen/base15dp"
             android:layout_marginTop="@dimen/base15dp"
             android:text="有效期：3小时"
-
             />
         <TextView
             android:id="@+id/tv_service_time"
@@ -101,16 +103,31 @@
             android:layout_margin="@dimen/base15dp"
             android:id="@+id/view2"
             android:layout_below="@+id/tv_post_time"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view2"
+        android:layout_alignParentRight="true">
         <Button
-            android:id="@+id/button_cancel"
+            android:id="@+id/btn_cancel"
             android:layout_width="@dimen/base80dp"
             android:layout_height="@dimen/base30dp"
-            android:layout_alignParentRight="true"
             android:background="@drawable/shape_kuangt_grey"
             android:layout_marginRight="@dimen/base15dp"
             android:text="取消发布"
-            android:layout_below="@+id/view2"
             android:textColor="@color/text_black"
             android:layout_marginBottom="@dimen/base20dp"
             />
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="@dimen/base80dp"
+            android:layout_height="@dimen/base30dp"
+            android:background="@drawable/shape_gradient_little_left_blue"
+            android:layout_marginRight="@dimen/base15dp"
+            android:text="完成"
+            android:textColor="@color/text_white"
+            android:layout_marginBottom="@dimen/base20dp"
+            />
+    </LinearLayout>
+
 </RelativeLayout>

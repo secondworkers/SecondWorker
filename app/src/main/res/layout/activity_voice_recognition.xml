@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.center.VoiceRecognitionActivity">
-
+    android:id="@+id/rl_parent"
+    >
     <!--语音识别-->
-
-
     <TextView
         android:id="@+id/tv_skip_voice"
         android:layout_width="wrap_content"
@@ -71,36 +67,36 @@
         android:text="我需要一个空调安装工人"
         android:textColor="#212121"
         android:textSize="15sp" />
-    
-    <ImageView
-        android:id="@+id/iv_microphone"
-        android:layout_width="@dimen/base64dp"
-        android:layout_height="@dimen/base64dp"
-        android:layout_below="@+id/tv_hint_1"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/base300dp"
-        android:src="@mipmap/ic_microphone" />
-
-    <TextView
-        android:id="@+id/tv_say"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_microphone"
-        android:layout_centerInParent="true"
-        android:text="按住说话"
-        android:textColor="#212121"
-        android:layout_marginTop="@dimen/base5dp"
-        android:textSize="@dimen/base15dp" />
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/iv_microphone"
+            android:layout_width="@dimen/base64dp"
+            android:layout_height="@dimen/base64dp"
+            android:background="@mipmap/ic_microphone" />
+        <TextView
+            android:id="@+id/tv_say"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按住说话"
+            android:textColor="#212121"
+            android:layout_marginTop="@dimen/base5dp"
+            android:textSize="15sp"
+            />
 
-    <ImageView
-        android:id="@+id/iv_x"
-        android:layout_below="@+id/tv_say"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/base10dp"
-        android:layout_width="@dimen/base40dp"
-        android:layout_height="@dimen/base40dp"
-        android:src="@mipmap/ic_x"
-        />
-    
-    
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_width="@dimen/base40dp"
+            android:layout_height="@dimen/base40dp"
+            android:src="@mipmap/ic_x"
+            android:layout_marginBottom="@dimen/base15dp"
+            />
+    </LinearLayout>
+
 </RelativeLayout>

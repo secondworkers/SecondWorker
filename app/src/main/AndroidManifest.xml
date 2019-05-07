@@ -7,11 +7,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEM" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission
         android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
@@ -38,20 +40,29 @@
         <!--适配全面屏手机-->
         <meta-data android:name="android.max_aspect"
             android:value="2.1"/>
-        <meta-data android:name="com.amap.api.v2.apikey"
-            android:value="776e12bff83c57e204b019b067aff222">
-        </meta-data>
+        <!--友盟-->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5cbfcf584ca35779e40005ee"/>
         <!--<meta-data
             android:name="UMENG_MESSAGE_SECRET"
             android:value=""/>-->
+
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}"/>
+        <!--百度语音识别-->
+
+        <service android:name="com.baidu.speech.VoiceRecognitionService" android:exported="false" />
+        <!--高德地图-->
+        <meta-data android:name="com.amap.api.v2.apikey"
+            android:value="776e12bff83c57e204b019b067aff222">
+        </meta-data>
         <service android:name="com.amap.api.location.APSService"/>
-        <activity android:name="com.qiaoyi.secondworker.MainActivity">
+
+        <activity android:name="com.qiaoyi.secondworker.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateUnspecified">
         </activity>
 
         <activity android:name=".ui.center.activity.ContactActivity"/>
@@ -66,10 +77,16 @@
             android:label="@string/title_activity_historical_step"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.center.activity.CollectActivity" />
-        <activity android:name=".ui.center.activity.RequirementActivity" />
+        <activity android:name=".ui.center.activity.MyRequirementActivity" />
         <activity android:name=".ui.center.activity.MessageActivity" />
         <activity android:name=".ui.shake.activity.BindMobileActivity" />
-        <activity android:name=".ui.shake.activity.VoiceIdentifyActivity" />
+        <activity android:name=".ui.recognition.VoiceIdentifyActivity" >
+           <!-- <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>-->
+        </activity>
         <activity android:name=".ui.shake.activity.ShakeActivity" />
         <activity android:name=".ui.shake.activity.ServiceIntroduceActivity" />
         <activity android:name=".ui.center.activity.LocationActivity"
@@ -85,11 +102,11 @@
         <activity android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".ui.map.AmapActivity" >
     </activity>
@@ -105,6 +122,24 @@
         <activity android:name=".ui.center.activity.LocationSearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.center.activity.PostRequirementActivity"
+            >
+        </activity>
+        <activity android:name=".ui.recognition.VoiceRecognitionActivity" >
+
+        </activity>
+        <activity android:name=".ui.homepage.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity android:name=".ui.homepage.activity.ServiceListActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

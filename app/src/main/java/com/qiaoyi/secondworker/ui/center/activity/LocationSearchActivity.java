@@ -90,15 +90,11 @@ public class LocationSearchActivity extends BaseActivity implements View.OnClick
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 PoiItem item = (PoiItem) adapter.getItem(position);
-                if (TextUtils.equals(from,"home")){
                     EventBus.getDefault().post(new LocationBean(item.getLatLonPoint().getLatitude(),
                             item.getLatLonPoint().getLongitude(),
                             item.getTitle(),
                             item.getSnippet()));
                     finish();
-                }else {
-
-                }
             }
         });
     }

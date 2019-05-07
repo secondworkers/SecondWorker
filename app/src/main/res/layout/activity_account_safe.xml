@@ -40,10 +40,11 @@
             android:id="@+id/tv_unbound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginLeft="@dimen/base240dp"
+            android:layout_alignParentEnd="true"
+            android:drawablePadding="@dimen/base5dp"
+            android:layout_marginEnd="@dimen/base15dp"
+            android:drawableRight="@mipmap/arrow_go"
             android:layout_marginTop="@dimen/base32dp"
-            android:layout_toRightOf="@+id/tv_wechat"
             android:text="未绑定"
             android:textColor="#ff212121"
             android:textSize="13sp" />
@@ -75,7 +76,6 @@
             android:layout_below="@+id/iv_wechat"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="30dp"
-
             android:src="@mipmap/ic_phone" />
 
         <TextView
@@ -95,10 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_unbound"
-
             android:layout_marginLeft="@dimen/base275dp"
             android:layout_marginTop="@dimen/base36dp"
-
             android:text="15290797706"
             android:textColor="#ff212121"
             android:textSize="13sp" />

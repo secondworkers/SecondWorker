@@ -1,293 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.center.PostDemandActivity">
+    >
     <!--发布需求-->
     <include
         android:id="@+id/include"
         layout="@layout/layout_top_title" />
-
-    <!--上部分-->
-    <RelativeLayout
-        android:id="@+id/rl_top"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/include"
+    android:scrollbars="none">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base15dp"
-        android:background="@drawable/shape_bg_btn_white">
-
-        <!--语音框-->
-        <TextView
-            android:id="@+id/tv_voice_recognition"
-            android:layout_width="@dimen/base85dp"
-            android:layout_height="@dimen/base29dp"
-            android:layout_marginLeft="@dimen/base12dp"
-            android:layout_marginTop="@dimen/base15dp"
-            android:background="@drawable/shape_gradient_little_left_blue" />
-
-        <ImageView
-            android:id="@+id/iv_voice"
-            android:layout_width="@dimen/base6dp"
-            android:layout_height="@dimen/base9dp"
-            android:layout_marginLeft="@dimen/base19dp"
-            android:layout_marginTop="@dimen/base26dp"
-            android:src="@mipmap/ic_voice" />
-
-        <TextView
-            android:id="@+id/tv_voice_time"
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+        <!--上部分-->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base80dp"
-            android:layout_marginTop="@dimen/base24dp"
-            android:text="5”"
-            android:textColor="#FFFFFF"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_voice_recognition"
-            android:layout_alignLeft="@+id/tv_voice_recognition"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
             android:layout_marginTop="@dimen/base10dp"
-            android:text="我需要一位保洁"
-            android:textColor="#333333"
-            android:textSize="14sp" />
+            android:background="@drawable/shape_bg_btn_white">
 
-        <!--添加图片框-->
-        <TextView
-            android:id="@+id/tv_background"
-            android:layout_width="@dimen/base60dp"
-            android:layout_height="@dimen/base60dp"
-            android:layout_below="@+id/tv_font"
-            android:layout_alignLeft="@+id/tv_voice_recognition"
-            android:layout_marginTop="@dimen/base40dp"
-            android:layout_marginBottom="@dimen/base16dp"
-            android:background="#F5F5F5" />
+            <!--语音框-->
+            <RelativeLayout
+                android:id="@+id/rl_voice_recognition"
+                android:clickable="true"
+                android:layout_width="@dimen/base85dp"
+                android:layout_height="@dimen/base29dp"
+                android:layout_marginLeft="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base15dp"
 
-        <ImageView
-            android:id="@+id/iv_add_images"
-            android:layout_width="@dimen/base20dp"
-            android:layout_height="@dimen/base18dp"
-            android:layout_marginLeft="@dimen/base32dp"
-            android:layout_marginTop="@dimen/base121dp"
-            android:src="@mipmap/ic_add_images" />
+                android:background="@drawable/shape_gradient_little_left_blue" >
 
-        <TextView
-            android:id="@+id/tv_add_images"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/iv_add_images"
-            android:layout_marginLeft="@dimen/base19dp"
-            android:layout_marginTop="@dimen/base6dp"
-            android:text="添加照片"
-            android:textColor="#333333"
-            android:textSize="12sp" />
+            <ImageView
+                android:id="@+id/iv_voice"
+                android:layout_width="@dimen/base6dp"
+                android:layout_height="@dimen/base9dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/base10dp"
+                android:src="@mipmap/ic_voice" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_voice_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/base10dp"
+                android:text="5”"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+            </RelativeLayout>
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base55dp"
+                android:layout_below="@+id/rl_voice_recognition"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:background="@null"
+                android:layout_marginTop="@dimen/base10dp"
+                android:hint="请输入您要发布的需求(不少于10个字)"
+                android:gravity="left|top"
+                android:textColor="#333333"
+                android:textSize="14sp" />
 
-    <!--下部分-->
-    <RelativeLayout
-        android:id="@+id/rl_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_top"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base10dp"
-        android:background="@drawable/shape_bg_btn_white">
+            <!--添加图片框-->
+            <RelativeLayout
+                android:id="@+id/tv_select_photo"
+                android:clickable="true"
+                android:layout_width="@dimen/base60dp"
+                android:layout_height="@dimen/base60dp"
+                android:layout_below="@+id/et_content"
+                android:layout_marginTop="@dimen/base5dp"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginBottom="@dimen/base16dp"
+                android:background="#F5F5F5"
+                android:visibility="gone"
+                >
+                <ImageView
+                    android:id="@+id/iv_add_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_add_images"
+                    android:layout_marginTop="@dimen/base10dp"
+                    android:layout_centerHorizontal="true"/>
 
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base20dp"
-            android:layout_marginTop="@dimen/base16dp"
-            android:drawableLeft="@mipmap/ic_location_gray"
-            android:drawablePadding="7dp"
-            android:text="泰山国际大厦"
-            android:textColor="#212121"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_add_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_add_images"
+                    android:text="添加照片"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    android:layout_marginTop="@dimen/base5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/iv_allow_go_1"
-            android:layout_width="@dimen/base8dp"
-            android:layout_height="@dimen/base14dp"
-            android:layout_marginLeft="@dimen/base197dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/tv_address"
-            android:src="@mipmap/arrow_go" />
-
-        <TextView
-            android:id="@+id/tv_line_1"
+        <!--下部分-->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/tv_address"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/base12dp"
-            android:layout_marginTop="@dimen/base18dp"
-            android:background="#F5F5F5" />
-
-        <TextView
-            android:id="@+id/tv_service_type"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_1"
-            android:layout_marginLeft="@dimen/base20dp"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="服务类型"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_marginBottom="@dimen/base58dp"
+            android:background="@drawable/shape_bg_btn_white">
 
-        <TextView
-            android:id="@+id/service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_1"
-            android:layout_marginLeft="@dimen/base280dp"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="日常保洁"
-            android:textColor="#333333"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base20dp"
+                android:layout_marginTop="@dimen/base16dp"
+                android:drawableLeft="@mipmap/ic_location_gray"
+                android:drawablePadding="7dp"
+                android:text="泰山国际大厦"
+                android:textColor="#212121"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/iv_allow_go_2"
-            android:layout_width="@dimen/base8dp"
-            android:layout_height="@dimen/base14dp"
-            android:layout_below="@+id/tv_line_1"
-            android:layout_alignLeft="@+id/iv_allow_go_1"
-            android:layout_marginTop="@dimen/base21dp"
-            android:src="@mipmap/arrow_go" />
+            <ImageView
+                android:id="@+id/iv_allow_go_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:src="@mipmap/arrow_go" />
 
-        <TextView
-            android:id="@+id/tv_line_2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/tv_service_type"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/base12dp"
-            android:layout_marginTop="@dimen/base18dp"
-            android:background="#F5F5F5" />
+            <TextView
+                android:id="@+id/tv_line_1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_address"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base18dp"
+                android:background="#F5F5F5" />
 
-        <TextView
-            android:id="@+id/tv_arrive_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_2"
-            android:layout_alignLeft="@+id/tv_service_type"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="选择到达时间"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_service_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_1"
+                android:layout_marginLeft="@dimen/base20dp"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="服务类型"
+                android:textColor="#666666"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_2"
-            android:layout_alignRight="@+id/service"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="尽快"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_1"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="日常保洁"
+                android:layout_alignRight="@+id/iv_allow_go_1"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:drawableRight="@mipmap/arrow_go"
+                android:drawablePadding="@dimen/base5dp"/>
 
-        <ImageView
-            android:id="@+id/iv_allow_go_3"
-            android:layout_width="@dimen/base8dp"
-            android:layout_height="@dimen/base14dp"
-            android:layout_below="@+id/tv_line_2"
-            android:layout_alignLeft="@+id/iv_allow_go_1"
-            android:layout_marginTop="@dimen/base21dp"
-            android:src="@mipmap/arrow_go" />
+            <TextView
+                android:id="@+id/tv_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_service_type"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base18dp"
+                android:background="#F5F5F5" />
 
-        <TextView
-            android:id="@+id/tv_line_3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/tv_arrive_time"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/base12dp"
-            android:layout_marginTop="@dimen/base18dp"
-            android:background="#F5F5F5" />
+            <TextView
+                android:id="@+id/tv_arrive_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_2"
+                android:layout_alignLeft="@+id/tv_service_type"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="选择到达时间"
+                android:textColor="#666666"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_service_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_3"
-            android:layout_alignLeft="@+id/tv_service_type"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="选择服务时长"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_2"
+                android:layout_alignRight="@+id/tv_service"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="尽快"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:drawableRight="@mipmap/arrow_go"
+                android:drawablePadding="@dimen/base5dp"/>
 
-        <ImageView
-            android:id="@+id/iv_lose"
-            android:layout_width="@dimen/base20dp"
-            android:layout_height="@dimen/base20dp"
-            android:layout_below="@+id/tv_line_3"
-            android:layout_alignTop="@+id/tv_service_time"
-            android:layout_marginLeft="@dimen/base270dp"
-            android:src="@mipmap/ic_lose" />
+            <TextView
+                android:id="@+id/tv_line_3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_arrive_time"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base18dp"
+                android:background="#F5F5F5" />
 
-        <TextView
-            android:id="@+id/tv_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_3"
-            android:layout_alignTop="@+id/tv_service_time"
-            android:layout_marginLeft="@dimen/base298dp"
-            android:text="2" />
+            <TextView
+                android:id="@+id/tv_service_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_3"
+                android:layout_alignLeft="@+id/tv_service_type"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="选择服务时长"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_service_time"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_line_3"
+                android:visibility="gone">
+                <ImageView
+                    android:id="@+id/iv_count"
+                    android:layout_width="@dimen/base20dp"
+                    android:layout_height="@dimen/base20dp"
+                    android:src="@mipmap/ic_lose"
+                    android:clickable="true"/>
 
-        <ImageView
-            android:id="@+id/iv_add"
-            android:layout_width="@dimen/base20dp"
-            android:layout_height="@dimen/base20dp"
-            android:layout_below="@+id/tv_line_3"
-            android:layout_alignTop="@+id/tv_service_time"
-            android:layout_marginLeft="@dimen/base313dp"
-            android:src="@mipmap/ic_add" />
+                <TextView
+                    android:id="@+id/tv_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/base5dp"
+                    android:paddingRight="@dimen/base5dp"
+                    android:text="2"
+                    android:textColor="#212121"/>
 
-        <TextView
-            android:id="@+id/tv_line_4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/tv_service_time"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/base12dp"
-            android:layout_marginTop="@dimen/base18dp"
-            android:background="#F5F5F5" />
+                <ImageView
+                    android:id="@+id/iv_add"
+                    android:layout_width="@dimen/base20dp"
+                    android:layout_height="@dimen/base20dp"
+                    android:src="@mipmap/ic_add"
+                    android:clickable="true"/>
 
-        <TextView
-            android:id="@+id/tv_contact_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_4"
-            android:layout_alignLeft="@+id/tv_service_type"
-            android:layout_marginTop="@dimen/base20dp"
-            android:layout_marginBottom="@dimen/base16dp"
-            android:text="联系方式(虚拟手机号码保护）"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_line_4"
-            android:layout_alignRight="@+id/service"
-            android:layout_marginTop="@dimen/base20dp"
-            android:text="15290797706"
-            android:textColor="#666666"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_line_4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/tv_service_time"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base18dp"
+                android:background="#F5F5F5"
+                android:visibility="gone"/>
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_contact_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_4"
+                android:layout_alignLeft="@+id/tv_service_type"
+                android:layout_marginTop="@dimen/base20dp"
+                android:layout_marginBottom="@dimen/base16dp"
+                android:text="联系方式(虚拟手机号码保护）"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/tv_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_4"
+                android:layout_alignRight="@+id/tv_service"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="15290797706"
+                android:textColor="#212121"
+                android:background="@null"
+                android:clickable="true"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -296,11 +309,10 @@
         android:background="@color/text_white">
 
         <TextView
-            android:id="@+id/tv_font_bottom"
+            android:id="@+id/tv_post_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base15dp"
-            android:layout_marginTop="@dimen/base5dp"
             android:layout_marginRight="@dimen/base15dp"
             android:layout_marginBottom="@dimen/base5dp"
             android:background="@drawable/shape_gradient_little_left_blue"
