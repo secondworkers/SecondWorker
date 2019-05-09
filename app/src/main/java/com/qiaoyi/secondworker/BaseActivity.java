@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 
@@ -54,6 +55,8 @@ public class BaseActivity extends AppCompatActivity {
   @Override public void onCreate(@Nullable Bundle savedInstanceState,
       @Nullable PersistableBundle persistentState) {
     super.onCreate(savedInstanceState, persistentState);
+    //全面屏
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     SecondWorkerApplication.getInstance().addActivity(this);
     StatusBarUtil.setTranslucentStatus(this);
     StatusBarUtil.setStatusBarDarkTheme(this, true);

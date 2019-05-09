@@ -40,8 +40,8 @@ import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.WorkerBean;
 import com.qiaoyi.secondworker.cache.ACache;
 import com.qiaoyi.secondworker.ui.BaseFragment;
-import com.qiaoyi.secondworker.ui.center.activity.GetAddressActivity;
-import com.qiaoyi.secondworker.ui.center.activity.MessageActivity;
+import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.center.MessageActivity;
 import com.qiaoyi.secondworker.utlis.*;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,8 +52,6 @@ import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
 import cn.isif.alibs.utils.ToastUtils;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created on 2019/4/19
@@ -93,8 +91,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentStatus(getActivity());
-        StatusBarUtil.setStatusBarDarkTheme(getActivity(), true);
+        VwUtils.fixScreen(getActivity());
         EventBus.getDefault().register(this);
     }
 
@@ -235,9 +232,9 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
 //        markerIcon.draggable(false);
 //        markerIcon.icon(BitmapDescriptorFactory.fromResource(R.mipmap.position));
 //        aMap.addMarker(markerIcon);
-        aMap.addMarker(
-                new com.qiaoyi.secondworker.utlis.LocationUtil().
-                        getMarkerOption("",Double.valueOf(user_loc_lat),Double.valueOf(user_loc_lng)));
+//        aMap.addMarker(
+//                new com.qiaoyi.secondworker.utlis.LocationUtil().
+//                        getMarkerOption("",Double.valueOf(user_loc_lat),Double.valueOf(user_loc_lng)));
     }
 
     //添加事件并开始获取marker
@@ -292,7 +289,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
                         MarkerOptions markerIcon = new MarkerOptions();
                         markerIcon.position(new LatLng(Double.valueOf(pb.lat), Double.valueOf(pb.lng)));
                         markerIcon.draggable(false);
-                        markerIcon.title(pb.crops_name);
+                        markerIcon.title("");
                         markerIcon.icon(
                                 BitmapDescriptorFactory.fromBitmap(MapHandler.getMarkerBitmap(context, resource,false)));
                         aMap.addMarker(markerIcon);

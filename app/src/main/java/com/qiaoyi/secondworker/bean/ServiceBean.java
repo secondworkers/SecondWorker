@@ -7,17 +7,18 @@ package com.qiaoyi.secondworker.bean;
  */
 
 public class ServiceBean {
-    private String servicename;
-    private String type;
-    private String serviceid;
-    private String price;
-    private String image;
 
-    public String getServicename() {
-        return servicename;
-    }
+    /**
+     * serviceType : 保洁
+     * introductiondetail : 保洁简介内容
+     * createtime : 2019-04-24 17:22:44.0
+     * createUserId :
+     * id : 1
+     */
 
-    public void setServicename(String servicename) {
-        this.servicename = servicename;
-    }
+    public String serviceType;
+    public String introductiondetail;
+    public String createtime;
+    public String createUserId;
+    public String id;
 }

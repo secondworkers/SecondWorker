@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:paddingBottom="@dimen/base20dp">
+
+        <ImageView
+            android:id="@+id/iv_line1"
+            android:layout_width="@dimen/base2dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginLeft="@dimen/base14dp"
+            android:layout_marginTop="@dimen/base25dp"
+            android:background="#00A2FF" />
+
+        <TextView
+            android:id="@+id/tc_contact_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_line1"
+            android:layout_marginLeft="@dimen/base6dp"
+            android:text="联系方式"
+            android:layout_marginTop="@dimen/base20dp"
+            android:textColor="#ff232323"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_service_hotline"
+            android:layout_below="@+id/tc_contact_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base18dp"
+            android:text="服务热线:"
+            android:textColor="#ff232323"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_contact_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_service_hotline"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:layout_marginTop="12dp"
+            android:text="联系邮箱:"
+            android:textColor="#ff232323"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base2dp"
+    android:background="#F5F5F5"
+   />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:paddingTop="@dimen/base20dp">
+
+        <ImageView
+            android:id="@+id/iv_line2"
+            android:layout_width="@dimen/base2dp"
+            android:layout_height="@dimen/base10dp"
+            android:layout_marginLeft="@dimen/base16dp"
+            android:layout_marginTop="@dimen/base25dp"
+            android:background="#00A2FF" />
+
+        <TextView
+            android:id="@+id/tv_online_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base20dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:text="在线留言"
+            android:textColor="#ff232323"
+            android:textSize="16sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base60dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:text="感谢您对秒工的信任，如果您在使用过程中遇到什么麻烦或有什么意见或建议，欢迎留言反馈。"
+            android:textColor="#ff232323"
+            android:textSize="13sp" />
+
+
+        <EditText
+            android:id="@+id/et_input_box1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base120dp"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base112dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:background="@drawable/shape_gradient_all_grey"
+            android:gravity="left|top"
+            android:hint="请简要说明您所遇到的问题"
+            android:padding="@dimen/base10dp"
+            android:textColor="@color/deep_black"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/et_input_box2"
+            android:layout_width="@dimen/base345dp"
+            android:layout_height="@dimen/base44dp"
+            android:layout_below="@+id/et_input_box1"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_marginRight="@dimen/base25dp"
+            android:background="@drawable/shape_gradient_all_grey"
+            android:hint="如需得到反馈请留下您的联系方式"
+            android:paddingLeft="@dimen/base10dp"
+            android:textColor="#ff888888"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/post"
+            android:layout_width="@dimen/base345dp"
+            android:layout_height="@dimen/base40dp"
+            android:layout_below="@+id/et_input_box2"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:layout_marginTop="@dimen/base15dp"
+
+            android:layout_marginRight="@dimen/base25dp"
+            android:background="@drawable/shape_gradient_little_left_blue"
+            android:text="提交反馈"
+            android:textColor="#ffffffff"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

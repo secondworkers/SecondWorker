@@ -280,9 +280,19 @@
                 android:layout_alignLeft="@+id/tv_service_type"
                 android:layout_marginTop="@dimen/base20dp"
                 android:layout_marginBottom="@dimen/base16dp"
-                android:text="联系方式(虚拟手机号码保护）"
+                android:text="联系方式"
                 android:textColor="#666666"
                 android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_line_4"
+                android:layout_marginTop="@dimen/base24dp"
+                android:layout_marginBottom="@dimen/base16dp"
+                android:text="(虚拟手机号码保护）"
+                android:textColor="#666666"
+                android:textSize="10sp"
+                android:layout_toRightOf="@+id/tv_contact_information"/>
 
             <EditText
                 android:id="@+id/tv_phone_number"
@@ -294,7 +304,6 @@
                 android:text="15290797706"
                 android:textColor="#212121"
                 android:background="@null"
-                android:clickable="true"
                 android:textSize="14sp" />
 
         </RelativeLayout>

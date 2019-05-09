@@ -20,7 +20,7 @@ public class AccountHandler {
     UserBean ub = getUser();
     if (null==ub){
       return LOGIN_TYPE.NOBODY;
-    }else if (!TextUtils.isEmpty(ub.mobile)){
+    }else if (!TextUtils.isEmpty(ub.phone)){
       return LOGIN_TYPE.MOBILE;
     }else{
       return LOGIN_TYPE.THIRD;
@@ -56,7 +56,7 @@ public class AccountHandler {
   public static String getUserName() {
     UserBean ub = getUser();
     if (ub != null) {
-      return ub.username;
+      return ub.userName;
     }
     return null;
   }
@@ -70,15 +70,15 @@ public class AccountHandler {
   public static String getUserPhone() {
     UserBean ub = getUser();
     if (ub != null) {
-      return ub.mobile;
+      return ub.phone;
     }
     return "";
   }
-  public static String getUserAavatar(){
+ /* public static String getUserAvatar(){
     UserBean ub = getUser();
     if (ub != null) {
       return ub.avatar;
     }
     return "";
-  }
+  }*/
 }

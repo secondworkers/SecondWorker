@@ -57,8 +57,8 @@ public class IfOkNet {
         params.addHeader(entry.getKey(), entry.getValue());
         stringBuffer.append("\"" + entry.getKey() + "\":" + "\"" + entry.getValue() + "\",");
       }
-      ALog.e(stringBuffer.toString());
-      ALog.e("--------------------");
+      ALog.d(stringBuffer.toString());
+      ALog.d("--------------------");
     }
     try {
       //打印请求参数
@@ -67,8 +67,8 @@ public class IfOkNet {
       for (Part part : ps) {
         stringBuffer.append("\"" + part._key + "\":" + "\"" + part._value + "\",");
       }
-      ALog.e(stringBuffer.toString());
-      ALog.e("------------------------------------------------------------------");
+      ALog.d(stringBuffer.toString());
+      ALog.d("------------------------------------------------------------------");
     } catch (Exception e) {
       e.printStackTrace();
     }

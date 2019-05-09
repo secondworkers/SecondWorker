@@ -178,11 +178,10 @@ public class MapHandler {
         return new LatLng[]{leftTop, rightBottom};
     }
 
-    public static LatLng createLatLng(String lat, String lng) {
-        if (!TextUtils.isEmpty(lat) && !TextUtils.isEmpty(lng)) {
-            return new LatLng(Double.valueOf(lat), Double.valueOf(lng));
-        }
-        return null;
+    public static LatLng createLatLng(double lat, double lng) {
+       /* if (!TextUtils.isEmpty(lat) && !TextUtils.isEmpty(lng)) {
+        }*/
+        return new LatLng(lat,lng);
     }
 
 }

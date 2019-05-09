@@ -277,6 +277,20 @@ public class VwUtils {
   }
 
   /**
+   * mm分ss秒
+   * @param l
+   * @return
+   */
+  public static String longToTimeStr(Long l) {
+    long day = l / (1000 * 24 * 60 * 60); //单位天
+    long hour = (l - day * (1000 * 24 * 60 * 60)) / (1000 * 60 * 60); //单位时
+    long minute = (l - day * (1000 * 24 * 60 * 60) - hour * (1000 * 60 * 60)) / (1000 * 60); //单位分
+    long second = (l - day * (1000 * 24 * 60 * 60) - hour * (1000 * 60 * 60) - minute * (1000 * 60)) / 1000;//单位秒
+
+    String strtime = minute+"分"+second+"秒";
+    return strtime;
+  }
+  /**
    * 返回当前时间的格式为 yyyy-MM-dd HH:mm:ss
    * @return
    */
@@ -285,4 +299,12 @@ public class VwUtils {
     return sdf.format(System.currentTimeMillis());
   }
 
+  /**
+   * 适配全面屏 配合抽取的title
+   * @param activity
+   */
+public static void fixScreen(Activity activity){
+  StatusBarUtil.setTranslucentStatus(activity);
+  StatusBarUtil.setStatusBarDarkTheme(activity, true);
+}
 }

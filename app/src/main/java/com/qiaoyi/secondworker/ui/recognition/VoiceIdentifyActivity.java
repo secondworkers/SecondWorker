@@ -20,21 +20,18 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.baidu.aip.asrwakeup3.core.mini.ActivityMiniRecog;
 import com.baidu.aip.asrwakeup3.core.mini.AutoCheck;
 import com.baidu.aip.asrwakeup3.core.util.FileUtil;
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
-import com.google.gson.Gson;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.ui.center.activity.PostRequirementActivity;
+import com.qiaoyi.secondworker.ui.center.center.PostRequirementActivity;
 import com.qiaoyi.secondworker.utlis.AudioRecoderUtils;
 import com.qiaoyi.secondworker.utlis.PopupWindowFactory;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
-import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import org.json.JSONObject;
 
@@ -43,7 +40,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import cn.isif.alibs.utils.ALog;
-import cn.isif.alibs.utils.ToastUtils;
 import cn.isif.ifok.utils.GsonUtil;
 
 /**
@@ -152,7 +148,7 @@ public class VoiceIdentifyActivity extends BaseActivity implements View.OnClickL
                 mPop.dismiss();
                 tv_say.setText("按住说话");
                 break;
-            case MotionEvent.ACTION_MOVE:
+         /*   case MotionEvent.ACTION_MOVE:
                 int tempNowY = (int) event.getY();
                 if (startY < 0)
                     return true;
@@ -162,7 +158,7 @@ public class VoiceIdentifyActivity extends BaseActivity implements View.OnClickL
                     tv_say.setText("松开手指，取消发送");
                 }
                 stop();
-                break;
+                break;*/
             case MotionEvent.ACTION_CANCEL:
 //                mAudioRecoderUtils.cancelRecord();
                 cancelRecog();
@@ -189,12 +185,12 @@ public class VoiceIdentifyActivity extends BaseActivity implements View.OnClickL
         // 基于SDK集成2.1 设置识别参数
         params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);
 //         params.put(SpeechConstant.NLU, "enable");
-         params.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 2000); // 长语音
+         params.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 3000); // 长语音
         params.put(SpeechConstant.ACCEPT_AUDIO_DATA, true); // 目前必须开启此回掉才嫩保存音频
         params.put(SpeechConstant.OUT_FILE, samplePath + "/outfile.pcm");
         // params.put(SpeechConstant.IN_FILE, "res:///com/baidu/android/voicedemo/16k_test.pcm");
-         params.put(SpeechConstant.VAD, SpeechConstant.VAD_DNN);
-         params.put(SpeechConstant.PID, 15362); // 中文输入法模型，有逗号
+//         params.put(SpeechConstant.VAD, SpeechConstant.VAD_DNN);
+         params.put(SpeechConstant.PID, 1537); // 中文输入法模型，有逗号
         // 请先使用如‘在线识别’界面测试和生成识别参数。 params同ActivityRecog类中myRecognizer.start(params);
         // 复制此段可以自动检测错误
         (new AutoCheck(getApplicationContext(), new Handler() {

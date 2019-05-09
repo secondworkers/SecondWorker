@@ -178,7 +178,7 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
         ArrayList<ServiceBean> serviceBeans = new ArrayList<>();
         ServiceBean bean = new ServiceBean();
         for (int i = 0; i < 10; i++) {
-            bean.setServicename("服务"+ i);
+//            bean.serviceType("服务"+ i);
             serviceBeans.add(bean);
         }
         View view = LayoutInflater.from(this).inflate(R.layout.layout_popwindow_recyclerview,null);
@@ -192,7 +192,7 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
                     ServiceBean item = (ServiceBean) adapter.getItem(position);
-                    tv_service_type.setText(item.getServicename());
+                    tv_service_type.setText(item.serviceType);
                     tv_service_type.setTextColor(getResources().getColor(R.color.text_blue));
                     iv_service_type.setImageDrawable(getResources().getDrawable(R.mipmap.ic_blue_arrow_down));
                     isSelected = true;

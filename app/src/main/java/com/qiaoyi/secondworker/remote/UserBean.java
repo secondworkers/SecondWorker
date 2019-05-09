@@ -10,20 +10,10 @@ import java.io.Serializable;
 
 public class UserBean implements Serializable {
     public String uid;
-    public String username;
-    public String password;
-    public String nickname;
-    public String mobile;
-    public String avatar;
+    public String userName;
+    public String createTime;
+    public int temp;
+    public String phone;
     public String openId;
-    public String typeId;
-    public String regdateline;
-    public String nationality;
-    public String address;
-    public String status;
-    public String ctime;
-    public String mtime;
-    public String dtime;
-    public String parentid;
-    public String limitId;
+
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -15,9 +16,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.WorkerBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
-import com.qiaoyi.secondworker.ui.center.activity.LoginActivity;
-import com.qiaoyi.secondworker.ui.center.activity.SelectLocationActivity;
+import com.qiaoyi.secondworker.ui.center.order.ConfirmOrderActivity;
+import com.qiaoyi.secondworker.ui.center.center.LoginActivity;
 
 /**
  * Created on 2019/4/20
@@ -34,13 +36,15 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
     private TextView tv_rating;
     private TextView tv_serviced_num;
     private TextView tv_choose_it;
-    private TextView tv_service_introduce;
+    private TextView tv_service_introduce,tv_xx;
     private ImageView iv_cancel;
     private Activity context;
+    private WorkerBean workerBean;
 
-    public ShakeCardDialog(@NonNull Activity context) {
+    public ShakeCardDialog(@NonNull Activity context, WorkerBean workerBean) {
         super(context);
         this.context = context;
+        this.workerBean = workerBean;
     }
 
     @Override
@@ -55,6 +59,7 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
         setContentView(R.layout.dialog_shake_card);
         tv_service = findViewById(R.id.tv_service);
         tv_mg_name = findViewById(R.id.tv_mg_name);
+        tv_xx = findViewById(R.id.tv_xx);
         tv_mg_distance = findViewById(R.id.tv_mg_distance);
         tv_rating = findViewById(R.id.tv_rating);
         tv_serviced_num = findViewById(R.id.tv_serviced_num);
@@ -68,6 +73,14 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initData() {
+        tv_service.setText(workerBean.serviceItem);
+        if (!TextUtils.isEmpty(workerBean.introduction))
+            tv_xx.setText(workerBean.introduction);
+        if (!TextUtils.isEmpty(workerBean.workerName))
+            tv_mg_name.setText(workerBean.workerName);
+        tv_serviced_num.setText("已服务"+workerBean.counts+"人");
+        ratingbar.setRating(Float.valueOf(workerBean.score+""));
+        tv_rating.setText(workerBean.score+"分");
     }
 
     private void computeWeigth() {
@@ -94,11 +107,16 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.tv_choose_it:
                 if (null == AccountHandler.checkLogin()){
-                    LoginActivity.startLoginActivity(context,1001);
+                    context.startActivity(new Intent(context,LoginActivity.class));
                 }else {
-                    context.startActivity(new Intent(context,SelectLocationActivity.class));
-                    dismiss();
+                    ConfirmOrderActivity.startConfirmActivity(context,
+                            workerBean.serviceItem,
+                            workerBean.serviceItemId,
+                            workerBean.unit,
+                            workerBean.price,
+                            workerBean.workerId);
                 }
+
                 break;
             case R.id.tv_service_introduce:
                 Intent intent = new Intent(context, ServiceIntroduceActivity.class);
@@ -106,5 +124,4 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                 break;
         }
     }
-
 }

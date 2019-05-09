@@ -11,10 +11,11 @@ import android.widget.TextView;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.MainActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
 /**
  * Created on 2019/4/24
- *
+ *  发布成功
  * @author Spirit
  */
 
@@ -33,6 +34,7 @@ public class PostSuccessActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VwUtils.fixScreen(this);
         setContentView(R.layout.activity_success);
         Intent intent = getIntent();
         from = intent.getStringExtra("from");

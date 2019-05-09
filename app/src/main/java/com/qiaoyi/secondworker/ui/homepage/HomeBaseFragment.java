@@ -19,8 +19,8 @@ import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.ServiceBean;
 import com.qiaoyi.secondworker.ui.BaseFragment;
 import com.qiaoyi.secondworker.ui.ItemDecoration.GridSpacingItemDecoration;
-import com.qiaoyi.secondworker.ui.center.activity.GetAddressActivity;
-import com.qiaoyi.secondworker.ui.center.activity.MessageActivity;
+import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.center.MessageActivity;
 import com.qiaoyi.secondworker.ui.homepage.adapter.AllServiceAdapter;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
@@ -79,7 +79,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         ArrayList<ServiceBean> serviceBeans = new ArrayList<>();
         ServiceBean bean = new ServiceBean();
         for (int i = 0; i < 7; i++) {
-           bean.setServicename("服务"+ i);
+//           bean.setServicename("服务"+ i);
             serviceBeans.add(bean);
         }
 

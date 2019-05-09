@@ -20,10 +20,10 @@ import okhttp3.Request;
  */
 
 public abstract class ServiceCallBack<T> extends CallBack {
-  public static final int NET_ERROR_CODE = -1;//network error
-  public static final int PARSE_ERROR_CODE = -2000;//json parse failed
+  public static final String NET_ERROR_CODE = "-1";//network error
+  public static final String PARSE_ERROR_CODE = "-2000";//json parse failed
   private static final Gson mGson = new Gson();
-  private static final int SUCCESS = 1000;//success back
+  private static final String SUCCESS = "1000";//success back
   private final String JSON_PARSE_ERROR = "Json 解析错误";
   private final String NET_ERROR = "网络异常";
   private Type payloadClass = null;
@@ -54,14 +54,14 @@ public abstract class ServiceCallBack<T> extends CallBack {
   @Override
   public void onSuccess(Object o) {
     try {
-      ALog.e("======response::" + o);
+      ALog.d("======response::" + o);
       if (o == null) {
         throw new Exception("response is null");
       }
       RespBean resp = mGson.fromJson(o.toString(), RespBean.class);
-      int code = resp.getCode();
+      String code = resp.getCode();
       String desc = resp.getMessage();
-      ALog.e("======response::desc::" + desc);
+      ALog.d("======response::desc::" + desc);
       T payLoad = null;
       try {
         if (payloadClass != null) {
@@ -81,6 +81,7 @@ public abstract class ServiceCallBack<T> extends CallBack {
             break;
         }
       } catch (Exception e) {
+        ALog.e("EXCEPTION = "+e.getMessage());
         failed(code, desc, o.toString());
       }
     } catch (Exception e) {
@@ -89,7 +90,7 @@ public abstract class ServiceCallBack<T> extends CallBack {
     }
   }
 
-  public abstract void failed(int code, String errorInfo, String source);
+  public abstract void failed(String code, String errorInfo, String source);
 
   public abstract void success(RespBean resp, Response<T> payload);
 

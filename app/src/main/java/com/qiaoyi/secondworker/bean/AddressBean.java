@@ -7,7 +7,13 @@ package com.qiaoyi.secondworker.bean;
  */
 
 public class AddressBean {
-    public String address;
-    public String username;
-    public String phone;
+    public String uid;
+    public double lng;
+    public double lat;
+    public int addressStatus;
+    public String screenName;
+    public String addressname;
+    public String addressphone;
+    public String addressDetailName;
+    public String aid;
 }

@@ -19,6 +19,6 @@ public class ServiceTypeAdapter extends BaseQuickAdapter<ServiceBean,BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, ServiceBean item) {
-        helper.setText(R.id.tv_service_type,item.getServicename());
+        helper.setText(R.id.tv_service_type,item.serviceType);
     }
 }

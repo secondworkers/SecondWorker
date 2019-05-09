@@ -75,7 +75,7 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
         ArrayList<ServiceBean> serviceBeans = new ArrayList<>();
         ServiceBean bean = new ServiceBean();
         for (int i = 0; i < 10; i++) {
-            bean.setServicename("服务"+ i);
+//            bean.setServicename("服务"+ i);
             serviceBeans.add(bean);
         }
         ServiceTypeAdapter listAdapter = new ServiceTypeAdapter(R.layout.item_service_type);
@@ -88,7 +88,7 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
                     ServiceBean item = (ServiceBean) adapter.getItem(position);
-                    listener.refreshDialogUI(item.getServicename(),item.getServicename());
+                    listener.refreshDialogUI(item.serviceType,item.id);
                     dismiss();
                 }
             });

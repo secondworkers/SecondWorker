@@ -10,7 +10,6 @@
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="泰山国际大厦  9楼c-02"
         android:textColor="@color/deep_black"
         android:textSize="16sp"
         />
@@ -18,7 +17,6 @@
         android:id="@+id/tv_username_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="秒工  186888888888"
         android:textColor="@color/deep_black"
         android:textSize="12sp"
         android:layout_below="@+id/tv_location"

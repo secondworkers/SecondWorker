@@ -26,6 +26,7 @@ import com.qiaoyi.secondworker.ui.center.CenterFragment;
 import com.qiaoyi.secondworker.ui.homepage.HomeBaseFragment;
 import com.qiaoyi.secondworker.ui.map.MapFragment;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.dialog.ShakeDialog;
 
 import cn.isif.alibs.utils.ToastUtils;
@@ -66,8 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        VwUtils.fixScreen(this);
         initView();
         new ShakeDialog(this).show();
     }
@@ -180,8 +180,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //
         } else if (AccountHandler.LOGIN_TYPE.THIRD == AccountHandler.getUserState()) {
             ToastUtils.showShort("请先绑定手机号");
-            BindMobileActivity.startBindMobileActivityForResult(this, AccountHandler.getUser().openId,
-                    AccountHandler.getUser().nickname, AccountHandler.getUser().typeId, 7003);
+//            BindMobileActivity.startBindMobileActivityForResult(this, AccountHandler.getUser().openId,
+//                    AccountHandler.getUser().nickname, AccountHandler.getUser().typeId, 7003);
             //Intent intent = new Intent(this, AccountSafeActivity.class);
             //intent.putExtra("uid", AccountHandler.checkLogin());
             //startActivityForResult(intent, 7003);

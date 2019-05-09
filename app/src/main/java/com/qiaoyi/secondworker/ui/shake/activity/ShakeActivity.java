@@ -19,7 +19,14 @@ import android.widget.TextView;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.qiaoyi.secondworker.bean.WorkerBean;
+import com.qiaoyi.secondworker.bean.WrapWorkerBean;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.utlis.VwUtils;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 
 /**
  * Created on 2019/4/20
@@ -48,15 +55,13 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_goto_shake;
     private RelativeLayout view_back;
     private RelativeLayout rl_bg;
+    private WorkerBean result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
-        //不要忘记了, 在当前activity onCreate中设置 取消padding,  因为这个padding 我们用代码实现了,不需要系统帮我
-        StatusBarUtil.setRootViewFitsSystemWindows(this,false);
-
+        VwUtils.fixScreen(this);
+        toStartLocation();
         setContentView(R.layout.activity_shake);
         initView();
         imgHand = findViewById(R.id.iv_shake_phone);
@@ -103,7 +108,6 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.view_back:
-
                 finish();
                 break;
         }
@@ -149,16 +153,28 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
         playSound(ShakeActivity.this);
         //震动，注意权限
         vibrate(500);
-        //仿网络延迟操作，这里可以去请求服务器...
-        new Handler().postDelayed(new Runnable() {
+        requestData();
+    }
+    private int count = 1;
+    private void requestData() {
+        count++;
+        ApiUserService.shakeWorker(count, lng, lat, new ServiceCallBack<WrapWorkerBean>() {
             @Override
-            public void run() {
-                //弹框
-                new ShakeCardDialog(ShakeActivity.this).show();//传服务的id
-                //动画取消
-                anim.cancel();
+            public void failed(String code, String errorInfo, String source) {
+                count --;
             }
-        }, 1000);
+
+            @Override
+            public void success(RespBean resp, Response<WrapWorkerBean> payload) {
+                WrapWorkerBean body = payload.body();
+                result = body.result;
+                new ShakeCardDialog(ShakeActivity.this,result).show();//传服务的id
+            }
+        });
+
+        SharePreferenceUtils.readInt("shake_count","shake_count",count);
+        //动画取消
+        anim.cancel();
     }
 
     private void playSound(Context context) {

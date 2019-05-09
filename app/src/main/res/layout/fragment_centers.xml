@@ -2,11 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    >
 
     <!--我的-->
-
-
     <!--上部分-->
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -75,12 +73,13 @@
 
     <RelativeLayout
         android:id="@+id/rl_my_order"
+        android:layout_below="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base135dp"
+        android:layout_marginTop="-50dp"
         android:layout_marginRight="@dimen/base15dp"
-        android:background="#FFFFFF">
+        android:background="@drawable/shape_bg_btn_white">
 
         <TextView
             android:id="@+id/tv_my_order"
@@ -113,17 +112,16 @@
             android:layout_height="@dimen/base1dp"
             android:layout_below="@+id/tv_my_order"
             android:background="#F5F5F5" />
-    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_rool"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_my_order"
+        android:layout_below="@+id/tv_line"
         android:layout_marginLeft="@dimen/base15dp"
         android:layout_marginRight="@dimen/base15dp"
-        android:background="#FFFFFF">
-
+        >
         <TextView
             android:id="@+id/tv_not_pay_money"
             android:layout_width="0dp"
@@ -196,12 +194,12 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-
+    </RelativeLayout>
     <ImageView
         android:id="@+id/iv_invitation_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_rool"
+        android:layout_below="@id/rl_my_order"
         android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/base15dp"
         android:src="@mipmap/ic_invitation_activity" />
@@ -230,6 +228,7 @@
             android:gravity="center"
             android:text="购物车"
             android:textColor="#333333"
+            android:visibility="gone"
             android:textSize="12sp" />
 
         <TextView
@@ -311,7 +310,8 @@
             android:gravity="center"
             android:text="商家入驻"
             android:textColor="#333333"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_become_second_worker"

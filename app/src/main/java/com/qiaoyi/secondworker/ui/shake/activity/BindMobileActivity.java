@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.MainActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
 /**
  * Created on 2019/4/19
@@ -20,7 +21,6 @@ public class BindMobileActivity extends BaseActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        VwUtils.fixScreen(this);
     }
 }

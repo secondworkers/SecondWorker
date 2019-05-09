@@ -30,17 +30,21 @@
             android:layout_height="wrap_content"
             android:text="服务地址"
             android:textSize="15sp"
+            android:padding="@dimen/base5dp"
            />
         <TextView
             android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/ic_location"
             android:textColor="@color/deep_black"
-            android:text="泰山国际大厦"
             android:textSize="15sp"
+            android:lines="1"
+            android:padding="@dimen/base5dp"
+            android:layout_marginEnd="@dimen/base30dp"
+            android:ellipsize="end"
             android:layout_toEndOf="@+id/tv_1"
-            android:layout_marginStart="@dimen/base27dp"
+            android:layout_marginStart="@dimen/base20dp"
             android:drawablePadding="@dimen/base5dp"
             android:clickable="true"
             />
@@ -48,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/arrow_go"
+            android:padding="@dimen/base5dp"
             android:layout_alignParentRight="true"/>
         <View
             android:layout_width="match_parent"
@@ -55,25 +60,31 @@
             android:background="#F5F5F5"
             android:layout_below="@+id/tv_1"
             android:layout_margin="@dimen/base5dp"/>
-        </RelativeLayout> <RelativeLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_2"
             android:layout_width="wrap_content"
+            android:padding="@dimen/base5dp"
             android:layout_height="wrap_content"
             android:text="详细地址"
             android:textSize="15sp"/>
         <EditText
             android:id="@+id/et_location_more"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/deep_black"
             android:hint="如2号楼3单元602室"
+            android:padding="@dimen/base5dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="15sp"
             android:background="@null"
+            android:theme="@style/login_input"
             android:layout_toEndOf="@+id/tv_2"
-            android:layout_marginStart="@dimen/base27dp"
+            android:layout_marginStart="@dimen/base20dp"
             />
         <View
             android:layout_width="match_parent"
@@ -89,17 +100,23 @@
             android:id="@+id/tv_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/base5dp"
             android:text="联系人    "
             android:textSize="15sp"/>
-        <TextView
+        <EditText
             android:id="@+id/tv_contact"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/deep_black"
             android:hint="请输入您的姓名"
             android:textSize="15sp"
+            android:background="@null"
+            android:maxLines="1"
+            android:padding="@dimen/base5dp"
+            android:ellipsize="end"
             android:layout_toEndOf="@+id/tv_3"
-            android:layout_marginStart="@dimen/base27dp"
+            android:theme="@style/login_input"
+            android:layout_marginStart="@dimen/base20dp"
 
             />
         <View
@@ -111,23 +128,31 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
         <TextView
             android:id="@+id/tv_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/base5dp"
             android:textSize="15sp"
             android:text="详细地址"/>
-        <TextView
+        <EditText
             android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/deep_black"
-            android:text="186888888888"
+            android:padding="@dimen/base5dp"
+            android:hint="请输入您的手机号"
+            android:background="@null"
+            android:theme="@style/login_input"
             android:layout_toEndOf="@+id/tv_4"
-            android:layout_marginStart="@dimen/base27dp"
+            android:inputType="phone"
+            android:layout_marginStart="@dimen/base20dp"
             android:drawablePadding="@dimen/base5dp"
             android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             />
         </RelativeLayout>
     </LinearLayout>
@@ -144,7 +169,7 @@
             android:id="@+id/tv_delete"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="@dimen/base10dp"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="删除"
@@ -156,7 +181,7 @@
             android:id="@+id/tv_save"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="@dimen/base10dp"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="保存"
@@ -168,7 +193,7 @@
     <TextView
         android:id="@+id/tv_save1"
         android:layout_width="match_parent"
-        android:padding="5dp"
+        android:padding="@dimen/base10dp"
         android:gravity="center"
         android:layout_height="wrap_content"
         android:text="保存"

@@ -14,6 +14,7 @@ import com.qiaoyi.secondworker.utlis.DisplayUtil;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 
 /**
  * Created on 2019/4/24
@@ -37,7 +38,6 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         mHandler = new Handler();
         initView();
 
-        toStartLocation();
     }
 
     @Override
