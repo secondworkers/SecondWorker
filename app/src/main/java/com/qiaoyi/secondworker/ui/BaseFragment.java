@@ -8,6 +8,12 @@ import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 
+import com.qiaoyi.secondworker.bean.ServiceTypeBean;
+import com.qiaoyi.secondworker.bean.WrapServiceBean;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -22,7 +28,6 @@ public class BaseFragment extends Fragment {
   public static final int PAGE_SIZE = 20;
   public boolean hidden;
   public Toast toast;
-
   public void closeToast() {
     if (toast != null) {
       toast.cancel();

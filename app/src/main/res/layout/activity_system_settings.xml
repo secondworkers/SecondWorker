@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,7 +13,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <!--账号与安全-->
         <TextView
             android:id="@+id/tv_safe"
@@ -26,13 +23,15 @@
             android:background="@color/text_white"
             android:text="账号与安全"
             android:textColor="#ff212121"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/iv_arrow_go1"
-            android:layout_width="@dimen/dp_6"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base340dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/base15dp"
             android:layout_marginTop="@dimen/base23dp"
             android:src="@mipmap/arrow_go" />
 
@@ -47,15 +46,17 @@
             android:background="@color/text_white"
             android:text="检查更新"
             android:textColor="#ff212121"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/iv_arrow_go2"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base340dp"
-            android:layout_marginTop="@dimen/base62dp"
-
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base18dp"
+            android:layout_below="@+id/tv_safe"
             android:src="@mipmap/arrow_go" />
 
         <!--清理缓存-->
@@ -63,21 +64,23 @@
             android:id="@+id/tv_clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_below="@+id/tv_update"
             android:layout_marginLeft="@dimen/base15dp"
             android:layout_marginTop="@dimen/base18dp"
             android:background="@color/text_white"
             android:text="清理缓存"
             android:textColor="#ff212121"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/iv_arrow_go3"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base340dp"
-            android:layout_marginTop="@dimen/base98dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tv_update"
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base18dp"
             android:src="@mipmap/arrow_go" />
 
         <!--关于我们-->
@@ -90,6 +93,7 @@
             android:layout_marginTop="@dimen/base18dp"
             android:background="@color/text_white"
             android:text="关于我们"
+            android:clickable="true"
             android:textColor="#ff212121"
             android:textSize="15sp" />
 
@@ -97,8 +101,8 @@
             android:id="@+id/iv_arrow_go4"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base340dp"
-            android:layout_marginTop="@dimen/base134dp"
+            android:layout_alignStart="@+id/iv_arrow_go3"
+            android:layout_alignTop="@+id/tv_us"
             android:src="@mipmap/arrow_go" />
 
 
@@ -106,12 +110,15 @@
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/base180dp"
-
+            android:layout_below="@+id/tv_us"
+            android:layout_marginTop="@dimen/base50dp"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
             android:background="@drawable/shape_gradient_little_left_blue"
             android:text="退出登录"
             android:textColor="#ffffffff"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 

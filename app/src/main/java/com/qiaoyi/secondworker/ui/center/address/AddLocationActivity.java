@@ -184,7 +184,7 @@ public class AddLocationActivity extends BaseActivity implements View.OnClickLis
         }
     }
     private void deleteAddress() {
-        ApiUserService.delAddress(address_id, new ServiceCallBack() {
+        ApiUserService.delAddress(address_id,"2", new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);

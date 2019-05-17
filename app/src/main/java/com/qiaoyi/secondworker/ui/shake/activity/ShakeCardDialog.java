@@ -15,11 +15,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.qiaoyi.secondworker.MainActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.WorkerBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.ui.center.center.*;
 import com.qiaoyi.secondworker.ui.center.order.ConfirmOrderActivity;
-import com.qiaoyi.secondworker.ui.center.center.LoginActivity;
+import com.qiaoyi.secondworker.ui.recognition.VoiceIdentifyActivity;
+import com.qiaoyi.secondworker.view.dialog.ServiceTypeDialog;
+
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/4/20
@@ -40,11 +45,19 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
     private ImageView iv_cancel;
     private Activity context;
     private WorkerBean workerBean;
+    public interface ShakeCardListener {
+        /**
+         * 回调函数，用于在Dialog的监听事件触发后刷新Activity的UI显示
+         */
+        void refreshDialogUI(boolean isShake);
+    }
 
-    public ShakeCardDialog(@NonNull Activity context, WorkerBean workerBean) {
+    private ShakeCardListener listener;
+    public ShakeCardDialog(@NonNull Activity context, WorkerBean workerBean,ShakeCardListener listener) {
         super(context);
         this.context = context;
         this.workerBean = workerBean;
+        this.listener = listener;
     }
 
     @Override
@@ -97,6 +110,7 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
     @Override
     public void dismiss() {
         super.dismiss();
+        listener.refreshDialogUI(false);
     }
 
     @Override
@@ -114,7 +128,8 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                             workerBean.serviceItemId,
                             workerBean.unit,
                             workerBean.price,
-                            workerBean.workerId);
+                            workerBean.workerId,
+                            workerBean.serviceItemId);
                 }
 
                 break;
@@ -122,6 +137,17 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                 Intent intent = new Intent(context, ServiceIntroduceActivity.class);
                 context.startActivity(intent);
                 break;
+        }
+    }
+    private void toRecognition() {
+        if (AccountHandler.LOGIN_TYPE.NOBODY == AccountHandler.getUserState()) {
+            //
+        } else if (AccountHandler.LOGIN_TYPE.THIRD == AccountHandler.getUserState()) {
+            ToastUtils.showShort("请先绑定手机号");
+            BindMobileActivity.startBindMobileActivityForResult(context);
+//
+        } else if (AccountHandler.LOGIN_TYPE.MOBILE == AccountHandler.getUserState()) {
+
         }
     }
 }

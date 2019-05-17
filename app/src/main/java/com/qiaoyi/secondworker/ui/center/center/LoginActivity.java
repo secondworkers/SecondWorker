@@ -23,13 +23,20 @@ import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.center.address.MyLocationActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 import cn.isif.alibs.utils.ALog;
 import cn.isif.alibs.utils.ToastUtils;
+import cn.isif.umlibs.UmengUtil;
 
 /**
  * Created on 2019/4/19
@@ -54,7 +61,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VwUtils.fixScreen(this);
-//        StatusBarUtil.setStatusBarColor(this,0xffffff);
         setContentView(R.layout.activity_login);
         initView();
     }
@@ -76,6 +82,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        UMShareConfig config = new UMShareConfig();
         switch (v.getId()) {
             case R.id.tv_getcode:
                 regexPhone();
@@ -85,11 +92,59 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 submit();
                 break;
             case R.id.iv_wechat:
-                ToastUtils.showShort("微信登录");
+                config.isNeedAuthOnGetUserInfo(true);
+                UMShareAPI.get(this).setShareConfig(config);
+                UmengUtil.authWeiXin(this, new AuthListener());
                 break;
         }
     }
+    class AuthListener implements UMAuthListener {
+        @Override public void onStart(SHARE_MEDIA share_media) {
+            ALog.e("onStart " + "授权开始");
+        }
 
+        @Override public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            ALog.e("onComplete " + "授权完成");
+            String uid = map.get("uid");
+            String openid = map.get("openid");//微博没有
+            String unionid = map.get("unionid");//微博没有
+            String phone = map.get("phone");
+            String access_token = map.get("access_token");
+            String refresh_token = map.get("refresh_token");//微信,qq,微博都没有获取到
+            String expires_in = map.get("expires_in");
+            String name = map.get("name");
+            String gender = map.get("gender");
+            String iconurl = map.get("iconurl");
+            ApiUserService.loginThird(openid, share_media == SHARE_MEDIA.QQ ? "2" : "1", name, iconurl,
+                    new ServiceCallBack() {
+                        @Override
+                        public void failed(String code, String errorInfo, String source) {
+                            ToastUtils.showLong(errorInfo);
+                        }
+
+                        @Override
+                        public void success(RespBean resp, Response payload) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(payload.body().toString());
+                                JSONObject rep = jsonObject.getJSONObject("rspData");
+                                loginSuccess(rep.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+        }
+
+        @Override public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+            ALog.d("onError " + "授权失败");
+            ToastUtils.showLong("onError " + "授权失败");
+        }
+
+        @Override public void onCancel(SHARE_MEDIA share_media, int i) {
+            ALog.d("onCancel " + "授权取消");
+            ToastUtils.showLong("onCancel " + "授权取消");
+        }
+    }
     /**
      * 验证手机号
      */

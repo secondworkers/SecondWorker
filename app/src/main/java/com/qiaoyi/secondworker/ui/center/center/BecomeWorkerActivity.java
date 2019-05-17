@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
 /**
  * Created on 2019/5/7
@@ -23,6 +24,7 @@ public class BecomeWorkerActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VwUtils.fixScreen(this);
         setContentView(R.layout.activity_apply_become_secondworker_homepage);
         initView();
     }

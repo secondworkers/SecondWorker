@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_submit_audit"
+    android:layout_width="@dimen/base260dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_submit_audit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_submit_audit" />
+
+    <TextView
+        android:id="@+id/tv_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_submit_audit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:text="您的信息资料已提交,审核状态请查看"
+        android:textColor="#212121"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_text_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:text=" 我的-申请成为秒工人"
+        android:textColor="#00A2FF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_i_see"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base42dp"
+        android:layout_below="@+id/tv_text_2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/base20dp"
+        android:layout_marginTop="@dimen/base16dp"
+        android:layout_marginBottom="@dimen/base20dp"
+        android:layout_marginRight="@dimen/base20dp"
+        android:background="@drawable/shape_bg_btn_blue"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="我知道了"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+
+</RelativeLayout>

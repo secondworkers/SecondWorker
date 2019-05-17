@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/layout_top_title" />
+
+
+    <EditText
+        android:id="@+id/et_mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="60dp"
+        android:hint="手机号"
+        android:theme="@style/login_input"
+        android:inputType="number"
+        android:maxLength="11"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_verify_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="8dp"
+            android:hint="验证码"
+            android:theme="@style/login_input"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_get_verify_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:text="获取验证码"
+            android:textColor="@color/text_blue"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/bt_band"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="24dp"
+        android:padding="0dp"
+        android:background="@drawable/shape_gradient_little_left_blue"
+        android:clickable="true"
+        android:text="确认"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

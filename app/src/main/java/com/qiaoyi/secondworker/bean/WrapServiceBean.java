@@ -9,5 +9,5 @@ import java.util.List;
  */
 
 public class WrapServiceBean {
-    public List<ServiceBean> result;
+    public List<ServiceTypeBean> result;
 }

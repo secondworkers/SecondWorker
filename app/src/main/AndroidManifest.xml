@@ -3,31 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.qiaoyi.secondworker">
 
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEM"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 相机硬件的权限 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!--允许应用程序访问WIFI网卡的网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEM" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 支持iBeancon 需要蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 浮动通知权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!--如果是安卓8.0，应用编译配置的targetSdkVersion>=26，请务必添加以下权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <uses-permission
         android:name="android.permission.CHANGE_CONFIGURATION"
-        tools:ignore="ProtectedPermissions" />
+         />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
+         />
 
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
         android:name=".SecondWorkerApplication"
@@ -62,7 +80,8 @@
 
         <activity android:name="com.qiaoyi.secondworker.MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateUnspecified">
+            android:windowSoftInputMode="stateUnspecified"
+            android:launchMode="singleTask">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,7 +100,15 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+            <data android:scheme="wx43715d46bea8060f"/>
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.center.center.AboutUsActivity" />
         <activity android:name=".ui.center.center.AccountSafeActivity"/>
         <activity android:name=".ui.center.center.SystemSettingsActivity">
@@ -94,8 +121,8 @@
         <activity android:name=".ui.center.center.CollectActivity" />
         <activity android:name=".ui.center.center.MyRequirementActivity" />
         <activity android:name=".ui.center.center.MessageActivity" />
-        <activity android:name=".ui.shake.activity.BindMobileActivity" />
-        <activity android:name=".ui.recognition.VoiceIdentifyActivity" >
+        <activity android:name=".ui.recognition.VoiceIdentifyActivity"
+            >
         </activity>
         <activity android:name=".ui.shake.activity.ShakeActivity" />
         <activity android:name=".ui.shake.activity.ServiceIntroduceActivity" />
@@ -119,7 +146,8 @@
         </activity>
         <activity android:name=".ui.map.AmapActivity" >
     </activity>
-        <activity android:name=".ui.shake.activity.PostSuccessActivity" />
+        <activity android:name=".ui.shake.activity.PostSuccessActivity" >
+        </activity>
         <activity android:name=".ui.center.order.OrderDetailsActivity"  >
     </activity>
         <activity android:name=".ui.center.center.LoginActivity" >
@@ -149,6 +177,18 @@
         <activity android:name=".ui.center.center.BecomeWorkerActivity" />
         <activity android:name=".ui.center.center.BecomeWorker2Activity" />
         <activity android:name=".ui.center.center.MyOpinionActivity" />
+        <activity android:name=".ui.map.WorkerCenterActivity" >
+        </activity>
+        <activity android:name=".ui.homepage.activity.ServiceDetailsActivity" />
+        <activity android:name=".ui.shake.MyShareActivity" />
+        <activity android:name=".view.dialog.ShareServiceDialog"
+            android:theme="@style/AppThemeTranslucent"
+            />
+        <activity android:name=".ui.center.center.BecomeWorker3Activity" />
+        <activity android:name=".ui.center.center.ApplyStatusActivity" />
+        <activity android:name=".ui.center.center.ShareBaseActivity" />
+        <activity android:name=".ui.center.center.BindMobileActivity" />
+        <activity android:name=".ui.center.center.ModifyUerInfoActivity" />
     </application>
 
 </manifest>

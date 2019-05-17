@@ -113,11 +113,13 @@ public class CityPickerActivity extends BaseActivity implements GeocodeSearch.On
     public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
         if (geocodeResult.getGeocodeAddressList()!=null && geocodeResult.getGeocodeAddressList().size()>0) {
             point = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint();
+            String adcode = geocodeResult.getGeocodeAddressList().get(0).getAdcode();
             ALog.e(point.getLatitude() + "++++++++++" + point.getLongitude());
             Intent intent = new Intent();
             intent.putExtra("city_lat", point.getLatitude());
             intent.putExtra("city_lng", point.getLongitude());
             intent.putExtra("select_city", city_name);
+            intent.putExtra("city_code", adcode);
             setResult(RESULT_OK, intent);
             finish();
         }else {

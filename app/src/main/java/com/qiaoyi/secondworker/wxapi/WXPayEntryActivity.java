@@ -13,7 +13,6 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.analytics.MobclickAgent;
 
 import cn.isif.alibs.utils.ToastUtils;
 
@@ -46,13 +45,11 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
 	@Override
 	public void onResp(BaseResp resp) {
-		Log.d("sss", "onPayFinish, errCode = " + resp.errCode);
+        Log.d("sss", "onPayFinish, errCode = " + resp.errCode+resp.errStr);
+
 
 		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-			/*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle(R.string.app_tip);
-			builder.setMessage(getString(R.string.pay_result_callback_msg, String.valueOf(resp.errCode)));
-			builder.show();*/
+
                 int code = resp.errCode;
                 switch (code) {
                     case 0:
@@ -61,7 +58,9 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                         }catch (Exception e){
 
                         }
-                        startActivity(new Intent(this, PostSuccessActivity.class));
+                        Intent intent = new Intent(this, PostSuccessActivity.class);
+                        intent.putExtra("from","pay");
+                        startActivity(intent);
                         finish();
                         break;
                     case -1:

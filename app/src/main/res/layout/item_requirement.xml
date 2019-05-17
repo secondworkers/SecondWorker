@@ -5,12 +5,13 @@
     android:background="@color/text_white"
     android:id="@+id/rl_posting">
     <!--我的发布需求-item-->
-        <com.qiaoyi.secondworker.view.CircularImageView
+        <ImageView
             android:layout_width="@dimen/base23dp"
             android:layout_height="@dimen/base23dp"
             android:id="@+id/iv_avatar"
             android:layout_marginTop="@dimen/base20dp"
             android:layout_marginLeft="@dimen/base15dp"
+            android:visibility="gone"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
             android:layout_marginTop="@dimen/base20dp"
             android:layout_toRightOf="@+id/iv_avatar"
             android:layout_marginLeft="@dimen/base5dp"
+            android:visibility="gone"
             />
         <TextView
             android:id="@+id/tv_req_status"
@@ -29,7 +31,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/base20dp"
             android:layout_marginRight="@dimen/base15dp"
-            android:text="发布中"
+            android:text=""
             android:textColor="#ffff2727"
             android:textSize="14sp" />
 
@@ -49,7 +51,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base15dp"
             android:layout_marginTop="@dimen/base15dp"
-            android:text="发布类型:日常保洁"
             android:textColor="#ff666666"
             android:layout_below="@+id/view"
             android:textSize="15sp" />
@@ -71,7 +72,6 @@
             android:layout_below="@+id/tv_post_type"
             android:layout_alignLeft="@+id/tv_post_type"
             android:layout_marginTop="@dimen/base13dp"
-            android:text="服务时间:2019年4月16日 08:00-10:00"
             android:textColor="#ff666666"
             android:textSize="15sp" />
 
@@ -82,7 +82,6 @@
             android:layout_below="@+id/tv_service_time"
             android:layout_marginTop="12dp"
             android:layout_alignLeft="@+id/tv_post_type"
-            android:text="发布内容:需要一名保洁，谢谢。"
             android:textColor="#ff666666"
             android:textSize="15sp" />
 
@@ -116,7 +115,7 @@
             android:layout_marginRight="@dimen/base15dp"
             android:text="取消发布"
             android:textColor="@color/text_black"
-            android:layout_marginBottom="@dimen/base20dp"
+            android:layout_marginBottom="@dimen/base10dp"
             />
         <Button
             android:id="@+id/btn_done"
@@ -125,8 +124,9 @@
             android:background="@drawable/shape_gradient_little_left_blue"
             android:layout_marginRight="@dimen/base15dp"
             android:text="完成"
+            android:visibility="gone"
             android:textColor="@color/text_white"
-            android:layout_marginBottom="@dimen/base20dp"
+            android:layout_marginBottom="@dimen/base10dp"
             />
     </LinearLayout>
 

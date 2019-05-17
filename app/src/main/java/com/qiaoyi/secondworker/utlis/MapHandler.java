@@ -170,10 +170,13 @@ public class MapHandler {
         int top = mv.getTop();
         int right = mv.getRight();
         int bottom = mv.getBottom();
+
         Projection projection = aMap.getProjection();
 
         LatLng leftTop = projection.fromScreenLocation(new Point(left, top));
+        LatLng rightTop = projection.fromScreenLocation(new Point(right, top));
         LatLng rightBottom = projection.fromScreenLocation(new Point(right, bottom));
+        LatLng leftBottom = projection.fromScreenLocation(new Point(left, bottom));
 
         return new LatLng[]{leftTop, rightBottom};
     }

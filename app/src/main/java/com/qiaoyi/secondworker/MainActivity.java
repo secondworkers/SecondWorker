@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,16 +20,27 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qiaoyi.secondworker.bean.UpdateBean;
+import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.MyFragmentTabHost;
-import com.qiaoyi.secondworker.ui.shake.activity.BindMobileActivity;
+import com.qiaoyi.secondworker.ui.center.center.AccountSafeActivity;
+import com.qiaoyi.secondworker.ui.center.center.BindMobileActivity;
+import com.qiaoyi.secondworker.ui.center.center.LoginActivity;
 import com.qiaoyi.secondworker.ui.recognition.VoiceIdentifyActivity;
 import com.qiaoyi.secondworker.ui.center.CenterFragment;
 import com.qiaoyi.secondworker.ui.homepage.HomeBaseFragment;
 import com.qiaoyi.secondworker.ui.map.MapFragment;
-import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.dialog.ShakeDialog;
+import com.qiaoyi.secondworker.view.dialog.ShowProgressDialog;
+import com.qiaoyi.secondworker.view.dialog.UpgradeDialog;
+
+import java.util.List;
 
 import cn.isif.alibs.utils.ToastUtils;
 
@@ -68,10 +81,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         VwUtils.fixScreen(this);
+        checkVersion();
         initView();
         new ShakeDialog(this).show();
     }
 
+    private void checkVersion() {
+        ApiUserService.checkUpdate(new ServiceCallBack<WrapUpdateBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapUpdateBean> payload) {
+                checkUpdate(payload.body().result);
+            }
+        });
+    }
+
+    private void checkUpdate(UpdateBean result) {
+        UpgradeDialog.Builder builder = new UpgradeDialog.Builder(this);
+        UpgradeDialog upgradeDialog = builder.setMessage(result.updateInfo).setOkButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goDownLoadApk(result.loadUrl);
+            }
+        }).setCancelButtonListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (result.isMustUpdate){
+                    ToastUtils.showLong("必须更新此版本，否则app无法使用！");
+                    SecondWorkerApplication.getInstance().exit();
+                    finish();
+                }
+            }
+        }).createDialog("","",true,false);
+        upgradeDialog.show();
+    }
+
+    public void goDownLoadApk(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        // Verify it resolves
+        PackageManager packageManager = this.getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+        boolean isIntentSafe = activities.size() > 0;
+
+        // Start an activity if it's safe
+        if (isIntentSafe) {
+            startActivity(intent);
+        } else {
+            ToastUtils.showShort("无法找到对应的下载器");
+        }
+    }
     @Override protected void onResume() {
         super.onResume();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -83,7 +146,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 ToastUtils.showShort("定位权限被拒绝无法！！！");
             } else {
                 // 申请授权。
-                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_CONTACTS },
+                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_CONTACTS,Manifest.permission.ACCESS_COARSE_LOCATION },
                         REQUEST_CODE);
             }
         }
@@ -107,14 +170,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override public void onTabChanged(String tabId) {
 
-           /*     if (bottomStr[2] == tabId) {
+                if (bottomStr[2] == tabId) {
                     if (null == AccountHandler.checkLogin()) {
                         LoginActivity.startLoginActivity(MainActivity.this, 7001);
                         mTabHost.setCurrentTab(currentIndicator);
                     } else {
                         currentIndicator = mTabHost.getCurrentTab();
                     }
-                }*/
+                }
                 if (bottomStr[0] == tabId || bottomStr[2] == tabId){
                     iv_voice.setImageDrawable(getResources().getDrawable(R.mipmap.toolbar_voice));
                     tv_oneKey.setTextColor(getResources().getColor(R.color.text_grey));
@@ -168,11 +231,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mTabHost.setCurrentTab(1);
             currentIndicator = 1;
         }
-       /* if (null == AccountHandler.checkLogin()) {
-            LoginActivity.startLoginActivity(MainActivity.this, 7002);
-        } else {
-            toRecognition();
-        }*/
     }
 
     private void toRecognition() {
@@ -180,11 +238,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //
         } else if (AccountHandler.LOGIN_TYPE.THIRD == AccountHandler.getUserState()) {
             ToastUtils.showShort("请先绑定手机号");
-//            BindMobileActivity.startBindMobileActivityForResult(this, AccountHandler.getUser().openId,
-//                    AccountHandler.getUser().nickname, AccountHandler.getUser().typeId, 7003);
-            //Intent intent = new Intent(this, AccountSafeActivity.class);
-            //intent.putExtra("uid", AccountHandler.checkLogin());
-            //startActivityForResult(intent, 7003);
+            BindMobileActivity.startBindMobileActivityForResult(this);
+//            Intent intent = new Intent(this, AccountSafeActivity.class);
+//            intent.putExtra("uid", AccountHandler.checkLogin());
+//            startActivityForResult(intent, 7003);
         } else if (AccountHandler.LOGIN_TYPE.MOBILE == AccountHandler.getUserState()) {
             startActivity(new Intent(this, VoiceIdentifyActivity.class));
         }

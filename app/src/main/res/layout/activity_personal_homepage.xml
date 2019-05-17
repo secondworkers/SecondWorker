@@ -3,11 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <!--个人主页-->
-
+<View
+    android:id="@+id/view1"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base38dp"
+    android:background="@drawable/shape_gradient_little_no_coners_blue"
+    />
 
     <!--标题栏-->
     <RelativeLayout
         android:id="@+id/rl_bg"
+        android:layout_below="@id/view1"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/shape_gradient_little_no_coners_blue">
@@ -62,7 +68,7 @@
                     android:layout_marginTop="@dimen/base19dp"
                     android:src="@mipmap/ic_semicircle" />
 
-                <com.qiaoyi.secondworker.view.CircularImageView
+                <ImageView
                     android:id="@+id/iv_head_picture"
                     android:layout_width="@dimen/base60dp"
                     android:layout_height="@dimen/base60dp"
@@ -127,6 +133,7 @@
                     android:paddingRight="@dimen/base23dp"
                     android:paddingBottom="@dimen/base9dp"
                     android:text="店铺"
+                    android:visibility="gone"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp" />
 
@@ -145,6 +152,7 @@
                     android:paddingRight="@dimen/base23dp"
                     android:paddingBottom="@dimen/base9dp"
                     android:text="收藏"
+                    android:visibility="gone"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp" />
 

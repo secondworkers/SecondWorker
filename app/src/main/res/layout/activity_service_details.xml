@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <!--服务详情-->
-
     <include
         android:id="@+id/include"
         layout="@layout/layout_top_title" />
@@ -42,7 +40,6 @@
                     android:layout_below="@+id/iv_shop_image"
                     android:layout_alignLeft="@+id/iv_shop_image"
                     android:layout_marginTop="@dimen/base20dp"
-                    android:text="日常保洁"
                     android:textColor="#212121"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -54,7 +51,6 @@
                     android:layout_below="@+id/tv_service_type"
                     android:layout_alignLeft="@+id/tv_service_type"
                     android:layout_marginTop="@dimen/base8dp"
-                    android:text="室内清洁，物品整理，除尘除垢"
                     android:textColor="#666666"
                     android:textSize="15sp" />
 
@@ -71,6 +67,7 @@
                     android:drawablePadding="@dimen/base3dp"
                     android:gravity="center"
                     android:text="收藏"
+                    android:visibility="invisible"
                     android:textColor="#888888"
                     android:textSize="9sp" />
 
@@ -82,7 +79,6 @@
                     android:layout_alignLeft="@+id/iv_shop_image"
                     android:layout_marginTop="@dimen/base16dp"
                     android:layout_marginBottom="@dimen/base17dp"
-                    android:text="20元/小时"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -99,6 +95,7 @@
                     android:paddingRight="@dimen/base6dp"
                     android:paddingBottom="@dimen/base3dp"
                     android:text="2小时起"
+                    android:visibility="invisible"
                     android:textColor="#FFFFFF"
                     android:textSize="9sp" />
 
@@ -110,7 +107,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/base35dp"
                     android:layout_marginRight="@dimen/base16dp"
-                    android:text="已售105单"
                     android:textColor="#888888"
                     android:textSize="12sp" />
 
@@ -139,7 +135,8 @@
                     android:layout_marginBottom="@dimen/base14dp"
                     android:text="会员"
                     android:textColor="#666666"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_member_card"
@@ -150,6 +147,7 @@
                     android:text="冲900送100，充9000送1000"
                     android:textColor="#333333"
                     android:textSize="13sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -160,6 +158,7 @@
                     android:layout_marginTop="@dimen/base16dp"
                     android:layout_marginRight="@dimen/base16dp"
                     android:clickable="true"
+                    android:visibility="invisible"
                     android:src="@mipmap/arrow_go" />
 
                 <TextView
@@ -178,6 +177,7 @@
                     android:layout_marginTop="@dimen/base16dp"
                     android:layout_marginBottom="@dimen/base16dp"
                     android:text="保障"
+                    android:layout_marginLeft="@dimen/base15dp"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -235,6 +235,7 @@
                     android:layout_alignLeft="@id/tv_member"
                     android:layout_marginTop="@dimen/base16dp"
                     android:text="已选"
+                    android:layout_marginLeft="@dimen/base15dp"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -243,9 +244,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_interval_2"
-                    android:layout_alignLeft="@+id/tv_member_card"
+                    android:layout_toRightOf="@+id/tv_selected"
+                    android:layout_alignLeft="@+id/tv_no_money"
                     android:layout_marginTop="@dimen/base16dp"
-                    android:text="日常保洁"
                     android:textColor="#333333"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -261,6 +262,7 @@
                     android:drawableRight="@mipmap/arrow_go"
                     android:drawablePadding="@dimen/base10dp"
                     android:text="其他可选"
+                    android:visibility="gone"
                     android:textColor="#666666"
                     android:textSize="12sp" />
 
@@ -281,10 +283,12 @@
                     android:layout_alignLeft="@+id/tv_member"
                     android:layout_marginTop="@dimen/base24dp"
                     android:text="店铺"
+                    android:visibility="gone"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/iv_shop_logo"
                     android:layout_width="@dimen/base30dp"
                     android:layout_height="@dimen/base30dp"
@@ -296,6 +300,7 @@
 
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_shop_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -308,6 +313,7 @@
                     android:textStyle="bold" />
 
                 <RatingBar
+                    android:visibility="gone"
                     android:id="@+id/ratingbar"
                     style="@style/footRatingBar"
                     android:layout_width="wrap_content"
@@ -320,6 +326,7 @@
                     android:stepSize="2.0" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -330,6 +337,7 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_come_shop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -344,6 +352,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_interval_4"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/base6dp"
@@ -360,9 +369,6 @@
                     android:layout_marginTop="@dimen/base34dp"
                     android:layout_marginRight="@dimen/base20dp"
                     android:layout_marginBottom="@dimen/base34dp"
-                    android:text="1.参考时间：60平以下（2-3小时），61-123平方米（3-4小时），121-180平方米（4-5小时），181-220平方米（5-6小时）。
-                    2.服务范围：客厅清洁、卧室清洁、厨房清洁、卫生间清洁。
-                    3.注意事项：本服务2小时起，不满2小时按2小时计算。以上参考时间仅供参考。"
                     android:textColor="#666666"
                     android:textSize="14sp" />
 
@@ -420,11 +426,6 @@
                     android:layout_marginTop="@dimen/base18dp"
                     android:layout_marginRight="@dimen/base14dp"
                     android:layout_marginBottom="@dimen/base18dp"
-                    android:text="1.商家将在您下单后30分钟内确认接单；
-                    2.订单确认后，若需要修改或取消订单需提前2小时；
-                    3.商家接单15分钟后再取消订单将收取一定的空单损失费；若在预约前30分钟内取消订单将扣除一半服务费以补偿商家；
-                    4.如商家接单后在预约时间2个小时内不到的，将视为爽约，将全额退款并赔付您订单金额百分之十的等待费；
-                    5.为保障您的权益，所有费用请通过秒工平台支付，如不通过秒工平台支付发生的一切纠纷秒工平台概不负责。"
                     android:textColor="#333333"
                     android:textSize="14sp" />
 
@@ -443,7 +444,8 @@
                 android:id="@+id/rl_user_evaluation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_interval_5">
+                android:layout_below="@+id/tv_interval_5"
+                android:layout_marginBottom="@dimen/base55dp">
 
                 <TextView
                     android:layout_width="@dimen/base3dp"
@@ -469,12 +471,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/base29dp"
                     android:layout_marginRight="@dimen/base16dp"
+                    android:layout_marginTop="@dimen/base29dp"
                     android:clickable="true"
-                    android:drawableRight="@mipmap/arrow_go"
                     android:drawablePadding="@dimen/base10dp"
-                    android:text="15条评论"
+                    android:drawableRight="@mipmap/arrow_go"
                     android:textColor="#888888"
                     android:textSize="14sp" />
 
@@ -490,7 +491,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_line_2"
-                    android:layout_marginTop="@dimen/base6dp"></android.support.v7.widget.RecyclerView>
+                    android:layout_marginTop="@dimen/base6dp"/>
 
             </RelativeLayout>
 
@@ -508,7 +509,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_store"
@@ -553,7 +555,9 @@
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone"
+            />
 
         <TextView
             android:id="@+id/tv_place_order"

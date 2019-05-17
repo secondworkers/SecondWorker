@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/layout_home_title" />
@@ -37,7 +38,7 @@
                     android:textColor="@color/text_grey"
                     />
                 <!--加框-->
-                <com.stx.xhb.xbanner.XBanner
+               <!-- <bann
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/xbanner"
                     android:layout_width="match_parent"
@@ -45,13 +46,28 @@
                     android:layout_marginRight="@dimen/base15dp"
                     android:layout_marginTop="@dimen/base10dp"
                     android:layout_height="150dp"
-                    app:AutoPlayTime="3000"
-                    app:isShowIndicatorOnlyOne="false"
-                    app:isShowNumberIndicator="false"
-                    app:pageChangeDuration="800"
-                    app:pointsPosition="CENTER"
+                    />-->
+                <cn.isif.plug.bannerview.BannerView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/base150dp"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginRight="@dimen/base15dp"
+                    android:layout_marginTop="@dimen/base10dp"
+                    android:id="@+id/banner"
+                    app:isPool="true"
+                    app:isWheel="true"
+                    app:delayedTime="3000"
+                    app:defPlaceHold="@mipmap/ic_placeholder"
+                    app:errorPicture="@mipmap/ic_placeholder"
                     />
             </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:background="@color/text_white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base15dp"
+                />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,23 +87,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="更多"
                     android:clickable="true"
                     android:drawablePadding="@dimen/base3dp"
                     android:drawableRight="@mipmap/arrow_go"
                     android:textSize="11sp"
+                    android:visibility="gone"
                     android:layout_marginRight="@dimen/base15dp"
                     android:layout_marginTop="@dimen/base15dp"
                     />
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list"
+                    android:id="@+id/rv_list_recommend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv1"
                     android:layout_marginTop="@dimen/base5dp"
                     />
                 <TextView
-                    android:layout_below="@+id/rv_list"
+                    android:layout_below="@+id/rv_list_recommend"
                     android:layout_marginTop="-3dp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/base23dp"

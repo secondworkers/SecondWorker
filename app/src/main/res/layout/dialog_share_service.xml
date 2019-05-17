@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a000000"
+    android:id="@+id/rl_bg1"
+    >
+    <RelativeLayout
+        android:id="@+id/rl_bg"
+        android:layout_width="@dimen/base270dp"
+        android:layout_height="@dimen/base480dp"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/ic_background_share_purple_strong">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base20dp"
+        android:text="我使用秒工APP摇到了"
+        android:textColor="#FFF156"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_red_packet_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_red_packet_right" />
+
+    <TextView
+        android:id="@+id/tv_service_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_centerHorizontal="true"
+        android:shadowColor="#B19600"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="0"
+        android:text="399"
+        android:textColor="#FFF156"
+        android:textSize="60sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_red_packet_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="@dimen/base90dp"
+        android:src="@mipmap/ic_red_packet_left" />
+
+    <TextView
+        android:id="@+id/tv_service_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_service_price"
+        android:layout_centerHorizontal="true"
+        android:text="上门按摩服务"
+        android:textColor="#FFF156"
+        android:textSize="23sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_free_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_service_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:text="不收取额外费用"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_register_red_packet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_free_money"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:background="@mipmap/ic_background_share_border_white">
+
+        <TextView
+            android:id="@+id/tv_register_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base18dp"
+            android:text="新用户注册下载app"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/tv_give_red_packet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_register_download"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base10dp">
+
+            <TextView
+                android:id="@+id/tv_give"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/base18dp"
+                android:text="立送"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-7dp"
+                android:layout_toRightOf="@+id/tv_give"
+                android:text="10"
+                android:textColor="#FFE400"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_red_packet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_number"
+                android:text="元红包"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_qrCode"
+        android:layout_width="@dimen/base100dp"
+        android:layout_height="@dimen/base100dp"
+        android:layout_below="@+id/rl_register_red_packet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base10dp"
+         />
+
+    <TextView
+        android:id="@+id/tv_scan_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_qrCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base15dp"
+        android:text="长按识别二维码注册下载"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_scan_download"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:layout_marginRight="@dimen/base60dp"
+        android:src="@mipmap/ic_break_line" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:background="@color/text_white">
+        <TextView
+            android:id="@+id/tv_share_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_share_wechat"
+            android:text="微信好友"
+            android:layout_marginRight="@dimen/base25dp"
+            android:layout_marginBottom="@dimen/base5dp"
+            android:textColor="@color/text_black"
+            android:clickable="true"
+            />
+        <TextView
+            android:id="@+id/tv_share_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_share_friends_circle"
+            android:text="微信朋友圈"
+            android:layout_marginLeft="@dimen/base25dp"
+            android:textColor="@color/text_black"
+            android:clickable="true"
+            />
+    </LinearLayout>
+</RelativeLayout>

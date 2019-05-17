@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.center.AboutUsActivity">
+    >
 
     <include
         android:id="@+id/include"
@@ -18,7 +16,7 @@
         android:layout_height="@dimen/base60dp"
         android:layout_gravity="center"
         android:layout_marginTop="89dp"
-        android:src="@mipmap/ic_gong" />
+        android:src="@mipmap/ic_launcher_round" />
 
     <TextView
         android:id="@+id/tv_font_top"
@@ -35,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="版本号：V1.001"
+        android:text="版本号：V1.0.1"
         android:layout_marginTop="@dimen/base18dp"
         android:textColor="#ff888888"
         android:textSize="13sp" />

@@ -1,20 +1,26 @@
 package com.qiaoyi.secondworker;
 
-import android.animation.Animator;
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.qiaoyi.secondworker.utlis.DisplayUtil;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
-import cn.isif.alibs.utils.ALog;
-import cn.isif.alibs.utils.SharePreferenceUtils;
+import java.util.ArrayList;
+import java.util.List;
+
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/4/24
@@ -32,12 +38,11 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        VwUtils.fixScreen(this);
         setContentView(R.layout.activity_welcome);
+        toStartLocation();
         mHandler = new Handler();
         initView();
-
     }
 
     @Override
@@ -47,8 +52,8 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void onResume() {
-        startMainActivity();
         super.onResume();
+        startMainActivity();
     }
     @Override
     public void onPause() {
@@ -66,6 +71,7 @@ public class WelcomeActivity extends BaseActivity implements View.OnClickListene
         tv_goto.setOnClickListener(this);
         progress = (ProgressBar) findViewById(R.id.progress);
         progress.setOnClickListener(this);
+        checkPermission();
 
     }
 

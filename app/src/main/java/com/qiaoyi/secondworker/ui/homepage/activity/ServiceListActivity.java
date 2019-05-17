@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,13 +19,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.bean.ServiceBean;
+import com.qiaoyi.secondworker.bean.SearchServiceBean;
+import com.qiaoyi.secondworker.bean.ServiceItemBean;
+import com.qiaoyi.secondworker.bean.ServiceItemByIdBean;
+import com.qiaoyi.secondworker.bean.ServiceTypeBean;
+import com.qiaoyi.secondworker.bean.WrapSearchServiceBean;
+import com.qiaoyi.secondworker.bean.WrapServiceItemByIdBean;
+import com.qiaoyi.secondworker.cache.ACache;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
 import com.qiaoyi.secondworker.ui.ItemDecoration.GridSpacingItemDecoration;
 import com.qiaoyi.secondworker.ui.center.adapter.ServiceTypeAdapter;
+import com.qiaoyi.secondworker.ui.homepage.adapter.SearchAdapter;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import java.util.ArrayList;
@@ -55,22 +64,51 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
     private ImageView iv_service_type;
     private LinearLayout ll_service_type,ll_spinner;
     private RecyclerView rv_list;
-    List<String> sortData = new LinkedList<>(Arrays.asList("综合排序", "星级", "销量", "价格降序",
-            "价格升序"));
+    List<String> sortData = new LinkedList<>(Arrays.asList("综合排序", "星级", "销量"));
     private ArrayAdapter testDataAdapter;
     private PopupWindow typeSelectPopup;
     private PopupWindow typeServicePopup;
     private boolean isSelected = false;//item isSelected
     private boolean isSortSelected = false;
+    private String s_name;
+    private String s_type_id;
+    private List<ServiceItemByIdBean> result;
+    private String serviceItemId = "";
+    private String sort = "";
+    private List<SearchServiceBean> searchResult;
+    private SearchAdapter searchAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VwUtils.fixScreen(this);
         setContentView(R.layout.activity_service_list);
+        Intent intent = getIntent();
+        s_name = intent.getStringExtra("service_name");
+        s_type_id = intent.getStringExtra("item_id");
+        ACache mCache = ACache.get(getApplication());
+        lat = Double.valueOf(mCache.getAsString("user_loc_lat"));
+        lng = Double.valueOf(mCache.getAsString("user_loc_lng"));
         initView();
+        requestData();
         initData();
     }
 
+    private void requestData() {
+//        服务项目数据
+        ApiHome.getServiceItemById(s_type_id, new ServiceCallBack<WrapServiceItemByIdBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapServiceItemByIdBean> payload) {
+                result = payload.body().result;
+                requestList();
+            }
+        });
+    }
 
 
     private void initView() {
@@ -94,12 +132,21 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
         ll_sort.setOnClickListener(this);
     }
     private void initData() {
-        tv_title_txt.setText("保洁服务");//TODO:
+        tv_title_txt.setText(s_name);//TODO:
         iv_msg.setImageDrawable(getResources().getDrawable(R.mipmap.iv_search));
         iv_msg.setVisibility(View.VISIBLE);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        searchAdapter = new SearchAdapter(R.layout.item_search_service, this);
 
-
-
+        rv_list.setLayoutManager(layoutManager);
+        rv_list.setAdapter(searchAdapter);
+        rv_list.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                SearchServiceBean item = (SearchServiceBean) adapter.getItem(position);
+                ServiceDetailsActivity.startDetails(ServiceListActivity.this,item.serviceItemId);
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -147,11 +194,19 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
                 String value = data.get(position);
                 // 把选择的数据展示对应的TextView上
                 tv_sort.setText(value);
+                if (value.equals("综合排序")){
+                    sort = "";
+                }else if (value.equals("星级")){
+                    sort = "score";
+                }else if (value.equals("销量")){
+                    sort = "counts";
+                }
                 tv_sort.setTextColor(getResources().getColor(R.color.text_blue));
                 iv_sort.setImageDrawable(getResources().getDrawable(R.mipmap.ic_blue_arrow_down));
                 isSortSelected = true;
                 // 选择完后关闭popup窗口
                 typeSelectPopup.dismiss();
+                requestList();
             }
         });
         typeSelectPopup = new PopupWindow(mTypeLv, ViewGroup.LayoutParams.MATCH_PARENT,
@@ -174,13 +229,26 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
         });
     }
 
+    /**
+     * 请求列表数据
+     */
+    private void requestList() {
+        ApiHome.searchSearch("", lng, lat, sort, "", serviceItemId, new ServiceCallBack<WrapSearchServiceBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapSearchServiceBean> payload) {
+                searchResult = payload.body().result;
+                searchAdapter.setNewData(searchResult);
+                searchAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
     private void initServiceTypePopup() {
-        ArrayList<ServiceBean> serviceBeans = new ArrayList<>();
-        ServiceBean bean = new ServiceBean();
-        for (int i = 0; i < 10; i++) {
-//            bean.serviceType("服务"+ i);
-            serviceBeans.add(bean);
-        }
         View view = LayoutInflater.from(this).inflate(R.layout.layout_popwindow_recyclerview,null);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         int spanCount = 3;
@@ -191,19 +259,21 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
             recyclerView.addOnItemTouchListener(new OnItemClickListener() {
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
-                    ServiceBean item = (ServiceBean) adapter.getItem(position);
-                    tv_service_type.setText(item.serviceType);
+                    ServiceItemByIdBean item = (ServiceItemByIdBean) adapter.getItem(position);
+                    serviceItemId = item.id;
+                    tv_service_type.setText(item.serviceItem);
                     tv_service_type.setTextColor(getResources().getColor(R.color.text_blue));
                     iv_service_type.setImageDrawable(getResources().getDrawable(R.mipmap.ic_blue_arrow_down));
                     isSelected = true;
                     typeServicePopup.dismiss();
+                    requestList();
                 }
             });
         }
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount);
         recyclerView.setLayoutManager(gridLayoutManager);
         ServiceTypeAdapter scoreTeamAdapter = new ServiceTypeAdapter(R.layout.item_service_type);
-        scoreTeamAdapter.addData(serviceBeans);
+        scoreTeamAdapter.addData(result);
         recyclerView.setAdapter(scoreTeamAdapter);
         typeServicePopup = new PopupWindow(ll_spinner, ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);

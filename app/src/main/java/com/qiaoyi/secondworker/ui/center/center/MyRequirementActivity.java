@@ -14,10 +14,19 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.RequirementBean;
+import com.qiaoyi.secondworker.bean.WrapRequirementBean;
+import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.ItemDecoration.MyItemDecoration;
 import com.qiaoyi.secondworker.ui.center.adapter.MyRequirementAdapter;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
+
+import java.util.List;
 
 /**
  * create on 2019/4/25
@@ -36,15 +45,16 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
     private RadioButton rb_done;
     private RadioGroup rg_base;
     private RecyclerView rv_list;
+    private MyRequirementAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requirement);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+       VwUtils.fixScreen(this);
         initView();
         initData();
+        request("");
     }
 
     private void initView() {
@@ -58,7 +68,7 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
         rb_done = (RadioButton) findViewById(R.id.rb_done);
         rg_base = (RadioGroup) findViewById(R.id.rg_base);
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
-
+        tv_title_txt.setText("我的发布需求");
         view_back.setOnClickListener(this);
         view_right.setOnClickListener(this);
     }
@@ -68,36 +78,47 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     switch (checkedId){
                         case R.id.rb_all:
-//                            request(rb_all);
+                            request("");
                             break;
                         case R.id.rb_posting:
-
+                            request("1");
                             break;
                         case R.id.rb_canceled:
-
+                            request("2");
                             break;
                         case R.id.rb_done:
-
+                            request("3");
                             break;
                     }
                 }
             });
-            MyRequirementAdapter listAdapter = new MyRequirementAdapter(R.layout.item_service_type);
+            listAdapter = new MyRequirementAdapter(R.layout.item_requirement,this);
             int spacing = VwUtils.getSW(this, 2);//item间隙宽度
             int itemDecorationCount = rv_list.getItemDecorationCount();
             if (itemDecorationCount == 0) {
                 rv_list.addItemDecoration(new MyItemDecoration(0, 0, 0,spacing));
-                listAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-                    @Override
-                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                        //子View点击事件
-                    }
-                });
             }
             LinearLayoutManager manager = new LinearLayoutManager(this);
             rv_list.setLayoutManager(manager);
             rv_list.setAdapter(listAdapter);
         }
+
+    private void request(String status) {
+        ApiUserService.getRequirementList(AccountHandler.getUserId(), status, new ServiceCallBack<WrapRequirementBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapRequirementBean> payload) {
+                List<RequirementBean> result = payload.body().result;
+                listAdapter.setNewData(result);
+                listAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

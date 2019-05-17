@@ -1,10 +1,16 @@
 package com.qiaoyi.secondworker.remote;
 
 
-import android.text.TextUtils;
-
+import com.qiaoyi.secondworker.bean.ApplyBean;
 import com.qiaoyi.secondworker.bean.WrapAddressBean;
+import com.qiaoyi.secondworker.bean.WrapOrderBean;
+import com.qiaoyi.secondworker.bean.WrapOrderDetailsBean;
 import com.qiaoyi.secondworker.bean.WrapPrePayOrderBean;
+import com.qiaoyi.secondworker.bean.WrapPrePayWeChatEntity;
+import com.qiaoyi.secondworker.bean.WrapQiNiuTokenBean;
+import com.qiaoyi.secondworker.bean.WrapRequirementBean;
+import com.qiaoyi.secondworker.bean.WrapUpdateBean;
+import com.qiaoyi.secondworker.bean.WrapUserBean;
 import com.qiaoyi.secondworker.bean.WrapWorkerBean;
 import com.qiaoyi.secondworker.net.Contact;
 import com.qiaoyi.secondworker.net.IfOkNet;
@@ -29,23 +35,17 @@ public class ApiUserService {
         Params params = new Params.Builder().json().build();
         params.put("openId", openId);
         params.put("typeId", typeId);
-        params.put("nickname", nickname);
+        params.put("nickName", nickname);
         params.put("avatar", avatar);
-        return IfOkNet.getInstance().post(Contact.LOGIN, params, callBack);
+        return IfOkNet.getInstance().post(Contact.THIRD_LOGIN, params, callBack);
     }
 
-    //绑定第三方登录
-    public static Call bindThird(String mobile, String smscode, String openId, String typeId,
-                                 String nickname, String avatar,String isBindingThirdParty,ServiceCallBack callBack) {
+    //第三方登录绑定手机号
+    public static Call bindThird(String phone, String code,ServiceCallBack callBack) {
         Params params = new Params.Builder().json().build();
-        params.put("mobile", mobile);
-        params.put("smscode", smscode);
-        params.put("openId", openId);
-        params.put("typeId", typeId);
-        params.put("nickname", nickname);
-        params.put("avatar", avatar);
-        params.put("isBindingThirdParty", isBindingThirdParty);
-        return IfOkNet.getInstance().post(Contact.LOGIN, params, callBack);
+        params.put("phone", phone);
+        params.put("code", code);
+        return IfOkNet.getInstance().post(Contact.BIND_PHONE, params, callBack);
     }
 
     //发送短息
@@ -53,6 +53,20 @@ public class ApiUserService {
         Params params = new Params.Builder().json().build();
         params.put("phone", mobile);
         return IfOkNet.getInstance().post(Contact.SEND_SMS, params, callBack);
+    }
+    //获取用户信息
+    public static Call getUserInfo(String uid, ServiceCallBack<WrapUserBean> callBack) {
+        Params params = new Params.Builder().json().build();
+        params.put("uid", uid);
+        return IfOkNet.getInstance().post(Contact.GETUSERINFO, params, callBack);
+    }
+    //获取用户信息
+    public static Call modifyUserinfo(String uid,String username,String avatar, ServiceCallBack callBack) {
+        Params params = new Params.Builder().json().build();
+        params.put("uid", uid);
+        params.put("username", username);
+        params.put("avatar", avatar);
+        return IfOkNet.getInstance().post(Contact.MODIFY_USERINFO, params, callBack);
     }
 
     //第三方登录
@@ -65,7 +79,6 @@ public class ApiUserService {
 
     /**
      * 摇一摇 秒工人
-     * @param counts
      * @param lng
      * @param lat
      * @param callBack
@@ -73,7 +86,6 @@ public class ApiUserService {
      */
     public static Call shakeWorker(int counts, double lng,double lat, ServiceCallBack<WrapWorkerBean> callBack) {
         Params params = new Params.Builder().json().build();
-        params.put("counts", counts);
         params.put("lng", lng);
         params.put("lat", lat);
         return IfOkNet.getInstance().post(Contact.SHAKE_WORKER, params, callBack);
@@ -126,9 +138,10 @@ public class ApiUserService {
      * @param callBack
      * @return
      */
-public static Call delAddress(String aid,ServiceCallBack callBack){
+public static Call delAddress(String aid,String addressStatus,ServiceCallBack callBack){
     Params params = new Params.Builder().json().build();
     params.put("aid", aid);
+    params.put("addressStatus", addressStatus);
     return IfOkNet.getInstance().post(Contact.ADDRESS_DELETE, params, callBack);
 }
 
@@ -137,22 +150,25 @@ public static Call delAddress(String aid,ServiceCallBack callBack){
      * @param addressId
      * @param serviceTime
      * @param uid
-     * @param serviceLength
+     * @param payCount
      * @param orgId
      * @param workId
      * @param callBack
      * @return
      */
 public static Call createOrder(String addressId,String serviceTime,String uid,
-                               String serviceLength,String orgId,String workId,
+                               String payCount,String orgId,String workId,String serviceItemId,
+                               double actualPay,
                                ServiceCallBack<WrapPrePayOrderBean> callBack){
     Params params = new Params.Builder().json().build();
     params.put("addressId", addressId);
     params.put("serviceTime", serviceTime);
     params.put("uid", uid);
-    params.put("serviceLength", serviceLength);
+    params.put("payCount", payCount);
     params.put("orgId", orgId);
     params.put("workId", workId);
+    params.put("serviceItemId", serviceItemId);
+    params.put("actualPay", actualPay);
     return IfOkNet.getInstance().post(Contact.CREATE_ORDER, params, callBack);
 }
 
@@ -174,21 +190,165 @@ public static Call getOrderInfo(String orderid,ServiceCallBack<WrapPrePayOrderBe
      * @param callBack
      * @return
      */
-public static Call cancelAndDelOrder(String orderid,String status,ServiceCallBack callBack){
+public static Call cancelAndDelOrder(String orderid,int status,ServiceCallBack callBack){
     Params params = new Params.Builder().json().build();
     params.put("orderid",orderid);
-    if (TextUtils.equals(status,"delete")){
-        return IfOkNet.getInstance().post(Contact.DEL_ORDER, params, callBack);
-    }else if (TextUtils.equals(status,"cancel")){
-        return IfOkNet.getInstance().post(Contact.CANCEL_ORDER, params, callBack);
-    }
-     return null;
+    params.put("status",status);
+    return IfOkNet.getInstance().post(Contact.UPDATE_ORDER, params, callBack);
 }
 
-public static Call wxPay(String orderid, double price , ServiceCallBack<PrePayWeChatEntity> callBack){
+    /**
+     * 获取订单列表
+     * @param uid
+     * @param status
+     * @param callBack
+     * @return
+     */
+public static Call getOrderList(String uid,String status, ServiceCallBack<WrapOrderBean> callBack){
+    Params params = new Params.Builder().json().build();
+    params.put("uid",uid);
+    params.put("status",status);
+    return IfOkNet.getInstance().post(Contact.GET_ORDER_LIST, params, callBack);
+}
+
+    /**
+     * 查看订单详情
+     * @param orderid
+     * @param callBack
+     * @return
+     */
+public static Call getOrderDetails(String orderid, ServiceCallBack<WrapOrderDetailsBean> callBack){
     Params params = new Params.Builder().json().build();
     params.put("orderid",orderid);
-    params.put("price",price);
+    return IfOkNet.getInstance().post(Contact.GET_ORDER_DETAILS, params, callBack);
+}
+
+    /**
+     * 发布需求
+     * @param text
+     * @param photo
+     * @param addressname
+     * @param voice
+     * @param lng
+     * @param atime
+     * @param aPhone
+     * @param uid
+     * @param callBack
+     * @return
+     */
+public static Call postRequirement(String text, String photo,
+                                   String addressname, String voice,
+                                   double lng, double lat,
+                                   String serviceId, String atime,
+                                   String aPhone, String uid,
+                                   ServiceCallBack<PostResultBean> callBack){
+    Params params = new Params.Builder().json().build();
+    params.put("text",text);
+    params.put("photo",photo);
+    params.put("addressname",addressname);
+    params.put("voice",voice);
+    params.put("lng",lng);
+    params.put("lat",lat);
+    params.put("serviceId",serviceId);
+    params.put("atime",atime);
+    params.put("aPhone",aPhone);
+    params.put("uid",uid);
+    return IfOkNet.getInstance().post(Contact.POST_REQUIREMENT, params, callBack);//
+}
+
+    /**
+     * 获取需求列表
+     * @param uid
+     * @param status
+     * @param callBack
+     * @return
+     */
+public static Call getRequirementList(String uid,String status, ServiceCallBack<WrapRequirementBean> callBack){
+
+    Params params = new Params.Builder().json().build();
+    params.put("uid",uid);
+    params.put("status",status);
+    return IfOkNet.getInstance().post(Contact.GET_REQUIREMENT, params, callBack);
+}
+
+    /**
+     * 修改需求
+     * @param id
+     * @param status
+     * @param callBack
+     * @return
+     */
+public static Call updateRequirementList(String id,String status, ServiceCallBack<WrapRequirementBean> callBack){
+
+    Params params = new Params.Builder().json().build();
+    params.put("id",id);
+    params.put("status",status);
+    return IfOkNet.getInstance().post(Contact.UPDATE_REQUIREMENT, params, callBack);
+}
+
+    /**
+     * @param callBack
+     * @return
+     */
+public static Call applyWorker(String workerName,String idCard,String frontPhoto,
+                               String negativePhoto,String sczmPhoto,String scfmPhoto,
+                               String city,String cityCode,double lng,double lat,String phone,
+                               String auditStatus,
+                               ServiceCallBack<WrapRequirementBean> callBack){
+
+    Params params = new Params.Builder().json().build();
+    params.put("workerName",workerName);
+    params.put("idCard",idCard);
+    params.put("frontPhoto",frontPhoto);
+    params.put("negativePhoto",negativePhoto);
+    params.put("sczmPhoto",sczmPhoto);
+    params.put("scfmPhoto",scfmPhoto);
+    params.put("city",city);
+    params.put("cityCode",cityCode);
+    params.put("lng",lng);
+    params.put("lat",lat);
+    params.put("phone",phone);
+    params.put("auditStatus",auditStatus);
+    return IfOkNet.getInstance().post(Contact.APPLY_WORKER, params, callBack);
+}
+
+    /**
+     * 获取七牛token
+     * @param callBack
+     * @return
+     */
+    public static Call getQiniuToken(ServiceCallBack<WrapQiNiuTokenBean> callBack){
+        return IfOkNet.getInstance().post(Contact.GET_QINIUTOUKEN, null, callBack);
+    }
+
+    /**
+     * 查询申请状态
+     * @param callBack
+     * @return
+     */
+    public static Call queryApplyStatus(ServiceCallBack<ApplyBean> callBack){
+        return IfOkNet.getInstance().post(Contact.QUERY_APPLY_WORKER_STATUS, null, callBack);
+    }
+
+    /**
+     * 检查更新
+     * @param callBack
+     * @return
+     */
+    public static Call checkUpdate(ServiceCallBack<WrapUpdateBean> callBack){
+        return IfOkNet.getInstance().post(Contact.CHECK_UPDATE, null, callBack);
+    }
+    /**
+     * 微信支付
+     * @param orderid
+     * @param actualPay
+     * @param callBack
+     * @return
+     */
+public static Call wxPay(String orderid, double actualPay , ServiceCallBack<WrapPrePayWeChatEntity> callBack){
+    Params params = new Params.Builder().json().build();
+    params.put("orderid",orderid);
+    params.put("actualPay",actualPay);
     return IfOkNet.getInstance().post(Contact.WX_PAY, params, callBack);
 }
 }

@@ -23,6 +23,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import anet.channel.util.StringUtils;
 
 /**
  * Created by Spirit on 2019-04-17.
@@ -307,4 +311,22 @@ public static void fixScreen(Activity activity){
   StatusBarUtil.setTranslucentStatus(activity);
   StatusBarUtil.setStatusBarDarkTheme(activity, true);
 }
+
+  /**
+   * 验证手机号
+   * @param str
+   * @return
+   */
+  public static boolean isMobile(String str) {
+    Pattern p = null;
+    Matcher m = null;
+    boolean b = false;
+    String s2="^[1](([3|5|8][\\d])|([4][5,6,7,8,9])|([6][5,6])|([7][3,4,5,6,7,8])|([9][8,9]))[\\d]{8}$";// 验证手机号
+    if(StringUtils.isNotBlank(str)){
+      p = Pattern.compile(s2);
+      m = p.matcher(str);
+      b = m.matches();
+    }
+    return b;
+  }
 }

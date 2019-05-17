@@ -27,7 +27,14 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
+import com.qiaoyi.secondworker.bean.ServiceTypeBean;
+import com.qiaoyi.secondworker.bean.WrapServiceBean;
 import com.qiaoyi.secondworker.cache.ACache;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
+import com.qiaoyi.secondworker.ui.shake.MyShareActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
 
@@ -51,6 +58,7 @@ public class BaseActivity extends AppCompatActivity {
   public String formatAddress;
   public String city;//定位城市
   public String province;
+  public List<ServiceTypeBean> result;
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState,
       @Nullable PersistableBundle persistentState) {
@@ -184,7 +192,7 @@ public class BaseActivity extends AppCompatActivity {
           Manifest.permission.CALL_PHONE, Manifest.permission.READ_LOGS,
           Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,
           Manifest.permission.SET_DEBUG_APP, Manifest.permission.SYSTEM_ALERT_WINDOW,
-          Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS
+          Manifest.permission.GET_ACCOUNTS, Manifest.permission.WRITE_APN_SETTINGS,Manifest.permission.RECORD_AUDIO
       };
       String[] pp = checkPermission(mPermissionList);
       if (null != pp && pp.length > 0) {
@@ -212,7 +220,20 @@ public class BaseActivity extends AppCompatActivity {
       toast.cancel();
     }
   }
+  public void initServiceType() {
+    ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+      @Override
+      public void failed(String code, String errorInfo, String source) {
 
+      }
+
+      @Override
+      public void success(RespBean resp, Response<WrapServiceBean> payload) {
+        WrapServiceBean body = payload.body();
+        result = body.result;
+      }
+    });
+  }
   public void showToast(String txt) {
     //closeToast();
     //if (!isFinishing()) {
@@ -269,8 +290,7 @@ public class BaseActivity extends AppCompatActivity {
       des = title;
     }
     checkPermission();
-//    Intent intent = new Intent(this, MyShareActivity.class);
-    Intent intent = new Intent(this, MainActivity.class);
+    Intent intent = new Intent(this, MyShareActivity.class);
     intent.putExtra("webUrl",webUrl);
     intent.putExtra("title",title);
     intent.putExtra("des",des);

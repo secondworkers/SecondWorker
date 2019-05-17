@@ -3,7 +3,7 @@ package com.qiaoyi.secondworker.local;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.qiaoyi.secondworker.remote.UserBean;
+import com.qiaoyi.secondworker.bean.UserBean;
 
 import cn.isif.alibs.utils.SharePreferenceUtils;
 
@@ -36,7 +36,7 @@ public class AccountHandler {
     if (null==ub){
       return null;
     }else{
-      return ub.uid;
+      return ub.token;
     }
   }
 
@@ -56,7 +56,7 @@ public class AccountHandler {
   public static String getUserName() {
     UserBean ub = getUser();
     if (ub != null) {
-      return ub.userName;
+      return ub.username;
     }
     return null;
   }
@@ -71,6 +71,13 @@ public class AccountHandler {
     UserBean ub = getUser();
     if (ub != null) {
       return ub.phone;
+    }
+    return "";
+  }
+  public static String getToken() {
+    UserBean ub = getUser();
+    if (ub != null) {
+      return ub.token;
     }
     return "";
   }

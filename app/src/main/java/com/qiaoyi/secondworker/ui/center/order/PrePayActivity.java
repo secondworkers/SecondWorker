@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.pay.PayHandler;
 import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.shake.activity.PostSuccessActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import cn.isif.alibs.utils.ALog;
@@ -59,9 +62,9 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         VwUtils.fixScreen(this);
         setContentView(R.layout.activity_prepay);
+        requestTime();
         initView();
         initData();
-        requestTime();
     }
 
     private void requestTime() {
@@ -109,7 +112,33 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
     }
     private void initData() {
         //支付方式
-
+        tv_service_type.setText(Html.fromHtml("<font color='#212121'>"
+                + "订单类型："
+                + "</font><font color='#666666'> "
+                + service_name
+                + "</font>"));
+        tv_order_price.setText(Html.fromHtml("<font color='#212121'>"
+                + "订单金额："
+                + "</font><font color='#FF0000'> "
+                + String.valueOf(t_price)
+                + "元 </font>"));
+        tv_total_price1.setText(String.valueOf(t_price)+"元");
+        cb_wechat_pay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    cb_alipay.setChecked(false);
+                }
+            }
+        });//
+        cb_alipay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    cb_wechat_pay.setChecked(false);
+                }
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -120,7 +149,11 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
             case R.id.tv_goto_pay:
                 //根据选择的支付方式 调起支付
                 if (cb_wechat_pay.isChecked()){
-                    PayHandler.onRequset(this,order_id,t_price);
+                    if (t_price > 0){
+                        PayHandler.onRequest(this,order_id,t_price,service_name);
+                    }else {
+                        PostSuccessActivity.startSuccessActivity(this,String.valueOf(t_price),service_name,"pay");
+                    }
                 }else if (cb_alipay.isChecked()){
                     //alipay
                 }
@@ -128,12 +161,11 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
         }
     }
     private void cancelOrderById() {
-        ApiUserService.cancelAndDelOrder(order_id,"cancel",new ServiceCallBack() {
+        ApiUserService.cancelAndDelOrder(order_id,7,new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showShort(errorInfo);
             }
-
             @Override
             public void success(RespBean resp, Response payload) {
                 ALog.e("订单超时，取消");

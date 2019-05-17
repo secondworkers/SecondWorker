@@ -36,6 +36,7 @@ import com.qiaoyi.secondworker.ui.center.address.LocationSearchActivity;
 import com.qiaoyi.secondworker.utlis.LocationUtil;
 import com.qiaoyi.secondworker.utlis.MapHandler;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -76,8 +77,7 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getaddress);
-        StatusBarUtil.setTranslucentStatus(this);
-        StatusBarUtil.setStatusBarDarkTheme(this, true);
+        VwUtils.fixScreen(this);
         initView();
         toStartLocation();
         initMap(savedInstanceState);

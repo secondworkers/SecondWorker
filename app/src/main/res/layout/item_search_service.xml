@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#F5F5F5">
 
     <!--服务搜索-->
@@ -13,7 +13,7 @@
         android:layout_marginLeft="@dimen/base15dp"
         android:layout_marginTop="@dimen/base15dp"
         android:layout_marginRight="@dimen/base15dp"
-        android:background="@color/white">
+        android:background="@color/text_white">
 
         <ImageView
             android:id="@+id/iv_service_photo"
@@ -22,7 +22,7 @@
             android:layout_marginLeft="@dimen/base12dp"
             android:layout_marginTop="@dimen/base15dp"
             android:layout_marginBottom="@dimen/base15dp"
-            android:background="@color/text_blue" />
+             />
 
         <TextView
             android:id="@+id/tv_service"
@@ -44,6 +44,8 @@
             android:layout_alignLeft="@+id/tv_service"
             android:layout_marginTop="@dimen/base5dp"
             android:layout_marginRight="@dimen/base16dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:text="我们主要服务项目有日常保洁,开荒保洁、擦玻璃..."
             android:textColor="#666666"
             android:textSize="13sp" />

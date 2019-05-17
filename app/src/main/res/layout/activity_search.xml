@@ -3,10 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+   <View
+       android:id="@+id/rl_bg"
+       android:layout_width="wrap_content"
+       android:layout_height="@dimen/base40dp"
+       android:background="@color/text_white"/>
+
     <RelativeLayout
         android:id="@+id/rl_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_bg"
         android:padding="@dimen/base10dp"
         android:background="@color/text_white">
 

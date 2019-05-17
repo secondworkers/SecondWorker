@@ -9,27 +9,14 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         >
-    <com.flyco.tablayout.SlidingTabLayout
-        xmlns:tl="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/tl_10"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="#ffffff"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        tl:tl_tab_padding="6dp"
-        tl:tl_tab_width="@dimen/base65dp"
-        tl:tl_textBold="SELECT"
-        tl:tl_textSelectColor="#333333"
-        tl:tl_textUnselectColor="#AEAEAE"
-        tl:tl_textsize="@dimen/sp_16"
-        tl:tl_underline_color="@color/text_blue"
-        tl:tl_underline_height="1dp"
-        />
+        android:layout_height="@dimen/base38dp"/>
         <ImageView
             android:id="@+id/iv_search_top"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
+            android:layout_height="@dimen/base38dp"
             android:layout_gravity="center"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

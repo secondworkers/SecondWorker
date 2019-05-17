@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -25,6 +27,7 @@ import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.center.center.BecomeWorkerActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import cn.isif.alibs.utils.SharePreferenceUtils;
 
@@ -157,7 +160,6 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
     }
     private int count = 1;
     private void requestData() {
-        count++;
         ApiUserService.shakeWorker(count, lng, lat, new ServiceCallBack<WrapWorkerBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
@@ -167,8 +169,18 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void success(RespBean resp, Response<WrapWorkerBean> payload) {
                 WrapWorkerBean body = payload.body();
-                result = body.result;
-                new ShakeCardDialog(ShakeActivity.this,result).show();//传服务的id
+                result = body.result.worker;
+                if (!TextUtils.isEmpty(result.workerId)){
+                    new ShakeCardDialog(ShakeActivity.this, result, new ShakeCardDialog.ShakeCardListener() {
+                        @Override
+                        public void refreshDialogUI(boolean shake) {
+                            isShake = shake;
+                        }
+                    }).show();//传服务的id
+                }else {
+                    startActivity(new Intent(ShakeActivity.this,BecomeWorkerActivity.class));
+                }
+
             }
         });
 

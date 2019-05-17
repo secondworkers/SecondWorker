@@ -11,33 +11,35 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base20dp"
+        android:background="@color/text_white"
+        >
 
         <TextView
             android:id="@+id/tv_head_photos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base15dp"
-            android:layout_marginTop="@dimen/base20dp"
-            android:background="@color/text_white"
             android:text="@string/tv_avatar"
             android:textColor="#ff212121"
+            android:layout_centerVertical="true"
             android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/iv_allow_go1"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base335dp"
-            android:layout_marginTop="@dimen/base25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:src="@mipmap/arrow_go" />
 
         <ImageView
             android:id="@+id/iv_head_picture"
             android:layout_width="@dimen/base24dp"
             android:layout_height="@dimen/base24dp"
-            android:layout_marginLeft="@dimen/base300dp"
-            android:layout_marginTop="@dimen/base20dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_allow_go1"
             android:background="@mipmap/ic_wechat" />
 
     </RelativeLayout>

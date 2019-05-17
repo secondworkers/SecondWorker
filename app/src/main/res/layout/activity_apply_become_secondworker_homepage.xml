@@ -5,12 +5,18 @@
     android:background="@drawable/shape_gradient_little_no_coners_blue">
 
     <!--申请成为秒工人主页-->
-
+<View
+    android:id="@+id/view1"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base40dp"
+    android:background="@drawable/shape_gradient_little_no_coners_blue"
+    />
     <!--标题栏-->
     <RelativeLayout
         android:id="@+id/rl_apply_become_secondworker"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_below="@id/view1"
         android:background="@drawable/shape_gradient_little_no_coners_blue">
 
         <TextView
@@ -119,10 +125,9 @@
             android:layout_marginLeft="@dimen/base30dp"
             android:layout_marginTop="@dimen/base10dp"
             android:layout_marginRight="@dimen/base30dp"
-            android:text="1.专业的运营团队可保证平台的使用率；
-                         2.不再拿死工资，一人分管一片区域，区域内用户所产生的费用全部纳入自己手里，多劳多得；
-                         3.不用来公司上班，坐在家里就可以接活；
-                         4.入职培训，每月一次全员培训，根据效益进行评选最佳秒工人；"
+            android:text="1.专业的运营团队可保证平台的使用率；2.不再拿死工资，一人分管一片区域，区域内用户所产生的费用全部纳入自己手里，多劳多得；
+ 3.不用来公司上班，坐在家里就可以接活；
+ 4.入职培训，每月一次全员培训，根据效益进行评选最佳秒工人；"
             android:textColor="#242D39"
             android:textSize="14sp" />
 

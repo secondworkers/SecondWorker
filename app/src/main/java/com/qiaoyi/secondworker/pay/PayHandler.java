@@ -1,9 +1,10 @@
 package com.qiaoyi.secondworker.pay;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
 
+import com.qiaoyi.secondworker.bean.WrapPrePayWeChatEntity;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
@@ -16,20 +17,20 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import cn.isif.alibs.utils.ToastUtils;
 
 public class PayHandler {
-    public static void onRequset(Context context,String order_id,double price) {
-        ApiUserService.wxPay(order_id, price, new ServiceCallBack<PrePayWeChatEntity>() {
+    public static void onRequest(Activity context, String order_id, double price ,String service_name) {
+        ApiUserService.wxPay(order_id, price, new ServiceCallBack<WrapPrePayWeChatEntity>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
             }
 
             @Override
-            public void success(RespBean resp, Response<PrePayWeChatEntity> payload) {
-                PrePayWeChatEntity payload1 = payload.body();//判断是否是零元订单
+            public void success(RespBean resp, Response<WrapPrePayWeChatEntity> payload) {
+                PrePayWeChatEntity payload1 = payload.body().result;//判断是否是零元订单
                 if (!TextUtils.isEmpty(payload1.prepayid)){
                     WeChatPay(payload1,context);
                 }else {
-                    context.startActivity(new Intent(context,PostSuccessActivity.class));
+                    PostSuccessActivity.startSuccessActivity(context,String.valueOf(price),service_name,"pay");
                 }
             }
         });
@@ -55,7 +56,7 @@ public class PayHandler {
 
 
         //data  根据服务器返回的json数据创建的实体类对象
-        PayReq req = new PayReq();
+        PayReq req = new PayReq();//支付返回数据格式要和之前的统一
 
         req.appId = data.appid;
 
@@ -71,7 +72,7 @@ public class PayHandler {
 
         req.sign = data.sign;
 
-        api.registerApp(data.appid);
+//        api.registerApp(data.appid);
 
         //发起请求
         api.sendReq(req);

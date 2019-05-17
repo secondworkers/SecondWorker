@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SecondWorker</string>
+    <string name="app_name">秒工</string>
     <string name="trice_exit">再按一次，退出程序</string>
     <string name="shake">摇一摇</string>
     <string name="title_activity_collect">CollectActivity</string>

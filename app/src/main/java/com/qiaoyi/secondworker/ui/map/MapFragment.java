@@ -6,10 +6,11 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +35,22 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.flyco.tablayout.SlidingTabLayout;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.LocationBean;
+import com.qiaoyi.secondworker.bean.ServiceTypeBean;
 import com.qiaoyi.secondworker.bean.WorkerBean;
-import com.qiaoyi.secondworker.cache.ACache;
+import com.qiaoyi.secondworker.bean.WrapMapWorkerBean;
+import com.qiaoyi.secondworker.bean.WrapServiceBean;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
 import com.qiaoyi.secondworker.ui.BaseFragment;
 import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
 import com.qiaoyi.secondworker.ui.center.center.MessageActivity;
+import com.qiaoyi.secondworker.ui.map.adapter.MapTitle2Adapter;
+import com.qiaoyi.secondworker.ui.map.adapter.MapTitleAdapter;
+import com.qiaoyi.secondworker.ui.map.adapter.WorkerGalleryAdapter;
 import com.qiaoyi.secondworker.utlis.*;
 
 import org.greenrobot.eventbus.EventBus;
@@ -65,7 +74,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     private ImageView locationButton;
     private TextView tv_location;
     private ImageView iv_msg;
-    private SlidingTabLayout tl_10;
+    private RecyclerView rv_list;
     private ImageView iv_search_top;
     private MapView mapView;
     private ViewPager workerGallery;
@@ -80,10 +89,12 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     public static final LatLng BEIJING = new LatLng(39.8141895741, 116.4085128613);// 北京市经纬度
     private AMap aMap;
     private WorkerGalleryAdapter workerGalleryAdapter;
-    private boolean isLoaded = true;
-    FixSizeLinkedList<WorkerBean> pbMarkers = new FixSizeLinkedList<>(50);
-    private int requestNum=0;//请求超过10次刷新地图
     private String service_id;
+    private List<ServiceTypeBean> result;
+//    FixSizeLinkedList<WorkerBean> workerMarkers = new FixSizeLinkedList<>(1000);
+    List<WorkerBean> workerMarkers;
+    private MapTitle2Adapter title2Adapter;
+
     public MapFragment() {
         // Required empty public constructor
     }
@@ -93,6 +104,22 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         super.onCreate(savedInstanceState);
         VwUtils.fixScreen(getActivity());
         EventBus.getDefault().register(this);
+    }
+    public void initServiceType() {
+        ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapServiceBean> payload) {
+                WrapServiceBean body = payload.body();
+                result = body.result;
+                service_id = result.get(0).serviceTypeId;
+                initTitle();
+            }
+        });
     }
 
     @Nullable
@@ -105,6 +132,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         if (parent != null) {
             parent.removeView(rootView);
         }
+        initServiceType();
         initView(savedInstanceState);
         return rootView;
     }
@@ -114,53 +142,6 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         super.onActivityCreated(savedInstanceState);
     }
 
-    // 此方法必须重写
-    @Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
-        UmengUtils.startStatistics4Fragment("一键呼叫");
-    }
-
-    // 此方法必须重写
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-//        aMap.clear();
-        ALog.e("onPause");
-        UmengUtils.endStatistics4Fragment("一键呼叫");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        ALog.e("onStop");
-    }
-
-    // 此方法必须重写
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        try{
-            mapView.onSaveInstanceState(outState);
-        }catch (Exception e){
-            ToastUtils.showLong("定位权限被拒绝，请在设置中打开权限！！");
-        }
-
-    }
-
-    // 此方法必须重写
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        aMap = null;
-        mlocationClient.onDestroy();
-        mapView.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
-
-
     private void initView(Bundle savedInstanceState) {
         locationButton = (ImageView) rootView.findViewById(R.id.iv_location);
         locationButton.setOnClickListener(this);
@@ -168,8 +149,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         tv_location.setOnClickListener(this);
         iv_msg = (ImageView) rootView.findViewById(R.id.iv_msg);
         iv_msg.setOnClickListener(this);
-        tl_10 = (SlidingTabLayout) rootView.findViewById(R.id.tl_10);
-        tl_10.setOnClickListener(this);
+        rv_list =  rootView.findViewById(R.id.rv_list);
         iv_search_top = (ImageView) rootView.findViewById(R.id.iv_search_top);
         iv_search_top.setOnClickListener(this);
         mapView = (MapView) rootView.findViewById(R.id.map);
@@ -181,11 +161,27 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         workerGallery = (ViewPager) rootView.findViewById(R.id.vp_adj);
         workerGalleryAdapter = new WorkerGalleryAdapter(getContext());
         workerGallery.setPageMargin(getResources().getDimensionPixelSize(R.dimen.base16dp));
-        workerGallery.setAdapter(workerGalleryAdapter);
+
         workerGallery.addOnPageChangeListener(this);
         workerGallery.setVisibility(View.GONE);
         workerGallery.requestFocus();
         intLocation();
+
+    }
+
+    private void initTitle() {
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rv_list.setLayoutManager(manager);
+        title2Adapter = new MapTitle2Adapter(result,getActivity());
+        rv_list.setAdapter(title2Adapter);
+        title2Adapter.setOnItemClickListener(new MapTitle2Adapter.PriorityListener() {
+            @Override
+            public void refreshPriorityUI(String sTypeId) {
+                service_id = sTypeId;
+                requestLocationArea(service_id);
+            }
+        });
     }
 
     void intLocation() {
@@ -201,9 +197,6 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         //设置定位参数
         mlocationClient.setLocationOption(mLocationOption);
         mlocationClient.startLocation();
-
-//        requestLocationArea(crops_id);
-        initLocationMarker();
     }
     /**
      * 添加marker到地图上
@@ -217,24 +210,12 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     }
 
     private void initLocationMarker() {
-        if (requestNum > 10){
-            aMap.clear();
-            requestNum = 0;
-        }
         aMap.getUiSettings().setZoomControlsEnabled(false);
         MarkerOptions markerIcon = new MarkerOptions();
-        ACache mCache = ACache.get(getContext());
-        String user_loc_lat = mCache.getAsString("user_loc_lat");
-        String user_loc_lng = mCache.getAsString("user_loc_lng");
-        ALog.e("user_loc_lat="+user_loc_lat+",user_loc_lng="+user_loc_lng);
-//        markerIcon.position(new LatLng(Double.valueOf(loaction.latitude), Double.valueOf(loaction.longitude)));
-//        markerIcon.position(new LatLng(Double.valueOf(user_loc_lat), Double.valueOf(user_loc_lng)));
-//        markerIcon.draggable(false);
-//        markerIcon.icon(BitmapDescriptorFactory.fromResource(R.mipmap.position));
-//        aMap.addMarker(markerIcon);
-//        aMap.addMarker(
-//                new com.qiaoyi.secondworker.utlis.LocationUtil().
-//                        getMarkerOption("",Double.valueOf(user_loc_lat),Double.valueOf(user_loc_lng)));
+        markerIcon.position(new LatLng(Double.valueOf(loaction.latitude), Double.valueOf(loaction.longitude)));
+        markerIcon.draggable(false);
+        markerIcon.icon(BitmapDescriptorFactory.fromResource(R.mipmap.position));
+        aMap.addMarker(markerIcon);
     }
 
     //添加事件并开始获取marker
@@ -264,9 +245,9 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
      * 通过经纬度来获取病例
      */
     private int indexPathologyByLatLng(LatLng latLng) {
-        if (null == pbMarkers || null == latLng) return -1;
-        for (int i = 0; i < pbMarkers.size(); i++) {
-            WorkerBean pb = pbMarkers.get(i);
+        if (null == workerMarkers || null == latLng) return -1;
+        for (int i = 0; i < workerMarkers.size(); i++) {
+            WorkerBean pb = workerMarkers.get(i);
             LatLng pbLatLng = new LatLng(Double.valueOf(pb.lat), Double.valueOf(pb.lng));
             if (pbLatLng.equals(latLng)) {
                 return i;
@@ -279,9 +260,9 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
      * 初始加载的时候调用该方法
      */
     private void loadMarkerToAMap(final Context context, final WorkerBean pb) {
-        RequestOptions options = new RequestOptions().transform(new GlideCircleTransform(getContext()));
+        RequestOptions options = new RequestOptions().centerCrop().circleCrop();
         Glide.with(context)
-                .load("")
+                .load(pb.icon)
                 .apply(options)
                 .into(new SimpleTarget<Drawable>() {
                     @Override
@@ -352,14 +333,15 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void  onLocation(LocationBean location){
-        double lat = location.getLat();
-        double lng = location.getLng();
+        double select_lat = location.getLat();
+        double select_lng = location.getLng();
         String address_msg = location.getAddress_msg();
         String address_title = location.getAddress_title();
-        ALog.e("lat="+lat+",lng="+lng+"\naddress_msg="+address_msg+"address_title="+address_title);
+        ALog.e("lat="+select_lat+",lng="+select_lng+"\naddress_msg="+address_msg+"address_title="+address_title);
         tv_location.setText(address_title);
         //重新根据请求数据
-        moveCameraWithMap(new LatLng(lat,lng),ZOOM);
+        moveCameraWithMap(new LatLng(select_lat,select_lng),ZOOM);
+        requestLocationArea(service_id);
     }
 
     @Override
@@ -372,7 +354,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
     public void onPageSelected(int position) {
         if (isScroll) {
             ALog.e("onPageSelected");
-            WorkerBean pathologyBean = pbMarkers.get(workerGallery.getCurrentItem());
+            WorkerBean pathologyBean = workerMarkers.get(workerGallery.getCurrentItem());
             LatLng latLng = MapHandler.createLatLng(pathologyBean.lat,pathologyBean.lng);
             Marker marker = MapHandler.getMarkerByLatLng(aMap.getMapScreenMarkers(), latLng);
             changeMarkerFlag(marker);
@@ -415,10 +397,27 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         ALog.e(area[0].latitude + "-" + area[0].longitude);
         ALog.e(area[1].latitude + "-" + area[1].longitude);
         CameraPosition cameraPosition = aMap.getCameraPosition();
-        ToastUtils.showShort("请求");
-//        requestData(service_id); initMarkersOnMap
+        requestData(service_id,area[0].longitude,area[0].latitude,area[1].longitude,area[1].latitude);
     }
+    private void requestData(String serviceTypeId,double leftTopLng,double leftTopLat,double rightBottomLng,double rightBottomLat) {
+        ApiHome.getMapWorkers(Integer.valueOf(serviceTypeId), leftTopLng, leftTopLat,rightBottomLng,rightBottomLat, new ServiceCallBack<WrapMapWorkerBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
 
+            @Override
+            public void success(RespBean resp, Response<WrapMapWorkerBean> payload) {
+                WrapMapWorkerBean body = payload.body();
+                 workerMarkers = body.result;//todo:定义一个新的list存储数据，去复，长度暂定50.
+                aMap.clear();
+                initMarkersOnMap(workerMarkers);// 往地图上添加marker
+                workerGallery.setAdapter(workerGalleryAdapter);
+                workerGalleryAdapter.setData(workerMarkers);
+                workerGallery.setVisibility(View.GONE);
+            }
+        });
+    }
     private void moveCameraWithMap(LatLng latLng, int zoom) {
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
@@ -444,21 +443,59 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
 
     @Override
     public void onCameraChangeFinish(CameraPosition cameraPosition) {
-        if (!isLoaded){
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            },1000);
             requestLocationArea(service_id);
-            isLoaded = true;
-        }
+
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
         ALog.e("onMapClick");
         resetMarkerAndGallery();
+    }
+
+    // 此方法必须重写
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+        UmengUtils.startStatistics4Fragment("一键呼叫");
+    }
+
+    // 此方法必须重写
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+//        aMap.clear();
+        ALog.e("onPause");
+        UmengUtils.endStatistics4Fragment("一键呼叫");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ALog.e("onStop");
+    }
+
+    // 此方法必须重写
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        try{
+            mapView.onSaveInstanceState(outState);
+        }catch (Exception e){
+            ToastUtils.showLong("定位权限被拒绝，请在设置中打开权限！！");
+        }
+
+    }
+
+    // 此方法必须重写
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        aMap = null;
+        mlocationClient.onDestroy();
+        mapView.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

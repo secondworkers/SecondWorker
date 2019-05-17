@@ -14,6 +14,8 @@ import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 
+import cn.isif.alibs.utils.ToastUtils;
+
 /**
  * Created on 2019/5/7
  *  意见与反馈
@@ -58,7 +60,7 @@ public class MyOpinionActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.post:
-
+                submit();
                 break;
         }
     }
@@ -76,9 +78,9 @@ public class MyOpinionActivity extends BaseActivity implements View.OnClickListe
             Toast.makeText(this, "如需得到反馈请留下您的联系方式", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        ToastUtils.showLong("我们已经收到您的意见");
         // TODO validate success, do something
 
-
+        finish();
     }
 }

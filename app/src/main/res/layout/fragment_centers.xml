@@ -44,7 +44,6 @@
             android:layout_below="@+id/tv_username"
             android:layout_alignLeft="@+id/tv_username"
             android:layout_marginTop="@dimen/base10dp"
-            android:text="男"
             android:textColor="#FFFFFF"
             android:textSize="10sp" />
 
@@ -56,7 +55,6 @@
             android:layout_marginLeft="@dimen/base3dp"
             android:layout_marginTop="@dimen/base10dp"
             android:layout_toRightOf="@+id/tv_gender"
-            android:text="| 高级会员"
             android:textColor="#FFFFFF"
             android:textSize="10sp" />
 
@@ -69,6 +67,15 @@
             android:layout_marginRight="@dimen/base83dp"
             android:layout_marginBottom="@dimen/base56dp"
             android:src="@mipmap/ic_circle" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_setting"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/base55dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:id="@+id/iv_setting"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -96,9 +103,11 @@
         <TextView
             android:id="@+id/tv_see_all"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/base35dp"
             android:clickable="true"
-            android:layout_marginLeft="@dimen/base260dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/base15dp"
             android:layout_marginTop="@dimen/base18dp"
             android:drawableRight="@mipmap/arrow_go"
             android:drawablePadding="@dimen/base5dp"
@@ -342,5 +351,13 @@
             android:textColor="#333333"
             android:textSize="12sp" />
     </LinearLayout>
-
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_gradient_little_left_blue"
+        android:text="退出登录"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
 </RelativeLayout>

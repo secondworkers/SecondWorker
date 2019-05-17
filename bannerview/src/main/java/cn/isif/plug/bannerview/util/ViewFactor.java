@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
@@ -30,14 +29,12 @@ public class ViewFactor {
                 R.layout.item_layout, null);
         ImageView bannerImg = (ImageView) v.findViewById(R.id.img_banner);
         RequestOptions options = new RequestOptions()
-                .transform(new GlideRoundTransform(context))
-            .fitCenter()
-            .centerCrop()
-            .circleCrop();//指定图片的缩放类型为centerCrop （圆形）
+                .transform(new GlideRoundTransform(context,20));//指定图片的缩放类型为centerCrop （圆形）
         Glide.with(context)
                 .load(url)
                 .apply(options)
                 .into(bannerImg);
         return v;
     }
+
 }

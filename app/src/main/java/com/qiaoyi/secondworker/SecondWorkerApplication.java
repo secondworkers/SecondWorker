@@ -65,8 +65,8 @@ public class SecondWorkerApplication extends Application {
                 "");
         ALog.e("device"+ UmengUtils.getDeviceInfo(this));
 //        ToastUtils.showLong(UmengUtils.getDeviceInfo(this));
-        //微信
-//        UmengUtil.setWeixin("wx41aba1402b780e3f", "6f177c17207fbae8ff6fd0cb1521d87c");
+        //微信 TODO:~~~~~     ~~~~~~~
+        UmengUtil.setWeixin("wx43715d46bea8060f", "6c9c356273ca9e58ef8fea1e33266cd3");
         //新浪微博(第三个参数为回调地址)
 //        UmengUtil.setSinaWeibo("278217123", "3ecf1ec67d3eb79877e6785957ce435e","http://sns.whalecloud.com/sina2/callback");
 //        //QQ                                         RDQdZ9RVmfSchTeN
@@ -132,11 +132,11 @@ public class SecondWorkerApplication extends Application {
      * 控制debug日志输出！！！
      */
     private void switchDebugLog() {
-//        ALog.allowD = BuildConfig.LOG_DEBUG;
-//        ALog.allowE = BuildConfig.LOG_DEBUG;
-//        ALog.allowI = BuildConfig.LOG_DEBUG;
-//        ALog.allowV = BuildConfig.LOG_DEBUG;
-//        ALog.allowW = BuildConfig.LOG_DEBUG;
-//        ALog.allowWtf = BuildConfig.LOG_DEBUG;
+        ALog.allowD = BuildConfig.LOG_DEBUG;
+        ALog.allowE = BuildConfig.LOG_DEBUG;
+        ALog.allowI = BuildConfig.LOG_DEBUG;
+        ALog.allowV = BuildConfig.LOG_DEBUG;
+        ALog.allowW = BuildConfig.LOG_DEBUG;
+        ALog.allowWtf = BuildConfig.LOG_DEBUG;
     }
 }

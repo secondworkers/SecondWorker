@@ -1,36 +1,44 @@
 package cn.isif.plug.bannerview.util;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 
 import java.security.MessageDigest;
 
 /**
- * Created by Spirit on 2017/11/15.
+ * Created on 2019/5/11
+ *
+ * @author Spirit
  */
 
-public class GlideRoundTransform extends BitmapTransformation {
-    private static float radius = 0f;
+public class GlideRoundTransform extends CenterCrop {
+
+    private static float radius = 10f;
 
     public GlideRoundTransform(Context context) {
-        this(context, 4);
+        this(context, 10);
     }
 
     public GlideRoundTransform(Context context, int dp) {
-        this.radius = Resources.getSystem().getDisplayMetrics().density * dp;
+        super();
+        this.radius = dp2px(context, dp);
     }
 
-    @Override protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
-        return roundCrop(pool, toTransform);
+    @Override
+    protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+        //glide4.0+
+        Bitmap transform = super.transform(pool, toTransform, outWidth, outHeight);
+        return roundCrop(pool, transform);
+        //glide3.0
+        //return roundCrop(pool, toTransform);
     }
 
     private static Bitmap roundCrop(BitmapPool pool, Bitmap source) {
@@ -50,12 +58,17 @@ public class GlideRoundTransform extends BitmapTransformation {
         return result;
     }
 
-     public String getId() {
+    public String getId() {
         return getClass().getName() + Math.round(radius);
     }
 
     @Override
-    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+    public void updateDiskCacheKey(MessageDigest messageDigest) {
 
+    }
+    public int dp2px(Context ctx, float dpValue) {
+        DisplayMetrics metrics = ctx.getResources().getDisplayMetrics();
+        int px = (int) (dpValue * (metrics.densityDpi / 160f));
+        return px;
     }
 }

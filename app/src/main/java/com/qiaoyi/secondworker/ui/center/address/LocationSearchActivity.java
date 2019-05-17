@@ -71,10 +71,10 @@ public class LocationSearchActivity extends BaseActivity implements View.OnClick
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
 
         tv_cancel.setOnClickListener(this);
-
+        et_search.setImeOptions(EditorInfo.IME_ACTION_SEND);
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == 0) {
+                if (actionId == EditorInfo.IME_ACTION_SEND || actionId == 0) {
                     checkSubmit();
                 }
                 return true;

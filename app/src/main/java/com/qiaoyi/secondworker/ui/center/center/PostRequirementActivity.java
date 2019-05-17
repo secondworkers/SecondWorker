@@ -22,7 +22,15 @@ import android.widget.TextView;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.LocationBean;
+import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
+import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.remote.PostResultBean;
 import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.shake.activity.PostSuccessActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.datepicker.CustomDatePicker;
 import com.qiaoyi.secondworker.view.dialog.ServiceTypeDialog;
@@ -36,6 +44,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/4/29
@@ -56,12 +66,17 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
     private TextView tv_service;
     private TextView tv_time;
     private ImageView iv_count;
-    private TextView tv_number,tv_post_request;
+    private TextView tv_number,tv_post_request,tv_arrive_time,tv_service_type;
     private ImageView iv_add;
     private EditText et_phone_number;
     private String best_result;
     private CustomDatePicker timePicker;
     private String currentTime;
+    private double lat;
+    private double lng;
+    private String serviceTypeId = "";
+    private String content;
+    private String addressTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +84,7 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         setContentView(R.layout.activity_post_demand);
         VwUtils.fixScreen(this);
         initPermission();
+        toStartLocation();
         initView();
         initData();
         EventBus.getDefault().register(this);
@@ -76,6 +92,9 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
 
     private void initView() {
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
+        tv_arrive_time = (TextView) findViewById(R.id.tv_arrive_time);
+        tv_service_type = (TextView) findViewById(R.id.tv_service_type);
+        tv_title_txt.setText("发布需求");
         view_back = (RelativeLayout) findViewById(R.id.view_back);
         rl_voice_recognition = (RelativeLayout) findViewById(R.id.rl_voice_recognition);
         iv_voice = (ImageView) findViewById(R.id.iv_voice);
@@ -101,6 +120,8 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         iv_add.setOnClickListener(this);
         tv_post_request.setOnClickListener(this);
         tv_address.setOnClickListener(this);
+        tv_address.setOnClickListener(this);
+        tv_service_type.setOnClickListener(this);
     }
     private void initData() {
         best_result = getIntent().getStringExtra("best_result");
@@ -110,7 +131,7 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
             rl_voice_recognition.setVisibility(View.VISIBLE);
             et_content.setText(best_result);
         }
-        et_phone_number.setText("");//用户手机号
+        et_phone_number.setText(AccountHandler.getUserPhone());//用户手机号
         currentTime = VwUtils.getCurrentTime();
 
         //"2027-12-31 23:59"
@@ -125,12 +146,11 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void  onLocationSelect(LocationBean location){
-        double lat = location.getLat();
-        double lng = location.getLng();
+        lat = location.getLat();
+        lng = location.getLng();
         String address_msg = location.getAddress_msg();
-        String address_title = location.getAddress_title();
-        tv_address.setText(address_title);
-        //重新根据请求数据
+        addressTitle = location.getAddress_title();
+        tv_address.setText(addressTitle);
     }
     @Override
     public void onClick(View v) {
@@ -149,21 +169,25 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
             case R.id.tv_address:
                 startActivity(new Intent(this,GetAddressActivity.class));
                 break;
+            case R.id.tv_service_type:
             case R.id.tv_service:
                     new ServiceTypeDialog(this, new ServiceTypeDialog.ServiceChooseListener() {
                         @Override
                         public void refreshDialogUI(String service_id,String service_name) {
-
+                            tv_service.setText(service_name);
+                            serviceTypeId = service_id;
                         }
                     }).show();
                 break;
+            case R.id.tv_arrive_time:
             case R.id.tv_time://选择到达时间
                 timePicker.show(currentTime);
                 break;
             case R.id.tv_post_request:
-
+                postRequest();
                 break;
             case R.id.tv_select_photo://选择照片上传
+
                     return;
 
           /*  case R.id.service://选择服务类型
@@ -179,14 +203,39 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         }
     }
 
-    private void submit() {
-        // validate
-        String content = et_content.getText().toString().trim();
-        if (TextUtils.isEmpty(content)) {
-            return;
-        }
+    private void postRequest() {
+        if (AccountHandler.checkLogin() != null) {
+            content = et_content.getText().toString().trim();
+            if (TextUtils.isEmpty(content)) {
+                ToastUtils.showShort("请输入您的服务描述");
+                return;
+            } else if (lat == 0.0) {
+                ToastUtils.showShort("请选择您的服务地址");
+            } else {
+                //
+                ApiUserService.postRequirement(content,
+                        "", addressTitle,
+                        "",
+                        lng, lat,
+                        serviceTypeId,
+                        currentTime,
+                        AccountHandler.getUserPhone(),
+                        AccountHandler.getUserId(), new ServiceCallBack<PostResultBean>() {
+                            @Override
+                            public void failed(String code, String errorInfo, String source) {
 
-        // TODO validate success, do something
+                            }
+
+                            @Override
+                            public void success(RespBean resp, Response<PostResultBean> payload) {
+                                startActivity(new Intent(PostRequirementActivity.this, MyRequirementActivity.class));
+                                finish();
+                            }
+                        });
+            }
+        }else {
+            startActivity(new Intent(this,LoginActivity.class));
+        }
     }
 
     @Override

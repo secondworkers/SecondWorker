@@ -2,29 +2,33 @@ package com.qiaoyi.secondworker.view.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import com.chad.library.adapter.base.BaseViewHolder;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.bean.ServiceBean;
+import com.qiaoyi.secondworker.bean.ServiceTypeBean;
+import com.qiaoyi.secondworker.bean.WrapServiceBean;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiHome;
 import com.qiaoyi.secondworker.ui.ItemDecoration.GridSpacingItemDecoration;
-import com.qiaoyi.secondworker.ui.center.adapter.ServiceTypeAdapter;
+import com.qiaoyi.secondworker.ui.center.adapter.PostServiceAdapter;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/5/5
@@ -39,6 +43,8 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
     private TextView tv_cancle;
     private TextView tv_select;
     private Activity context;
+    private List<ServiceTypeBean> result;
+    private PostServiceAdapter listAdapter;
 
     public interface ServiceChooseListener {
         /**
@@ -59,6 +65,8 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_service_type);
+        initServiceType();
+        setCanceledOnTouchOutside(true);
         computeWeigth();
         initView();
         initData();
@@ -72,13 +80,7 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
         tv_cancle.setOnClickListener(this);
     }
     void initData(){
-        ArrayList<ServiceBean> serviceBeans = new ArrayList<>();
-        ServiceBean bean = new ServiceBean();
-        for (int i = 0; i < 10; i++) {
-//            bean.setServicename("服务"+ i);
-            serviceBeans.add(bean);
-        }
-        ServiceTypeAdapter listAdapter = new ServiceTypeAdapter(R.layout.item_service_type);
+        listAdapter = new PostServiceAdapter(R.layout.item_service_type,context);
         int spanCount = 4;
         int spacing = VwUtils.getSW(context, 0);//item间隙宽度
         int itemDecorationCount = rv_service_list.getItemDecorationCount();
@@ -87,8 +89,8 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
             rv_service_list.addOnItemTouchListener(new OnItemClickListener() {
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
-                    ServiceBean item = (ServiceBean) adapter.getItem(position);
-                    listener.refreshDialogUI(item.serviceType,item.id);
+                    ServiceTypeBean item = (ServiceTypeBean) adapter.getItem(position);
+                    listener.refreshDialogUI(item.serviceTypeId,item.serviceType);
                     dismiss();
                 }
             });
@@ -96,15 +98,29 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
         GridLayoutManager manager = new GridLayoutManager(context, spanCount);
         rv_service_list.setLayoutManager(manager);
         listAdapter.setEnableLoadMore(false);
-        listAdapter.addData(serviceBeans);//
         rv_service_list.setAdapter(listAdapter);
+    }
+    public void initServiceType() {
+        ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapServiceBean> payload) {
+                WrapServiceBean body = payload.body();
+                result = body.result;
+                listAdapter.addData(result);
+            }
+        });
     }
     private void computeWeigth() {
         Window window = getWindow();
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT);
+                WindowManager.LayoutParams.WRAP_CONTENT);
         window.setBackgroundDrawable(new BitmapDrawable());
-        window.setGravity(Gravity.CENTER);
+        window.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.y = 0;
         window.setAttributes(lp);

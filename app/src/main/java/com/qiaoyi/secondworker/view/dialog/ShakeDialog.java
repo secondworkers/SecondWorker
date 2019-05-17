@@ -38,6 +38,7 @@ public class ShakeDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         initViews();
         computeWeigth();
+        setCanceledOnTouchOutside(true);
         initData();
     }
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/base100dp"
+    android:layout_width="@dimen/base80dp"
     android:layout_height="@dimen/base35dp"
     android:gravity="center"
+    android:layout_margin="@dimen/base10dp"
     android:background="@color/bg_grey"
     >
 <TextView

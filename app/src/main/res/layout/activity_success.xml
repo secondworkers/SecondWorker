@@ -13,12 +13,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/base60dp"
+        android:layout_height="@dimen/base60dp"
         android:layout_marginBottom="336dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:src="@mipmap/iv_post_success"
+        android:src="@mipmap/pay_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -38,14 +38,14 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/tv_share"
+        android:id="@+id/tv_goto_shake"
         android:layout_width="@dimen/base125dp"
         android:layout_height="@dimen/base44dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="200dp"
         android:background="@drawable/shape_gradient_little_left_blue"
         android:gravity="center"
-        android:text="分享给朋友"
+        android:text="再摇一次"
         android:textColor="@color/text_white"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,13 +55,13 @@
         android:id="@+id/tv_see_details"
         android:layout_width="@dimen/base125dp"
         android:layout_height="@dimen/base44dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="200dp"
         android:background="@drawable/shape_kuangt_grey"
         android:gravity="center"
         android:text="查看订单"
         android:textColor="@color/text_grey"
         android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_goto_shake"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </android.support.constraint.ConstraintLayout>

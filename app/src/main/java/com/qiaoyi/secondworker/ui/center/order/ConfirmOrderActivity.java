@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -62,19 +63,20 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
     private String address_title;
     private String address_msg;
     private String user_name;
-    private String address_phone,service_time,worker_id;
+    private String address_phone,service_time,worker_id,serviceItemId;
     private double total_price;
 
     public static void startConfirmActivity(Context context,
                                             String service_name,String service_id,
                                             String unit,double price,
-                                            String worker_id){
+                                            String worker_id,String serviceItemId){
         Intent intent = new Intent(context, ConfirmOrderActivity.class);
         intent.putExtra("service_name",service_name);
         intent.putExtra("service_id",service_id);
         intent.putExtra("price",price);
         intent.putExtra("unit",unit);
         intent.putExtra("worker_id",worker_id);
+        intent.putExtra("serviceItemId",serviceItemId);
         context.startActivity(intent);
     }
     @Override
@@ -87,6 +89,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
         service_id = intent.getStringExtra("service_id");
         worker_id = intent.getStringExtra("worker_id");
         unit = intent.getStringExtra("unit");
+        serviceItemId = intent.getStringExtra("serviceItemId");
         price = intent.getDoubleExtra("price",0.00);
         EventBus.getDefault().register(this);
         initView();
@@ -171,7 +174,21 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void createOrder() {
-        ApiUserService.createOrder(address_id, service_time, AccountHandler.getUserId(), String.valueOf(service_num), "", worker_id,
+        if (TextUtils.isEmpty(address_id)){
+            ToastUtils.showShort("请填写服务地址");
+            return;
+        }else if (TextUtils.isEmpty(service_time)){
+            ToastUtils.showShort("请填写服务时间");
+            return;
+        }else
+        ApiUserService.createOrder(address_id,
+                service_time,
+                AccountHandler.getUserId(),
+                String.valueOf(service_num),
+                "",
+                worker_id,
+                serviceItemId,
+                total_price,
                 new ServiceCallBack<WrapPrePayOrderBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
@@ -182,7 +199,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
             public void success(RespBean resp, Response<WrapPrePayOrderBean> payload) {
                 WrapPrePayOrderBean body = payload.body();
                 PrePayOrderBean bean = body.result;
-               PrePayActivity.StartPrePayActivity(ConfirmOrderActivity.this,bean.orderid,service_name,total_price);
+                PrePayActivity.StartPrePayActivity(ConfirmOrderActivity.this,bean.orderid,service_name,total_price);
                 finish();
             }
         });
