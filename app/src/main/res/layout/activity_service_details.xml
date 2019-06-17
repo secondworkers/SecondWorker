@@ -28,10 +28,10 @@
                 <ImageView
                     android:id="@+id/iv_shop_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/base170dp"
                     android:layout_marginLeft="@dimen/base15dp"
                     android:layout_marginRight="@dimen/base15dp"
-                    android:src="@mipmap/ic_banner" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_service_type"

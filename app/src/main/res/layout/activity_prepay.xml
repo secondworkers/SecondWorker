@@ -1,74 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<include
-    android:id="@+id/include"
-    layout="@layout/layout_top_title"
-    />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
     <LinearLayout
         android:id="@+id/ll_top"
-        android:layout_below="@+id/include"
         android:layout_width="match_parent"
         android:layout_height="@dimen/base80dp"
-        android:orientation="vertical"
+        android:layout_below="@+id/include"
         android:background="#F5F5F5"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="支付剩余时间"
-            android:textSize="13sp"
             android:textColor="@color/text_grey"
-            />
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_count_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="支付剩余时间"
-            android:textSize="13sp"
             android:textColor="@color/text_red"
-            />
+            android:textSize="13sp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll2"
-        android:layout_below="@+id/ll_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_below="@+id/ll_top"
         android:background="#fff"
-        android:padding="@dimen/base15dp"
-        >
+        android:orientation="vertical"
+        android:padding="@dimen/base15dp">
+
         <TextView
             android:id="@+id/tv_service_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单类型：日常保洁"
-            android:textSize="15sp"
             android:textColor="@color/deep_black"
-            />
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/tv_order_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="订单金额：0元 "
             android:layout_marginTop="@dimen/base10dp"
-            android:textSize="15sp"
+            android:text="订单金额：0元 "
             android:textColor="@color/deep_black"
-            />
+            android:textSize="15sp" />
     </LinearLayout>
+
     <ImageView
-        android:layout_below="@+id/ll2"
         android:id="@+id/iv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/iv_waves"/>
+        android:layout_below="@+id/ll2"
+        android:src="@mipmap/iv_waves" />
 
     <android.support.constraint.ConstraintLayout
-        android:layout_below="@+id/iv1"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="220dp"
+        android:layout_below="@+id/iv1"
         android:layout_marginTop="@dimen/base20dp"
         android:background="@color/text_white">
 
@@ -212,7 +216,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8"
-            app:srcCompat="@mipmap/iv_alipay" />
+            app:srcCompat="@mipmap/iv_remaining" />
 
         <TextView
             android:id="@+id/textView8"
@@ -244,51 +248,97 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:text="支付宝支付"
+            android:text="余额支付"
             android:textColor="@color/deep_black"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/line_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/constraintLayout"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:srcCompat="@mipmap/ic_integral_pay" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:text="积分支付"
+            android:textColor="@color/deep_black"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <CheckBox
+            android:id="@+id/iv_integral_pay"
+            style="@style/MyCheckboxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
     </android.support.constraint.ConstraintLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/base50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/text_white"
-        >
+        android:background="@color/text_white">
+
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/base15dp"
             android:gravity="center_vertical"
             android:text="还需支付"
-            android:textSize="14sp"
-            android:layout_marginStart="@dimen/base15dp"
             android:textColor="@color/text_grey"
-            />
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/tv_total_price1"
             android:layout_width="130dp"
             android:layout_height="match_parent"
-            android:textColor="@color/text_red"
+            android:layout_marginStart="@dimen/base5dp"
             android:layout_toEndOf="@+id/text"
-            android:text="9.00元"
-            android:textSize="18sp"
-            android:textStyle="bold"
             android:gravity="center_vertical"
-            android:layout_marginStart="@dimen/base5dp"/>
+            android:text="9.00元"
+            android:textColor="@color/text_red"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_goto_pay"
-            android:layout_toEndOf="@+id/tv_total_price1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/tv_total_price1"
             android:background="@drawable/shape_gradient_little_no_coners_blue"
-            android:text="确认支付"
-            android:gravity="center"
-            android:textColor="@color/text_white"
-            android:textSize="16sp"
             android:clickable="true"
-            />
+            android:gravity="center"
+            android:text="确认支付"
+            android:textColor="@color/text_white"
+            android:textSize="16sp" />
     </RelativeLayout>
+
 </RelativeLayout>

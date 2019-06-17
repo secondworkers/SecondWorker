@@ -54,11 +54,6 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
         VwUtils.fixScreen(this);
         setContentView(R.layout.activity_system_settings);
         initView();
-        TextView textView = findViewById(R.id.tv_safe);
-        textView.setVisibility(View.GONE);
-        TextView textView1 = findViewById(R.id.tv_us);
-        textView.setOnClickListener(this);
-        textView1.setOnClickListener(this);
     }
 
     @Override
@@ -116,7 +111,7 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
         ApiUserService.checkUpdate(new ServiceCallBack<WrapUpdateBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showShort("当前是最新版本");
             }
 
             @Override

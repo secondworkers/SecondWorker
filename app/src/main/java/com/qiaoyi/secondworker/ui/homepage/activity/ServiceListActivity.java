@@ -233,7 +233,7 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
      * 请求列表数据
      */
     private void requestList() {
-        ApiHome.searchSearch("", lng, lat, sort, "", serviceItemId, new ServiceCallBack<WrapSearchServiceBean>() {
+        ApiHome.searchSearch("", lng, lat, sort, "", serviceItemId, s_type_id,new ServiceCallBack<WrapSearchServiceBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 

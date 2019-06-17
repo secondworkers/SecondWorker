@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/layout_top_title"
         android:id="@+id/include"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_below="@+id/include"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_wrap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/base180dp"
-        android:text="功能开发中，敬请期待"
-        android:layout_below="@+id/include"
-        />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include">
+
+        <cn.isif.msl.MultiStateLayout
+            android:id="@+id/msl_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:msl_emptyView="@layout/layout_empty"
+            app:msl_errorView="@layout/layout_error"
+            app:msl_loadingView="@layout/layout_loading">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base15dp" />
+        </cn.isif.msl.MultiStateLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

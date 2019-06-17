@@ -71,15 +71,19 @@ public abstract class ServiceCallBack<T> extends CallBack {
           TypeAdapter<?> adapter = mGson.getAdapter(TypeToken.get(payloadClass));
           payLoad = (T) adapter.fromJson(json);
         }
-
-        switch (code) {
-          case SUCCESS:
-            success(resp, new Response(payLoad == null ? o : payLoad));
-            break;
-          default:
-            failed(code, desc, o.toString());
-            break;
+        if (code == null){
+          success(resp, new Response(payLoad == null ? o : payLoad));
+        }else {
+          switch (code) {
+            case SUCCESS:
+              success(resp, new Response(payLoad == null ? o : payLoad));
+              break;
+            default:
+              failed(code, desc, o.toString());
+              break;
+          }
         }
+
       } catch (Exception e) {
         ALog.e("EXCEPTION = "+e.getMessage());
         failed(code, desc, o.toString());

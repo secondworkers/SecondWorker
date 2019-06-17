@@ -134,6 +134,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
     private void initData() {
         //"2027-12-31 23:59"
         currentTime = VwUtils.getCurrentTime();
+//        currentTime = "2019-03-13 23:59";
         timePicker = new CustomDatePicker(this, "请选择服务时间", new CustomDatePicker.ResultHandler() {
             @Override
             public void handle(String time) {

@@ -40,7 +40,7 @@ public class PostSuccessActivity extends BaseActivity implements View.OnClickLis
     public static void startSuccessActivity(Activity activity,String price, String serviceitem, String from){
         Intent intent = new Intent(activity, PostSuccessActivity.class);
         intent.putExtra("price",price);
-        intent.putExtra("serviceitem",serviceitem);
+        intent.putExtra("serviceItem",serviceitem);
         intent.putExtra("from",from);
         activity.startActivity(intent);
     }

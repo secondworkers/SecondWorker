@@ -102,7 +102,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
      * 请求列表数据
      */
     private void requestList() {
-        ApiHome.searchSearch(search, lng, lat, sort, distance, "", new ServiceCallBack<WrapSearchServiceBean>() {
+        ApiHome.searchSearch(search, lng, lat, sort, distance, "", "",new ServiceCallBack<WrapSearchServiceBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 

@@ -30,6 +30,7 @@ import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.center.center.BecomeWorkerActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import cn.isif.alibs.utils.SharePreferenceUtils;
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/4/20
@@ -163,7 +164,7 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
         ApiUserService.shakeWorker(count, lng, lat, new ServiceCallBack<WrapWorkerBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-                count --;
+                ToastUtils.showLong(errorInfo);
             }
 
             @Override

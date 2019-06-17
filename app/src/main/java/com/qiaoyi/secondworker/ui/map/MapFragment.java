@@ -260,7 +260,8 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
      * 初始加载的时候调用该方法
      */
     private void loadMarkerToAMap(final Context context, final WorkerBean pb) {
-        RequestOptions options = new RequestOptions().centerCrop().circleCrop();
+        RequestOptions options = new RequestOptions().centerCrop().circleCrop().placeholder(R.mipmap.avatar)
+                .error(R.mipmap.avatar);
         Glide.with(context)
                 .load(pb.icon)
                 .apply(options)

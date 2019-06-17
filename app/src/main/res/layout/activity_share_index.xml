@@ -12,7 +12,7 @@
 <View
     android:id="@+id/view1"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/base40dp"
+    android:layout_height="@dimen/base15dp"
     android:background="@drawable/shape_gradient_little_no_coners_purple"/>
         <!--标题栏-->
         <RelativeLayout

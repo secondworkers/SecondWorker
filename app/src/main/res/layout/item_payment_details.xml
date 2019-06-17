@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/text_white"
+    android:padding="@dimen/base15dp">
+    <TextView
+        android:id="@+id/tv_payment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收益"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+    <TextView
+        android:id="@+id/tv_payment_time"
+        android:layout_below="@+id/tv_payment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019年5月6日"
+        android:layout_marginTop="@dimen/base10dp"
+        android:textColor="@color/text_grey"
+        android:textSize="11sp"/>
+    <TextView
+        android:id="@+id/tv_payment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+100"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/base10dp"
+        android:textColor="@color/text_blue"
+        android:textSize="18sp"/>
+</RelativeLayout>

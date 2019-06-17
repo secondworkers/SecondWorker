@@ -1,121 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-
-    <include layout="@layout/layout_home_title" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_home_title" />
 
     <ScrollView
+        android:layout_below="@id/include"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         >
         <LinearLayout
+            android:id="@+id/ll_top"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/text_white"
+            >
+            <TextView
+                android:id="@+id/tv_search"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/text_white">
-                <TextView
-                    android:id="@+id/tv_search"
-                    android:clickable="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_gradient_all_grey"
-                    android:text="让我们帮您做点什么吧"
-                    android:textSize="11sp"
-                    android:padding="@dimen/base10dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/base15dp"
-                    android:layout_marginRight="@dimen/base15dp"
-                    android:drawableLeft="@mipmap/iv_search"
-                    android:drawablePadding="@dimen/base15dp"
-                    android:textColor="@color/text_grey"
-                    />
-                <!--加框-->
-               <!-- <bann
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/xbanner"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="@dimen/base15dp"
-                    android:layout_marginRight="@dimen/base15dp"
-                    android:layout_marginTop="@dimen/base10dp"
-                    android:layout_height="150dp"
-                    />-->
-                <cn.isif.plug.bannerview.BannerView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/base150dp"
-                    android:layout_marginLeft="@dimen/base15dp"
-                    android:layout_marginRight="@dimen/base15dp"
-                    android:layout_marginTop="@dimen/base10dp"
-                    android:id="@+id/banner"
-                    app:isPool="true"
-                    app:isWheel="true"
-                    app:delayedTime="3000"
-                    app:defPlaceHold="@mipmap/ic_placeholder"
-                    app:errorPicture="@mipmap/ic_placeholder"
-                    />
-            </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_list"
-                android:background="@color/text_white"
+                android:background="@drawable/shape_gradient_all_grey"
+                android:text="让我们帮您做点什么吧"
+                android:textSize="11sp"
+                android:padding="@dimen/base10dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:drawableLeft="@mipmap/iv_search"
+                android:drawablePadding="@dimen/base15dp"
+                android:textColor="@color/text_grey" />
+
+            <cn.isif.plug.bannerview.BannerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/base15dp"
-                />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/text_white">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/deep_black"
-                    android:text="为您推荐"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/base15dp"
-                    android:layout_marginTop="@dimen/base15dp"
-                    android:id="@+id/tv1"/>
-                <TextView
-                    android:id="@+id/tv_recommended_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:clickable="true"
-                    android:drawablePadding="@dimen/base3dp"
-                    android:drawableRight="@mipmap/arrow_go"
-                    android:textSize="11sp"
-                    android:visibility="gone"
-                    android:layout_marginRight="@dimen/base15dp"
-                    android:layout_marginTop="@dimen/base15dp"
-                    />
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list_recommend"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv1"
-                    android:layout_marginTop="@dimen/base5dp"
-                    />
-                <TextView
-                    android:layout_below="@+id/rv_list_recommend"
-                    android:layout_marginTop="-3dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/base23dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/shape_gradient_no_coners_white"/>
-            </RelativeLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="@dimen/base150dp"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base10dp"
+                android:id="@+id/banner"
+                app:isPool="true"
+                app:isWheel="true"
+                app:delayedTime="3000"
+                app:defPlaceHold="@mipmap/ic_placeholder"
+                app:errorPicture="@mipmap/ic_placeholder" />
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/ll_top"
+            android:id="@+id/rv_list"
+            android:background="@color/text_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base15dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_below="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/deep_black"
+                android:text="为您推荐"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base15dp"
+                android:id="@+id/tv1" />
+
+            <TextView
+                android:id="@+id/tv_recommended_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:drawablePadding="@dimen/base3dp"
+                android:drawableRight="@mipmap/arrow_go"
+                android:textSize="11sp"
+                android:visibility="gone"
+                android:layout_marginRight="@dimen/base15dp"
+                android:layout_marginTop="@dimen/base15dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv1"
+                android:layout_marginTop="@dimen/base5dp" />
+
+            <TextView
+                android:layout_below="@+id/rv_list_recommend"
+                android:layout_marginTop="-3dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base23dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/shape_gradient_no_coners_white" />
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_service"
+           android:layout_below="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="中国第一短工快约平台"
+        android:text="打造行业快速约工平台"
         android:layout_marginTop="@dimen/base18dp"
         android:textColor="#ff00a2ff"
         android:textSize="16sp" />

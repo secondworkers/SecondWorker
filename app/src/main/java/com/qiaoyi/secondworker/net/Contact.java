@@ -5,8 +5,9 @@ public class Contact {
   ///
 //    public static final String BASE_URL = "http://irapi.sndistinguish.com/";//release主机
 //    public static final String BASE_URL = "http://irapi-test.sndistinguish.com/";//预发布
-//  public static final String BASE_URL = "http://192.168.0.105:8066";//debug主机
-  public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//预发布主机
+  public static final String BASE_URL = "http://192.168.0.103:8080";//debug主机
+//  public static final String BASE_URL = "http://192.168.0.101:8066";//debug主机
+//  public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//预发布主机
 
   public static final String ANDROID = "android";
   public static final String APP_ID = "wx43715d46bea8060f";//微信appid
@@ -44,6 +45,8 @@ public class Contact {
   public static final String UPDATE_ORDER = BASE_URL + "/order/updateStatus";//修改订单状态
   public static final String GET_ORDER_LIST = BASE_URL + "/order/queryMyOrder";//查询订单list
   public static final String GET_ORDER_DETAILS = BASE_URL + "/order/queryOrderDetails";//查询订单详情
+  public static final String GET_COMMENT = BASE_URL + "/order/selectComment";//查询我的评论列表
+  public static final String POST_COMMENT = BASE_URL + "/order/evaluateOrder";//评论订单
 
   public static final String SERVICE_TYPE = BASE_URL + "/serviceType/getServiceType";//服务类型
   public static final String SERVICE_ITEM = BASE_URL + "/serviceItem/getServiceItem";//服务子类型
@@ -62,6 +65,18 @@ public class Contact {
 
   public static final String GET_QINIUTOUKEN = BASE_URL + "/mobile/getUpToken";//申请成为秒工人
   public static final String CHECK_UPDATE = BASE_URL + "/mobile/queryVersion";//检查更新
+
+
+  public static final String BIND_CARD = BASE_URL + "/mgWallet/mgBankcard/bindCard";//绑定银行卡
+  public static final String GET_BANK_LIST = BASE_URL + "/mgWallet/mgBankcard/queryCard";//获取银行卡列表
+  public static final String GET_WALLET_INFO = BASE_URL + "/mgWallet/mgMoney/queryWallet";//钱包
+  public static final String WITHDRAWAL = BASE_URL + "/mgWallet/mgMoney/queryCash";//提现入口
+  public static final String APPLY_WITHDRAWAL = BASE_URL + "/mgWallet/mgMoney/cashout";//申请提现
+  public static final String GET_WITHDRAWAL_RECORD = BASE_URL + "/mgWallet/mgMoney/cashoutInfo";//提现记录
+  public static final String BASE_BANK_IMG = "https://apimg.alipay.com/combo.png?d=cashier&t=";//银行图标
+  public static final String WALLET_PAY = BASE_URL + "/mgWallet/mgMoney/pay";//余额支付
+  public static final String REWARDPOINT_LIST = BASE_URL + "/mgWallet/mgRewardpoint/list";//积分明细
+  public static final String REWARDPOINT_PAY = BASE_URL + "/mgWallet/mgRewardpoint/pay";//积分支付
 
 
 

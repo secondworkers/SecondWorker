@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
->
+    android:background="@color/text_white">
     <!--系统设置-->
 
     <include
@@ -11,8 +10,12 @@
         layout="@layout/layout_top_title"/>
 
     <RelativeLayout
+        android:id="@+id/rl_total"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:background="@color/white">
+
         <!--账号与安全-->
         <TextView
             android:id="@+id/tv_safe"
@@ -20,43 +23,62 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/base15dp"
             android:layout_marginTop="@dimen/base18dp"
-            android:background="@color/text_white"
+            android:layout_marginBottom="@dimen/base24dp"
             android:text="账号与安全"
-            android:textColor="#ff212121"
+            android:textColor="#212121"
             android:textSize="15sp"
-            android:clickable="true"/>
+            android:clickable="true"
+            />
 
         <ImageView
             android:id="@+id/iv_arrow_go1"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
             android:layout_alignParentEnd="true"
+            android:clickable="true"
             android:layout_marginRight="@dimen/base15dp"
             android:layout_marginTop="@dimen/base23dp"
             android:src="@mipmap/arrow_go" />
+
+        <TextView
+            android:id="@+id/tv_background"
+            android:layout_below="@+id/tv_safe"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base15dp"
+            android:background="#F5F5F5" />
 
         <!--检查更新-->
         <TextView
             android:id="@+id/tv_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_safe"
-            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_below="@+id/tv_background"
+            android:layout_alignLeft="@+id/tv_safe"
             android:layout_marginTop="@dimen/base18dp"
-            android:background="@color/text_white"
+            android:layout_marginBottom="@dimen/base18dp"
             android:text="检查更新"
-            android:textColor="#ff212121"
+            android:textColor="#212121"
             android:textSize="15sp"
             android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/tv_line_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base1dp"
+            android:layout_below="@+id/tv_update"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:background="#F5F5F5" />
 
         <ImageView
             android:id="@+id/iv_arrow_go2"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
             android:layout_marginRight="@dimen/base15dp"
-            android:layout_marginTop="@dimen/base18dp"
-            android:layout_below="@+id/tv_safe"
+            android:layout_marginTop="@dimen/base23dp"
+            android:layout_below="@+id/tv_background"
             android:src="@mipmap/arrow_go" />
 
         <!--清理缓存-->
@@ -65,13 +87,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_update"
-            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_alignLeft="@+id/tv_safe"
             android:layout_marginTop="@dimen/base18dp"
-            android:background="@color/text_white"
+            android:layout_marginBottom="@dimen/base18dp"
             android:text="清理缓存"
-            android:textColor="#ff212121"
+            android:textColor="#212121"
             android:textSize="15sp"
             android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/tv_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base1dp"
+            android:layout_below="@+id/tv_clear"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:background="#F5F5F5" />
 
         <ImageView
             android:id="@+id/iv_arrow_go3"
@@ -79,8 +110,9 @@
             android:layout_height="@dimen/base10dp"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/tv_update"
+            android:clickable="true"
             android:layout_marginRight="@dimen/base15dp"
-            android:layout_marginTop="@dimen/base18dp"
+            android:layout_marginTop="@dimen/base23dp"
             android:src="@mipmap/arrow_go" />
 
         <!--关于我们-->
@@ -89,37 +121,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_clear"
-            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_alignLeft="@+id/tv_safe"
             android:layout_marginTop="@dimen/base18dp"
-            android:background="@color/text_white"
+            android:layout_marginBottom="@dimen/base18dp"
             android:text="关于我们"
             android:clickable="true"
-            android:textColor="#ff212121"
+            android:textColor="#212121"
             android:textSize="15sp" />
 
         <ImageView
             android:id="@+id/iv_arrow_go4"
             android:layout_width="@dimen/base6dp"
             android:layout_height="@dimen/base10dp"
-            android:layout_alignStart="@+id/iv_arrow_go3"
-            android:layout_alignTop="@+id/tv_us"
-            android:src="@mipmap/arrow_go" />
-
-
-        <Button
-            android:id="@+id/button_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_us"
-            android:layout_marginTop="@dimen/base50dp"
-            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_clear"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/base23dp"
             android:layout_marginRight="@dimen/base15dp"
-            android:background="@drawable/shape_gradient_little_left_blue"
-            android:text="退出登录"
-            android:textColor="#ffffffff"
-            android:textSize="15sp"
-            android:visibility="invisible"/>
+            android:src="@mipmap/arrow_go" />
 
     </RelativeLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_total"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base50dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:background="@drawable/shape_gradient_little_left_blue"
+        android:text="退出登录"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

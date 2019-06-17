@@ -15,7 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.MessageEvent;
 import com.qiaoyi.secondworker.bean.UserBean;
 import com.qiaoyi.secondworker.bean.WrapUserBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
@@ -31,6 +33,8 @@ import com.qiaoyi.secondworker.ui.center.center.ModifyUerInfoActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyCollectionActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyCommentActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyOpinionActivity;
+import com.qiaoyi.secondworker.ui.center.wallet.MyIntegralActivity;
+import com.qiaoyi.secondworker.ui.center.wallet.MyWalletActivity;
 import com.qiaoyi.secondworker.ui.center.center.ShareBaseActivity;
 import com.qiaoyi.secondworker.ui.center.center.SystemSettingsActivity;
 import com.qiaoyi.secondworker.ui.center.order.MyOrderActivity;
@@ -38,6 +42,12 @@ import com.qiaoyi.secondworker.ui.center.address.MyLocationActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyRequirementActivity;
 import com.qiaoyi.secondworker.utlis.GlideUtils;
 import com.qiaoyi.secondworker.utlis.VwUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 import cn.isif.alibs.utils.ToastUtils;
 
@@ -54,9 +64,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private ImageView iv_semicircle,iv_setting;
     private ImageView iv_my_head_photo;
     private TextView tv_username;
-    private TextView tv_gender;
     private TextView tv_member_grade;
-    private ImageView iv_circle;
+    private ImageView iv_circle,iv_isVip;
     private RelativeLayout rl_top;
     private TextView tv_my_order;
     private TextView tv_see_all;
@@ -65,8 +74,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private TextView tv_not_service;
     private TextView tv_not_confirm;
     private TextView tv_not_comment;
-    private TextView tv_refund;
-    private LinearLayout ll_rool;
+    private TextView tv_refund,tv_useful_money,tv_useful_integral;
+    private LinearLayout ll_rool,ll_useful_money,ll_useful_integral;
     private RelativeLayout rl_my_order;
     private ImageView iv_invitation_activity;
     private TextView tv_shopping_cart;
@@ -82,6 +91,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private UserBean bean;
     private int auditStatus;
     private Button button_logout;
+    private ImageView iv_semicircle1;
+    private List<String> strings;
 
 
     public CenterFragment() {
@@ -92,6 +103,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VwUtils.fixScreen(getActivity());
+
     }
 
     private void requestData() {
@@ -116,6 +128,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_centers, container, false);
         }
+        EventBus.getDefault().register(this);
         initView(rootView);
         return rootView;
     }
@@ -144,8 +157,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         iv_my_head_photo.setOnClickListener(this);
         tv_username = (TextView) rootView.findViewById(R.id.tv_username);
         tv_username.setOnClickListener(this);
-        tv_gender = (TextView) rootView.findViewById(R.id.tv_gender);
-        tv_gender.setOnClickListener(this);
+        iv_isVip = (ImageView) rootView.findViewById(R.id.iv_isVip);
+        iv_isVip.setOnClickListener(this);
         tv_member_grade = (TextView) rootView.findViewById(R.id.tv_member_grade);
         tv_member_grade.setOnClickListener(this);
         iv_circle = (ImageView) rootView.findViewById(R.id.iv_circle);
@@ -167,9 +180,14 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         tv_not_comment = (TextView) rootView.findViewById(R.id.tv_not_comment);
         tv_not_comment.setOnClickListener(this);
         tv_refund = (TextView) rootView.findViewById(R.id.tv_refund);
+        tv_useful_money = (TextView) rootView.findViewById(R.id.tv_useful_money);
+        tv_useful_integral = (TextView) rootView.findViewById(R.id.tv_useful_integral);
         tv_refund.setOnClickListener(this);
         ll_rool = (LinearLayout) rootView.findViewById(R.id.ll_rool);
-        ll_rool.setOnClickListener(this);
+        ll_useful_money = (LinearLayout) rootView.findViewById(R.id.ll_useful_money);
+        ll_useful_integral = (LinearLayout) rootView.findViewById(R.id.ll_useful_integral);
+        ll_useful_money.setOnClickListener(this);
+        ll_useful_integral.setOnClickListener(this);
         rl_my_order = (RelativeLayout) rootView.findViewById(R.id.rl_my_order);
         rl_my_order.setOnClickListener(this);
         iv_invitation_activity = (ImageView) rootView.findViewById(R.id.iv_invitation_activity);
@@ -208,14 +226,36 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         if (!TextUtils.isEmpty(bean.username))
              tv_username.setText(bean.username);
         Glide.with(getActivity()).load(bean.avatar).apply(GlideUtils.setCircleAvatar()).into(iv_my_head_photo);
-        tv_gender.setText(bean.sex);
+        //Todo:会员级别
+        RequestOptions requestOptions = new RequestOptions().placeholder(getActivity().getResources().getDrawable(R.mipmap.ic_normal_vip)).centerCrop();
+        Glide.with(getActivity()).load(getActivity().getResources().getDrawable(R.mipmap.ic_supreme_vip)).apply(requestOptions).into(iv_isVip);
+
+        tv_useful_money.setText(String.valueOf(bean.balance));
+        tv_useful_integral.setText(String.valueOf(bean.rewardpoints));
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void synUserInfo(MessageEvent messageEvent) {
+        if ("modify_user_info".equals(messageEvent.getMessage())) {
+            requestData();
+        }
     }
 
+    /**
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_useful_money://钱包
+                startActivity(new Intent(getActivity(),MyWalletActivity.class));
+                break;
+            case R.id.ll_useful_integral:
+                startActivity(new Intent(getActivity(),MyIntegralActivity.class));
+                break;
             case R.id.iv_my_head_photo:
-//                startActivity(new Intent(getActivity(),ModifyUerInfoActivity.class));
+                Intent intent1 = new Intent(getActivity(), ModifyUerInfoActivity.class);
+                intent1.putExtra("userBean",bean);
+                startActivity(intent1);
                 break;
             case R.id.button_logout:
                 logout();
@@ -241,10 +281,10 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
             case R.id.tv_refund://退款
                 ToastUtils.showShort("退款请联系客服！");
                 break;
-            case R.id.tv_shopping_cart://gone
+            case R.id.tv_shopping_cart:
 
                 break;
-            case R.id.tv_my_collection:
+            case R.id.tv_my_collection://填写邀请码
                 startActivity(new Intent(getActivity(),MyCollectionActivity.class));
                 break;
             case R.id.tv_my_requirement:
@@ -257,7 +297,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
                 startActivity(new Intent(getActivity(),MyCommentActivity.class));
                 break;
             case R.id.tv_shop_enter:
-
+                ToastUtils.showShort("敬请期待");
                 break;
             case R.id.tv_become_second_worker:
                 if (auditStatus == 3){
@@ -289,5 +329,17 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         Intent intent = new Intent(getActivity(), MyOrderActivity.class);
         intent.putExtra("status",status);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        requestData();
     }
 }

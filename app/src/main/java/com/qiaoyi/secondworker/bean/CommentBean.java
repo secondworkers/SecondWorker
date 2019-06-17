@@ -80,7 +80,7 @@ public class CommentBean {
     public String addressname;
     public String addressDetailName;
     public String addressphone;
-    public int price;
+    public double price;
     public String icon;
     public String workerName;
     public String unit;

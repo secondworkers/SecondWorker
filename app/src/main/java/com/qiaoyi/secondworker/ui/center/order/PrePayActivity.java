@@ -40,7 +40,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
     private TextView tv_service_type;
     private TextView tv_order_price;
     private CheckBox cb_wechat_pay;
-    private CheckBox cb_alipay;
+    private CheckBox cb_alipay,cb_integral_pay;
     private TextView tv_total_price1;
     private TextView tv_goto_pay;
     private CountDownTimer countDownTimer;
@@ -103,6 +103,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
         tv_service_type = (TextView) findViewById(R.id.tv_service_type);
         tv_order_price = (TextView) findViewById(R.id.tv_order_price);
         cb_wechat_pay = (CheckBox) findViewById(R.id.iv_wechat_pay);
+        cb_integral_pay = (CheckBox) findViewById(R.id.iv_integral_pay);
         cb_alipay = (CheckBox) findViewById(R.id.iv_alipay);
         tv_total_price1 = (TextView) findViewById(R.id.tv_total_price1);
         tv_goto_pay = (TextView) findViewById(R.id.tv_goto_pay);
@@ -128,6 +129,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     cb_alipay.setChecked(false);
+                    cb_integral_pay.setChecked(false);
                 }
             }
         });//
@@ -136,6 +138,16 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     cb_wechat_pay.setChecked(false);
+                    cb_integral_pay.setChecked(false);
+                }
+            }
+        });
+        cb_integral_pay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    cb_wechat_pay.setChecked(false);
+                    cb_alipay.setChecked(false);
                 }
             }
         });
@@ -153,9 +165,34 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
                         PayHandler.onRequest(this,order_id,t_price,service_name);
                     }else {
                         PostSuccessActivity.startSuccessActivity(this,String.valueOf(t_price),service_name,"pay");
+                        finish();
                     }
                 }else if (cb_alipay.isChecked()){
-                    //alipay
+                    ApiUserService.walletPay(order_id, t_price, service_name, new ServiceCallBack() {
+                        @Override
+                        public void failed(String code, String errorInfo, String source) {
+                            ToastUtils.showShort(errorInfo);
+                        }
+
+                        @Override
+                        public void success(RespBean resp, Response payload) {
+                            PostSuccessActivity.startSuccessActivity(PrePayActivity.this,String.valueOf(t_price),service_name,"pay");
+                            finish();
+                        }
+                    });
+                }else if (cb_integral_pay.isChecked()){
+                    ApiUserService.rewardpointPay(order_id, t_price, service_name, new ServiceCallBack() {
+                        @Override
+                        public void failed(String code, String errorInfo, String source) {
+                            ToastUtils.showShort(errorInfo);
+                        }
+
+                        @Override
+                        public void success(RespBean resp, Response payload) {
+                            PostSuccessActivity.startSuccessActivity(PrePayActivity.this,String.valueOf(t_price),service_name,"pay");
+                            finish();
+                        }
+                    });
                 }
                 break;
         }

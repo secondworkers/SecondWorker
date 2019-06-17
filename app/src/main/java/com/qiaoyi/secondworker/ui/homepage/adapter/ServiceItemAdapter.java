@@ -20,6 +20,8 @@ import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import java.util.List;
 
+import cn.isif.plug.bannerview.util.GlideRoundTransform;
+
 /**
  * Created on 2019/5/11
  *
@@ -46,9 +48,9 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
         int sw = VwUtils.getSW(activity);
         int img_sw = (sw - 80) / 3;
         RequestOptions override = new RequestOptions().override(img_sw)
-                .transform(new GlideBorderCircleTransform(activity, 3))
-                .fitCenter()
-                .centerCrop();
+                .placeholder(R.mipmap.ic_placeholder)
+                        .error(R.mipmap.ic_placeholder)
+                        .transform(new GlideRoundTransform(activity, 3));
         if (itemList!=null&& itemList.size()>0) {
             ll_img.setVisibility(View.VISIBLE);
             if (itemList.size() == 1) {
@@ -70,7 +72,7 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service2);
 
-            } else if (itemList.size() == 3) {
+            } else if (itemList.size() >= 3) {
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).

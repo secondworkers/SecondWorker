@@ -226,6 +226,10 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             case 9://评价
                 ToastUtils.showShort("评价");
 //                OrderDetailsActivity.gotoOrderDetails(this,item.orderid);
+                Intent intent = new Intent(this, PostCommentActivity.class);
+                intent.putExtra("serviceItem",item.serviceItem);
+                intent.putExtra("orderId",item.orderid);
+                startActivity(intent);
 //                finish();
                 break;
             case 7://取消、删除

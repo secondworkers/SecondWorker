@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:background="#F5F5F5">
+
     <!--个人信息-->
     <include
         android:id="@+id/include"
@@ -12,92 +13,85 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/base20dp"
-        android:background="@color/text_white"
-        >
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/tv_head_photos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base15dp"
+            android:padding="@dimen/base24dp"
             android:text="@string/tv_avatar"
-            android:textColor="#ff212121"
-            android:layout_centerVertical="true"
+            android:textColor="#212121"
             android:textSize="15sp" />
 
         <ImageView
-            android:id="@+id/iv_allow_go1"
-            android:layout_width="@dimen/base6dp"
-            android:layout_height="@dimen/base10dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/arrow_go" />
+            android:id="@+id/iv_head_picture"
+            android:layout_width="@dimen/base30dp"
+            android:layout_height="@dimen/base30dp"
+            android:layout_marginRight="@dimen/base50dp"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/base24dp"
+            android:layout_alignParentRight="true"
+            />
 
         <ImageView
-            android:id="@+id/iv_head_picture"
-            android:layout_width="@dimen/base24dp"
-            android:layout_height="@dimen/base24dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/iv_allow_go1"
-            android:background="@mipmap/ic_wechat" />
+            android:id="@+id/iv_allow_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/base30dp"
+            android:layout_marginRight="@dimen/base30dp"
+            android:src="@mipmap/arrow_go" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_below="@+id/tv_head_photos"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base1dp"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:background="#F5F5F5" />
 
-
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_nick_name"
+            android:layout_below="@+id/tv_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base15dp"
-            android:layout_marginTop="@dimen/base24dp"
-            android:background="@color/text_white"
+            android:layout_alignLeft="@+id/tv_head_photos"
+            android:padding="@dimen/base24dp"
             android:text="昵称"
-            android:textColor="#ff212121"
+            android:textColor="#212121"
             android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/tv_name"
+            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="袁攀"
-            android:layout_marginLeft="@dimen/base300dp"
+           android:layout_alignTop="@+id/tv_nick_name"
+            android:drawableRight="@mipmap/arrow_go"
+            android:clickable="true"
+            android:lines="1"
             android:layout_marginTop="@dimen/base24dp"
-            android:textColor="#ff212121"
-            android:textSize="15sp"
+            android:drawablePadding="@dimen/base5dp"
+            android:layout_alignRight="@+id/iv_allow_go"
+            android:textColor="#212121"
+            android:textSize="15sp" />
 
-            />
-
-
-        <ImageView
-            android:id="@+id/iv_allow_go2"
-            android:layout_width="@dimen/base6dp"
-            android:layout_height="@dimen/base10dp"
-            android:layout_marginLeft="@dimen/base335dp"
-            android:layout_marginTop="@dimen/base30dp"
-            android:src="@mipmap/arrow_go" />
-        <Button
-            android:id="@+id/button_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_nick_name"
-            android:layout_marginTop="@dimen/base30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/base15dp"
-            android:layout_marginRight="@dimen/base15dp"
-            android:background="@drawable/shape_gradient_little_left_blue"
-            android:text="保存"
-            android:textColor="#ffffffff"
-            android:textSize="15sp"
-            />
     </RelativeLayout>
 
-
-
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:background="@drawable/shape_gradient_little_left_blue"
+        android:text="保存"
+        android:textColor="#ffffffff"
+        android:textSize="15sp" />
 
 </LinearLayout>

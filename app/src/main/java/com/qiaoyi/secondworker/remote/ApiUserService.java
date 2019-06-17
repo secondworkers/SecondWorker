@@ -2,21 +2,29 @@ package com.qiaoyi.secondworker.remote;
 
 
 import com.qiaoyi.secondworker.bean.ApplyBean;
+import com.qiaoyi.secondworker.bean.PaymentDetailsBean;
 import com.qiaoyi.secondworker.bean.WrapAddressBean;
+import com.qiaoyi.secondworker.bean.WrapBankBean;
+import com.qiaoyi.secondworker.bean.WrapCashBean;
+import com.qiaoyi.secondworker.bean.WrapCommentBean;
 import com.qiaoyi.secondworker.bean.WrapOrderBean;
 import com.qiaoyi.secondworker.bean.WrapOrderDetailsBean;
+import com.qiaoyi.secondworker.bean.WrapPaymentDetailsBean;
 import com.qiaoyi.secondworker.bean.WrapPrePayOrderBean;
 import com.qiaoyi.secondworker.bean.WrapPrePayWeChatEntity;
 import com.qiaoyi.secondworker.bean.WrapQiNiuTokenBean;
 import com.qiaoyi.secondworker.bean.WrapRequirementBean;
+import com.qiaoyi.secondworker.bean.WrapRewardpointBean;
 import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.bean.WrapUserBean;
+import com.qiaoyi.secondworker.bean.WrapWalletBean;
 import com.qiaoyi.secondworker.bean.WrapWorkerBean;
 import com.qiaoyi.secondworker.net.Contact;
 import com.qiaoyi.secondworker.net.IfOkNet;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.pay.PrePayWeChatEntity;
 
+import cn.isif.ifok.IfOk;
 import cn.isif.ifok.Params;
 import okhttp3.Call;
 
@@ -204,10 +212,12 @@ public static Call cancelAndDelOrder(String orderid,int status,ServiceCallBack c
      * @param callBack
      * @return
      */
-public static Call getOrderList(String uid,String status, ServiceCallBack<WrapOrderBean> callBack){
+public static Call getOrderList(String uid,String status,int pageCurrent,int pageSize, ServiceCallBack<WrapOrderBean> callBack){
     Params params = new Params.Builder().json().build();
     params.put("uid",uid);
     params.put("status",status);
+    params.put("pageCurrent",pageCurrent);
+    params.put("pageSize",pageSize);
     return IfOkNet.getInstance().post(Contact.GET_ORDER_LIST, params, callBack);
 }
 
@@ -223,6 +233,34 @@ public static Call getOrderDetails(String orderid, ServiceCallBack<WrapOrderDeta
     return IfOkNet.getInstance().post(Contact.GET_ORDER_DETAILS, params, callBack);
 }
 
+    /**
+     *评论列表
+     * @param callBack
+     * @return
+     */
+    public static Call getMyCommentList(String uid,int pageCurrent,int pageSize, ServiceCallBack<WrapCommentBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("uid",uid);
+        params.put("pageCurrent",pageCurrent);
+        params.put("pageSize",pageSize);
+        return IfOkNet.getInstance().post(Contact.GET_COMMENT, params, callBack);
+    }
+
+    /**
+     * 发布评论
+     * @param orderid
+     * @param evaluation
+     * @param score
+     * @param callBack
+     * @return
+     */
+    public static Call postComment(String orderid,String evaluation,String score, ServiceCallBack<WrapCommentBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("orderid",orderid);
+        params.put("evaluation",evaluation);
+        params.put("score",score);
+        return IfOkNet.getInstance().post(Contact.POST_COMMENT, params, callBack);
+    }
     /**
      * 发布需求
      * @param text
@@ -263,11 +301,13 @@ public static Call postRequirement(String text, String photo,
      * @param callBack
      * @return
      */
-public static Call getRequirementList(String uid,String status, ServiceCallBack<WrapRequirementBean> callBack){
+public static Call getRequirementList(String uid,String status,int pageCurrent,int pageSize, ServiceCallBack<WrapRequirementBean> callBack){
 
     Params params = new Params.Builder().json().build();
     params.put("uid",uid);
     params.put("status",status);
+    params.put("pageCurrent",pageCurrent);
+    params.put("pageSize",pageSize);
     return IfOkNet.getInstance().post(Contact.GET_REQUIREMENT, params, callBack);
 }
 
@@ -351,5 +391,135 @@ public static Call wxPay(String orderid, double actualPay , ServiceCallBack<Wrap
     params.put("actualPay",actualPay);
     return IfOkNet.getInstance().post(Contact.WX_PAY, params, callBack);
 }
+
+    /**余额支付
+     * @param orderid
+     * @param actualPay
+     * @param serviceItem
+     * @param callBack
+     * @return
+     */
+    public static Call walletPay(String orderid,double actualPay,String serviceItem,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("orderid",orderid);
+        params.put("actualPay",actualPay);
+        params.put("serviceItem",serviceItem);
+        return IfOkNet.getInstance().post(Contact.WALLET_PAY, params, callBack);
+    }
+
+    /**
+     *根据银行卡号码获取银行卡归属地信息
+     * @param bankId
+     * @param callBack
+     * @return
+     */
+public static Call getBankInfo(String bankId,ServiceCallBack callBack) {
+    String url = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?_input_charset=utf-8&cardNo=" + bankId + "&cardBinCheck=true";
+    return IfOk.getInstance().get(url, callBack);
+}
+
+    /**
+     * 绑定银行卡
+     * @param realName
+     * @param idCardNo
+     * @param bankCardNo
+     * @param bankCode
+     * @param phone
+     * @param icon
+     * @param callBack
+     * @return
+     */
+public static Call bindBankCard(String realName,String idCardNo,String bankCardNo,String bankCode,
+                                String phone,String icon,ServiceCallBack callBack){
+    Params params = new Params.Builder().json().build();
+    params.put("realName",realName);
+    params.put("idCardNo",idCardNo);
+    params.put("bankCardNo",bankCardNo);
+    params.put("bankCode",bankCode);
+    params.put("phone",phone);
+    params.put("icon",icon);
+    return IfOkNet.getInstance().post(Contact.BIND_CARD, params, callBack);
+}
+
+    /**
+     * 获取银行卡列表
+     * @param callBack
+     * @return
+     */
+    public static Call getBindBankCard(ServiceCallBack<WrapBankBean> callBack){
+    return IfOkNet.getInstance().post(Contact.GET_BANK_LIST, null, callBack);
+    }
+
+    /**
+     * 申请提现
+     * @param callBack
+     * @return
+     */
+    public static Call applyWithdrawal(String bankCardNo,String money,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("bankCardNo",bankCardNo);
+        params.put("money",money);
+    return IfOkNet.getInstance().post(Contact.APPLY_WITHDRAWAL, params, callBack);
+    }
+
+    /**
+     * 钱包
+     * @param offset
+     * @param pageSize
+     * @param callBack
+     * @return
+     */
+    public static Call queryWallet(int offset,int pageSize,ServiceCallBack<WrapWalletBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("offset",offset);
+        params.put("pageSize",pageSize);
+    return IfOkNet.getInstance().post(Contact.GET_WALLET_INFO, params, callBack);
+
+    }
+    /**
+     * 提现
+     * @param callBack
+     * @return
+     */
+    public static Call gotoWithdrawal(ServiceCallBack<WrapCashBean> callBack){
+    return IfOkNet.getInstance().post(Contact.WITHDRAWAL, null, callBack);
+    }
+
+    /**
+     * 提现记录
+     * @param callBack
+     * @return
+     */
+    public static Call getWithdrawalRecord(ServiceCallBack<WrapPaymentDetailsBean> callBack){
+    return IfOkNet.getInstance().post(Contact.GET_WITHDRAWAL_RECORD, null, callBack);
+    }
+
+    /**
+     * 获取积分消费记录
+     * @param callBack
+     * @return
+     */
+    public static Call getRewardpointList(int offset,int pageSize,ServiceCallBack<WrapRewardpointBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("offset",offset);
+        params.put("pageSize",pageSize);
+        return IfOkNet.getInstance().post(Contact.REWARDPOINT_LIST, params, callBack);
+    }
+
+    /**
+     * 积分支付
+     * @param orderid
+     * @param actualPay
+     * @param serviceItem
+     * @param callBack
+     * @return
+     */
+    public static Call rewardpointPay(String orderid,double actualPay,String serviceItem,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("orderid",orderid);
+        params.put("actualPay",actualPay);
+        params.put("serviceItem",serviceItem);
+        return IfOkNet.getInstance().post(Contact.REWARDPOINT_PAY, params, callBack);
+    }
 }
 

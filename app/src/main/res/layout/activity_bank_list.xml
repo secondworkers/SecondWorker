@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_below="@+id/include"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/base60dp"/>
+    <TextView
+        android:id="@+id/tv_add_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base40dp"
+        android:layout_alignParentBottom="true"
+        android:text="添加银行卡"
+        android:gravity="center"
+        android:textColor="@color/text_white"
+        android:textSize="15sp"
+        android:clickable="true"
+        android:background="@drawable/shape_gradient_little_no_coners_blue"
+        />
+</RelativeLayout>

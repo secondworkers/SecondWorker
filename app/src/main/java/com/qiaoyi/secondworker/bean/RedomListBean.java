@@ -45,6 +45,8 @@ public class RedomListBean {
     public String unit;
     public String image;
     public String serviceType;
+    public String goodsId;
+    public String orgId;
     public int lowerPrice;
     public int heigherPrice;
     public Object order;

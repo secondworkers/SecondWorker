@@ -49,6 +49,7 @@ public class UserBean implements Serializable {
     public int auditStatus;
     public String token;
     public String createTime;
-
+    public double balance;
+    public double rewardpoints;
 
 }

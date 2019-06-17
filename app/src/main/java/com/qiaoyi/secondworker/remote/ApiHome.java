@@ -79,7 +79,7 @@ public class ApiHome {
      */
  public static Call searchSearch(String serviceItem,double lng,double lat,
                                  String order,String serviceRange,
-                                 String serviceItemId,ServiceCallBack<WrapSearchServiceBean> callBack){
+                                 String serviceItemId,String serviceTypeId,ServiceCallBack<WrapSearchServiceBean> callBack){
         Params params = new Params.Builder().json().build();
         params.put("serviceItem",serviceItem);
         params.put("lng",lng);
@@ -87,14 +87,13 @@ public class ApiHome {
         params.put("order",order);
         params.put("serviceRange",serviceRange);
         params.put("serviceItemId",serviceItemId);
+        params.put("serviceTypeId",serviceTypeId);
         return IfOkNet.getInstance().post(Contact.SEARCH_QUERY_LIST, params, callBack);
     }
 
     /**
      * 地图上显示工作人员
      * @param serviceTypeId
-     * @param
-     * @param
      * @param callBack
      * @return
      */

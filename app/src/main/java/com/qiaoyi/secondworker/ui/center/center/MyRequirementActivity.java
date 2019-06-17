@@ -2,6 +2,8 @@ package com.qiaoyi.secondworker.ui.center.center;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.RequirementBean;
 import com.qiaoyi.secondworker.bean.WrapRequirementBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.local.Config;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
@@ -27,6 +30,11 @@ import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
 import java.util.List;
+
+import cn.isif.alibs.utils.ToastUtils;
+import cn.isif.msl.MultiStateLayout;
+
+import static android.graphics.Color.BLUE;
 
 /**
  * create on 2019/4/25
@@ -46,6 +54,10 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
     private RadioGroup rg_base;
     private RecyclerView rv_list;
     private MyRequirementAdapter listAdapter;
+    private String status = "";
+    private SwipeRefreshLayout refreshLayout;
+    private MultiStateLayout multiStateLayout;
+    int currentPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +66,7 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
        VwUtils.fixScreen(this);
         initView();
         initData();
-        request("");
+        request(status,true);
     }
 
     private void initView() {
@@ -68,6 +80,8 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
         rb_done = (RadioButton) findViewById(R.id.rb_done);
         rg_base = (RadioGroup) findViewById(R.id.rg_base);
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
+        refreshLayout = findViewById(R.id.srl_wrap);
+        multiStateLayout = findViewById(R.id.msl_layout);
         tv_title_txt.setText("我的发布需求");
         view_back.setOnClickListener(this);
         view_right.setOnClickListener(this);
@@ -78,16 +92,20 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     switch (checkedId){
                         case R.id.rb_all:
-                            request("");
+                            status ="";
+                            request(status,true);
                             break;
                         case R.id.rb_posting:
-                            request("1");
+                            status = "1";
+                            request(status,true);
                             break;
                         case R.id.rb_canceled:
-                            request("2");
+                            status = "2";
+                            request(status,true);
                             break;
                         case R.id.rb_done:
-                            request("3");
+                            status = "3";
+                            request(status,true);
                             break;
                     }
                 }
@@ -101,20 +119,73 @@ public class MyRequirementActivity extends BaseActivity implements View.OnClickL
             LinearLayoutManager manager = new LinearLayoutManager(this);
             rv_list.setLayoutManager(manager);
             rv_list.setAdapter(listAdapter);
+            refreshLayout.setEnabled(true);
+            refreshLayout.setColorSchemeColors(BLUE);
+            refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    request(status,true);
+                }
+            });
+            listAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                @Override
+                public void onLoadMoreRequested() {
+                    request(status,false);
+                }
+            }, rv_list);
+            multiStateLayout.setStateListener(new MultiStateLayout.StateListener() {
+                @Override
+                public void onStateChanged(int viewState) {
+                }
+                @Override
+                public void onStateInflated(int viewState, @NonNull View view) {
+                    if (viewState == MultiStateLayout.VIEW_STATE_EMPTY) {
+//                    findViewById(R.id.tv_fast_service).setOnClickListener(MyCommentActivity.this::onClick);
+                    }
+                }
+            });
         }
 
-    private void request(String status) {
-        ApiUserService.getRequirementList(AccountHandler.getUserId(), status, new ServiceCallBack<WrapRequirementBean>() {
+    private void request(String status,boolean refresh) {
+        if (refresh) {
+            listAdapter.setEnableLoadMore(false);
+        }
+        ApiUserService.getRequirementList(AccountHandler.getUserId(), status,refresh ? 1 : ++currentPage, Config.MAX_PAGE, new ServiceCallBack<WrapRequirementBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showShort(errorInfo);
+                if (refresh) {
+                    refreshLayout.setRefreshing(false);
+                    refreshLayout.setEnabled(true);
+                } else {
+                    --currentPage;
+                }
+                listAdapter.loadMoreFail();
+                multiStateLayout.setViewState(MultiStateLayout.VIEW_STATE_ERROR);
             }
 
             @Override
             public void success(RespBean resp, Response<WrapRequirementBean> payload) {
                 List<RequirementBean> result = payload.body().result;
-                listAdapter.setNewData(result);
-                listAdapter.notifyDataSetChanged();
+                if (refresh){
+                    currentPage = 1;
+                    refreshLayout.setRefreshing(false);
+                    if (null == result || result.size() == 0){
+                        multiStateLayout.setViewState(MultiStateLayout.VIEW_STATE_EMPTY);
+                    }else {
+                        multiStateLayout.setViewState(MultiStateLayout.VIEW_STATE_CONTENT);
+                        listAdapter.setNewData(result);
+                    }
+                }else {
+                    listAdapter.addData(result);
+                }
+                if (null != result) {
+                    if (result.size() < Config.MAX_PAGE) {
+                        listAdapter.loadMoreEnd();
+                    } else {
+                        listAdapter.loadMoreComplete();
+                    }
+                }
             }
         });
     }

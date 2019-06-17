@@ -189,6 +189,16 @@
         <activity android:name=".ui.center.center.ShareBaseActivity" />
         <activity android:name=".ui.center.center.BindMobileActivity" />
         <activity android:name=".ui.center.center.ModifyUerInfoActivity" />
+        <activity android:name=".ui.center.center.ModifyUsernameActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.center.wallet.MyWalletActivity" />
+        <activity android:name=".ui.center.wallet.WithdrawalActivity" />
+        <activity android:name=".ui.center.wallet.WithdrawalRecordActivity" />
+        <activity android:name=".ui.center.wallet.MyBankListActivity" />
+        <activity android:name=".ui.center.wallet.AddBankCardActivity" />
+        <activity android:name=".ui.center.wallet.MyIntegralActivity" />
+        <activity android:name=".ui.center.wallet.WithdrawalSuccessActivity" />
     </application>
 
 </manifest>

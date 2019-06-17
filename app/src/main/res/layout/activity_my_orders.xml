@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <include
         android:id="@+id/include"
@@ -74,13 +75,25 @@
             android:textSize="15sp"
             />
     </RadioGroup>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/include">
 
+    <cn.isif.msl.MultiStateLayout
+        android:id="@+id/msl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msl_emptyView="@layout/layout_empty"
+        app:msl_errorView="@layout/layout_error"
+        app:msl_loadingView="@layout/layout_loading">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/base5dp">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="@dimen/base5dp"/>
+    </cn.isif.msl.MultiStateLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

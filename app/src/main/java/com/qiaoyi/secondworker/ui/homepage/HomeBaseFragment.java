@@ -75,6 +75,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
     private List<BannerListBean> bannerList = new ArrayList<>();
     private List<RedomListBean> redomList;//随机推荐
     private BannerView bannerView;
+    private ServiceItemAdapter serviceItemAdapter;
 
     public HomeBaseFragment() {
         // Required empty public constructor
@@ -137,14 +138,23 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         rv_list_recommend.setLayoutManager(layoutManager);
         RecommendAdapter recommendAdapter = new RecommendAdapter(R.layout.item_recommended,getActivity());
         recommendAdapter.addData(redomList);
+        rv_list_recommend.setNestedScrollingEnabled(false);
         rv_list_recommend.setAdapter(recommendAdapter);
+
         /*********************initServiceItem***********************************/
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rv_service.setLayoutManager(manager);
-        ServiceItemAdapter serviceItemAdapter = new ServiceItemAdapter(R.layout.item_home_service,getActivity());
+        int spanCount = 1;
+        int spacing = VwUtils.getSW(getActivity(), 0);//item间隙宽度
+        int itemDecorationCount = mRecyclerView.getItemDecorationCount();
+        if (itemDecorationCount == 0) {
+            rv_service.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));
+        }
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), spanCount);
+        serviceItemAdapter = new ServiceItemAdapter(R.layout.item_home_service,getActivity());
         serviceItemAdapter.addData(objList);
-//        rv_service.setNestedScrollingEnabled(false);
+        serviceItemAdapter.setEnableLoadMore(false);
+        rv_service.setLayoutManager(manager);
+        rv_service.setHasFixedSize(true);
+        rv_service.setNestedScrollingEnabled(false);
         rv_service.setAdapter(serviceItemAdapter);
     }
 
@@ -198,7 +208,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         listAdapter.setEnableLoadMore(false);
         listAdapter.addData(result);//       TODO:
         mRecyclerView.setAdapter(listAdapter);
-
+        mRecyclerView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -221,9 +231,8 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         tv_recommended_more = (TextView) rootView.findViewById(R.id.tv_recommended_more);
         tv_recommended_more.setOnClickListener(this);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list);
-        rv_service = (RecyclerView) rootView.findViewById(R.id.rv_service);
         rv_list_recommend = (RecyclerView) rootView.findViewById(R.id.rv_list_recommend);
-
+        rv_service = (RecyclerView) rootView.findViewById(R.id.rv_service);
     }
 
     @Override
@@ -245,7 +254,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         }
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void  onLocationSelect(LocationBean location){
+    public void onLocationSelect(LocationBean location){
         double lat = location.getLat();
         double lng = location.getLng();
         String address_msg = location.getAddress_msg();

@@ -35,6 +35,18 @@ import anet.channel.util.StringUtils;
 public class VwUtils {
   public static final int ROUNDED_CORNERS = 8;
 
+  /**
+   * 返回 ***2009
+   * @param bankNum
+   * @return
+   */
+  public static String getLast4String(String bankNum){
+    if (bankNum.length()>=4){
+      return "**** **** **** *** "+bankNum.substring(bankNum.length()-4,bankNum.length());
+    }
+    return bankNum;
+  }
+
   public static int dp2px(Context ctx, float dpValue) {
     DisplayMetrics metrics = ctx.getResources().getDisplayMetrics();
     int px = (int) (dpValue * (metrics.densityDpi / 160f));

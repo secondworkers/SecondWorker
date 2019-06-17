@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_name"
+        android:layout_below="@+id/include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_bg_btn_white">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="持卡人姓名："
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/login_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="18dp"
+            android:background="@null"
+            android:hint="请输入持卡人姓名"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/ID_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_bg_btn_white">
+
+        <TextView
+            android:id="@+id/tv_ID_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="身份证号："
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_Id"
+            style="@style/login_input"
+            android:inputType="text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="18dp"
+            android:background="@null"
+            android:hint="请输入您的身份证号"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/bank_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ID_number"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_bg_btn_white">
+
+        <TextView
+            android:id="@+id/tv_bank_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="银行卡号："
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_bank_number"
+            style="@style/login_input"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="18dp"
+            android:background="@null"
+            android:hint="请输入您的银行卡号"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/select_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bank_number"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"
+        android:background="@drawable/shape_bg_btn_white">
+
+        <TextView
+            android:id="@+id/tv_select_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="18dp"
+            android:text="选择银行："
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/arrow_go" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_bank"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_bg_btn_white">
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:text="手机号："
+            android:textColor="#212121"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            style="@style/login_input"
+            android:inputType="phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="18dp"
+            android:background="@null"
+            android:hint="请输入银行预留手机号"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+<TextView
+    android:id="@+id/tv_done"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base50dp"
+    android:text="提交"
+    android:gravity="center"
+    android:background="@drawable/shape_gradient_little_left_blue"
+    android:layout_marginEnd="@dimen/base15dp"
+    android:layout_marginStart="@dimen/base15dp"
+    android:layout_marginTop="@dimen/base50dp"
+    android:textSize="18sp"
+    android:textColor="@color/text_white"
+    android:clickable="true"
+    android:layout_below="@+id/phone_number"/>
+
+</RelativeLayout>
