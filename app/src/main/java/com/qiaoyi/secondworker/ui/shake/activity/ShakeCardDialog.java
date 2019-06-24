@@ -86,7 +86,7 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initData() {
-        tv_service.setText(workerBean.serviceItem);
+        tv_service.setText(workerBean.goodsName);
         if (!TextUtils.isEmpty(workerBean.introduction))
             tv_xx.setText(workerBean.introduction);
         if (!TextUtils.isEmpty(workerBean.workerName))
@@ -124,12 +124,12 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
                     context.startActivity(new Intent(context,LoginActivity.class));
                 }else {
                     ConfirmOrderActivity.startConfirmActivity(context,
-                            workerBean.serviceItem,
-                            workerBean.serviceItemId,
+                            workerBean.goodsName,
+                            workerBean.workerId,
                             workerBean.unit,
                             workerBean.price,
-                            workerBean.workerId,
-                            workerBean.serviceItemId);
+                            workerBean.orgId,
+                            workerBean.goodsId);
                 }
 
                 break;

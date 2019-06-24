@@ -94,7 +94,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 SearchServiceBean item = (SearchServiceBean) adapter.getItem(position);
-                ServiceDetailsActivity.startDetails(SearchActivity.this,item.serviceItemId);
+                ServiceDetailsActivity.startDetails(SearchActivity.this,item.goodsId,"");
             }
         });
     }

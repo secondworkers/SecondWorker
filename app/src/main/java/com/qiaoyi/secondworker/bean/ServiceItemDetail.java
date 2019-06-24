@@ -8,55 +8,43 @@ package com.qiaoyi.secondworker.bean;
 
 public class ServiceItemDetail {
 
+
     /**
-     * id : 
-     * serviceItem : 擦玻璃
-     * price : 40.0
-     * introduction : 
-     * serviceTenet : 
-     * serviceRange : 0
-     * serviceTypeId : 1
-     * number : 
+     * goodsId : 162c709caf3c44f7b3ea8d7589bb520e
+     * orgId : c8bc329835a94553803635f9978367b8
+     * goodsName : 日常保洁
+     * goodsPhoto : http://www.miaogong.ltd/FjbojZ9IBcsrG5tKdjq9yZO2QMqg
+     * goodsInfo : null
+     * price : 20
+     * leastCount : null
+     * serviceItemId : 6afaa8bb05624d62b3c6c70a780c9204
+     * isSale : 1
+     * orgName : 林的家政
+     * serviceItem : 上门保洁
      * unit : 元
-     * serviceItemId : 2
+     * serviceTypeId : null
      * serviceType : 保洁
-     * lowerPrice : 0.0
-     * heigherPrice : 0.0
-     * order : 
-     * type : 
-     * fuwushang : 
-     * username : 
+     * count : 0
      * score : 0
-     * evaluation : 
-     * otherExplain : 
-     * introductiondetail : 保洁简介内容
-     * counts : 0
-     * lng : 0.0
-     * lat : 0.0
+     * serviceTenet : 我们的服务宗旨是诚信
      */
-    public String id;
-    public String serviceItem;
-    public double price;
-    public String introduction;
-    public String serviceTenet;
-    public int serviceRange;
-    public String serviceTypeId;
-    public String number;
-    public String unit;
+
+    public String goodsId;
+    public String orgId;
+    public String goodsName;
+    public String goodsPhoto;
+    public String goodsInfo;
+    public int price;
+    public Object leastCount;
     public String serviceItemId;
+    public int isSale;
+    public String orgName;
+    public String serviceItem;
+    public String unit;
+    public Object serviceTypeId;
     public String serviceType;
-    public double lowerPrice;
-    public double heigherPrice;
-    public String order;
-    public String type;
-    public String fuwushang;
-    public String username;
-    public String workerId;
-    public int score;
-    public String evaluation;
-    public String otherExplain;
-    public String introductiondetail;
-    public String image;
-    public double lng;
-    public double lat;
+    public String count;
+    public String score;
+    public String serviceTenet;
+    public String goodsDescription;
 }

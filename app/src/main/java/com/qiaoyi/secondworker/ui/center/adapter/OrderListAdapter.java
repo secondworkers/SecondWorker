@@ -84,7 +84,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderBean,BaseViewHolder>
             .centerCrop()
             .circleCrop();
         Glide.with(context).load(item.icon).apply(options).into(iv_avatar);
-        helper.setText(R.id.tv_service_type,item.serviceItem);
+        helper.setText(R.id.tv_service_type,item.goodsName);
         helper.setText(R.id.tv_service_time,item.serviceTime);
         helper.setText(R.id.tv_service_price,item.price+item.unit);
         helper.setText(R.id.tv_service_num,"X"+item.payCount);
@@ -187,7 +187,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderBean,BaseViewHolder>
     private void btnRightClick(OrderBean item,int pos) {
         switch (item.status){
             case 0:
-               PrePayActivity.StartPrePayActivity(context,item.orderid,item.serviceItem,item.actualPay);
+               PrePayActivity.startPrePayActivity(context,item.orderid,item.goodsName,item.actualPay);
                context.finish();
                 break;
             case 1://待服务

@@ -57,9 +57,9 @@ public class WorkerBean {
     public String sczmPhoto;
     public String scfmPhoto;
     public int auditStatus;
-    public String serviceItemId;
+    public String goodsId;
     public String serviceTypeId;
-    public String serviceItem;
+    public String goodsName;
     public int counts;
     public double price;
     public String unit;

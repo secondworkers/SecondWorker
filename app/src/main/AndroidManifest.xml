@@ -199,6 +199,9 @@
         <activity android:name=".ui.center.wallet.AddBankCardActivity" />
         <activity android:name=".ui.center.wallet.MyIntegralActivity" />
         <activity android:name=".ui.center.wallet.WithdrawalSuccessActivity" />
+        <activity android:name=".ui.center.center.FillInInvitationCodeActivity" />
+        <activity android:name=".ui.center.center.InvitationActivity" />
+        <activity android:name=".ui.center.center.ShareInvitationActivity" />
     </application>
 
 </manifest>

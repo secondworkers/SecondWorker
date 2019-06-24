@@ -12,5 +12,5 @@ public class ServiceDetailsBean {
     public ServiceItemDetail serviceItemDetail;
     public List<CommentBean> evDetail;
     public int evCounts;
-    public int orderCounts;
+//    public int orderCounts;
 }

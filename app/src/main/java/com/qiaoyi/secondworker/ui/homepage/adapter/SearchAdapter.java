@@ -29,7 +29,7 @@ public class SearchAdapter extends BaseQuickAdapter<SearchServiceBean,BaseViewHo
 
     @Override
     protected void convert(BaseViewHolder helper, SearchServiceBean item) {
-        helper.setText(R.id.tv_service,item.serviceItem);
+        helper.setText(R.id.tv_service,item.goodsName);
         helper.setText(R.id.tv_service_detail,item.profile);
         helper.setText(R.id.tv_price,item.price+item.unit);
         helper.setText(R.id.tv_order_count,"已售"+item.counts);
@@ -38,7 +38,7 @@ public class SearchAdapter extends BaseQuickAdapter<SearchServiceBean,BaseViewHo
         ratingbar.setRating((float) item.score);
         ImageView iv_service_photo = helper.getView(R.id.iv_service_photo);
         Glide.with(activity)
-                .load(item.image)
+                .load(item.goodsPhoto)
                 .apply(GlideUtils.setRoundTransform(activity,5))
                 .into(iv_service_photo);
     }

@@ -74,7 +74,7 @@ public class CommentBean {
     public String orderNum;
     public String orgId;
     public String avatar;
-    public String serviceItem;
+    public String goodsName;
     public String screenName;
     public String etStr;
     public String addressname;
@@ -85,7 +85,7 @@ public class CommentBean {
     public String workerName;
     public String unit;
     public int payCount;
-    public String serviceItemId;
+    public String goodsId;
     public String orgName;
     public String currentTime;
     public String orderTime;

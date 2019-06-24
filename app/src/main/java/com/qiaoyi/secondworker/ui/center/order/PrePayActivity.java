@@ -50,7 +50,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
     private long currentTime;
     private double t_price;
 
-    public static void StartPrePayActivity(Activity activity,String order_id,String service_name,double t_price){
+    public static void startPrePayActivity(Activity activity,String order_id,String service_name,double t_price){
         Intent intent = new Intent(activity, PrePayActivity.class);
         intent.putExtra("order_id",order_id);
         intent.putExtra("service_name",service_name);
@@ -180,7 +180,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
                             finish();
                         }
                     });
-                }else if (cb_integral_pay.isChecked()){
+                } else if (cb_integral_pay.isChecked()){
                     ApiUserService.rewardpointPay(order_id, t_price, service_name, new ServiceCallBack() {
                         @Override
                         public void failed(String code, String errorInfo, String source) {

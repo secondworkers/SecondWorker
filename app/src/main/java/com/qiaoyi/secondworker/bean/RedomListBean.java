@@ -35,7 +35,7 @@ public class RedomListBean {
      */
 
     public String id;
-    public String serviceItem;
+    public String goodsName;
     public double price;
     public Object introduction;
     public Object serviceTenet;
@@ -43,7 +43,7 @@ public class RedomListBean {
     public String serviceTypeId;
     public String number;
     public String unit;
-    public String image;
+    public String goodsPhoto;
     public String serviceType;
     public String goodsId;
     public String orgId;

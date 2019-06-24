@@ -28,18 +28,18 @@ public class RecommendAdapter extends BaseQuickAdapter<RedomListBean,BaseViewHol
 
     @Override
     protected void convert(BaseViewHolder helper, RedomListBean item) {
-        helper.setText(R.id.tv_service,item.serviceItem);
+        helper.setText(R.id.tv_service,item.goodsName);
         helper.setText(R.id.tv_price,item.price+item.unit+"起");
         ImageView iv_service_icon = helper.getView(R.id.iv_service_icon);
         RequestOptions options = new RequestOptions().
                 placeholder(R.mipmap.ic_placeholder)
                 .error(R.mipmap.ic_placeholder)
                 .circleCrop();
-        Glide.with(activity).load(item.image).apply(options).into(iv_service_icon);
+        Glide.with(activity).load(item.goodsPhoto).apply(options).into(iv_service_icon);
         helper.getView(R.id.rl_bg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ServiceDetailsActivity.startDetails(activity,item.id);
+                ServiceDetailsActivity.startDetails(activity,item.goodsId,"");
             }
         });
     }

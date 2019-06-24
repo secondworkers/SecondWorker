@@ -129,8 +129,9 @@ public class WorkerCenterActivity extends BaseActivity implements View.OnClickLi
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ServiceItemListBean item = (ServiceItemListBean) adapter.getItem(position);
                 Intent intent = new Intent(WorkerCenterActivity.this, ServiceDetailsActivity.class);
-                intent.putExtra("serviceItemId", item.serviceItemId);
+                intent.putExtra("serviceItemId", item.goodsId);
                 startActivity(intent);
+
             }
         });
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);

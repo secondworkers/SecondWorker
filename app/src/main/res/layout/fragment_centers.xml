@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base16dp"
-                android:layout_marginTop="@dimen/base40dp"
+                android:layout_marginTop="@dimen/base50dp"
                 android:src="@mipmap/ic_my_head_photo" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/base83dp"
-                android:layout_marginTop="@dimen/base40dp"
+                android:layout_alignTop="@+id/iv_my_head_photo"
                 android:text="秒工"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
@@ -50,18 +50,6 @@
                 android:layout_marginTop="@dimen/base10dp"
                 android:src="@mipmap/ic_normal_vip"
                  />
-
-            <TextView
-                android:id="@+id/tv_member_grade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_username"
-                android:layout_marginLeft="@dimen/base3dp"
-                android:layout_marginTop="@dimen/base10dp"
-                android:layout_toRightOf="@+id/iv_isVip"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp" />
-
             <ImageView
                 android:id="@+id/iv_circle"
                 android:layout_width="@dimen/base57dp"
@@ -71,13 +59,27 @@
                 android:layout_marginRight="@dimen/base83dp"
                 android:layout_marginBottom="@dimen/base56dp"
                 android:src="@mipmap/ic_circle" />
+            <TextView
+                android:id="@+id/tv_member_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_username"
+                android:layout_marginLeft="@dimen/base3dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/base30dp"
+                android:text="复制邀请码：3h951q"
+                android:padding="@dimen/base5dp"
+                android:clickable="true"
+                android:background="@drawable/shape_gradient_lr_blue"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/iv_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/base55dp"
+                android:layout_marginTop="@dimen/base35dp"
                 android:layout_marginRight="@dimen/base15dp"
                 android:src="@mipmap/ic_setting" />
         </RelativeLayout>
@@ -363,7 +365,7 @@
             android:background="#FFFFFF">
 
             <TextView
-                android:id="@+id/tv_my_collection"
+                android:id="@+id/tv_et_invitation_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/base18dp"
@@ -372,7 +374,7 @@
                 android:drawableTop="@mipmap/ic_my_collection"
                 android:drawablePadding="@dimen/base6dp"
                 android:gravity="center"
-                android:text="我的收藏"
+                android:text="填写邀请码"
                 android:textColor="#333333"
                 android:textSize="12sp" />
             <TextView

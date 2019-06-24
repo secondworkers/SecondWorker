@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -67,16 +68,17 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
     private TextView tv_comment_number;
     private TextView tv_place_order;
     private RecyclerView rv_comment;
-    private String serviceItemId;
+    private String serviceItemId,worker_id;
     private ServiceItemDetail serviceItemDetail;
     private List<CommentBean> evDetail;
     private CommentAdapter commentAdapter;
     private int orderCounts;
     private int evCounts;
 
-    public static void startDetails(Activity activity, String serviceItemId) {
+    public static void startDetails(Activity activity, String serviceItemId,String worker_id) {
         Intent intent = new Intent(activity, ServiceDetailsActivity.class);
         intent.putExtra("serviceItemId", serviceItemId);
+        intent.putExtra("worker_id", worker_id);
         activity.startActivity(intent);
     }
 
@@ -87,6 +89,7 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         setContentView(R.layout.activity_service_details);
         Intent intent = getIntent();
         serviceItemId = intent.getStringExtra("serviceItemId");
+        worker_id = intent.getStringExtra("worker_id");
         toStartLocation();
         initView();
         requestData();
@@ -104,7 +107,7 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
             public void success(RespBean resp, Response<WrapServiceDetailsBean> payload) {
                 ServiceDetailsBean result = payload.body().result;
                 evCounts = result.evCounts;
-                orderCounts = result.orderCounts;
+//                orderCounts = result.orderCounts;
                 serviceItemDetail = result.serviceItemDetail;
                 evDetail = result.evDetail;
                 initData();
@@ -114,15 +117,17 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
 
     private void initData() {
         tv_title_txt.setText("服务详情");
-        tv_order.setText("已售"+orderCounts+"单");
+        tv_order.setText("已售"+serviceItemDetail.count+"单");
         tv_comment_number.setText(evCounts+"条评价");
-        Glide.with(this).load(serviceItemDetail.image).apply(GlideUtils.setRoundTransform(this,10)).into(iv_shop_image);
-        tv_service_type.setText(serviceItemDetail.serviceItem);
-        tv_service_detail.setText(serviceItemDetail.introduction);
-        tv_service.setText(serviceItemDetail.serviceItem);
+        Glide.with(this).load(serviceItemDetail.goodsPhoto).apply(GlideUtils.setRoundTransform(this,10)).into(iv_shop_image);
+        tv_service_type.setText(serviceItemDetail.goodsName);
+        if (!TextUtils.isEmpty(serviceItemDetail.goodsInfo))
+        tv_service_detail.setText(serviceItemDetail.goodsInfo);
+        tv_service.setText(serviceItemDetail.goodsName);
         tv_service_price.setText(serviceItemDetail.price + serviceItemDetail.unit);
-        tv_content_1.setText(serviceItemDetail.otherExplain);
-        tv_content_2.setText(serviceItemDetail.otherExplain);
+
+        tv_content_1.setText(serviceItemDetail.goodsDescription);
+        tv_content_2.setText(serviceItemDetail.serviceTenet);
         commentAdapter = new CommentAdapter(R.layout.item_comment, this);
         commentAdapter.addData(evDetail);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -176,8 +181,8 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.tv_place_order:
                 if (AccountHandler.checkLogin()!=null) {
-                        ConfirmOrderActivity.startConfirmActivity(this, serviceItemDetail.serviceItem, serviceItemDetail.serviceItemId
-                                , serviceItemDetail.unit, serviceItemDetail.price, serviceItemDetail.id, serviceItemDetail.serviceItemId);
+                        ConfirmOrderActivity.startConfirmActivity(this, serviceItemDetail.goodsName, worker_id
+                                , serviceItemDetail.unit, serviceItemDetail.price, serviceItemDetail.orgId, serviceItemDetail.goodsId);
                 }else {
                     LoginActivity.startLoginActivity(this,9010);
                 }

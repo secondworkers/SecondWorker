@@ -30,10 +30,11 @@ import okhttp3.Call;
 
 public class ApiUserService {
     //登录
-    public static Call login(String mobile, String smscode, ServiceCallBack callBack) {
+    public static Call login(String mobile, String smscode,String invite_code, ServiceCallBack callBack) {
         Params params = new Params.Builder().json().build();
         params.put("phone", mobile);
         params.put("code", smscode);
+        params.put("pyqcode", invite_code);
         return IfOkNet.getInstance().post(Contact.LOGIN, params, callBack);
     }
 
@@ -54,6 +55,18 @@ public class ApiUserService {
         params.put("phone", phone);
         params.put("code", code);
         return IfOkNet.getInstance().post(Contact.BIND_PHONE, params, callBack);
+    }
+
+    /**
+     * 填写邀请码
+     * @param pyqcode
+     * @param callBack
+     * @return
+     */
+    public static Call fillInvitation(String pyqcode,ServiceCallBack callBack) {
+        Params params = new Params.Builder().json().build();
+        params.put("pyqcode", pyqcode);
+        return IfOkNet.getInstance().post(Contact.FILL_INVITATION, params, callBack);
     }
 
     //发送短息
@@ -175,7 +188,7 @@ public static Call createOrder(String addressId,String serviceTime,String uid,
     params.put("payCount", payCount);
     params.put("orgId", orgId);
     params.put("workId", workId);
-    params.put("serviceItemId", serviceItemId);
+    params.put("goodsId", serviceItemId);
     params.put("actualPay", actualPay);
     return IfOkNet.getInstance().post(Contact.CREATE_ORDER, params, callBack);
 }
@@ -403,7 +416,7 @@ public static Call wxPay(String orderid, double actualPay , ServiceCallBack<Wrap
         Params params = new Params.Builder().json().build();
         params.put("orderid",orderid);
         params.put("actualPay",actualPay);
-        params.put("serviceItem",serviceItem);
+        params.put("goodsName",serviceItem);
         return IfOkNet.getInstance().post(Contact.WALLET_PAY, params, callBack);
     }
 

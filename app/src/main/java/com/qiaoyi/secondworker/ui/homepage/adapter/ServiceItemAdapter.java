@@ -56,19 +56,19 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
             if (itemList.size() == 1) {
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
-                Glide.with(activity).load(itemList.get(0).image).apply(GlideUtils.setRoundTransform(activity, 3)).into(iv_service1);
+                Glide.with(activity).load(itemList.get(0).goodsPhoto).apply(GlideUtils.setRoundTransform(activity, 3)).into(iv_service1);
             } else if (itemList.size() == 2) {
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).
-                        load(itemList.get(0).image).
+                        load(itemList.get(0).goodsPhoto).
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service1);
 
                 helper.setText(R.id.tv_service2, itemList.get(1).serviceItem);
                 helper.setText(R.id.tv_price2, "预收" + itemList.get(1).price + itemList.get(1).unit);
                 Glide.with(activity).
-                        load(itemList.get(1).image).
+                        load(itemList.get(1).goodsPhoto).
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service2);
 
@@ -76,21 +76,21 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).
-                        load(itemList.get(0).image).
+                        load(itemList.get(0).goodsPhoto).
                         apply(override).
                         into(iv_service1);
 
                 helper.setText(R.id.tv_service2, itemList.get(1).serviceItem);
                 helper.setText(R.id.tv_price2, "预收" + itemList.get(1).price + itemList.get(1).unit);
                 Glide.with(activity).
-                        load(itemList.get(1).image).
+                        load(itemList.get(1).goodsPhoto).
                         apply(override).
                         into(iv_service2);
 
                 helper.setText(R.id.tv_service3, itemList.get(2).serviceItem);
                 helper.setText(R.id.tv_price3, "预收" + itemList.get(2).price + itemList.get(2).unit);
                 Glide.with(activity).
-                        load(itemList.get(2).image).
+                        load(itemList.get(2).goodsPhoto).
                         apply(override).
                         into(iv_service3);
             }

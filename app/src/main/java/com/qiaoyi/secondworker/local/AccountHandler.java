@@ -81,11 +81,18 @@ public class AccountHandler {
     }
     return "";
   }
- /* public static String getUserAvatar(){
+  public static String getUserAvatar(){
     UserBean ub = getUser();
     if (ub != null) {
       return ub.avatar;
     }
     return "";
-  }*/
+  }
+  public static String getmInvitCode(){
+    UserBean ub = getUser();
+    if (ub != null) {
+      return ub.yqcode;
+    }
+    return "";
+  }
 }

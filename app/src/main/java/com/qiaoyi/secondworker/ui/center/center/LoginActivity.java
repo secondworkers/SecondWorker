@@ -46,7 +46,7 @@ import cn.isif.umlibs.UmengUtil;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private EditText et_phone;
-    private EditText et_code;
+    private EditText et_code,et_invite;
     private TextView tv_getcode;
     private TextView tv_login;
     private ImageView iv_wechat;
@@ -68,6 +68,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void initView() {
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_code = (EditText) findViewById(R.id.et_code);
+        et_invite = (EditText) findViewById(R.id.et_invite);
         tv_getcode = (TextView) findViewById(R.id.tv_getcode);
         tv_login = (TextView) findViewById(R.id.tv_login);
         iv_wechat = (ImageView) findViewById(R.id.iv_wechat);
@@ -211,18 +212,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void submit() {
         // validate
         String code = et_code.getText().toString().trim();
+        String invite_code = et_invite.getText().toString().trim();
         if (TextUtils.isEmpty(code)) {
             Toast.makeText(this, "请填写验证码", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // TODO validate success, do something
-        ApiUserService.login(phone, code, new ServiceCallBack() {
+        ApiUserService.login(phone, code,invite_code, new ServiceCallBack() {
             @Override public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
             }
 
             @Override public void success(RespBean resp, Response payload) {
+                if ("error".equals( resp.getMessage())){
+                    ToastUtils.showLong("邀请码填写错误，请到个人中心填写！");
+                }else {
+                    ToastUtils.showLong("绑定成功");
+                }
                 String response = payload.body().toString();
                 JSONObject jsonObject = null;
                 try {
@@ -245,6 +252,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             JSONObject jsonObject = new JSONObject(response);
             JSONObject result = jsonObject.getJSONObject("result");
             String id = result.getString("uid");
+            //todo：返回一个特定字符 标志邀请码填写错误
             if (!TextUtils.isEmpty(id)) {
                 AccountHandler.saveLoginInLocal(result.toString());
                 EventBus.getDefault().post(new MessageEvent("SUCCESS"));

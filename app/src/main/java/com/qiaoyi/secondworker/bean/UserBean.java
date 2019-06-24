@@ -49,6 +49,8 @@ public class UserBean implements Serializable {
     public int auditStatus;
     public String token;
     public String createTime;
+    public String pyqcode;
+    public String yqcode;
     public double balance;
     public double rewardpoints;
 

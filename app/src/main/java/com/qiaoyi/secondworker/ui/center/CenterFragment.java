@@ -1,9 +1,11 @@
 package com.qiaoyi.secondworker.ui.center;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,8 @@ import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.BaseFragment;
 import com.qiaoyi.secondworker.ui.center.center.ApplyStatusActivity;
 import com.qiaoyi.secondworker.ui.center.center.BecomeWorkerActivity;
+import com.qiaoyi.secondworker.ui.center.center.FillInInvitationCodeActivity;
+import com.qiaoyi.secondworker.ui.center.center.InvitationActivity;
 import com.qiaoyi.secondworker.ui.center.center.ModifyUerInfoActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyCollectionActivity;
 import com.qiaoyi.secondworker.ui.center.center.MyCommentActivity;
@@ -64,7 +68,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private ImageView iv_semicircle,iv_setting;
     private ImageView iv_my_head_photo;
     private TextView tv_username;
-    private TextView tv_member_grade;
+    private TextView tv_member_code;
     private ImageView iv_circle,iv_isVip;
     private RelativeLayout rl_top;
     private TextView tv_my_order;
@@ -79,7 +83,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private RelativeLayout rl_my_order;
     private ImageView iv_invitation_activity;
     private TextView tv_shopping_cart;
-    private TextView tv_my_collection;
+    private TextView tv_et_invitation_code;
     private TextView tv_my_requirement;
     private TextView tv_my_address;
     private LinearLayout ll_center_top;
@@ -159,8 +163,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         tv_username.setOnClickListener(this);
         iv_isVip = (ImageView) rootView.findViewById(R.id.iv_isVip);
         iv_isVip.setOnClickListener(this);
-        tv_member_grade = (TextView) rootView.findViewById(R.id.tv_member_grade);
-        tv_member_grade.setOnClickListener(this);
+        tv_member_code = (TextView) rootView.findViewById(R.id.tv_member_code);
+        tv_member_code.setOnClickListener(this);
         iv_circle = (ImageView) rootView.findViewById(R.id.iv_circle);
         iv_circle.setOnClickListener(this);
         rl_top = (RelativeLayout) rootView.findViewById(R.id.rl_top);
@@ -194,8 +198,8 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         iv_invitation_activity.setOnClickListener(this);
         tv_shopping_cart = (TextView) rootView.findViewById(R.id.tv_shopping_cart);
         tv_shopping_cart.setOnClickListener(this);
-        tv_my_collection = (TextView) rootView.findViewById(R.id.tv_my_collection);
-        tv_my_collection.setOnClickListener(this);
+        tv_et_invitation_code = (TextView) rootView.findViewById(R.id.tv_et_invitation_code);
+        tv_et_invitation_code.setOnClickListener(this);
         tv_my_requirement = (TextView) rootView.findViewById(R.id.tv_my_requirement);
         tv_my_requirement.setOnClickListener(this);
         tv_my_address = (TextView) rootView.findViewById(R.id.tv_my_address);
@@ -223,6 +227,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         getActivity().sendBroadcast(intent);
     }
     private void initData() {
+        tv_member_code.setText("复制邀请码："+AccountHandler.getmInvitCode());
         if (!TextUtils.isEmpty(bean.username))
              tv_username.setText(bean.username);
         Glide.with(getActivity()).load(bean.avatar).apply(GlideUtils.setCircleAvatar()).into(iv_my_head_photo);
@@ -246,6 +251,11 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_member_code:
+                ClipboardManager cm =(ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(AccountHandler.getmInvitCode());
+                ToastUtils.showShort("已复制");
+                break;
             case R.id.ll_useful_money://钱包
                 startActivity(new Intent(getActivity(),MyWalletActivity.class));
                 break;
@@ -284,8 +294,11 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
             case R.id.tv_shopping_cart:
 
                 break;
-            case R.id.tv_my_collection://填写邀请码
+          /*  case R.id.tv_my_collection://填写邀请码
                 startActivity(new Intent(getActivity(),MyCollectionActivity.class));
+                break;*/
+            case R.id.tv_et_invitation_code:
+                startActivity(new Intent(getActivity(),FillInInvitationCodeActivity.class));
                 break;
             case R.id.tv_my_requirement:
                 startActivity(new Intent(getActivity(),MyRequirementActivity.class));
@@ -312,7 +325,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
                 startActivity(new Intent(getActivity(),MyOpinionActivity.class));
                 break;
             case R.id.iv_invitation_activity:
-                startActivity(new Intent(getActivity(),ShareBaseActivity.class));
+                startActivity(new Intent(getActivity(),InvitationActivity.class));
                 break;
         }
     }

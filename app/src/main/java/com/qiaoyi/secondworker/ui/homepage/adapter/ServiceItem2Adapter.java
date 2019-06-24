@@ -68,43 +68,43 @@ public class ServiceItem2Adapter extends RecyclerView.Adapter<ServiceItem2Adapte
         if (itemList!=null&& itemList.size()>0) {
             ll_img.setVisibility(View.VISIBLE);
             if (itemList.size() == 1) {
-                tv_service1.setText(itemList.get(0).serviceItem);
+                tv_service1.setText(itemList.get(0).goodsName);
                 tv_price1.setText("预收" + itemList.get(0).price + itemList.get(0).unit);
-                Glide.with(activity).load(itemList.get(0).image).apply(GlideUtils.setRoundTransform(activity, 3)).into(iv_service1);
+                Glide.with(activity).load(itemList.get(0).goodsPhoto).apply(GlideUtils.setRoundTransform(activity, 3)).into(iv_service1);
             } else if (itemList.size() == 2) {
-                tv_service1.setText(itemList.get(0).serviceItem);
+                tv_service1.setText(itemList.get(0).goodsName);
                 tv_price1.setText("预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).
-                        load(itemList.get(0).image).
+                        load(itemList.get(0).goodsPhoto).
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service1);
 
-                tv_service2.setText(itemList.get(1).serviceItem);
+                tv_service2.setText(itemList.get(1).goodsName);
                 tv_price2.setText("预收" + itemList.get(1).price + itemList.get(1).unit);
                 Glide.with(activity).
-                        load(itemList.get(1).image).
+                        load(itemList.get(1).goodsPhoto).
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service2);
 
             } else if (itemList.size() == 3) {
-                tv_service1.setText(itemList.get(0).serviceItem);
+                tv_service1.setText(itemList.get(0).goodsName);
                 tv_price1.setText("预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).
-                        load(itemList.get(0).image).
+                        load(itemList.get(0).goodsPhoto).
                         apply(override).
                         into(iv_service1);
 
-                tv_service2.setText(itemList.get(1).serviceItem);
+                tv_service2.setText(itemList.get(1).goodsName);
                 tv_price2.setText("预收" + itemList.get(1).price + itemList.get(1).unit);
                 Glide.with(activity).
-                        load(itemList.get(1).image).
+                        load(itemList.get(1).goodsPhoto).
                         apply(override).
                         into(iv_service2);
 
-                tv_service3.setText(itemList.get(2).serviceItem);
+                tv_service3.setText(itemList.get(2).goodsName);
                 tv_price3.setText("预收" + itemList.get(2).price + itemList.get(2).unit);
                 Glide.with(activity).
-                        load(itemList.get(2).image).
+                        load(itemList.get(2).goodsPhoto).
                         apply(override).
                         into(iv_service3);
             }

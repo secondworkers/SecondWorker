@@ -144,7 +144,7 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 SearchServiceBean item = (SearchServiceBean) adapter.getItem(position);
-                ServiceDetailsActivity.startDetails(ServiceListActivity.this,item.serviceItemId);
+                ServiceDetailsActivity.startDetails(ServiceListActivity.this,item.goodsId,"");
             }
         });
     }

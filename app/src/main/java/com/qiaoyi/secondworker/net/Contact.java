@@ -31,6 +31,7 @@ public class Contact {
   public static final String GETUSERINFO = BASE_URL + "/user/getUserInfo";//发送验证码
   public static final String MODIFY_USERINFO = BASE_URL + "/user/upUserInfo";//修改用户信息
   public static final String BIND_PHONE = BASE_URL + "/user/bindPhone";//三方登录后绑定手机号
+  public static final String FILL_INVITATION = BASE_URL + "/user/invatation";//填写邀请码
 
 
   public static final String THIRD_LOGIN = BASE_URL + "/user/loginThird";//第三方登录
@@ -77,8 +78,6 @@ public class Contact {
   public static final String WALLET_PAY = BASE_URL + "/mgWallet/mgMoney/pay";//余额支付
   public static final String REWARDPOINT_LIST = BASE_URL + "/mgWallet/mgRewardpoint/list";//积分明细
   public static final String REWARDPOINT_PAY = BASE_URL + "/mgWallet/mgRewardpoint/pay";//积分支付
-
-
 
 
   public static final String QINIU_UPTOKEN =

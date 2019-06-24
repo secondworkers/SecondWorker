@@ -30,6 +30,6 @@ public class WorkerServiceListAdapter extends BaseQuickAdapter<ServiceItemListBe
         ImageView iv_img = helper.getView(R.id.iv_img);
         helper.setText(R.id.tv_service,item.serviceItem);
         helper.setText(R.id.tv_price,item.price+item.unit);
-        Glide.with(activity).load(item.image).apply(GlideUtils.setRoundTransform(activity,5)).into(iv_img);
+        Glide.with(activity).load(item.goodsPhoto).apply(GlideUtils.setRoundTransform(activity,5)).into(iv_img);
     }
 }

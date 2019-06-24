@@ -9,7 +9,7 @@
     android:text="请先登录"
     android:textSize="24sp"
     android:textColor="#212121"
-    android:layout_marginTop="@dimen/base80dp"
+    android:layout_marginTop="@dimen/base60dp"
     android:layout_marginLeft="@dimen/base20dp"
     android:textStyle="bold"
     />
@@ -66,6 +66,45 @@
             android:textSize="12sp"
             android:textColor="@color/white"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_invite"
+            android:layout_width="@dimen/base80dp"
+            android:layout_height="@dimen/base28dp"
+            android:gravity="center"
+            android:padding="@dimen/base5dp"
+            android:layout_centerHorizontal="true"
+            android:text="获取验证码"
+            android:clickable="true"
+            android:layout_marginRight="@dimen/base20dp"
+            android:textSize="16sp"
+            android:textColor="@color/text_black"/>
+        <EditText
+            android:id="@+id/et_invite"
+            android:layout_below="@+id/tv_invite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/login_input"
+            android:hint="邀请码"
+            android:maxLength="20"
+            android:inputType="text"
+            android:layout_marginLeft="@dimen/base20dp"
+            android:layout_marginRight="@dimen/base20dp"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_invite"
+            android:layout_marginLeft="@dimen/base20dp"
+            android:layout_marginRight="@dimen/base20dp"
+            android:text="邀请码注意区分大小写，每个用户只能填写一次邀请码。"
+            android:textSize="12sp"
+            android:textColor="@color/text_blue"
+            />
+    </RelativeLayout>
     <TextView
         android:id="@+id/tv_login"
         android:clickable="true"
@@ -79,7 +118,7 @@
         android:background="@drawable/shape_gradient_left_blue"
         android:layout_marginRight="@dimen/base20dp"
         android:textSize="16sp"
-        android:layout_marginTop="@dimen/base60dp"
+        android:layout_marginTop="@dimen/base30dp"
         android:textColor="@color/white"/>
     <TextView
         android:layout_width="wrap_content"
@@ -87,7 +126,7 @@
         android:layout_gravity="center_horizontal"
         android:text="其他方式一键登录"
         android:textSize="12sp"
-        android:layout_marginTop="@dimen/base80dp"/>
+        android:layout_marginTop="@dimen/base30dp"/>
     <ImageView
         android:id="@+id/iv_wechat"
         android:layout_width="wrap_content"

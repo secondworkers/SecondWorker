@@ -27,19 +27,21 @@ public class SearchServiceBean {
      */
 
     public String workerId;
+    public String goodsId;
+    public String goodsName;
+    public String goodsInfo;
+
     public String workerName;
     public double lng;
     public double lat;
     public String address;
     public String profile;
     public String orgId;
-    public String serviceItemId;
     public Object serviceTypeId;
-    public String serviceItem;
     public int counts;
-    public int price;
+    public double price;
     public String unit;
     public String orgName;
-    public String image;
-    public int score;
+    public String goodsPhoto;
+    public float score;
 }

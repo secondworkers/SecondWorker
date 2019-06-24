@@ -108,13 +108,13 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
     }
     private void initData(OrderBean result) {
         changeByStatus(result);
-        tv_service_name.setText(result.serviceItem);
+        tv_service_name.setText(result.goodsName);
         tv_arrive_time.setText("预计"+result.serviceTime+"到达");
         tv_service_time.setText(result.serviceTime);
         tv_address.setText(result.addressname+" "+result.addressDetailName);
         tv_username_phone.setText(result.screenName+" "+result.addressphone);
         tv_single_price.setText(Html.fromHtml("<font color='#212121'>"
-                + result.serviceItem
+                + result.goodsName
                 + "</font><font color='#666666'> ("
                 + result.price+ result.unit
                 + ")</font>"));
@@ -210,7 +210,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
     private void btnRightClick(OrderBean item) {
         switch (item.status){
             case 0:
-                PrePayActivity.StartPrePayActivity(this,item.orderid,item.serviceItem,item.actualPay);
+                PrePayActivity.startPrePayActivity(this,item.orderid,item.goodsName,item.actualPay);
                 finish();
                 break;
             case 1://待服务
@@ -227,7 +227,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                 ToastUtils.showShort("评价");
 //                OrderDetailsActivity.gotoOrderDetails(this,item.orderid);
                 Intent intent = new Intent(this, PostCommentActivity.class);
-                intent.putExtra("serviceItem",item.serviceItem);
+                intent.putExtra("serviceItem",item.goodsName);
                 intent.putExtra("orderId",item.orderid);
                 startActivity(intent);
 //                finish();

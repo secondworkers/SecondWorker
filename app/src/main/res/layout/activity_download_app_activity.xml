@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#666EF6"
+        >
+        <RelativeLayout
+            android:id="@+id/rl_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_1"
+                android:background="@mipmap/ic_background_download_app">
+
+                <ImageView
+                    android:id="@+id/iv_download_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/base70dp"
+                    android:src="@mipmap/ic_download_app" />
+
+            </RelativeLayout>
+
+            <!--二维码区域-->
+            <RelativeLayout
+                android:id="@+id/rl_scan_code"
+                android:layout_below="@+id/rl_top"
+                android:layout_marginTop="-35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/shape_bg_btn_white">
+                <ImageView
+                    android:id="@+id/iv_scan_code"
+                    android:layout_width="@dimen/base130dp"
+                    android:layout_height="@dimen/base130dp"
+                    android:src="@mipmap/ic_scan_code_invitation" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_text_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_scan_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/base17dp"
+                android:text="扫一扫或长按识别二维码领取奖励"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <!--下部分-->
+            <RelativeLayout
+                android:layout_marginTop="@dimen/base20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_text_13"
+                android:layout_marginBottom="@dimen/base65dp"
+                android:background="@drawable/shape_border_white">
+
+                <TextView
+                    android:id="@+id/tv_text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/base15dp"
+                    android:layout_marginTop="@dimen/base18dp"
+                    android:layout_marginRight="@dimen/base15dp"
+                    android:text="注册登录时请填写下方邀请码"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_text_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text_1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/base10dp"
+                    android:text="不填写没奖励"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_invitation_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_text_2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/base15dp"
+                    android:layout_marginBottom="@dimen/base18dp"
+                    android:textColor="#FFF000"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <!--底部工具栏-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#635CFF">
+        <TextView
+            android:id="@+id/tv_share_wechat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/base8dp"
+            android:layout_marginBottom="@dimen/base5dp"
+            android:drawableTop="@mipmap/ic_wechat_invitation"
+            android:drawablePadding="@dimen/base3dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="分享至微信"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_share_circle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/base8dp"
+            android:layout_marginBottom="@dimen/base5dp"
+            android:drawableTop="@mipmap/ic_friend_invitation"
+            android:drawablePadding="@dimen/base3dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="分享至朋友圈"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_qrCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/base8dp"
+            android:layout_marginBottom="@dimen/base5dp"
+            android:drawableTop="@mipmap/ic_scan_code_invitation"
+            android:drawablePadding="@dimen/base3dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="面对面邀请"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</RelativeLayout>

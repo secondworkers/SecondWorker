@@ -70,7 +70,7 @@ public class OrderBean {
     public String orderNum;
     public String orgId;
     public String statuss;
-    public String serviceItem;
+    public String goodsName;
     public String screenName;
     public Object etStr;
     public String addressname;

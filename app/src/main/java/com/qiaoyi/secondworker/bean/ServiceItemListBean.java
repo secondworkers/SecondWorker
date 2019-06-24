@@ -39,6 +39,7 @@ public class ServiceItemListBean {
 
     public Object id;
     public String serviceItem;
+    public String goodsName;
     public double price;
     public Object introduction;
     public Object serviceTenet;
@@ -46,7 +47,7 @@ public class ServiceItemListBean {
     public String serviceTypeId;
     public Object number;
     public String unit;
-    public String serviceItemId;
+    public String goodsId;
     public Object serviceType;
     public int lowerPrice;
     public int heigherPrice;
@@ -61,6 +62,6 @@ public class ServiceItemListBean {
     public int counts;
     public int lng;
     public int lat;
-    public String image;
-    public Object workerId;
+    public String goodsPhoto;
+    public String workerId;
 }

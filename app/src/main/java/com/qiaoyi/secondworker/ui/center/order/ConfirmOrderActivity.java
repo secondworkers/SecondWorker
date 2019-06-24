@@ -53,7 +53,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
     private RelativeLayout rl_service_location;
     private RelativeLayout rl_service_time;
     private String service_name;
-    private String service_id,unit;
+    private String unit;
     private double price;
     private ImageView iv_add,iv_count,iv_service;
     private int service_num = 1;
@@ -63,19 +63,19 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
     private String address_title;
     private String address_msg;
     private String user_name;
-    private String address_phone,service_time,worker_id,serviceItemId;
+    private String address_phone,service_time,worker_id,serviceItemId,orgId;
     private double total_price;
 
     public static void startConfirmActivity(Context context,
-                                            String service_name,String service_id,
+                                            String service_name,String worker_id,
                                             String unit,double price,
-                                            String worker_id,String serviceItemId){
+                                            String orgId,String serviceItemId){
         Intent intent = new Intent(context, ConfirmOrderActivity.class);
         intent.putExtra("service_name",service_name);
-        intent.putExtra("service_id",service_id);
         intent.putExtra("price",price);
         intent.putExtra("unit",unit);
         intent.putExtra("worker_id",worker_id);
+        intent.putExtra("orgId",orgId);
         intent.putExtra("serviceItemId",serviceItemId);
         context.startActivity(intent);
     }
@@ -86,8 +86,8 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_confirm_order);
         Intent intent = getIntent();
         service_name = intent.getStringExtra("service_name");
-        service_id = intent.getStringExtra("service_id");
         worker_id = intent.getStringExtra("worker_id");
+        orgId = intent.getStringExtra("orgId");
         unit = intent.getStringExtra("unit");
         serviceItemId = intent.getStringExtra("serviceItemId");
         price = intent.getDoubleExtra("price",0.00);
@@ -186,7 +186,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
                 service_time,
                 AccountHandler.getUserId(),
                 String.valueOf(service_num),
-                "",
+                orgId,
                 worker_id,
                 serviceItemId,
                 total_price,
@@ -200,7 +200,7 @@ public class ConfirmOrderActivity extends BaseActivity implements View.OnClickLi
             public void success(RespBean resp, Response<WrapPrePayOrderBean> payload) {
                 WrapPrePayOrderBean body = payload.body();
                 PrePayOrderBean bean = body.result;
-                PrePayActivity.StartPrePayActivity(ConfirmOrderActivity.this,bean.orderid,service_name,total_price);
+                PrePayActivity.startPrePayActivity(ConfirmOrderActivity.this,bean.orderid,service_name,total_price);
                 finish();
             }
         });

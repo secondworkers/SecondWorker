@@ -220,6 +220,7 @@
         </RelativeLayout>
             <TextView
                 android:layout_below="@+id/rl_bottom"
+                android:layout_marginTop="@dimen/base30dp"
                 android:layout_marginBottom="@dimen/base30dp"
                 android:id="@+id/tv_share"
                 android:layout_width="match_parent"

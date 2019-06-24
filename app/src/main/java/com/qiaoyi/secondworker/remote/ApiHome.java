@@ -50,7 +50,7 @@ public class ApiHome {
      */
  public static Call getServiceDetail(String serviceItemId,ServiceCallBack<WrapServiceDetailsBean> callBack){
         Params params = new Params.Builder().json().build();
-        params.put("serviceItemId",serviceItemId);
+        params.put("goodsId",serviceItemId);
         return IfOkNet.getInstance().post(Contact.GET_SERVICE_DETAIL, params, callBack);
     }
 
