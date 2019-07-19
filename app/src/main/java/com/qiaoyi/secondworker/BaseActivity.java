@@ -22,11 +22,13 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
+import com.qiaoyi.secondworker.bean.MessageEvent;
 import com.qiaoyi.secondworker.bean.ServiceTypeBean;
 import com.qiaoyi.secondworker.bean.WrapServiceBean;
 import com.qiaoyi.secondworker.cache.ACache;
@@ -38,10 +40,13 @@ import com.qiaoyi.secondworker.ui.shake.MyShareActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.umeng.analytics.MobclickAgent;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 import cn.isif.alibs.utils.ToastUtils;
 
 public class BaseActivity extends AppCompatActivity {
@@ -58,7 +63,7 @@ public class BaseActivity extends AppCompatActivity {
   public String formatAddress;
   public String city;//定位城市
   public String province;
-  public List<ServiceTypeBean> result;
+  private String title;
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState,
       @Nullable PersistableBundle persistentState) {
@@ -129,6 +134,14 @@ public class BaseActivity extends AppCompatActivity {
               formatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
               RegeocodeAddress address = regeocodeResult.getRegeocodeAddress();
               township = address.getTownship();
+
+              List<PoiItem> pois = regeocodeResult.getRegeocodeAddress().getPois();
+              if (pois.size()>0){
+                PoiItem poiItem = pois.get(0);
+                title = poiItem.getTitle();
+                SharePreferenceUtils.write("location_name","location", title);
+              }
+
               ALog.e("formatAddress:"+ formatAddress);
               ALog.e("rCode:"+i);
               ALog.e("Township:"+ township);
@@ -167,13 +180,14 @@ public class BaseActivity extends AppCompatActivity {
           //amapLocation.getStreetNum();//街道门牌号信息
 //          amapLocation.getCityCode();//城市编码
 //          amapLocation.getAdCode();//地区编码
-          //amapLocation.getAoiName();//获取当前定位点的AOI信息
+          amapLocation.getAoiName();//获取当前定位点的AOI信息
           //amapLocation.getBuildingId();//获取当前室内定位的建筑物Id
           //amapLocation.getFloor();//获取当前室内定位的楼层
           //amapLocation.getGpsAccuracyStatus();//获取GPS的当前状态
           ////获取定位时间
           //new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE).format(
           //    new Date(amapLocation.getTime()));
+          EventBus.getDefault().post(new MessageEvent(title));
         } else {
           ALog.e("定位：失败");
         }
@@ -219,20 +233,6 @@ public class BaseActivity extends AppCompatActivity {
     if (toast != null) {
       toast.cancel();
     }
-  }
-  public void initServiceType() {
-    ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
-      @Override
-      public void failed(String code, String errorInfo, String source) {
-
-      }
-
-      @Override
-      public void success(RespBean resp, Response<WrapServiceBean> payload) {
-        WrapServiceBean body = payload.body();
-        result = body.result;
-      }
-    });
   }
   public void showToast(String txt) {
     //closeToast();

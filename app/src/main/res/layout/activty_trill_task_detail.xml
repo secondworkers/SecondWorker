@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below ="@+id/include"
+    android:descendantFocusability="blocksDescendants">
+    <LinearLayout
+        android:id="@+id/rr_item_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+       >
+        <include layout="@layout/item_trill_everyday_task" />
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base10dp"
+            android:background="@color/line_color"
+             />
+
+        <LinearLayout
+            android:id="@+id/ll_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_white"
+            android:orientation="vertical"
+            android:padding="@dimen/base15dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="【任务介绍】"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_task_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/base10dp"
+                android:text="欢迎您参与本次的抖音点赞转发任务，本任务仅限至 尊会员专属，每日500名额，做完为止。 至尊会员，每天可以接到抖音/快手点赞（"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base10dp"
+            android:background="@color/line_color"
+            />
+
+        <TextView
+            android:id="@+id/tv_title_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_white"
+            android:padding="@dimen/base15dp"
+            android:text="【任务流程】"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+             />
+
+        <WebView
+            android:id="@+id/wv_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+    </LinearLayout>
+</ScrollView>
+
+    <TextView
+        android:id="@+id/tv_task_get"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base50dp"
+        android:background="@drawable/shape_gradient_little_no_coners_blue"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="立即领取"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

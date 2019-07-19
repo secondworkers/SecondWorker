@@ -20,7 +20,8 @@
         android:text="第二步:填写服务范围"
         android:textColor="#212121"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/tv_city"
@@ -31,7 +32,8 @@
         android:layout_marginTop="@dimen/base40dp"
         android:text="所在城市"
         android:textColor="#333333"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/et_select_city"
@@ -47,7 +49,8 @@
         android:drawablePadding="@dimen/base100dp"
         android:hint="请选择您所在的城市"
         android:textColor="#888888"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_line_1"
@@ -57,14 +60,15 @@
         android:layout_marginLeft="@dimen/base16dp"
         android:layout_marginTop="@dimen/base20dp"
         android:layout_marginRight="@dimen/base16dp"
-        android:background="#F5F5F5" />
+        android:background="#F5F5F5"
+        />
 
     <TextView
         android:id="@+id/tv_enter_area"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_line_1"
-        android:layout_alignLeft="@+id/tv_city"
+        android:layout_marginLeft="@dimen/base15dp"
         android:layout_marginTop="@dimen/base20dp"
         android:text="入驻范围"
         android:textColor="#333333"
@@ -75,17 +79,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_line_1"
-        android:layout_alignLeft="@+id/et_select_city"
-        android:layout_alignRight="@+id/et_select_city"
+        android:layout_marginLeft="@dimen/base20dp"
         android:layout_marginTop="@dimen/base20dp"
         android:layout_toRightOf="@+id/tv_enter_area"
         android:background="@null"
         android:clickable="true"
+        android:lines="1"
         android:drawableRight="@mipmap/arrow_go"
-        android:drawablePadding="@dimen/base100dp"
-        android:hint="请选择您入驻的范围"
+        android:hint="请选择您入驻的范围                                  "
         android:textColor="#888888"
-        android:textSize="15sp" />
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/tv_line_2"
@@ -93,17 +96,37 @@
         android:layout_height="@dimen/base1dp"
         android:layout_below="@+id/tv_enter_area"
         android:layout_marginLeft="@dimen/base16dp"
-        android:layout_marginTop="@dimen/base20dp"
+        android:layout_marginTop="@dimen/base10dp"
         android:layout_marginRight="@dimen/base16dp"
         android:background="#F5F5F5" />
-
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_line_2"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base20dp"
+        android:inputType="text"
+        android:background="@null"
+        android:hint="请输入详细地址"
+        android:textColor="#888888"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tv_line_7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base1dp"
+        android:layout_below="@+id/et_address"
+        android:layout_marginLeft="@dimen/base16dp"
+        android:layout_marginTop="@dimen/base10dp"
+        android:layout_marginRight="@dimen/base16dp"
+        android:background="#F5F5F5" />
     <EditText
         android:id="@+id/et_input_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_line_2"
-        android:layout_alignLeft="@+id/tv_city"
-        android:layout_marginTop="@dimen/base20dp"
+        android:layout_below="@+id/tv_line_7"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base10dp"
         android:inputType="phone"
         android:background="@null"
         android:hint="请输入手机号码"
@@ -116,7 +139,7 @@
         android:layout_height="@dimen/base1dp"
         android:layout_below="@+id/et_input_phone_number"
         android:layout_marginLeft="@dimen/base16dp"
-        android:layout_marginTop="@dimen/base20dp"
+        android:layout_marginTop="@dimen/base10dp"
         android:layout_marginRight="@dimen/base16dp"
         android:background="#F5F5F5" />
 
@@ -125,10 +148,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_line_3"
-        android:layout_alignLeft="@+id/tv_city"
+        android:layout_marginLeft="@dimen/base15dp"
         android:layout_marginTop="@dimen/base29dp"
         android:background="@null"
+        android:maxLength="6"
         android:hint="请输入6位验证码"
+        android:inputType="number"
         android:textColor="#888888"
         android:textSize="15sp" />
 
@@ -154,7 +179,7 @@
         android:layout_height="@dimen/base1dp"
         android:layout_below="@+id/tv_get_code"
         android:layout_marginLeft="@dimen/base16dp"
-        android:layout_marginTop="@dimen/base20dp"
+        android:layout_marginTop="@dimen/base10dp"
         android:layout_marginRight="@dimen/base16dp"
         android:background="#F5F5F5" />
 

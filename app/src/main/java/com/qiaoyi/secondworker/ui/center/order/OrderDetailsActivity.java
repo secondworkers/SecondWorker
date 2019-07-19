@@ -130,6 +130,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             tv_order_pay_time.setVisibility(View.GONE);
         }
         tv_order_pay_time.setText(result.paytime);
+        tv_order_finish_time.setText(result.finishTime);
     }
     private void requestData() {
         ApiUserService.getOrderDetails(order_id, new ServiceCallBack<WrapOrderDetailsBean>() {
@@ -171,42 +172,38 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             }
             @Override
             public void success(RespBean resp, Response payload) {
-                if (status == 8) {//删除订单
+                if (status == 6) {//删除订单
                     ToastUtils.showShort("订单已删除");
                     finish();
-                }else if (status == 7 ){//取消订单
-                    bean.setStatus(7);
+                }else if ( status == 5 ){//取消订单
+                    bean.setStatus(5);
                     requestData();
-                }else if (status == 10){
-                    bean.setStatus(10);
+                }else if (status == 3){
+                    bean.setStatus(3);
                     requestData();
                 }
             }
         });
     }
+
     void onLeftBtnClick(OrderBean item){
         switch (item.status){
             case 0:
-                cancelOrDelOrder(item,7);
+                cancelOrDelOrder(item,3);//取消订单
                 break;
-            case 1://待服务
+            case 1://待服务  //再来一单
             case 2:
             case 3:
-            case 4:
-                ToastUtils.showShort("已催单");
-                break;
-            case 5://待确认
-            case 6:
-            case 9:
                 startActivity(new Intent(this, MainActivity.class));
-               finish();
+                finish();
                 break;
-            case 7://已取消
-            case 10://已评价
-                cancelOrDelOrder(item,8);
+            case 5://已取消
+            case 4://已评价
+                cancelOrDelOrder(item,6);//删除订单
                 break;
         }
     }
+
     private void btnRightClick(OrderBean item) {
         switch (item.status){
             case 0:
@@ -215,26 +212,18 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                 break;
             case 1://待服务
             case 2:
+                cancelOrDelOrder(item,3);//确认完成
             case 3:
-            case 4:
-                ToastUtils.showShort("已催单");
-                break;
-            case 5://待确认
-            case 6:
-                cancelOrDelOrder(item,10);
-                break;
-            case 9://评价
-                ToastUtils.showShort("评价");
-//                OrderDetailsActivity.gotoOrderDetails(this,item.orderid);
                 Intent intent = new Intent(this, PostCommentActivity.class);
                 intent.putExtra("serviceItem",item.goodsName);
                 intent.putExtra("orderId",item.orderid);
                 startActivity(intent);
-//                finish();
                 break;
-            case 7://取消、删除
-            case 8:
-            case 10:
+            case 4:
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                break;
+            case 5://待确认
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
                 break;
@@ -248,70 +237,56 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                 tv_arrive_time.setText("请在15分钟内完成支付");
                 tv_left_btn.setText("取消订单");
                 tv_right_btn.setText("去支付");
-                tv_order_finish_time.setVisibility(View.GONE);
-                tv_order_finish_time_title.setVisibility(View.GONE);
                 tv_order_pay_time_title.setVisibility(View.GONE);
                 tv_order_pay_time.setVisibility(View.GONE);
+                tv_order_finish_time_title.setVisibility(View.GONE);
+                tv_order_finish_time.setVisibility(View.GONE);
                 break;
             case 1://待服务
-                iv_avatar.setVisibility(View.GONE);
-                tv_username.setText("等待商家接单");
-                tv_arrive_time.setText("预计在30分钟内接单");
-                tv_left_btn.setText("取消订单");
-                tv_right_btn.setText("催一下");
-                break;
             case 2:
                 iv_avatar.setVisibility(View.GONE);
-                tv_username.setText("商家派单中");
-                tv_arrive_time.setText("等待商家派单");
-                tv_left_btn.setText("取消订单");
-                tv_right_btn.setText("催一下");
+                tv_username.setText("等待商家接单");
+                tv_arrive_time.setText("预计"+item.serviceTime+"到达");
+                tv_left_btn.setText("再来一单");
+                tv_right_btn.setText("确认完成");
+                tv_order_pay_time_title.setVisibility(View.VISIBLE);
+                tv_order_pay_time.setVisibility(View.VISIBLE);
+                tv_order_finish_time_title.setVisibility(View.GONE);
+                tv_order_finish_time.setVisibility(View.GONE);
                 break;
-            case 3:
             case 4:
-                iv_avatar.setVisibility(View.VISIBLE);
-                Glide.with(this).load(item.icon).apply(GlideUtils.setCircleAvatar()).into(iv_avatar);
-                tv_username.setText(item.orgName+"已接单");
-                tv_arrive_time.setText("预计"+item.serviceTime+"到达");
-                tv_left_btn.setText("取消订单");
-                tv_right_btn.setVisibility(View.GONE);
+                iv_avatar.setVisibility(View.GONE);
+                tv_username.setText("订单已完成");
+                tv_arrive_time.setVisibility(View.GONE);
+                tv_left_btn.setText("删除订单");
+                tv_right_btn.setText("再来一单");
                 break;
-            case 5://待确认
-            case 6:
-                Glide.with(this).load(item.icon).apply(GlideUtils.setCircleAvatar()).into(iv_avatar);
-                iv_avatar.setVisibility(View.VISIBLE);
-                tv_username.setText(item.orgName+"已接单");
-                tv_arrive_time.setText("预计"+item.serviceTime+"到达");
-                tv_left_btn.setText("取消订单");
-                tv_right_btn.setText("确认订单");
-                break;
-            case 7://取消、删除
+            case 5://取消、删除
                 iv_avatar.setVisibility(View.GONE);
                 tv_username.setText("订单已取消");
                 tv_arrive_time.setVisibility(View.GONE);
                 tv_left_btn.setText("删除订单");
                 tv_right_btn.setText("再来一单");
-                tv_order_finish_time.setVisibility(View.VISIBLE);
-                tv_order_finish_time_title.setVisibility(View.VISIBLE);
+                tv_order_pay_time_title.setVisibility(View.GONE);
+                tv_order_pay_time.setVisibility(View.GONE);
+                tv_order_finish_time_title.setVisibility(View.GONE);
+                tv_order_finish_time.setVisibility(View.GONE);
                 break;
-            case 9://评价
+            case 3://评价
                 iv_avatar.setVisibility(View.GONE);
                 tv_username.setText("订单已完成");
                 tv_arrive_time.setText("请您对本次服务做出评价");
                 tv_left_btn.setText("删除订单");
                 tv_right_btn.setText("去评价");
-                tv_order_finish_time.setVisibility(View.VISIBLE);
-                tv_order_finish_time_title.setVisibility(View.VISIBLE);
-                break;
-            case 10:
-                iv_avatar.setVisibility(View.GONE);
-                tv_username.setText("订单已完成");
-                tv_arrive_time.setVisibility(View.GONE);
-                tv_left_btn.setText("删除订单");
-                tv_right_btn.setText("再来一单");
-                tv_order_finish_time.setVisibility(View.VISIBLE);
-                tv_order_finish_time_title.setVisibility(View.VISIBLE);
+//                tv_order_finish_time_title.setVisibility(View.VISIBLE);
+//                tv_order_finish_time.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
     }
 }

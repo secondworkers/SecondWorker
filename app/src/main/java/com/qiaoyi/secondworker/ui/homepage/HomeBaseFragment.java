@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.BannerListBean;
 import com.qiaoyi.secondworker.bean.BaseWrapServiceItemBean;
@@ -24,6 +25,7 @@ import com.qiaoyi.secondworker.bean.ServiceItemBean;
 import com.qiaoyi.secondworker.bean.ServiceTypeBean;
 import com.qiaoyi.secondworker.bean.WrapServiceBean;
 import com.qiaoyi.secondworker.bean.WrapServiceItemBean;
+import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
@@ -31,7 +33,10 @@ import com.qiaoyi.secondworker.remote.ApiHome;
 import com.qiaoyi.secondworker.ui.BaseFragment;
 import com.qiaoyi.secondworker.ui.ItemDecoration.GridSpacingItemDecoration;
 import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.center.LoginActivity;
 import com.qiaoyi.secondworker.ui.center.center.MessageActivity;
+import com.qiaoyi.secondworker.ui.center.tiktok.TiktokListActivity;
+import com.qiaoyi.secondworker.ui.center.wallet.RechargeActivity;
 import com.qiaoyi.secondworker.ui.homepage.activity.SearchActivity;
 import com.qiaoyi.secondworker.ui.homepage.activity.ServiceListActivity;
 import com.qiaoyi.secondworker.ui.homepage.adapter.AllServiceAdapter;
@@ -48,6 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 import cn.isif.alibs.utils.ToastUtils;
 import cn.isif.plug.bannerview.BannerView;
 import cn.isif.plug.bannerview.exception.ClassTypeException;
@@ -76,6 +82,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
     private List<RedomListBean> redomList;//随机推荐
     private BannerView bannerView;
     private ServiceItemAdapter serviceItemAdapter;
+    private String location;
 
     public HomeBaseFragment() {
         // Required empty public constructor
@@ -88,7 +95,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         EventBus.getDefault().register(this);
     }
     public void initServiceType() {
-        ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+        ApiHome.getServiceType("home",new ServiceCallBack<WrapServiceBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
@@ -195,10 +202,28 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
                     ServiceTypeBean item = (ServiceTypeBean) adapter.getItem(position);
-                    Intent intent = new Intent(getActivity(), ServiceListActivity.class);
-                    intent.putExtra("service_name",item.serviceType);
-                    intent.putExtra("item_id",item.serviceTypeId);
-                    getActivity().startActivity(intent);
+                    String serviceTypeId = item.serviceTypeId;
+                  /*  else if (serviceTypeId.equals("1b01b8ba81334848a9067fda40ca895e")){
+                        Intent intent = new Intent(getActivity(), RechargeActivity.class);
+                        intent.putExtra("service_name",item.serviceType);
+                        intent.putExtra("item_id", serviceTypeId);
+                        getActivity().startActivity(intent);
+                    }*/
+                    if (serviceTypeId.equals("bccf8ab29d44438484b65f3e8c3f3e55")){
+                        if (AccountHandler.checkLogin()!=null){
+                            getActivity().startActivity(new Intent(getActivity(), TiktokListActivity.class));
+                        }else {
+                            LoginActivity.startLoginActivity(getActivity(),0x11);
+                        }
+
+                    }
+                    else {
+                        Intent intent = new Intent(getActivity(), ServiceListActivity.class);
+                        intent.putExtra("service_name",item.serviceType);
+                        intent.putExtra("item_id", serviceTypeId);
+                        getActivity().startActivity(intent);
+                    }
+
                 }
             });
         }
@@ -209,6 +234,12 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         listAdapter.addData(result);//       TODO:
         mRecyclerView.setAdapter(listAdapter);
         mRecyclerView.setNestedScrollingEnabled(false);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     @Override
@@ -263,7 +294,10 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         tv_location.setText(address_title);
         //重新根据请求数据
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLocationSuccess(String location){
+        tv_location.setText(location);
+    }
     @Override
     public void onStart() {
         super.onStart();

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -323,6 +324,27 @@ public static void fixScreen(Activity activity){
   StatusBarUtil.setTranslucentStatus(activity);
   StatusBarUtil.setStatusBarDarkTheme(activity, true);
 }
+
+  /**
+   * 手机号中间4位使用*替换
+   * @param phone
+   * @return
+   */
+  public static String midleReplaceStar(String phone){
+    String result=null;
+    if (!TextUtils.isEmpty(phone)){
+      if (phone.length()<7){
+        result=phone;
+      }else{
+        String start = phone.substring(0,3);
+        String end = phone.substring(phone.length()-4,phone.length());
+        StringBuilder sb=new StringBuilder();
+        sb.append(start).append("****").append(end);
+        result=sb.toString();
+      }
+    }
+    return result;
+  }
 
   /**
    * 验证手机号

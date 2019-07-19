@@ -68,7 +68,9 @@
                     android:layout_height="@dimen/base23dp"
                     android:layout_marginLeft="@dimen/base28dp"
                     android:layout_marginRight="@dimen/base4dp"
-                    android:layout_marginTop="@dimen/base28dp" />
+                    android:layout_marginTop="@dimen/base28dp"
+                    android:visibility="gone"
+                    />
 
                 <TextView
                     android:id="@+id/tv_username"
@@ -78,25 +80,30 @@
                     android:layout_marginLeft="@dimen/base15dp"
                     android:layout_toRightOf="@+id/iv_avatar"
                     android:textColor="@color/text_white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_centerHorizontal="true"
+                    android:text="status"/>
 
                 <TextView
-                    android:id="@+id/tv_aervice_type"
+                    android:id="@+id/tv_arrive_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_username"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="8dp"
                     android:textAllCaps="false"
+                    android:layout_centerHorizontal="true"
+                    android:text="asdasdasd"
                     android:textColor="@color/text_white" />
 
                 <TextView
-                    android:id="@+id/tv_arrive_time"
+                    android:id="@+id/tv_aervice_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="@dimen/base15dp"
                     android:layout_marginTop="@dimen/base30dp"
+                    android:visibility="gone"
                     android:textColor="@color/text_white" />
             </RelativeLayout>
 

@@ -1,6 +1,7 @@
 package com.qiaoyi.secondworker.ui.center.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +19,8 @@ import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.ui.center.center.MyRequirementActivity;
+import com.qiaoyi.secondworker.ui.center.center.WaitingReceiveActivity;
+import com.qiaoyi.secondworker.ui.center.order.OrderDetailsActivity;
 import com.qiaoyi.secondworker.utlis.GlideUtils;
 
 /**
@@ -64,15 +67,17 @@ public class MyRequirementAdapter extends BaseQuickAdapter<RequirementBean,BaseV
         tv_post_time.setText(item.releaseTime);
         String status = item.status;
         if (status.equals("1")){
-            tv_req_status.setText("发布中");
+            tv_req_status.setText("待处理");
             btn_cancel.setText("取消发布");
-            btn_done.setVisibility(View.VISIBLE);
+            btn_done.setVisibility(View.GONE);
         }else if (status.equals("2")){
             tv_req_status.setText("已取消");
             btn_cancel.setText("删除需求");
+            btn_done.setVisibility(View.GONE);
         }else if (status.equals("3")){
-            tv_req_status.setText("已完成");
-            btn_cancel.setText("删除需求");
+            tv_req_status.setText("待支付");
+            btn_cancel.setText("取消发布");
+            btn_done.setVisibility(View.GONE);
         }
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,17 +96,25 @@ public class MyRequirementAdapter extends BaseQuickAdapter<RequirementBean,BaseV
                 btnDoneClick(item,helper.getPosition());
             }
         });
+        helper.getView(R.id.rl_posting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, WaitingReceiveActivity.class);
+                intent.putExtra("id",item.id);
+                activity.startActivity(intent);
+            }
+        });
     }
 
     private void btnDoneClick(RequirementBean item, int position) {
-        ApiUserService.updateRequirementList(item.id, "3", new ServiceCallBack<WrapRequirementBean>() {
+        ApiUserService.updateRequirementList(item.id, "3", new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 
             }
 
             @Override
-            public void success(RespBean resp, Response<WrapRequirementBean> payload) {
+            public void success(RespBean resp, Response payload) {
                 item.setStatus("3");
                 notifyItemChanged(position);
             }
@@ -109,14 +122,14 @@ public class MyRequirementAdapter extends BaseQuickAdapter<RequirementBean,BaseV
     }
 
     private void btnCancelClick(RequirementBean item, int position,String status) {
-        ApiUserService.updateRequirementList(item.id, status, new ServiceCallBack<WrapRequirementBean>() {
+        ApiUserService.updateRequirementList(item.id, status, new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 
             }
 
             @Override
-            public void success(RespBean resp, Response<WrapRequirementBean> payload) {
+            public void success(RespBean resp, Response payload) {
                 if (status.equals(2)){
                     item.setStatus(status);
                     notifyItemChanged(position);

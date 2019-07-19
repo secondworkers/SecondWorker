@@ -21,6 +21,7 @@ import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.pay.PayHandler;
 import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.center.wallet.RechargeActivity;
 import com.qiaoyi.secondworker.ui.shake.activity.PostSuccessActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
@@ -42,13 +43,15 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
     private CheckBox cb_wechat_pay;
     private CheckBox cb_alipay,cb_integral_pay;
     private TextView tv_total_price1;
-    private TextView tv_goto_pay;
+    private TextView tv_goto_pay,tv_balance,tv_integral;
     private CountDownTimer countDownTimer;
     private long timStamp = 900000;//剩余支付时间
     private String order_id,service_name;
     private long createTime;
     private long currentTime;
     private double t_price;
+    private double balance;
+    private double rewardPoints;
 
     public static void startPrePayActivity(Activity activity,String order_id,String service_name,double t_price){
         Intent intent = new Intent(activity, PrePayActivity.class);
@@ -62,8 +65,8 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         VwUtils.fixScreen(this);
         setContentView(R.layout.activity_prepay);
-        requestTime();
         initView();
+        requestTime();
         initData();
     }
 
@@ -84,12 +87,20 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
                 PrePayOrderBean result = body.result;
                 createTime = result.createTime;
                 currentTime = result.currentTime;
+                balance = result.banlance;
+                rewardPoints = result.rewardPoints;
+                tv_balance.setText(Html.fromHtml("<font color='#212121'>"
+                        + "余额："+String.valueOf(balance)
+                        + "</font><font color='#00A2FF'> "
+                        + "充值"
+                        + "</font>"));
+                tv_integral.setText("积分："+String.valueOf(rewardPoints));
                 timStamp = createTime + 900000 - currentTime;
                 if (timStamp >= 1000){
                     countDownTimer(timStamp);
                     tv_goto_pay.setClickable(true);
                     tv_goto_pay.setBackground(getResources().getDrawable(R.drawable.shape_gradient_little_no_coners_blue));
-                }else {
+                } else {
                     cancelOrderById();
                 }
             }
@@ -107,9 +118,12 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
         cb_alipay = (CheckBox) findViewById(R.id.iv_alipay);
         tv_total_price1 = (TextView) findViewById(R.id.tv_total_price1);
         tv_goto_pay = (TextView) findViewById(R.id.tv_goto_pay);
+        tv_balance = (TextView) findViewById(R.id.tv_balance);
+        tv_integral = (TextView) findViewById(R.id.tv_integral);
         tv_title_txt.setText("支付订单");
         view_back.setOnClickListener(this);
         tv_goto_pay.setOnClickListener(this);
+        tv_balance.setOnClickListener(this);
     }
     private void initData() {
         //支付方式
@@ -158,47 +172,63 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
             case R.id.view_back:
                     finish();
                 break;
+            case R.id.tv_balance:
+                Intent intent = new Intent(this, RechargeActivity.class);
+                intent.putExtra("balance",String.valueOf(balance));
+                startActivity(intent);
+                break;
             case R.id.tv_goto_pay:
                 //根据选择的支付方式 调起支付
                 if (cb_wechat_pay.isChecked()){
                     if (t_price > 0){
-                        PayHandler.onRequest(this,order_id,t_price,service_name);
+                        PayHandler.onRequest(this,order_id,t_price,0.0,service_name,1,"");
                     }else {
                         PostSuccessActivity.startSuccessActivity(this,String.valueOf(t_price),service_name,"pay");
                         finish();
                     }
                 }else if (cb_alipay.isChecked()){
-                    ApiUserService.walletPay(order_id, t_price, service_name, new ServiceCallBack() {
-                        @Override
-                        public void failed(String code, String errorInfo, String source) {
-                            ToastUtils.showShort(errorInfo);
-                        }
+                    if ((t_price - balance)<=0){
+                        ApiUserService.walletPay(order_id, t_price, service_name, new ServiceCallBack() {
+                            @Override
+                            public void failed(String code, String errorInfo, String source) {
+                                ToastUtils.showShort(errorInfo);
+                            }
 
-                        @Override
-                        public void success(RespBean resp, Response payload) {
-                            PostSuccessActivity.startSuccessActivity(PrePayActivity.this,String.valueOf(t_price),service_name,"pay");
-                            finish();
-                        }
-                    });
+                            @Override
+                            public void success(RespBean resp, Response payload) {
+                                PostSuccessActivity.startSuccessActivity(PrePayActivity.this,String.valueOf(t_price),service_name,"pay");
+                                finish();
+                            }
+                        });
+                    }else {
+                        ToastUtils.showShort("余额不足请选择其他支付方式");
+                        return;
+                    }
+
                 } else if (cb_integral_pay.isChecked()){
-                    ApiUserService.rewardpointPay(order_id, t_price, service_name, new ServiceCallBack() {
-                        @Override
-                        public void failed(String code, String errorInfo, String source) {
-                            ToastUtils.showShort(errorInfo);
-                        }
+                    if ((t_price - rewardPoints)<=0) {
+                        ApiUserService.rewardpointPay(order_id, t_price, service_name, new ServiceCallBack() {
+                            @Override
+                            public void failed(String code, String errorInfo, String source) {
+                                ToastUtils.showShort(errorInfo);
+                            }
 
-                        @Override
-                        public void success(RespBean resp, Response payload) {
-                            PostSuccessActivity.startSuccessActivity(PrePayActivity.this,String.valueOf(t_price),service_name,"pay");
-                            finish();
-                        }
-                    });
+                            @Override
+                            public void success(RespBean resp, Response payload) {
+                                PostSuccessActivity.startSuccessActivity(PrePayActivity.this, String.valueOf(t_price), service_name, "pay");
+                                finish();
+                            }
+                        });
+                    }else {
+                        ToastUtils.showShort("积分不足请选择其他支付方式");
+                        return;
+                    }
                 }
                 break;
         }
     }
     private void cancelOrderById() {
-        ApiUserService.cancelAndDelOrder(order_id,7,new ServiceCallBack() {
+        ApiUserService.cancelAndDelOrder(order_id,5,new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);

@@ -121,12 +121,10 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         tv_comment_number.setText(evCounts+"条评价");
         Glide.with(this).load(serviceItemDetail.goodsPhoto).apply(GlideUtils.setRoundTransform(this,10)).into(iv_shop_image);
         tv_service_type.setText(serviceItemDetail.goodsName);
-        if (!TextUtils.isEmpty(serviceItemDetail.goodsInfo))
-        tv_service_detail.setText(serviceItemDetail.goodsInfo);
         tv_service.setText(serviceItemDetail.goodsName);
         tv_service_price.setText(serviceItemDetail.price + serviceItemDetail.unit);
 
-        tv_content_1.setText(serviceItemDetail.goodsDescription);
+        tv_content_1.setText(serviceItemDetail.goodsInfo);
         tv_content_2.setText(serviceItemDetail.serviceTenet);
         commentAdapter = new CommentAdapter(R.layout.item_comment, this);
         commentAdapter.addData(evDetail);

@@ -71,6 +71,7 @@ public class OrderBean {
     public String orgId;
     public String statuss;
     public String goodsName;
+    public String goodsPhoto;
     public String screenName;
     public Object etStr;
     public String addressname;

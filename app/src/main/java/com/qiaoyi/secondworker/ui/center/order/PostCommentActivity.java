@@ -38,7 +38,7 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
     private TextView tv_font_bottom;
     private String serviceItem;
     private String orderId;
-    private float sore;
+    private float sore = 10.0f;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,14 +94,14 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
         }
 
         // TODO validate success, do something
-        ApiUserService.postComment(orderId, comment, String.valueOf(sore), new ServiceCallBack<WrapCommentBean>() {
+        ApiUserService.postComment(orderId, comment, String.valueOf(sore), new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 
             }
 
             @Override
-            public void success(RespBean resp, Response<WrapCommentBean> payload) {
+            public void success(RespBean resp, Response payload) {
                 ToastUtils.showShort("评价成功");
                 finish();
             }

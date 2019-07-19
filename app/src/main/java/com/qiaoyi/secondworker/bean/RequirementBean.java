@@ -23,15 +23,18 @@ public class RequirementBean {
     public String text;
     public String photo;
     public String addressname;
+    public String addressName;
     public String voice;
     public String serviceId;
     public double lng;
     public double lat;
+    public double actualPay;
     public String atime;
-    public String aPhone;
+    public String phone;
     public String status;
     public String releaseTime;
     public String serviceType;
+    public String orderId;
 
     public String getStatus() {
         return status;

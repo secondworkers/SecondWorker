@@ -8,8 +8,8 @@
         android:width="@dimen/base1dp" />
 
     <corners
-        android:topLeftRadius="@dimen/base3dp"
-        android:topRightRadius="@dimen/base3dp"
-        android:bottomLeftRadius="@dimen/base3dp"
-        android:bottomRightRadius="@dimen/base3dp" />
+        android:topLeftRadius="@dimen/base30dp"
+        android:topRightRadius="@dimen/base30dp"
+        android:bottomLeftRadius="@dimen/base30dp"
+        android:bottomRightRadius="@dimen/base30dp" />
 </shape>

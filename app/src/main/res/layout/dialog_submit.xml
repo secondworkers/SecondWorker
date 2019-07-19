@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base280dp"
+        android:layout_marginLeft="@dimen/base50dp"
+        android:layout_marginTop="@dimen/base130dp"
+        android:layout_marginRight="@dimen/base50dp"
+        android:background="@drawable/shape_bg_btn_white">
+        <ImageView
+            android:id="@+id/iv_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base20dp"
+            android:src="@mipmap/ic_apply_success"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_below="@+id/iv_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/base15dp"
+            android:text="提交成功"
+            android:textColor="@color/text_black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/base10dp"
+            android:layout_marginEnd="@dimen/base10dp"
+            android:text="您的截图已提交预计3个工作日内审核完毕，
+            若审核通过将自动把佣金存入余额"
+            android:layout_marginTop="@dimen/base10dp"
+            android:textColor="@color/text_black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_goto"
+            android:layout_width="@dimen/base180dp"
+            android:layout_height="@dimen/base34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/base20dp"
+            android:background="@drawable/shape_gradient_blue"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="我知道啦"
+            android:textColor="#FDFEFF"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

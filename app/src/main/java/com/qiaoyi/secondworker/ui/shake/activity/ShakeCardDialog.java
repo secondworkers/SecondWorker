@@ -87,8 +87,8 @@ public class ShakeCardDialog extends Dialog implements View.OnClickListener {
 
     private void initData() {
         tv_service.setText(workerBean.goodsName);
-        if (!TextUtils.isEmpty(workerBean.introduction))
-            tv_xx.setText(workerBean.introduction);
+        if (!TextUtils.isEmpty(workerBean.goodsInfo))
+            tv_xx.setText(workerBean.goodsInfo);
         if (!TextUtils.isEmpty(workerBean.workerName))
             tv_mg_name.setText(workerBean.workerName);
         tv_serviced_num.setText("已服务"+workerBean.counts+"人");

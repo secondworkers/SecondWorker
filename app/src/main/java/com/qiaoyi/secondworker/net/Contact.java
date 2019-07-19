@@ -2,12 +2,9 @@ package com.qiaoyi.secondworker.net;
 
 public class Contact {
   public static final String DB_NAME = "secondworker";
-  ///
-//    public static final String BASE_URL = "http://irapi.sndistinguish.com/";//release主机
-//    public static final String BASE_URL = "http://irapi-test.sndistinguish.com/";//预发布
-  public static final String BASE_URL = "http://192.168.0.103:8080";//debug主机
-//  public static final String BASE_URL = "http://192.168.0.101:8066";//debug主机
-//  public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//预发布主机
+//  public static final String BASE_URL = "http://192.168.0.105:8080";//本地debug主机
+ public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//release主机
+// public static final String BASE_URL = "http://103.118.221.46:8080";//debug主机
 
   public static final String ANDROID = "android";
   public static final String APP_ID = "wx43715d46bea8060f";//微信appid
@@ -32,6 +29,7 @@ public class Contact {
   public static final String MODIFY_USERINFO = BASE_URL + "/user/upUserInfo";//修改用户信息
   public static final String BIND_PHONE = BASE_URL + "/user/bindPhone";//三方登录后绑定手机号
   public static final String FILL_INVITATION = BASE_URL + "/user/invatation";//填写邀请码
+  public static final String GET_SHARELIST = BASE_URL + "/user/queryInviteList";//获取分享明细
 
 
   public static final String THIRD_LOGIN = BASE_URL + "/user/loginThird";//第三方登录
@@ -61,6 +59,7 @@ public class Contact {
   public static final String POST_REQUIREMENT = BASE_URL + "/release/requirement";//发布需求
   public static final String GET_REQUIREMENT = BASE_URL + "/release/queryRequirement";//查询需求
   public static final String UPDATE_REQUIREMENT = BASE_URL + "/release/updateRequirement";//修改需求
+  public static final String GET_REQUIREMENT_DETAIL = BASE_URL + "/release/getRequirementDetail";//查看需求详情
   public static final String APPLY_WORKER = BASE_URL + "/worker/saveWorkerInfo";//申请成为秒工人
   public static final String QUERY_APPLY_WORKER_STATUS = BASE_URL + "/worker/selectAuditState";//查询申请状态
 
@@ -79,11 +78,15 @@ public class Contact {
   public static final String REWARDPOINT_LIST = BASE_URL + "/mgWallet/mgRewardpoint/list";//积分明细
   public static final String REWARDPOINT_PAY = BASE_URL + "/mgWallet/mgRewardpoint/pay";//积分支付
 
+  public static final String GET_TASKLIST = BASE_URL + "/system/mgTaskinfo/queryTask";//查询任务列表、查询任务详情
+  public static final String GET_TASK = BASE_URL + "/system/mgTaskaudit/getTask";//领取任务
+  public static final String SUBMIT_TASK = BASE_URL + "/system/mgTaskaudit/submitTask";//提交任务
+
 
   public static final String QINIU_UPTOKEN =
       "LzTePBio504g-GHxKU6MNg7_jVxdDSySVHEbN-oo:GenTUQtovVmR8kH7mZicqAa4Zrs=:eyJzY29wZSI6InNlY29uZHdvcmtlciIsImRlYWRsaW5lIjoxNTU3OTA0MDc1fQ==";
   public static final String TEST_IMG = "http://image.lenongdao.com/image/20180318/117.jpg";
-  public static final String QN_IMG = "http://pqpmjbn5w.bkt.clouddn.com/";
+  public static final String QN_IMG = "http://www.miaogong.ltd/";
 
 
   public static final String WX_PAY = BASE_URL+"/wxPay/app/tenpay/prepay";

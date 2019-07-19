@@ -97,6 +97,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
     private Button button_logout;
     private ImageView iv_semicircle1;
     private List<String> strings;
+    private int grade;
 
 
     public CenterFragment() {
@@ -121,6 +122,7 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
             public void success(RespBean resp, Response<WrapUserBean> payload) {
                 bean = payload.body().result;
                 auditStatus = bean.auditStatus;
+                grade = bean.grade;
                 initData();
             }
         });
@@ -233,7 +235,12 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
         Glide.with(getActivity()).load(bean.avatar).apply(GlideUtils.setCircleAvatar()).into(iv_my_head_photo);
         //Todo:会员级别
         RequestOptions requestOptions = new RequestOptions().placeholder(getActivity().getResources().getDrawable(R.mipmap.ic_normal_vip)).centerCrop();
-        Glide.with(getActivity()).load(getActivity().getResources().getDrawable(R.mipmap.ic_supreme_vip)).apply(requestOptions).into(iv_isVip);
+        if (grade == 1){
+            Glide.with(getActivity()).load(getActivity().getResources().getDrawable(R.mipmap.ic_senior_vip)).apply(requestOptions).into(iv_isVip);
+        }else if (grade == 2){
+            Glide.with(getActivity()).load(getActivity().getResources().getDrawable(R.mipmap.ic_supreme_vip)).apply(requestOptions).into(iv_isVip);
+        }else
+        Glide.with(getActivity()).load(getActivity().getResources().getDrawable(R.mipmap.ic_normal_vip)).apply(requestOptions).into(iv_isVip);
 
         tv_useful_money.setText(String.valueOf(bean.balance));
         tv_useful_integral.setText(String.valueOf(bean.rewardpoints));
@@ -283,10 +290,10 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
                 toMyOrderActivity(Contacts.WAITING_SERVICE);
                 break;
             case R.id.tv_not_confirm:
-                toMyOrderActivity(Contacts.WAITING_CONFIRM);
+                toMyOrderActivity(Contacts.ORDER_FINISH);
                 break;
             case R.id.tv_not_comment:
-                toMyOrderActivity(Contacts.WAITING_COMMENT);
+                toMyOrderActivity(Contacts.ORDER_CANCEL);
                 break;
             case R.id.tv_refund://退款
                 ToastUtils.showShort("退款请联系客服！");
@@ -313,10 +320,10 @@ public class CenterFragment extends BaseFragment implements View.OnClickListener
                 ToastUtils.showShort("敬请期待");
                 break;
             case R.id.tv_become_second_worker:
-                if (auditStatus == 3){
-                    startActivity(new Intent(getActivity(),ApplyStatusActivity.class));
-                }else {
-                    Intent intent = new Intent(getActivity(), BecomeWorkerActivity.class);
+                if (auditStatus == 4){
+                    startActivity(new Intent(getActivity(),BecomeWorkerActivity.class));
+                } else {
+                    Intent intent = new Intent(getActivity(), ApplyStatusActivity.class);
                     intent.putExtra("status",auditStatus);
                     startActivity(intent);
                 }

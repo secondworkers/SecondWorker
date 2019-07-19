@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/layout_top_title"
         android:id="@+id/include"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/base15dp"
-        android:layout_marginRight="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base10dp"
-        android:layout_below="@+id/include"
-        android:background="@drawable/shape_bg_btn_white">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/srl_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/include">
+        <cn.isif.msl.MultiStateLayout
+            android:id="@+id/msl_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:msl_emptyView="@layout/layout_empty"
+            app:msl_errorView="@layout/layout_error"
+            app:msl_loadingView="@layout/layout_loading">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base10dp"
+            android:background="@drawable/shape_bg_btn_white"/>
+        </cn.isif.msl.MultiStateLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

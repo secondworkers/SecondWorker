@@ -18,4 +18,7 @@
     <color name="text_red">#FF0000</color>
     <color name="bg_grey">#F5F5F5</color>
     <color name="title_grey">#888888</color>
+    <color name="tine_grey">#999999</color>
+    <color name="text_orange">#FF5027</color>
+    <color name="text_orange_yellow">#FFA200</color>
 </resources>

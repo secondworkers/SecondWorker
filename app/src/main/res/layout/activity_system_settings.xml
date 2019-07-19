@@ -140,20 +140,27 @@
             android:layout_marginRight="@dimen/base15dp"
             android:src="@mipmap/arrow_go" />
 
+        <TextView
+            android:id="@+id/tv_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base1dp"
+            android:layout_below="@+id/tv_us"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_marginRight="@dimen/base15dp"
+            android:background="#F5F5F5" />
+
     </RelativeLayout>
 
     <Button
         android:id="@+id/button_logout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/base10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_total"
-        android:layout_marginLeft="@dimen/base15dp"
-        android:layout_marginTop="@dimen/base50dp"
-        android:layout_marginRight="@dimen/base15dp"
-        android:background="@drawable/shape_gradient_little_left_blue"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_wallet_recharge_no_border_grey"
         android:text="退出登录"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:visibility="invisible" />
+        android:textColor="@color/text_grey"
+        android:textSize="15sp" />
 
 </RelativeLayout>

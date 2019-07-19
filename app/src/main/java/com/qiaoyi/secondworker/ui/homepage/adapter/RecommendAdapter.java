@@ -10,7 +10,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.RedomListBean;
+import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.net.Contact;
+import com.qiaoyi.secondworker.ui.center.center.LoginActivity;
 import com.qiaoyi.secondworker.ui.homepage.activity.ServiceDetailsActivity;
 
 /**

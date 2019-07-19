@@ -38,7 +38,7 @@ public class SearchServiceBean {
     public String profile;
     public String orgId;
     public Object serviceTypeId;
-    public int counts;
+    public int count;
     public double price;
     public String unit;
     public String orgName;

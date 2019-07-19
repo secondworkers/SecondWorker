@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base10dp"
+        android:background="@color/line_color" />
+
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tv_1">
+
+        <ImageView
+            android:id="@+id/iv_trill"
+            android:layout_width="@dimen/base40dp"
+            android:layout_height="@dimen/base40dp"
+            android:layout_margin="@dimen/base15dp"
+            android:src="@mipmap/iv_trill" />
+
+        <TextView
+            android:id="@+id/tv_forward_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base15dp"
+            android:layout_toRightOf="@+id/iv_trill"
+            android:text="抖音点赞转发任务"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_member_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_forward_task"
+            android:layout_marginTop="@dimen/base5dp"
+            android:layout_toRightOf="@+id/iv_trill"
+            android:background="@drawable/shape_trill_member_background_blue"
+            android:gravity="center"
+            android:paddingBottom="@dimen/base3dp"
+            android:paddingLeft="@dimen/base5dp"
+            android:paddingRight="@dimen/base5dp"
+            android:paddingTop="@dimen/base3dp"
+            android:text="黄金会员专属"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/base15dp"
+            android:gravity="bottom"
+            android:layout_marginTop="@dimen/base13dp">
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="@color/text_orange"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tv_money"
+                android:layout_toRightOf="@+id/tv_money"
+                android:text="元/次"
+                android:textColor="#FF5027"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/rl_money"
+            android:layout_marginRight="@dimen/base15dp"
+            android:layout_marginTop="@dimen/base5dp"
+            android:visibility="gone"
+            android:text="每天仅500名额丨剩余96名额"
+            android:textColor="@color/tine_grey"
+            android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/iv_task_status"
+            android:layout_below="@+id/rl_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/iv_task_done"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

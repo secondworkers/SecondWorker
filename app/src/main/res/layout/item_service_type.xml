@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/base80dp"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/base35dp"
     android:gravity="center"
-    android:layout_margin="@dimen/base10dp"
+    android:layout_margin="@dimen/base5dp"
     android:background="@color/bg_grey"
     >
 <TextView
@@ -12,7 +12,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/tv_service_type"
     android:padding="@dimen/base5dp"
-    android:text="日常保洁"
+    android:text="洗衣机日常"
     android:textSize="15sp"
     />
 </RelativeLayout>

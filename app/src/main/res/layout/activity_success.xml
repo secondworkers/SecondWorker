@@ -30,38 +30,44 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="您的需求已发布成功~"
         android:textColor="@color/deep_black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/tv_goto_shake"
-        android:layout_width="@dimen/base125dp"
-        android:layout_height="@dimen/base44dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/shape_gradient_little_left_blue"
-        android:gravity="center"
-        android:text="再摇一次"
-        android:textColor="@color/text_white"
-        android:textSize="15sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="180dp"
+        android:gravity="center_horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        <TextView
+            android:id="@+id/tv_goto_shake"
+            android:layout_width="@dimen/base130dp"
+            android:layout_height="@dimen/base44dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/shape_gradient_little_left_blue"
+            android:gravity="center"
+            android:text="再摇一次"
+            android:textColor="@color/text_white"
+            android:textSize="15sp"
+             />
 
-    <TextView
-        android:id="@+id/tv_see_details"
-        android:layout_width="@dimen/base125dp"
-        android:layout_height="@dimen/base44dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/shape_kuangt_grey"
-        android:gravity="center"
-        android:text="查看订单"
-        android:textColor="@color/text_grey"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_goto_shake"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <TextView
+            android:id="@+id/tv_see_details"
+            android:layout_width="@dimen/base130dp"
+            android:layout_height="@dimen/base44dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/shape_kuangt_grey"
+            android:gravity="center"
+            android:text="查看订单"
+            android:textColor="@color/text_grey"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

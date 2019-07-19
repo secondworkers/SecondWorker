@@ -85,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="2"
+                android:isIndicator="true"
                 android:layout_marginTop="@dimen/base2dp"
                 android:layout_below="@+id/tv_mg_name"
                 android:layout_marginLeft="@dimen/base13dp"/>

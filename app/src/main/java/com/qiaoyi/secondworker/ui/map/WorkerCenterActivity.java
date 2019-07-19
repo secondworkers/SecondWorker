@@ -100,7 +100,7 @@ public class WorkerCenterActivity extends BaseActivity implements View.OnClickLi
                 commentList = result.listev;
                 serviceItemList = result.listItem;
                 WorkersBean workersBean = result.mgWorker;
-//                rate = workersBean.rate;
+                rate = workersBean.rate;
                 icon = workersBean.icon;
                 range = workersBean.range;
                 counts = workersBean.counts;

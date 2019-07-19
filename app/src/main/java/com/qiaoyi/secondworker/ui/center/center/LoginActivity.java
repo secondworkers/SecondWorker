@@ -128,7 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             try {
                                 JSONObject jsonObject = new JSONObject(payload.body().toString());
                                 JSONObject rep = jsonObject.getJSONObject("rspData");
-                                loginSuccess(rep.toString());
+                                loginSuccess(resp.getMessage(),rep.toString());
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -225,17 +225,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
 
             @Override public void success(RespBean resp, Response payload) {
-                if ("error".equals( resp.getMessage())){
-                    ToastUtils.showLong("邀请码填写错误，请到个人中心填写！");
-                }else {
-                    ToastUtils.showLong("绑定成功");
-                }
                 String response = payload.body().toString();
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response);
                     JSONObject rspData = jsonObject.getJSONObject("rspData");
-                    loginSuccess(rspData.toString());
+                    loginSuccess(resp.getMessage(),rspData.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -247,16 +242,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * 登录、三方登录成功
      * @param response
      */
-    private void loginSuccess(String response) {
+    private void loginSuccess(String msg,String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONObject result = jsonObject.getJSONObject("result");
             String id = result.getString("uid");
+            String message = result.optString("message");
+            ToastUtils.showShort(message);
             //todo：返回一个特定字符 标志邀请码填写错误
             if (!TextUtils.isEmpty(id)) {
                 AccountHandler.saveLoginInLocal(result.toString());
                 EventBus.getDefault().post(new MessageEvent("SUCCESS"));
 //                bindPush(id);
+                if ("error".equals(msg)){
+                    ToastUtils.showLong(message);
+                }
+
                 finish();
             } else {
                 ToastUtils.showShort("未知异常");

@@ -170,7 +170,7 @@ public class ShakeActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void success(RespBean resp, Response<WrapWorkerBean> payload) {
                 WrapWorkerBean body = payload.body();
-                result = body.result.worker;
+                result = body.result;
                 if (!TextUtils.isEmpty(result.workerId)){
                     new ShakeCardDialog(ShakeActivity.this, result, new ShakeCardDialog.ShakeCardListener() {
                         @Override

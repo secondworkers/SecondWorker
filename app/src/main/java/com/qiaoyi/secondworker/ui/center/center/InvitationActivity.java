@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.ClipboardManager;
 import android.view.View;
@@ -12,9 +13,19 @@ import android.widget.TextView;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.ShareBaseBean;
+import com.qiaoyi.secondworker.bean.ShareBean;
+import com.qiaoyi.secondworker.bean.WrapShareBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.net.RespBean;
+import com.qiaoyi.secondworker.net.Response;
+import com.qiaoyi.secondworker.net.ServiceCallBack;
+import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.center.adapter.ShareListAdapter;
 import com.qiaoyi.secondworker.ui.center.wallet.MyWalletActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
+
+import java.util.List;
 
 import cn.isif.alibs.utils.ToastUtils;
 
@@ -43,6 +54,7 @@ public class InvitationActivity extends BaseActivity implements View.OnClickList
         setContentView(R.layout.activity_invitation_activity);
         VwUtils.fixScreen(this);
         initView();
+        requestData();
     }
 
     private void initView() {
@@ -71,6 +83,35 @@ public class InvitationActivity extends BaseActivity implements View.OnClickList
         tv_qrCode.setOnClickListener(this);
     }
 
+    private void requestData() {
+        ApiUserService.getShareList(AccountHandler.getmInvitCode(), 0, 3, new ServiceCallBack<WrapShareBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
+
+            @Override
+            public void success(RespBean resp, Response<WrapShareBean> payload) {
+                ShareBaseBean result = payload.body().result;
+                initData(result);
+            }
+        });
+    }
+
+    private void initData(ShareBaseBean result) {
+        int counts = result.counts;
+        double money = result.money;
+        List<ShareBean> list = result.list;
+        tv_money.setText(money+"元");
+        tv_count.setText(counts+"位");
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rv_list.setLayoutManager(manager);
+        ShareListAdapter listAdapter = new ShareListAdapter(R.layout.item_invitation_details_purple_background);
+        listAdapter.addData(list);
+        rv_list.setAdapter(listAdapter);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -86,7 +127,7 @@ public class InvitationActivity extends BaseActivity implements View.OnClickList
                 ToastUtils.showShort("已复制");
                 break;
             case R.id.tv_look_more:
-
+                startActivity(new Intent(this,ShareDetailActivity.class));
                 break;
             case R.id.tv_share:
                 startActivity(new Intent(this,ShareInvitationActivity.class));

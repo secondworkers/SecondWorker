@@ -22,13 +22,12 @@ public class WorkerServiceListAdapter extends BaseQuickAdapter<ServiceItemListBe
     public WorkerServiceListAdapter(int item_collect, Activity activity) {
         super(item_collect);
         this.activity = activity;
-
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ServiceItemListBean item) {
         ImageView iv_img = helper.getView(R.id.iv_img);
-        helper.setText(R.id.tv_service,item.serviceItem);
+        helper.setText(R.id.tv_service,item.goodsName);
         helper.setText(R.id.tv_price,item.price+item.unit);
         Glide.with(activity).load(item.goodsPhoto).apply(GlideUtils.setRoundTransform(activity,5)).into(iv_img);
     }

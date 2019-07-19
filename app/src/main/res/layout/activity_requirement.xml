@@ -59,7 +59,7 @@
             android:button="@null"
             android:checked="false"
             android:gravity="center"
-            android:text="已完成"
+            android:text="待支付"
             android:textColor="@drawable/selector_tab_color_radio_button"
             android:textSize="15sp"
             />

@@ -62,14 +62,9 @@ public class ApplyDialog extends Dialog implements View.OnClickListener {
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.iv_cancel:
+            case R.id.tv_i_see:
                 dismiss();
                 break;
         }

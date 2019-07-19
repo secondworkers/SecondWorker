@@ -48,7 +48,7 @@ public class WithdrawalActivity extends BaseActivity implements View.OnClickList
     private EditText et_num;
     private TextView tv_apply_withdrawal,tv_bank_card,tv_apply_all;
     private int checkId = 1;
-    private String bank_num;
+    private String bank_num ="";
     private double totalCash;
 
     @Override
@@ -107,7 +107,7 @@ public class WithdrawalActivity extends BaseActivity implements View.OnClickList
         ApiUserService.gotoWithdrawal(new ServiceCallBack<WrapCashBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showLong(errorInfo);
             }
 
             @Override
@@ -162,24 +162,29 @@ public class WithdrawalActivity extends BaseActivity implements View.OnClickList
                 ToastUtils.showShort("输入金额应为100整数倍");
                 return;
             }
-            if (v < 0){
+            if (0 >= v){
                 ToastUtils.showShort("可提现金额不足");
                 return;
             }else {
-                ApiUserService.applyWithdrawal(bank_num, num, new ServiceCallBack() {
-                    @Override
-                    public void failed(String code, String errorInfo, String source) {
-                        ToastUtils.showShort(errorInfo);
-                    }
-                    @Override
-                    public void success(RespBean resp, Response payload) {
-                        Intent intent = new Intent(WithdrawalActivity.this, WithdrawalSuccessActivity.class);
-                        intent.putExtra("money",String.valueOf(num));
-                        intent.putExtra("bank_name",tv_bank_card.getText());
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+                if (TextUtils.isEmpty(bank_num)){
+                    ToastUtils.showShort("请选择提现银行卡");
+                    return;
+                }else {
+                    ApiUserService.applyWithdrawal(bank_num, num, new ServiceCallBack() {
+                        @Override
+                        public void failed(String code, String errorInfo, String source) {
+                            ToastUtils.showShort(errorInfo);
+                        }
+                        @Override
+                        public void success(RespBean resp, Response payload) {
+                            Intent intent = new Intent(WithdrawalActivity.this, WithdrawalSuccessActivity.class);
+                            intent.putExtra("money",String.valueOf(num));
+                            intent.putExtra("bank_name",tv_bank_card.getText());
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
             }
 
         }

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.LocationBean;
+import com.qiaoyi.secondworker.bean.OrderConfirmEvent;
 import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
@@ -30,6 +31,7 @@ import com.qiaoyi.secondworker.remote.ApiHome;
 import com.qiaoyi.secondworker.remote.ApiUserService;
 import com.qiaoyi.secondworker.remote.PostResultBean;
 import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
+import com.qiaoyi.secondworker.ui.center.address.MyLocationActivity;
 import com.qiaoyi.secondworker.ui.shake.activity.PostSuccessActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.datepicker.CustomDatePicker;
@@ -77,6 +79,8 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
     private String serviceTypeId = "";
     private String content;
     private String addressTitle;
+    private String address_id;
+    private String phone;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -120,8 +124,8 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         iv_add.setOnClickListener(this);
         tv_post_request.setOnClickListener(this);
         tv_address.setOnClickListener(this);
-        tv_address.setOnClickListener(this);
         tv_service_type.setOnClickListener(this);
+        tv_arrive_time.setOnClickListener(this);
     }
     private void initData() {
         best_result = getIntent().getStringExtra("best_result");
@@ -145,12 +149,10 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         timePicker.setIsLoop(true);
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void  onLocationSelect(LocationBean location){
-        lat = location.getLat();
-        lng = location.getLng();
-        String address_msg = location.getAddress_msg();
-        addressTitle = location.getAddress_title();
-        tv_address.setText(addressTitle);
+    public void  onAddressClick(OrderConfirmEvent event){
+        tv_address.setText(event.getAddress_title_msg());
+        phone = event.getAddress_name_phone();
+        address_id = event.getAddress_id();
     }
     @Override
     public void onClick(View v) {
@@ -167,7 +169,7 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
                 }
                 break;
             case R.id.tv_address:
-                startActivity(new Intent(this,GetAddressActivity.class));
+                startActivity(new Intent(this,MyLocationActivity.class));
                 break;
             case R.id.tv_service_type:
             case R.id.tv_service:
@@ -209,17 +211,20 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
             if (TextUtils.isEmpty(content)) {
                 ToastUtils.showShort("请输入您的服务描述");
                 return;
-            } else if (lat == 0.0) {
+            } else if (TextUtils.isEmpty(address_id)) {
                 ToastUtils.showShort("请选择您的服务地址");
-            } else {
+                return;
+            } else if (TextUtils.isEmpty(tv_time.getText().toString())){
+                ToastUtils.showShort("请选择您的服务时间");
+                return;
+            }else {
+                phone = et_phone_number.getText().toString().trim();
                 //
                 ApiUserService.postRequirement(content,
-                        "", addressTitle,
-                        "",
-                        lng, lat,
+                        "", address_id,
                         serviceTypeId,
-                        currentTime,
-                        AccountHandler.getUserPhone(),
+                        tv_time.getText().toString(),
+                        phone,
                         AccountHandler.getUserId(), new ServiceCallBack<PostResultBean>() {
                             @Override
                             public void failed(String code, String errorInfo, String source) {
@@ -228,7 +233,10 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
 
                             @Override
                             public void success(RespBean resp, Response<PostResultBean> payload) {
-                                startActivity(new Intent(PostRequirementActivity.this, MyRequirementActivity.class));
+                                String result = payload.body().result;
+                                Intent intent = new Intent(PostRequirementActivity.this, WaitingReceiveActivity.class);
+                                intent.putExtra("id",result);
+                                startActivity(intent);
                                 finish();
                             }
                         });

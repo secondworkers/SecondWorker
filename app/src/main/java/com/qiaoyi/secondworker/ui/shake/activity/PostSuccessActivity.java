@@ -80,6 +80,7 @@ public class PostSuccessActivity extends BaseActivity implements View.OnClickLis
             tv_goto_shake.setVisibility(View.GONE);
             view_right.setVisibility(View.GONE);
             tv_see_details.setVisibility(View.VISIBLE);
+            tv_success.setText("订单支付成功");
         }else if (from.equals("shake")){
             tv_goto_shake.setVisibility(View.VISIBLE);
             view_right.setVisibility(View.VISIBLE);

@@ -58,7 +58,7 @@
             android:button="@null"
             android:checked="false"
             android:gravity="center"
-            android:text="待确认"
+            android:text="已完成"
             android:textColor="@drawable/selector_tab_color_radio_button"
             android:textSize="15sp"
             />
@@ -70,7 +70,7 @@
             android:button="@null"
             android:checked="false"
             android:gravity="center"
-            android:text="待评价"
+            android:text="已取消"
             android:textColor="@drawable/selector_tab_color_radio_button"
             android:textSize="15sp"
             />

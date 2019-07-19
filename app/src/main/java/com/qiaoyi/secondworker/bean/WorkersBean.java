@@ -66,6 +66,7 @@ public class WorkersBean {
     public Object serviceTypeId;
     public Object serviceItem;
     public int counts;
+    public String rate;
     public double price;
     public String unit;
     public String image;

@@ -58,6 +58,7 @@ public class WorkerBean {
     public String scfmPhoto;
     public int auditStatus;
     public String goodsId;
+    public String goodsInfo;
     public String serviceTypeId;
     public String goodsName;
     public int counts;

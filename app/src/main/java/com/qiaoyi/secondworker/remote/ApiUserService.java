@@ -2,7 +2,9 @@ package com.qiaoyi.secondworker.remote;
 
 
 import com.qiaoyi.secondworker.bean.ApplyBean;
+import com.qiaoyi.secondworker.bean.BaseRequirementBean;
 import com.qiaoyi.secondworker.bean.PaymentDetailsBean;
+import com.qiaoyi.secondworker.bean.RequirementBean;
 import com.qiaoyi.secondworker.bean.WrapAddressBean;
 import com.qiaoyi.secondworker.bean.WrapBankBean;
 import com.qiaoyi.secondworker.bean.WrapCashBean;
@@ -15,6 +17,8 @@ import com.qiaoyi.secondworker.bean.WrapPrePayWeChatEntity;
 import com.qiaoyi.secondworker.bean.WrapQiNiuTokenBean;
 import com.qiaoyi.secondworker.bean.WrapRequirementBean;
 import com.qiaoyi.secondworker.bean.WrapRewardpointBean;
+import com.qiaoyi.secondworker.bean.WrapShareBean;
+import com.qiaoyi.secondworker.bean.WrapTaskBean;
 import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.bean.WrapUserBean;
 import com.qiaoyi.secondworker.bean.WrapWalletBean;
@@ -42,7 +46,7 @@ public class ApiUserService {
     public static Call loginThird(String openId, String typeId, String nickname,String avatar,
                                   ServiceCallBack callBack) {
         Params params = new Params.Builder().json().build();
-        params.put("openId", openId);
+        params.put("openid", openId);
         params.put("typeId", typeId);
         params.put("nickName", nickname);
         params.put("avatar", avatar);
@@ -67,6 +71,19 @@ public class ApiUserService {
         Params params = new Params.Builder().json().build();
         params.put("pyqcode", pyqcode);
         return IfOkNet.getInstance().post(Contact.FILL_INVITATION, params, callBack);
+    }
+
+    /**
+     * 邀请明细
+     * @param callBack
+     * @return
+     */
+  public static Call getShareList(String yqcode,int offset,int pageSize,ServiceCallBack<WrapShareBean> callBack) {
+        Params params = new Params.Builder().json().build();
+        params.put("yqcode", yqcode);
+        params.put("offset", offset);
+        params.put("pageSize", pageSize);
+        return IfOkNet.getInstance().post(Contact.GET_SHARELIST, params, callBack);
     }
 
     //发送短息
@@ -267,7 +284,7 @@ public static Call getOrderDetails(String orderid, ServiceCallBack<WrapOrderDeta
      * @param callBack
      * @return
      */
-    public static Call postComment(String orderid,String evaluation,String score, ServiceCallBack<WrapCommentBean> callBack){
+    public static Call postComment(String orderid,String evaluation,String score, ServiceCallBack callBack){
         Params params = new Params.Builder().json().build();
         params.put("orderid",orderid);
         params.put("evaluation",evaluation);
@@ -278,33 +295,39 @@ public static Call getOrderDetails(String orderid, ServiceCallBack<WrapOrderDeta
      * 发布需求
      * @param text
      * @param photo
-     * @param addressname
-     * @param voice
-     * @param lng
      * @param atime
-     * @param aPhone
+     * @param phone
      * @param uid
      * @param callBack
      * @return
      */
 public static Call postRequirement(String text, String photo,
-                                   String addressname, String voice,
-                                   double lng, double lat,
+                                   String addressId,
                                    String serviceId, String atime,
-                                   String aPhone, String uid,
+                                   String phone, String uid,
                                    ServiceCallBack<PostResultBean> callBack){
     Params params = new Params.Builder().json().build();
     params.put("text",text);
     params.put("photo",photo);
-    params.put("addressname",addressname);
-    params.put("voice",voice);
-    params.put("lng",lng);
-    params.put("lat",lat);
+    params.put("addressId",addressId);
     params.put("serviceId",serviceId);
     params.put("atime",atime);
-    params.put("aPhone",aPhone);
+    params.put("phone",phone);
     params.put("uid",uid);
     return IfOkNet.getInstance().post(Contact.POST_REQUIREMENT, params, callBack);//
+}
+
+    /**
+     * 查询订单详情
+     * @param id
+     * @param callBack
+     * @return
+     */
+public static Call getRequirementDetail(String id,
+                                   ServiceCallBack<BaseRequirementBean> callBack){
+    Params params = new Params.Builder().json().build();
+    params.put("id",id);
+    return IfOkNet.getInstance().post(Contact.GET_REQUIREMENT_DETAIL, params, callBack);//
 }
 
     /**
@@ -331,7 +354,7 @@ public static Call getRequirementList(String uid,String status,int pageCurrent,i
      * @param callBack
      * @return
      */
-public static Call updateRequirementList(String id,String status, ServiceCallBack<WrapRequirementBean> callBack){
+public static Call updateRequirementList(String id,String status, ServiceCallBack callBack){
 
     Params params = new Params.Builder().json().build();
     params.put("id",id);
@@ -340,14 +363,28 @@ public static Call updateRequirementList(String id,String status, ServiceCallBac
 }
 
     /**
+     *
+     * "workerName":"李飞",
+     "idCard":"370829199602063524",
+     "frontPhoto":"https://image.baidu.com/",
+     "negativePhoto":"https://image.baidu.com/",
+     "sczmPhoto":"https://image.baidu.com/",
+     "scfmPhoto":"https://image.baidu.com/",
+     "district":"山东省济南市历城区",
+     "address":"郭店小区",
+     "lng":37.125545,
+     "lat":120.021255,
+     "phone":"14512014563",
+     "auditStatus":"0",
+     *
      * @param callBack
      * @return
      */
 public static Call applyWorker(String workerName,String idCard,String frontPhoto,
                                String negativePhoto,String sczmPhoto,String scfmPhoto,
-                               String city,String cityCode,double lng,double lat,String phone,
+                               String district,String address,double lng,double lat,String phone,
                                String auditStatus,
-                               ServiceCallBack<WrapRequirementBean> callBack){
+                               ServiceCallBack callBack){
 
     Params params = new Params.Builder().json().build();
     params.put("workerName",workerName);
@@ -356,8 +393,8 @@ public static Call applyWorker(String workerName,String idCard,String frontPhoto
     params.put("negativePhoto",negativePhoto);
     params.put("sczmPhoto",sczmPhoto);
     params.put("scfmPhoto",scfmPhoto);
-    params.put("city",city);
-    params.put("cityCode",cityCode);
+    params.put("district",district);
+    params.put("address",address);
     params.put("lng",lng);
     params.put("lat",lat);
     params.put("phone",phone);
@@ -398,10 +435,13 @@ public static Call applyWorker(String workerName,String idCard,String frontPhoto
      * @param callBack
      * @return
      */
-public static Call wxPay(String orderid, double actualPay , ServiceCallBack<WrapPrePayWeChatEntity> callBack){
+public static Call wxPay(String orderid, double actualPay,double rewardPoint,int type, String pyqCode, ServiceCallBack<WrapPrePayWeChatEntity> callBack){
     Params params = new Params.Builder().json().build();
     params.put("orderid",orderid);
     params.put("actualPay",actualPay);
+    params.put("rewardPoint",rewardPoint);
+    params.put("type",type);
+    params.put("pyqCode",pyqCode);
     return IfOkNet.getInstance().post(Contact.WX_PAY, params, callBack);
 }
 
@@ -533,6 +573,43 @@ public static Call bindBankCard(String realName,String idCardNo,String bankCardN
         params.put("actualPay",actualPay);
         params.put("serviceItem",serviceItem);
         return IfOkNet.getInstance().post(Contact.REWARDPOINT_PAY, params, callBack);
+    }
+
+    /**
+     * 查询任务列表、查询任务详情
+     * @param id
+     * @param callBack
+     * @return
+     */
+    public static Call queryTask(String id,ServiceCallBack<WrapTaskBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("id",id);
+        return IfOkNet.getInstance().post(Contact.GET_TASKLIST, params, callBack);
+    }
+
+    /**
+     * 领取任务
+     * @param taskInfoId
+     * @param callBack
+     * @return
+     */
+    public static Call getTask(String taskInfoId,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("taskInfoId",taskInfoId);
+        return IfOkNet.getInstance().post(Contact.GET_TASK, params, callBack);
+    }
+
+    /**
+     * @param taskAuditId
+     * @param photo
+     * @param callBack
+     * @return
+     */
+    public static Call submitTask(String taskAuditId,String photo,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("taskAuditId",taskAuditId);
+        params.put("photo",photo);
+        return IfOkNet.getInstance().post(Contact.SUBMIT_TASK, params, callBack);
     }
 }
 

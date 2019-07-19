@@ -24,7 +24,7 @@ public abstract class ServiceCallBack<T> extends CallBack {
   public static final String PARSE_ERROR_CODE = "-2000";//json parse failed
   private static final Gson mGson = new Gson();
   private static final String SUCCESS = "1000";//success back
-  private final String JSON_PARSE_ERROR = "Json 解析错误";
+  private final String JSON_PARSE_ERROR = "Json解析错误";
   private final String NET_ERROR = "网络异常";
   private Type payloadClass = null;
 

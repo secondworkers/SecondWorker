@@ -17,8 +17,16 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import cn.isif.alibs.utils.ToastUtils;
 
 public class PayHandler {
-    public static void onRequest(Activity context, String order_id, double price ,String service_name) {
-        ApiUserService.wxPay(order_id, price, new ServiceCallBack<WrapPrePayWeChatEntity>() {
+    /**
+     * @param context
+     * @param order_id
+     * @param price
+     * @param rewardPoint
+     * @param service_name
+     * @param type 1(支付) 2（充值）
+     */
+    public static void onRequest(Activity context, String order_id, double price ,double rewardPoint,String service_name,int type,String pyqCode) {
+        ApiUserService.wxPay(order_id,price,rewardPoint,type,pyqCode, new ServiceCallBack<WrapPrePayWeChatEntity>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);

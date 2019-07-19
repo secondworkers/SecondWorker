@@ -252,7 +252,7 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
         View view = LayoutInflater.from(this).inflate(R.layout.layout_popwindow_recyclerview,null);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         int spanCount = 3;
-        int spacing = VwUtils.getSW(this, 20);//item间隙宽度
+        int spacing = VwUtils.getSW(this, 10);//item间隙宽度
         int itemDecorationCount = recyclerView.getItemDecorationCount();
         if (itemDecorationCount == 0) {
             recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, false));

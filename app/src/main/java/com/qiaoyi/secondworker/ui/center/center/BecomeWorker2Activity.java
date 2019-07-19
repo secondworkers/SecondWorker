@@ -164,14 +164,10 @@ public class BecomeWorker2Activity extends BaseActivity implements View.OnClickL
         }
 
         String number = et_input_ID_number.getText().toString().trim();
-        try {
-            if (TextUtils.isEmpty(number)|| IDCardUtils.isIDCard(number)) {
+            if (TextUtils.isEmpty(number)) {
                 Toast.makeText(this, "请输入正确的身份证号", Toast.LENGTH_SHORT).show();
                 return;
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         if (imgList.size()==4){
             // TODO validate success, do something
             Intent intent = new Intent(this, BecomeWorker3Activity.class);

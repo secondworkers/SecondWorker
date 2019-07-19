@@ -11,7 +11,7 @@ public class Contacts {
     public static final String ALL_ORDERS = "qb";
     public static final String WAITING_PAY = "dfk";
     public static final String WAITING_SERVICE = "dfw";
-    public static final String WAITING_CONFIRM = "dqr";
-    public static final String WAITING_COMMENT = "dpj";
+    public static final String ORDER_FINISH = "ywc";
+    public static final String ORDER_CANCEL = "yqx";
 
 }

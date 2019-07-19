@@ -54,7 +54,7 @@ public class MapTitle2Adapter extends RecyclerView.Adapter<MapTitle2Adapter.View
                 mposition = holder.getAdapterPosition();
                 //在点击监听里最好写入setVisibility(View.VISIBLE);这样可以避免效果会闪
                 holder.mTitle.setTextColor(activity.getResources().getColor(R.color.text_blue));
-                listener.refreshPriorityUI(serviceTypeBean.serviceTypeId);
+                listener.refreshPriorityUI(serviceTypeBean.id);
                 //刷新界面 notify 通知Data 数据set设置Changed变化
                 //在这里运行notifyDataSetChanged 会导致下面的onBindViewHolder 重新加载一遍
                 notifyDataSetChanged();

@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.ServiceItemBean;
 import com.qiaoyi.secondworker.bean.ServiceItemListBean;
+import com.qiaoyi.secondworker.ui.homepage.activity.ServiceDetailsActivity;
 import com.qiaoyi.secondworker.ui.homepage.activity.ServiceListActivity;
 import com.qiaoyi.secondworker.utlis.GlideBorderCircleTransform;
 import com.qiaoyi.secondworker.utlis.GlideUtils;
@@ -28,7 +29,7 @@ import cn.isif.plug.bannerview.util.GlideRoundTransform;
  * @author Spirit
  */
 
-public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseViewHolder>{
+public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseViewHolder> {
     Activity activity;
     private ImageView iv_service1,iv_service3,iv_service2;
 
@@ -57,6 +58,12 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
                 Glide.with(activity).load(itemList.get(0).goodsPhoto).apply(GlideUtils.setRoundTransform(activity, 3)).into(iv_service1);
+                iv_service1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(0).goodsId,"");
+                    }
+                });
             } else if (itemList.size() == 2) {
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
@@ -71,7 +78,18 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
                         load(itemList.get(1).goodsPhoto).
                         apply(GlideUtils.setRoundTransform(activity, 3)).
                         into(iv_service2);
-
+                iv_service1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(0).goodsId,"");
+                    }
+                });
+                iv_service2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(1).goodsId,"");
+                    }
+                });
             } else if (itemList.size() >= 3) {
                 helper.setText(R.id.tv_service1, itemList.get(0).serviceItem);
                 helper.setText(R.id.tv_price1, "预收" + itemList.get(0).price + itemList.get(0).unit);
@@ -93,6 +111,24 @@ public class ServiceItemAdapter extends BaseQuickAdapter<ServiceItemBean,BaseVie
                         load(itemList.get(2).goodsPhoto).
                         apply(override).
                         into(iv_service3);
+                iv_service1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(0).goodsId,"");
+                    }
+                });
+                iv_service2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(1).goodsId,"");
+                    }
+                });
+                iv_service3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ServiceDetailsActivity.startDetails(activity,itemList.get(2).goodsId,"");
+                    }
+                });
             }
         }else {
             ll_img.setVisibility(View.GONE);

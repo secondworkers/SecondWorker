@@ -29,6 +29,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+
 import cn.isif.alibs.utils.ALog;
 
 /**
@@ -43,13 +45,13 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
     private TextView et_select_city;
     private TextView et_select_enter_area;
     private EditText et_input_phone_number;
-    private EditText et_input_verification_code;
+    private EditText et_input_verification_code,et_address;
     private TextView tv_apply_immediately,tv_get_code;
     private double city_lat;
     private double city_lng;
     private String name;
     private String number;
-    private String[] imgLists;
+    private ArrayList<String> imgLists;
     private String city_code;
     private String phone;
 
@@ -59,7 +61,7 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         number = intent.getStringExtra("number");
-        imgLists = intent.getStringArrayExtra("imgList");
+        imgLists = intent.getStringArrayListExtra("imgList");
         VwUtils.fixScreen(this);
         setContentView(R.layout.activity_apply_become_secondworker_fill_service_area);
         EventBus.getDefault().register(this);
@@ -69,11 +71,12 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
     private void initView() {
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         tv_title_txt.setText("申请成为秒工人");
-        view_right = (RelativeLayout) findViewById(R.id.view_right);
+        view_right = (RelativeLayout) findViewById(R.id.view_back);
         et_select_city = (TextView) findViewById(R.id.et_select_city);
         et_select_enter_area = (TextView) findViewById(R.id.et_select_enter_area);
         et_input_phone_number = (EditText) findViewById(R.id.et_input_phone_number);
         et_input_verification_code = (EditText) findViewById(R.id.et_input_verification_code);
+        et_address = (EditText) findViewById(R.id.et_address);
         tv_apply_immediately = (TextView) findViewById(R.id.tv_apply_immediately);
         tv_get_code = (TextView) findViewById(R.id.tv_get_code);
 
@@ -90,11 +93,11 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
             case R.id.view_right:
                     finish();
                 break;
-            case R.id.et_select_city:
-                Intent intent = new Intent(this, CityPickerActivity.class);
-                intent.putExtra("location_city",city);
-                startActivityForResult(intent,3001);
-                break;
+//            case R.id.et_select_city:
+//                Intent intent = new Intent(this, CityPickerActivity.class);
+//                intent.putExtra("location_city",city);
+//                startActivityForResult(intent,3001);
+//                break;
             case R.id.tv_get_code:
                 tv_get_code.setClickable(false);
                 phone = et_input_phone_number.getText().toString().trim();
@@ -164,8 +167,7 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
         String address_msg = location.getAddress_msg();
         String address_title = location.getAddress_title();
         ALog.e("lat="+lat+",lng="+lng+"\naddress_msg="+address_msg+"address_title="+address_title);
-        et_select_enter_area.setText(address_title);
-        //重新根据请求数据
+        et_select_enter_area.setText(address_msg+address_title);
     }
     private void submit() {
         // validate
@@ -180,15 +182,23 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
             Toast.makeText(this, "请输入6位验证码", Toast.LENGTH_SHORT).show();
             return;
         }
+        String address = et_address.getText().toString().trim();
+        if (TextUtils.isEmpty(address)) {
+            Toast.makeText(this, "请输入详细地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
         // TODO validate success, do something
-        ApiUserService.applyWorker(name, number, imgLists[0], imgLists[1], imgLists[2], imgLists[3], city, city_code, city_lng, city_lat, phone, "0", new ServiceCallBack<WrapRequirementBean>() {
+        ApiUserService.applyWorker(name, number,
+                imgLists.get(0), imgLists.get(1), imgLists.get(2), imgLists.get(3),
+                city, address, city_lng, city_lat, phone,
+                "0", new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
 
             }
 
             @Override
-            public void success(RespBean resp, Response<WrapRequirementBean> payload) {
+            public void success(RespBean resp, Response payload) {
                 new ApplyDialog(BecomeWorker3Activity.this).show();
             }
         });

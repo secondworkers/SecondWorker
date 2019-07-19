@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.utlis.VwUtils;
 
 
 /**
@@ -28,5 +29,6 @@ public class ApplyStatusActivity extends BaseActivity{
         }else if (status == 2){
             setContentView(R.layout.activity_apply_become_secondworker_audit_failure);
         }
+        VwUtils.fixScreen(this);
     }
 }

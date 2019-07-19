@@ -46,7 +46,7 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_total_income;
     private TextView tv_total_money;
     private RecyclerView rv_list;
-    private TextView tv_withdrawal;
+    private TextView tv_withdrawal,tv_recharge;
     private SwipeRefreshLayout refreshLayout;
     private MultiStateLayout multiStateLayout;
     int currentPage = 1;
@@ -70,11 +70,13 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
         tv_total_money = (TextView) findViewById(R.id.tv_total_money);
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
         tv_withdrawal = (TextView) findViewById(R.id.tv_withdrawal);
+        tv_recharge = (TextView) findViewById(R.id.tv_recharge);
         refreshLayout = findViewById(R.id.srl_wrap);
         multiStateLayout = findViewById(R.id.msl_layout);
         view_more.setOnClickListener(this);
         view_back.setOnClickListener(this);
         tv_withdrawal.setOnClickListener(this);
+        tv_recharge.setOnClickListener(this);
     }
     private void initData() {
         listAdapter = new PaymentDetailsAdapter(R.layout.item_payment_details,this);
@@ -167,6 +169,11 @@ public class MyWalletActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.tv_withdrawal:
                 startActivity(new Intent(MyWalletActivity.this,WithdrawalActivity.class));
+                break;
+            case R.id.tv_recharge:
+                Intent intent = new Intent(MyWalletActivity.this, RechargeActivity.class);
+                intent.putExtra("balance",tv_total_money.getText());
+                startActivity(intent);
                 break;
         }
     }

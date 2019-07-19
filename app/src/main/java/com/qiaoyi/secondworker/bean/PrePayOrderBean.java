@@ -10,4 +10,6 @@ public class PrePayOrderBean {
     public String orderid;
     public long createTime;
     public long currentTime;
+    public double banlance;
+    public double rewardPoints;
 }

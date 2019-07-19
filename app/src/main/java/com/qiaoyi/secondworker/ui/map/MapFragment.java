@@ -60,6 +60,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 import cn.isif.alibs.utils.ToastUtils;
 
 /**
@@ -106,7 +107,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         EventBus.getDefault().register(this);
     }
     public void initServiceType() {
-        ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+        ApiHome.getServiceType("map",new ServiceCallBack<WrapServiceBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
@@ -116,7 +117,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
             public void success(RespBean resp, Response<WrapServiceBean> payload) {
                 WrapServiceBean body = payload.body();
                 result = body.result;
-                service_id = result.get(0).serviceTypeId;
+                service_id = result.get(0).id;
                 initTitle();
             }
         });
@@ -344,7 +345,11 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         moveCameraWithMap(new LatLng(select_lat,select_lng),ZOOM);
         requestLocationArea(service_id);
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLocationSuccess(String location){
+        tv_location.setText(location);
+        ALog.e(location+"==========");
+    }
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         ALog.e("onPageScrolled");
@@ -401,7 +406,7 @@ public class MapFragment extends BaseFragment implements View.OnClickListener, V
         requestData(service_id,area[0].longitude,area[0].latitude,area[1].longitude,area[1].latitude);
     }
     private void requestData(String serviceTypeId,double leftTopLng,double leftTopLat,double rightBottomLng,double rightBottomLat) {
-        ApiHome.getMapWorkers(Integer.valueOf(serviceTypeId), leftTopLng, leftTopLat,rightBottomLng,rightBottomLat, new ServiceCallBack<WrapMapWorkerBean>() {
+        ApiHome.getMapWorkers(serviceTypeId, leftTopLng, leftTopLat,rightBottomLng,rightBottomLat, new ServiceCallBack<WrapMapWorkerBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);

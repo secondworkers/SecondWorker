@@ -67,7 +67,7 @@
                 android:layout_marginLeft="@dimen/base3dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/base30dp"
-                android:text="复制邀请码：3h951q"
+                android:text="复制邀请码："
                 android:padding="@dimen/base5dp"
                 android:clickable="true"
                 android:background="@drawable/shape_gradient_lr_blue"
@@ -105,7 +105,7 @@
                     android:id="@+id/tv_useful_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="260.00"
+                    android:text="0.00"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_grey"
@@ -131,7 +131,7 @@
                     android:id="@+id/tv_useful_integral"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="260.00"
+                    android:text="0.00"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_grey"
@@ -237,7 +237,7 @@
                     android:drawableTop="@mipmap/ic_not_confirm"
                     android:drawablePadding="@dimen/base9dp"
                     android:gravity="center"
-                    android:text="待确认"
+                    android:text="已完成"
                     android:textColor="#333333"
                     android:textSize="12sp" />
 
@@ -251,7 +251,7 @@
                     android:drawableTop="@mipmap/ic_not_comment"
                     android:drawablePadding="@dimen/base9dp"
                     android:gravity="center"
-                    android:text="待评价"
+                    android:text="已取消"
                     android:textColor="#333333"
                     android:textSize="12sp" />
 
@@ -424,6 +424,7 @@
         <Button
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
+            android:visibility="invisible"
             android:layout_height="@dimen/base40dp"
             android:layout_marginLeft="@dimen/base15dp"
             android:layout_marginRight="@dimen/base15dp"

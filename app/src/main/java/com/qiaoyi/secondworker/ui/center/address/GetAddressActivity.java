@@ -103,7 +103,10 @@ public class GetAddressActivity extends BaseActivity implements View.OnClickList
                 EventBus.getDefault().post(new LocationBean(item.getLatLonPoint().getLatitude(),
                         item.getLatLonPoint().getLongitude(),
                         item.getTitle(),
-                        item.getSnippet()));
+                        item.getProvinceName()+
+                                item.getCityName()+
+                                item.getAdName()+
+                                item.getSnippet()));
                 finish();
             }
         });

@@ -34,7 +34,7 @@ public class ServiceItemDetail {
     public String goodsName;
     public String goodsPhoto;
     public String goodsInfo;
-    public int price;
+    public double price;
     public Object leastCount;
     public String serviceItemId;
     public int isSale;
@@ -47,4 +47,5 @@ public class ServiceItemDetail {
     public String score;
     public String serviceTenet;
     public String goodsDescription;
+    public String profile;
 }

@@ -104,7 +104,7 @@ public class AddBankCardActivity extends BaseActivity implements View.OnClickLis
         ApiUserService.getBankInfo(bankId, new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showLong("请检查银行卡号是否正确");
             }
             @Override
             public void success(RespBean resp, Response payload) {
@@ -112,8 +112,8 @@ public class AddBankCardActivity extends BaseActivity implements View.OnClickLis
                 try {
                     JSONObject jsonObject = new JSONObject(body);
                    if (jsonObject.get("stat").equals(statStr)){
-                       bankCode = (String) jsonObject.get("bank");
-                       if(!(bankCode ==null)) {
+                       bankCode = (String) jsonObject.opt("bank");
+                       if(!TextUtils.isEmpty(bankCode)) {
                            bankName = BankConfigConstant.Bank_ITEM_NAME.get(bankCode);
                            ApiUserService.bindBankCard(name, idCard, bankId, bankCode, phone_number, Contact.BASE_BANK_IMG + bankCode, new ServiceCallBack() {
                                @Override

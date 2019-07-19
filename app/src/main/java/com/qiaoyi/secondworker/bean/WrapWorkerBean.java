@@ -7,5 +7,5 @@ package com.qiaoyi.secondworker.bean;
  */
 
 public class WrapWorkerBean {
-    public WrapWorker2Bean result;
+    public WorkerBean result;
 }

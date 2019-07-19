@@ -69,7 +69,7 @@
             android:layout_below="@+id/tv_price"
             android:layout_alignLeft="@+id/tv_service"
             android:layout_marginTop="@dimen/base6dp"
-            android:isIndicator="false"
+            android:isIndicator="true"
             android:numStars="5"
             android:stepSize="2.0" />
 

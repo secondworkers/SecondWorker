@@ -73,7 +73,6 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initView() {
-
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         rb_all = (RadioButton) findViewById(R.id.rb_all);
         rb_waiting_pay = (RadioButton) findViewById(R.id.rb_waiting_pay);
@@ -108,12 +107,12 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                         requestStatus = Contacts.WAITING_SERVICE;
                         break;
                     case R.id.rb_waiting_confirm:
-                        requestData(Contacts.WAITING_CONFIRM,true);
-                        requestStatus = Contacts.WAITING_CONFIRM;
+                        requestData(Contacts.ORDER_FINISH,true);
+                        requestStatus = Contacts.ORDER_FINISH;
                         break;
                     case R.id.rb_waiting_comment:
-                        requestData(Contacts.WAITING_COMMENT,true);
-                        requestStatus = Contacts.WAITING_COMMENT;
+                        requestData(Contacts.ORDER_CANCEL,true);
+                        requestStatus = Contacts.ORDER_CANCEL;
                         break;
                 }
             }
@@ -167,13 +166,13 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                 rb_waiting_service.setChecked(true);
                 requestData(Contacts.WAITING_SERVICE,true);
                 break;
-            case Contacts.WAITING_CONFIRM:
+            case Contacts.ORDER_FINISH:
                 rb_waiting_confirm.setChecked(true);
-                requestData(Contacts.WAITING_CONFIRM,true);
+                requestData(Contacts.ORDER_FINISH,true);
                 break;
-            case Contacts.WAITING_COMMENT:
+            case Contacts.ORDER_CANCEL:
                 rb_waiting_comment.setChecked(true);
-                requestData(Contacts.WAITING_COMMENT,true);
+                requestData(Contacts.ORDER_CANCEL,true);
                 break;
         }
     }

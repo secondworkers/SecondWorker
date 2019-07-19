@@ -202,6 +202,17 @@
         <activity android:name=".ui.center.center.FillInInvitationCodeActivity" />
         <activity android:name=".ui.center.center.InvitationActivity" />
         <activity android:name=".ui.center.center.ShareInvitationActivity" />
+        <activity android:name=".ui.center.center.ShareDetailActivity" />
+        <activity android:name=".ui.center.wallet.RechargeActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.center.center.WaitingReceiveActivity" />
+        <activity android:name=".ui.center.tiktok.TiktokListActivity"   >
+        </activity>
+        <activity android:name=".ui.center.tiktok.SubmitTaskActivity"/>
+
+        <activity android:name=".ui.center.tiktok.TiktokTaskDetailActivity" />
+        <activity android:name=".ui.center.order.PostCommentActivity" />
     </application>
 
 </manifest>

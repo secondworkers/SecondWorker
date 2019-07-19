@@ -90,7 +90,7 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
                 @Override public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view,
                                                         final int position) {
                     ServiceTypeBean item = (ServiceTypeBean) adapter.getItem(position);
-                    listener.refreshDialogUI(item.serviceTypeId,item.serviceType);
+                    listener.refreshDialogUI(item.id,item.serviceType);
                     dismiss();
                 }
             });
@@ -101,7 +101,7 @@ public class ServiceTypeDialog extends Dialog implements View.OnClickListener {
         rv_service_list.setAdapter(listAdapter);
     }
     public void initServiceType() {
-        ApiHome.getServiceType(new ServiceCallBack<WrapServiceBean>() {
+        ApiHome.getServiceType("map",new ServiceCallBack<WrapServiceBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);

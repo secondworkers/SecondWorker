@@ -27,8 +27,9 @@ public class ApiHome {
      * @param callBack
      * @return
      */
-    public static Call getServiceType(ServiceCallBack<WrapServiceBean> callBack){
+    public static Call getServiceType(String type,ServiceCallBack<WrapServiceBean> callBack){
         Params params = new Params.Builder().json().build();
+        params.put("type",type);
         return IfOkNet.getInstance().post(Contact.SERVICE_TYPE, params, callBack);
     }
 
@@ -97,7 +98,7 @@ public class ApiHome {
      * @param callBack
      * @return
      */
-    public static Call getMapWorkers(int serviceTypeId,
+    public static Call getMapWorkers(String serviceTypeId,
                                      double leftTopLng,double leftTopLat,
                                      double rightBottomLng,double rightBottomLat,
                                      ServiceCallBack<WrapMapWorkerBean> callBack){
