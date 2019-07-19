@@ -92,4 +92,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/text_white</item>
     </style>
+    <style name="WelcomeContentOverlay" parent="AppTheme">
+        <item name="android:windowDisablePreview">true</item><!-- fix the problem cold start hang. -Spirit -->
+    </style>
 </resources>

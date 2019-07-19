@@ -54,7 +54,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <!--适配全面屏手机-->
         <meta-data android:name="android.max_aspect"
             android:value="2.1"/>
@@ -82,11 +83,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateUnspecified"
             android:launchMode="singleTask">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
         <!-- 微信 -->
         <activity
@@ -137,6 +133,7 @@
         </activity>
         <activity android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/WelcomeContentOverlay"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
