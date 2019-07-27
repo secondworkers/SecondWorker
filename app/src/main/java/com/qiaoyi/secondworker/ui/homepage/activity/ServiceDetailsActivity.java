@@ -2,12 +2,20 @@ package com.qiaoyi.secondworker.ui.homepage.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -75,6 +83,7 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
     private CommentAdapter commentAdapter;
     private int orderCounts;
     private int evCounts;
+    private WebView mWebView;
 
     public static void startDetails(Activity activity, String serviceItemId,String worker_id) {
         Intent intent = new Intent(activity, ServiceDetailsActivity.class);
@@ -92,8 +101,9 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         serviceItemId = intent.getStringExtra("serviceItemId");
         worker_id = intent.getStringExtra("worker_id");
         toStartLocation();
-        initView();
         requestData();
+        initView();
+        initWebView();
 //        initData();
     }
 
@@ -124,7 +134,8 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         tv_service_type.setText(serviceItemDetail.goodsName);
         tv_service.setText(serviceItemDetail.goodsName);
         tv_service_price.setText(serviceItemDetail.price + serviceItemDetail.unit);
-        tv_content_1.setText(serviceItemDetail.goodsInfo);
+//        tv_content_1.setText(serviceItemDetail.goodsInfo);
+        mWebView.loadData(getHtmlData(serviceItemDetail.goodsInfo), "text/html; charset=UTF-8", null);
         tv_content_2.setText(serviceItemDetail.serviceTenet);
         commentAdapter = new CommentAdapter(R.layout.item_comment, this);
         commentAdapter.addData(evDetail);
@@ -135,7 +146,17 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
 
     }
 
+    private String getHtmlData(String bodyHTML) {
+        String head = "<head>"
+                + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> "
+                + "<style>img{max-width: 100%; width:auto; height:auto;}</style>"
+                + "</head>";
+        return "<html>" + head + "<body>" + bodyHTML.trim() + "</body>"
+                + "</html>";
+    }
+
     private void initView() {
+        mWebView = findViewById(R.id.wv_item);
         tv_user_name=findViewById(R.id.tv_user_name);
         tv_placeholder = (TextView) findViewById(R.id.tv_placeholder);
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
@@ -187,5 +208,58 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
                 }
                 break;
         }
+    }
+    private void initWebView() {
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUseWideViewPort(true); //将图片调整到适合webview的大小
+        webSettings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
+        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
+        webSettings.setAllowFileAccess(true); //设置可以访问文件
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
+        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
+        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            }
+
+            @Override public void onPageFinished(WebView view, String url) {
+                onH5PageFinished();
+            }
+
+            @Override public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+            }
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        } else {
+            mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        }
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            @Override public void onReceivedTitle(WebView view, String title) {
+            }
+
+            @Override public void onProgressChanged(WebView view, int newProgress) {
+                onH5ProgressChanged(newProgress);
+            }
+        });
+    }
+
+    private void onH5ProgressChanged(int newProgress) {
+    }
+
+    private void onH5PageFinished() {
     }
 }
