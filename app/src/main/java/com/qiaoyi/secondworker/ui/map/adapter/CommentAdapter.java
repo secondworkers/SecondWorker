@@ -39,7 +39,7 @@ public class CommentAdapter extends BaseQuickAdapter<CommentBean,BaseViewHolder>
             ratingbar.setRating(Float.valueOf(item.score));
             helper.setText(R.id.tv_score,item.score+"分");
         }
-        helper.setText(R.id.tv_user_name,item.userName);
+        helper.setText(R.id.tv_user_name,item.screenName);
         helper.setText(R.id.tv_time, VwUtils.getTime("yyyy-MM-dd",item.et));
         helper.setText(R.id.tv_describe,item.evaluation);
     }

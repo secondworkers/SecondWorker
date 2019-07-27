@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title"/>
+
+    <LinearLayout
+        android:id="@+id/ll_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/text_white"
+        android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base37dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginRight="@dimen/base16dp"
+                android:background="@drawable/shape_gradient_all_grey"
+                android:drawableLeft="@mipmap/iv_search"
+                android:drawablePadding="@dimen/base5dp"
+                android:hint="请您输入社区名称"
+                android:imeOptions="actionSearch"
+                android:padding="@dimen/base5dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textSize="12sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:id="@+id/tv_done"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base44dp"
+                android:text="确认选择"
+                android:gravity="center"
+                android:textColor="@color/text_grey"
+                android:background="@drawable/shape_kuangt_grey"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:layout_marginRight="@dimen/base15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/base15dp"
+                android:clickable="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

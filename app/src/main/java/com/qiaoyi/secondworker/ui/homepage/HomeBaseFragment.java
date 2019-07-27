@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,8 @@ import com.qiaoyi.secondworker.ui.homepage.activity.ServiceListActivity;
 import com.qiaoyi.secondworker.ui.homepage.adapter.AllServiceAdapter;
 import com.qiaoyi.secondworker.ui.homepage.adapter.RecommendAdapter;
 import com.qiaoyi.secondworker.ui.homepage.adapter.ServiceItemAdapter;
+import com.qiaoyi.secondworker.ui.shake.activity.CommunitySelectActivity;
+import com.qiaoyi.secondworker.ui.shake.activity.OnePlanActivity;
 import com.qiaoyi.secondworker.utlis.StatusBarUtil;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 
@@ -67,7 +70,7 @@ import cn.isif.plug.bannerview.listener.OnBannerClickListener;
 
 public class HomeBaseFragment extends BaseFragment implements View.OnClickListener {
     private View rootView;
-    private ImageView iv_location;
+    private ImageView iv_location,iv_one_plan;
     private TextView tv_location;
     private ImageView iv_msg;
     private TextView tv_search;
@@ -251,6 +254,7 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
 
     private void initView(View rootView) {
         iv_location = (ImageView) rootView.findViewById(R.id.iv_location);
+        iv_one_plan = (ImageView) rootView.findViewById(R.id.iv_one_plan);
         iv_location.setOnClickListener(this);
         tv_location = (TextView) rootView.findViewById(R.id.tv_location);
         tv_location.setOnClickListener(this);
@@ -264,11 +268,24 @@ public class HomeBaseFragment extends BaseFragment implements View.OnClickListen
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list);
         rv_list_recommend = (RecyclerView) rootView.findViewById(R.id.rv_list_recommend);
         rv_service = (RecyclerView) rootView.findViewById(R.id.rv_service);
+        iv_one_plan.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_one_plan:
+                if (AccountHandler.checkLogin()==null){
+                    LoginActivity.startLoginActivity(getActivity(),000);
+                }else {
+                    String sqID = SharePreferenceUtils.readString("sqID", "sqID");
+                    if (TextUtils.isEmpty(sqID)){
+                        startActivity(new Intent(getActivity(),CommunitySelectActivity.class));
+                    }else {
+                        startActivity(new Intent(getActivity(),OnePlanActivity.class));
+                    }
+                }
+                break;
             case R.id.iv_location:
             case R.id.tv_location:
                 startActivity(new Intent(getActivity(), GetAddressActivity.class));

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.SecondWorkerApplication;
+import com.qiaoyi.secondworker.bean.MessageEvent;
 import com.qiaoyi.secondworker.bean.UpdateBean;
 import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
@@ -26,12 +27,17 @@ import com.qiaoyi.secondworker.utlis.GeneralUtils;
 import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.dialog.UpgradeDialog;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import cn.isif.alibs.utils.ALibs;
 import cn.isif.alibs.utils.ToastUtils;
 
 import static com.qiaoyi.secondworker.ui.center.CenterFragment.BROADCAST_LOGOUT_ACTION;
+
 
 /**
  * create on 2019/4/25
@@ -54,6 +60,7 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
         VwUtils.fixScreen(this);
         setContentView(R.layout.activity_system_settings);
         initView();
+//        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -88,6 +95,8 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
         Intent intent = new Intent();
         intent.setAction(BROADCAST_LOGOUT_ACTION);
         sendBroadcast(intent);
+//        EventBus.getDefault().post(new MessageEvent("logout"));
+        finish();
     }
     public static boolean clearCacheDiskSelf() {
         try {
@@ -172,5 +181,11 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
         tv_clear.setOnClickListener(this);
         tv_us.setOnClickListener(this);
         button_logout.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
     }
 }

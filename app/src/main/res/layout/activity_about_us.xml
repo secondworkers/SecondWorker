@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="版本号：V1.0.1"
+        android:text="版本号：V1.0"
         android:layout_marginTop="@dimen/base18dp"
         android:textColor="#ff888888"
         android:textSize="13sp" />

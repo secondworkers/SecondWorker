@@ -1,9 +1,11 @@
 package com.qiaoyi.secondworker.net;
 
 public class Contact {
+
   public static final String DB_NAME = "secondworker";
-//  public static final String BASE_URL = "http://192.168.0.105:8080";//本地debug主机
- public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//release主机
+  public static final String BASE_URL = "http://192.168.0.105:8080";//本地debug主机
+//  public static final String BASE_URL = "http://192.168.0.101:8010";//本地debug主机
+//public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//release主机
 // public static final String BASE_URL = "http://103.118.221.46:8080";//debug主机
 
   public static final String ANDROID = "android";
@@ -81,6 +83,10 @@ public class Contact {
   public static final String GET_TASKLIST = BASE_URL + "/system/mgTaskinfo/queryTask";//查询任务列表、查询任务详情
   public static final String GET_TASK = BASE_URL + "/system/mgTaskaudit/getTask";//领取任务
   public static final String SUBMIT_TASK = BASE_URL + "/system/mgTaskaudit/submitTask";//提交任务
+
+  public static final String SELECT_SHEQU = BASE_URL + "/system/mgCityShequ/list";//查询社区
+  public static final String CHOOSE_SHEQU = BASE_URL + "/system/mgCityShequ/chooseSheQu";//选择社区
+  public static final String SHEQU_DETAIL = BASE_URL + "/system/mgCityShequ/detail";//yiyuanjiahua
 
 
   public static final String QINIU_UPTOKEN =

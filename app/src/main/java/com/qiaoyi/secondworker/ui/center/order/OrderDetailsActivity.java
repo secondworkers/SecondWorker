@@ -189,7 +189,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
     void onLeftBtnClick(OrderBean item){
         switch (item.status){
             case 0:
-                cancelOrDelOrder(item,3);//取消订单
+                cancelOrDelOrder(item,5);//取消订单
                 break;
             case 1://待服务  //再来一单
             case 2:

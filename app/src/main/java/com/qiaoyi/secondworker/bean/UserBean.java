@@ -52,6 +52,7 @@ public class UserBean implements Serializable {
     public String createTime;
     public String pyqcode;
     public String yqcode;
+    public String sheQuId;
     public double balance;
     public double rewardpoints;
 

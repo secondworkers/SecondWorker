@@ -95,4 +95,11 @@ public class AccountHandler {
     }
     return "";
   }
+  public static String getSheQuId(){
+    UserBean ub = getUser();
+    if (ub != null) {
+      return ub.sheQuId;
+    }
+    return "";
+  }
 }

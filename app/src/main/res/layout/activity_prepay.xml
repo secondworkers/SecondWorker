@@ -210,6 +210,7 @@
 
         <ImageView
             android:id="@+id/imageView7"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -232,6 +233,7 @@
 
         <CheckBox
             android:id="@+id/iv_alipay"
+            android:visibility="invisible"
             style="@style/MyCheckboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,6 +246,7 @@
 
         <TextView
             android:id="@+id/textView9"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -255,6 +258,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
         <TextView
             android:id="@+id/tv_balance"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -267,6 +271,7 @@
 
         <TextView
             android:id="@+id/textView10"
+            android:visibility="invisible"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginEnd="15dp"
@@ -279,6 +284,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -291,6 +297,7 @@
 
         <TextView
             android:id="@+id/textView13"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -301,6 +308,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
         <TextView
             android:id="@+id/tv_integral"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -313,6 +321,7 @@
 
         <CheckBox
             android:id="@+id/iv_integral_pay"
+            android:visibility="invisible"
             style="@style/MyCheckboxStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

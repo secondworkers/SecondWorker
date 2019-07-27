@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
-    >
+    android:gravity="center_horizontal">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,42 +11,17 @@
         android:layout_marginLeft="@dimen/base63dp"
         android:layout_marginTop="@dimen/base130dp"
         android:layout_marginRight="@dimen/base63dp"
-        android:background="@mipmap/welcome_bg">
+        android:background="@mipmap/ic_one_plan_background">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/base15dp"
-            android:text="手机摇一摇"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/tv_title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_title"
-            android:layout_centerHorizontal="true"
-            android:padding="3dp"
-            android:text="优惠送不停"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_goto"
-            android:layout_width="@dimen/base180dp"
-            android:layout_height="@dimen/base34dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/base20dp"
-            android:background="@drawable/shape_gradient_blue"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="查看详情"
-            android:textColor="#FDFEFF"
-            android:textSize="14sp" />
+       <ImageView
+           android:id="@+id/iv_look_detail"
+           android:layout_alignParentBottom="true"
+           android:layout_centerHorizontal="true"
+           android:clickable="true"
+           android:layout_marginBottom="@dimen/base20dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@mipmap/ic_one_plan_btn"/>
     </RelativeLayout>
     <ImageView
         android:id="@+id/iv_cancel"
@@ -55,6 +29,5 @@
         android:layout_width="@dimen/base30dp"
         android:layout_height="@dimen/base30dp"
         android:src="@mipmap/dialog_cancel"
-        android:layout_marginTop="@dimen/base30dp"
-        />
+        android:layout_marginTop="@dimen/base30dp" />
 </LinearLayout>

@@ -60,9 +60,14 @@ public class PostCommentActivity extends BaseActivity implements View.OnClickLis
         rating_bar = (RatingBar) findViewById(R.id.rating_bar);
         et_import = (EditText) findViewById(R.id.et_import);
         tv_font_bottom = (TextView) findViewById(R.id.tv_font_bottom);
-
         view_back.setOnClickListener(this);
         tv_font_bottom.setOnClickListener(this);
+
+        //新加---
+        iv_user_photo=findViewById(R.id.iv_user_photo);
+        tv_user_name=findViewById(R.id.tv_user_name);
+//        tv_user_name.setText(tv_user_name);
+
         tv_service_nane.setText(serviceItem);
         tv_title_txt.setText("评论");
         rating_bar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

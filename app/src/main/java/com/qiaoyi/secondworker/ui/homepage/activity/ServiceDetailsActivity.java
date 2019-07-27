@@ -67,6 +67,7 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
     private TextView tv_content_2;
     private TextView tv_comment_number;
     private TextView tv_place_order;
+    private TextView tv_user_name;
     private RecyclerView rv_comment;
     private String serviceItemId,worker_id;
     private ServiceItemDetail serviceItemDetail;
@@ -100,7 +101,6 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         ApiHome.getServiceDetail(serviceItemId, new ServiceCallBack<WrapServiceDetailsBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
             }
 
             @Override
@@ -120,10 +120,10 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
         tv_order.setText("已售"+serviceItemDetail.count+"单");
         tv_comment_number.setText(evCounts+"条评价");
         Glide.with(this).load(serviceItemDetail.goodsPhoto).apply(GlideUtils.setRoundTransform(this,10)).into(iv_shop_image);
+
         tv_service_type.setText(serviceItemDetail.goodsName);
         tv_service.setText(serviceItemDetail.goodsName);
         tv_service_price.setText(serviceItemDetail.price + serviceItemDetail.unit);
-
         tv_content_1.setText(serviceItemDetail.goodsInfo);
         tv_content_2.setText(serviceItemDetail.serviceTenet);
         commentAdapter = new CommentAdapter(R.layout.item_comment, this);
@@ -136,6 +136,7 @@ public class ServiceDetailsActivity extends BaseActivity implements View.OnClick
     }
 
     private void initView() {
+        tv_user_name=findViewById(R.id.tv_user_name);
         tv_placeholder = (TextView) findViewById(R.id.tv_placeholder);
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         view_back = (RelativeLayout) findViewById(R.id.view_back);

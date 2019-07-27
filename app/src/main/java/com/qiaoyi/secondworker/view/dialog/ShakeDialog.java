@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.ui.shake.activity.OnePlanIntroduceActivity;
 import com.qiaoyi.secondworker.ui.shake.activity.ShakeActivity;
 
 
@@ -25,7 +26,7 @@ import com.qiaoyi.secondworker.ui.shake.activity.ShakeActivity;
 public class ShakeDialog extends Dialog implements View.OnClickListener {
     Context context;
     private TextView tv_title2;
-    private TextView tv_goto;
+    private ImageView iv_look_detail;
     private ImageView iv_cancel;
 
     public ShakeDialog(@NonNull Context context) {
@@ -46,8 +47,8 @@ public class ShakeDialog extends Dialog implements View.OnClickListener {
     private void initViews() {
         setContentView(R.layout.dialog_new_user);
         tv_title2 = findViewById(R.id.tv_title2);
-        tv_goto = findViewById(R.id.tv_goto);
-        tv_goto.setOnClickListener(this);
+        iv_look_detail = findViewById(R.id.iv_look_detail);
+        iv_look_detail.setOnClickListener(this);
         iv_cancel = findViewById(R.id.iv_cancel);
         iv_cancel.setOnClickListener(this);
     }
@@ -75,8 +76,8 @@ public class ShakeDialog extends Dialog implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tv_goto:
-                context.startActivity(new Intent(context, ShakeActivity.class));
+            case R.id.iv_look_detail:
+                context.startActivity(new Intent(context, OnePlanIntroduceActivity.class));
                 dismiss();
                 break;
             case R.id.iv_cancel:

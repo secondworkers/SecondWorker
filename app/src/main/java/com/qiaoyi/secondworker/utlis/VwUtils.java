@@ -20,9 +20,12 @@ import android.widget.TextView;
 import com.qiaoyi.secondworker.R;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -362,5 +365,50 @@ public static void fixScreen(Activity activity){
       b = m.matches();
     }
     return b;
+  }
+  /**
+   * 将每三个数字加上逗号处理（通常使用金额方面的编辑）
+   *
+   * @param str 需要处理的字符串
+   * @return 处理完之后的字符串
+   */
+  public static String splitPrice(String str) {
+    DecimalFormat decimalFormat = new DecimalFormat(",###");
+    return decimalFormat.format(Double.parseDouble(str));
+  }
+
+  /**
+   * 输入金额分割成单个字符数组
+   * @param str 1990.12
+   * @return
+   */
+  public static List<String> splitString(String str){
+    String[] s = str.split("\\.");
+    String s1 = s[0];
+    String s2 = s[1];
+    s1 = autoGenericCode(s1, 7);
+    ArrayList<String> strings = new ArrayList<>();
+
+    char[] chars = s1.toCharArray();
+    for (int i = 0; i < chars.length; i++) {
+      strings.add(String.valueOf(chars[i]));
+    }
+    strings.add("."+s2);
+    return strings;
+  }
+  /**
+   * 不够位数的在前面补0，保留num的长度位数字
+   * @param code
+   * @return
+   */
+  public static String autoGenericCode(String code, int num) {
+    String result = "";
+    // 保留num的位数
+    // 0 代表前面补充0
+    // num 代表长度为4
+    // d 代表参数为正数型
+    result = String.format("%0" + num + "d", Integer.parseInt(code) + 1);
+
+    return result;
   }
 }

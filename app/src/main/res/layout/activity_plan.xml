@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/tv_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base20dp"
+        android:background="#664AF7"
+        />
+    <RelativeLayout
+        android:layout_below="@+id/tv_placeholder"
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#664AF7">
+        <TextView
+            android:id="@+id/tv_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="活动详情"
+            android:textColor="@color/text_white"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/view_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/iv_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/iv_back_white" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_below="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#664AF7"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_monadicprogram_details"
+            />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_togo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base44dp"
+        android:text="我要参加"
+        android:background="@drawable/shape_bg_co_orange"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#AF5200"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:layout_marginBottom="@dimen/base15dp"
+        />
+</RelativeLayout>

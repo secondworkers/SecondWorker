@@ -160,6 +160,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/shape_wallet_recharge_no_border_grey"
         android:text="退出登录"
+        android:visibility="visible"
         android:textColor="@color/text_grey"
         android:textSize="15sp" />
 

@@ -152,10 +152,12 @@ public class SubmitTaskActivity extends BaseActivity implements EasyPermissions.
                     @Override public void complete(String key, ResponseInfo info, JSONObject res) {
                         ALog.e("七牛 " + key + ",\r\n " + info + ",\r\n " + res);
 
+
                         if (info.isOK() && res != null && !TextUtils.isEmpty(res.optString("key"))) {
                             imgList.add(res.optString("key"));
                             if (imgList.size() == pathList.size()){
-//                                if (imgList.size() == 9){
+//
+//       if (imgList.size() == 9){
                                     publishTobbs(imgList);
 //                                } else {
 //                                    ToastUtils.showShort("上传数量不足");

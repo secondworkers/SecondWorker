@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/layout_top_title"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/text_black"
+        android:layout_marginStart="@dimen/base15dp"
+        android:layout_marginEnd="@dimen/base15dp"
+        android:layout_marginTop="@dimen/base15dp"
+        android:textSize="14sp"
+        android:text="秒工一元（亿元）计划正式落地
+ 
+秒工新零售超市“一元计划”正式落地，一元计划是秒工app发起的“消费支持社区建设”行动，只要在秒工app超市购物或用工，【平均每消费19元，就有1元用于您所在小区建设】，只要愿意让利1元的商家超市或个人都可以参与一元计划！业主到秒工app逛超市、用工均可以参与社区建设。所募集资金全部在秒工app以去中心化总账簿（区块链概念运作）形式共同监管，本小区排名前20名贡献者可以发起用费，半数业主同意方可执行建设小区计划！"/>
+</LinearLayout>

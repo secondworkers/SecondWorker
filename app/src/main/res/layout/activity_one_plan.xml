@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_top_title" />
+
+    <ScrollView
+        android:id="@+id/sv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include">
+
+        <RelativeLayout
+            android:id="@+id/rl_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/text_white">
+
+            <LinearLayout
+                android:id="@+id/ll_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginRight="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base15dp">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/tiny_blue"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/tiny_blue"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/text_white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tv_8"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/base70dp"
+                    android:layout_marginLeft="@dimen/base3dp"
+                    android:layout_weight="1"
+                    android:background="@color/skip"
+                    android:gravity="center"
+                    android:text=".88"
+                    android:textColor="@color/text_white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/ll_top"
+                android:layout_below="@+id/ll_top"
+                android:layout_marginTop="@dimen/base10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_order_total_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="本社区下单总金额   （元）"
+                    android:textColor="@color/skip"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_raise_total_money_china"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base40dp"
+                    android:text="12,910,506.79"
+                    android:textColor="@color/text_black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_text_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base10dp"
+                    android:text="全国募集总金额(元)"
+                    android:textColor="@color/text_grey"
+                    android:textSize="13sp" />
+
+                <RelativeLayout
+                    android:id="@+id/ll_community_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/base30dp">
+
+                    <TextView
+                        android:id="@+id/tv_raise_total_money_community"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2087.05"
+                        android:textColor="@color/text_black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_text_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_raise_total_money_community"
+                        android:layout_marginTop="@dimen/base10dp"
+                        android:text="本社区募集总金额(元)"
+                        android:textColor="@color/text_grey"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ranking_china"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/base97dp"
+                        android:layout_toRightOf="@+id/tv_raise_total_money_community"
+                        android:text="1096"
+                        android:textColor="@color/skip"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_text_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/tv_ranking_china"
+                        android:layout_below="@+id/tv_raise_total_money_community"
+                        android:layout_marginTop="@dimen/base10dp"
+                        android:text="本社区全国排名"
+                        android:textColor="@color/text_grey"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_what_one_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/base34dp"
+                android:layout_below="@+id/ll_total"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/base45dp"
+                android:background="@drawable/shape_kuang_bigcorners_grey"
+                android:clickable="true"
+                android:gravity="center"
+                android:paddingLeft="@dimen/base25dp"
+                android:paddingRight="@dimen/base25dp"
+                android:text="什么是一元计划"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/base6dp"
+                android:layout_below="@+id/tv_what_one_plan"
+                android:layout_marginTop="@dimen/base20dp"
+                android:background="@color/line_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_bottom"
+                android:layout_below="@+id/tv_line"
+                android:layout_marginTop="@dimen/base20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/base15dp"
+                android:textStyle="bold"
+                android:text="社区排名"
+                android:textSize="18sp"
+                android:textColor="@color/deep_black" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/base16dp"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:text="查看全部排行"
+                android:textSize="15sp"
+                android:textColor="@color/skip" />
+                <include
+                    android:layout_below="@+id/tv_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/include"
+                    android:layout_marginTop="@dimen/base15dp"
+                    layout="@layout/item_community_ranking"/>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_below="@+id/include"
+                    android:layout_marginBottom="@dimen/base50dp"
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_go_help"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base44dp"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:layout_marginBottom="@dimen/base5dp"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:background="@drawable/shape_gradient_all_border_grey"
+        android:gravity="center"
+        android:text="我要助力 >"
+        android:textColor="@color/text_black"
+        android:textSize="14sp" />
+
+</RelativeLayout>

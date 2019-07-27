@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/base15dp"
+    android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="1"
+            android:textColor="@color/skip"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_head_photo"
+            android:layout_width="@dimen/base37dp"
+            android:layout_height="@dimen/base37dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/base13dp"
+            android:layout_toRightOf="@+id/tv_rank"
+            android:src="@mipmap/avatar" />
+
+        <TextView
+            android:id="@+id/tv_nick_name"
+            android:layout_toRightOf="@+id/iv_head_photo"
+            android:layout_marginLeft="@dimen/base15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="小果子"
+            android:textColor="@color/text_black"
+            android:textSize="14sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/base5dp"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="@dimen/base185dp"
+            android:layout_height="@dimen/base5dp"
+            android:max="100"
+            android:progressDrawable="@drawable/progressbar_bg"
+            android:progress="40" />
+
+        <TextView
+            android:id="@+id/tv_text"
+           android:layout_below="@+id/progress_bar"
+            android:layout_marginTop="@dimen/base10dp"
+            android:layout_alignLeft="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="贡献募集金额0.00元"
+            android:textColor="@color/text_grey"
+            android:textSize="14sp" />
+
+</RelativeLayout>

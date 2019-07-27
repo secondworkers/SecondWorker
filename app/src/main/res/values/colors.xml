@@ -21,4 +21,6 @@
     <color name="tine_grey">#999999</color>
     <color name="text_orange">#FF5027</color>
     <color name="text_orange_yellow">#FFA200</color>
+    <color name="skip">#0091EA</color>
+    <color name="tiny_blue">#007FCD</color>
 </resources>

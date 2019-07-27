@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="关注截图、点赞截图、评论截图、分享截图（9张）"
+            android:text="请上传与任务相关截图（无关截图，不通过审核）"
             android:textColor="@color/text_black"
             android:textSize="15sp"
             android:padding="@dimen/base5dp"

@@ -210,6 +210,14 @@
 
         <activity android:name=".ui.center.tiktok.TiktokTaskDetailActivity" />
         <activity android:name=".ui.center.order.PostCommentActivity" />
+        <activity android:name=".ui.shake.activity.OnePlanIntroduceActivity" />
+        <activity android:name=".ui.shake.activity.CommunitySelectActivity" />
+        <activity android:name=".ui.shake.activity.CommunitySearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.shake.activity.OnePlanActivity" />
+        <activity android:name=".ui.shake.activity.OnePlanHelpActivity" />
+        <activity android:name=".ui.shake.activity.CommunityMoreActivity" />
     </application>
 
 </manifest>

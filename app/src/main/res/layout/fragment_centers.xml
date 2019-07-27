@@ -424,7 +424,7 @@
         <Button
             android:id="@+id/button_logout"
             android:layout_width="match_parent"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_height="@dimen/base40dp"
             android:layout_marginLeft="@dimen/base15dp"
             android:layout_marginRight="@dimen/base15dp"

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/5/6
@@ -86,9 +88,15 @@ public class ServiceListActivity extends BaseActivity implements View.OnClickLis
         Intent intent = getIntent();
         s_name = intent.getStringExtra("service_name");
         s_type_id = intent.getStringExtra("item_id");
+        toStartLocation();
         ACache mCache = ACache.get(getApplication());
-        lat = Double.valueOf(mCache.getAsString("user_loc_lat"));
-        lng = Double.valueOf(mCache.getAsString("user_loc_lng"));
+        if (TextUtils.isEmpty(mCache.getAsString("user_loc_lat"))||TextUtils.isEmpty(mCache.getAsString("user_loc_lng")))
+        {
+            ToastUtils.showShort("请打开定位！！！！");
+        }else {
+            lat = Double.valueOf(mCache.getAsString("user_loc_lat"));
+            lng = Double.valueOf(mCache.getAsString("user_loc_lng"));
+        }
         initView();
         requestData();
         initData();

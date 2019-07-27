@@ -20,6 +20,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qiaoyi.secondworker.bean.MessageEvent;
 import com.qiaoyi.secondworker.bean.UpdateBean;
 import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
@@ -39,6 +40,9 @@ import com.qiaoyi.secondworker.utlis.VwUtils;
 import com.qiaoyi.secondworker.view.dialog.ShakeDialog;
 import com.qiaoyi.secondworker.view.dialog.ShowProgressDialog;
 import com.qiaoyi.secondworker.view.dialog.UpgradeDialog;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -212,7 +216,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
 
     }
-
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMessageEvent(MessageEvent msg){
+//        if (msg.getMessage().equals("logout")){
+//            mTabHost.setCurrentTab(1);
+//            currentIndicator = 1;
+//        }
+//    }
     public class LogoutBroadcastReceiver extends BroadcastReceiver {
 
         @Override public void onReceive(Context context, Intent intent) {
@@ -249,7 +259,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override protected void onDestroy() {
         super.onDestroy();
         mTabHost = null;
-        unregisterReceiver(mBroadcastReceiver);
+//        unregisterReceiver(mBroadcastReceiver);
     }
     @Override public void onRequestPermissionsResult(int requestCode, String permissions[],
                                                      int[] grantResults) {

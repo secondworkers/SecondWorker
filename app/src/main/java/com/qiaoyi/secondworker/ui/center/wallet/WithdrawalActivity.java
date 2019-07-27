@@ -170,10 +170,13 @@ public class WithdrawalActivity extends BaseActivity implements View.OnClickList
                     ToastUtils.showShort("请选择提现银行卡");
                     return;
                 }else {
+                    tv_apply_withdrawal.setClickable(false);
                     ApiUserService.applyWithdrawal(bank_num, num, new ServiceCallBack() {
                         @Override
                         public void failed(String code, String errorInfo, String source) {
                             ToastUtils.showShort(errorInfo);
+                            tv_apply_withdrawal.setClickable(true);
+                            return;
                         }
                         @Override
                         public void success(RespBean resp, Response payload) {
@@ -181,6 +184,7 @@ public class WithdrawalActivity extends BaseActivity implements View.OnClickList
                             intent.putExtra("money",String.valueOf(num));
                             intent.putExtra("bank_name",tv_bank_card.getText());
                             startActivity(intent);
+                            tv_apply_withdrawal.setClickable(true);
                             finish();
                         }
                     });

@@ -9,6 +9,8 @@ import com.qiaoyi.secondworker.bean.WrapAddressBean;
 import com.qiaoyi.secondworker.bean.WrapBankBean;
 import com.qiaoyi.secondworker.bean.WrapCashBean;
 import com.qiaoyi.secondworker.bean.WrapCommentBean;
+import com.qiaoyi.secondworker.bean.WrapCommunityBean;
+import com.qiaoyi.secondworker.bean.WrapOnePlanBean;
 import com.qiaoyi.secondworker.bean.WrapOrderBean;
 import com.qiaoyi.secondworker.bean.WrapOrderDetailsBean;
 import com.qiaoyi.secondworker.bean.WrapPaymentDetailsBean;
@@ -610,6 +612,44 @@ public static Call bindBankCard(String realName,String idCardNo,String bankCardN
         params.put("taskAuditId",taskAuditId);
         params.put("photo",photo);
         return IfOkNet.getInstance().post(Contact.SUBMIT_TASK, params, callBack);
+    }
+
+    /**
+     * 查询社区
+     * @param cityCode
+     * @param shequName
+     * @param callBack
+     * @return
+     */
+    public static Call selectShequ(String cityCode,String shequName,ServiceCallBack<WrapCommunityBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("cityCode",cityCode);
+        params.put("shequName",shequName);
+        return IfOkNet.getInstance().post(Contact.SELECT_SHEQU, params, callBack);
+    }
+
+    /**
+     * 选择社区
+     * @param sheQuId
+     * @param callBack
+     * @return
+     */
+    public static Call chooseShequ(String sheQuId,ServiceCallBack callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("sheQuId",sheQuId);
+        return IfOkNet.getInstance().post(Contact.CHOOSE_SHEQU, params, callBack);
+    }
+
+    /**
+     * yiyuanjihua
+     * @param sheQuId
+     * @param callBack
+     * @return
+     */
+    public static Call onePlan(String sheQuId,ServiceCallBack<WrapOnePlanBean> callBack){
+        Params params = new Params.Builder().json().build();
+        params.put("sheQuId",sheQuId);
+        return IfOkNet.getInstance().post(Contact.SHEQU_DETAIL, params, callBack);
     }
 }
 

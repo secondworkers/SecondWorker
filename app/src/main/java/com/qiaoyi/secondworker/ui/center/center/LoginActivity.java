@@ -35,6 +35,7 @@ import org.json.JSONObject;
 import java.util.Map;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 import cn.isif.alibs.utils.ToastUtils;
 import cn.isif.umlibs.UmengUtil;
 
@@ -247,6 +248,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             JSONObject jsonObject = new JSONObject(response);
             JSONObject result = jsonObject.getJSONObject("result");
             String id = result.getString("uid");
+            String sheQuId = result.optString("sheQuId");
+            SharePreferenceUtils.write("sqID","sqID",sheQuId);
             String message = result.optString("message");
             ToastUtils.showShort(message);
             //todo：返回一个特定字符 标志邀请码填写错误

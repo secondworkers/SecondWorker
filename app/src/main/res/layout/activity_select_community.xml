@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/tv_ph"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/base15dp" />
+    <LinearLayout
+        android:layout_below="@+id/tv_ph"
+        android:id="@+id/ll_total"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/text_white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/base10dp"
+                android:layout_marginTop="@dimen/base20dp"
+                android:text="选择社区"
+                android:textColor="@color/deep_black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/base12dp"
+                android:layout_marginTop="@dimen/base23dp"
+                android:clickable="true"
+                android:text="跳过"
+                android:textColor="@color/skip"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/base15dp"
+                android:layout_marginLeft="@dimen/base16dp"
+                android:layout_marginTop="@dimen/base15dp"
+                android:drawablePadding="@dimen/base6dp"
+                android:drawableRight="@mipmap/iv_location_right"
+                android:text="选择城市"
+                android:textColor="@color/deep_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/et_search"
+                android:layout_width="@dimen/base268dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/base13dp"
+                android:layout_marginEnd="@dimen/base16dp"
+                android:background="@drawable/shape_gradient_all_grey"
+                android:drawableLeft="@mipmap/iv_search"
+                android:drawablePadding="@dimen/base5dp"
+                android:hint="请您输入社区名称"
+                android:imeOptions="actionSearch"
+                android:padding="@dimen/base5dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/base35dp"
+            android:background="@color/bg_grey"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/base16dp"
+            android:text="附近社区 "
+            android:textColor="@color/text_grey"
+            android:textSize="13sp" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/tv_done"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base44dp"
+        android:text="确认选择"
+        android:gravity="center"
+        android:textColor="@color/text_grey"
+        android:background="@drawable/shape_kuangt_grey"
+        android:layout_marginLeft="@dimen/base15dp"
+        android:layout_marginRight="@dimen/base15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/base34dp"
+        android:clickable="true"
+        android:visibility="gone"/>
+</RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

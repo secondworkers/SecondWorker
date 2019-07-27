@@ -203,9 +203,9 @@ public class AddLocationActivity extends BaseActivity implements View.OnClickLis
         lat = location.getLat();
         lng = location.getLng();
         String address_msg = location.getAddress_msg();
-        address_title = location.getAddress_title();
+        address_title = location.getAddress_msg();
         ALog.e("lat="+ lat +",lng="+ lng +"\naddress_msg="+address_msg+"address_title="+address_title);
-        tv_location.setText(address_title);
+        tv_location.setText(address_msg);
         et_location_more.setText("");
         et_location_more.setHint("请输入详细地址");
         //重新根据请求数据
