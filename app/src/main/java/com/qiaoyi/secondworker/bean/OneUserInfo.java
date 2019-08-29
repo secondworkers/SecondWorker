@@ -36,9 +36,9 @@ public class OneUserInfo {
     public String userName;
     public double mujiMoney;
     public String avatar;
-    public int xiadanMoney;
-    public int sqMujiMoney;
-    public int sqXiadanMoney;
+    public double xiadanMoney;
+    public double sqMujiMoney;
+    public double sqXiadanMoney;
     public int sortorder;
     public int order;
     public String uid;

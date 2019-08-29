@@ -21,8 +21,10 @@ import android.widget.TextView;
 
 import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
+import com.qiaoyi.secondworker.bean.AddressBean;
 import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.OrderConfirmEvent;
+import com.qiaoyi.secondworker.bean.WrapAddressBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
@@ -46,6 +48,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.isif.alibs.utils.ToastUtils;
 
@@ -76,11 +79,12 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
     private String currentTime;
     private double lat;
     private double lng;
-    private String serviceTypeId = "";
+    private String serviceTypeId = "1";
     private String content;
     private String addressTitle;
     private String address_id;
     private String phone;
+    private AddressBean addressBean;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,10 +94,29 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         initPermission();
         toStartLocation();
         initView();
+        requestData();
         initData();
         EventBus.getDefault().register(this);
     }
+    private void requestData() {
+        ApiUserService.getUserAddressList(AccountHandler.getUserId(), new ServiceCallBack<WrapAddressBean>() {
+            @Override
+            public void failed(String code, String errorInfo, String source) {
+                ToastUtils.showShort(errorInfo);
+            }
 
+            @Override
+            public void success(RespBean resp, Response<WrapAddressBean> payload) {
+                WrapAddressBean body = payload.body();
+                List<AddressBean> result = body.result;
+                if (result.size()>0){
+                    addressBean = result.get(0);
+                    address_id = addressBean.aid;
+                    tv_address.setText(addressBean.addressname+" "+addressBean.addressDetailName);
+                }
+            }
+        });
+    }
     private void initView() {
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         tv_arrive_time = (TextView) findViewById(R.id.tv_arrive_time);
@@ -137,7 +160,7 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
         }
         et_phone_number.setText(AccountHandler.getUserPhone());//用户手机号
         currentTime = VwUtils.getCurrentTime();
-
+        tv_time.setText(currentTime);
         //"2027-12-31 23:59"
         timePicker = new CustomDatePicker(this, "请选择服务时间", new CustomDatePicker.ResultHandler() {
             @Override
@@ -169,7 +192,11 @@ public class PostRequirementActivity extends BaseActivity implements View.OnClic
                 }
                 break;
             case R.id.tv_address:
-                startActivity(new Intent(this,MyLocationActivity.class));
+                if (AccountHandler.checkLogin() != null) {
+                    startActivity(new Intent(this, MyLocationActivity.class));
+                }else {
+                    startActivity(new Intent(this,LoginActivity.class));
+                }
                 break;
             case R.id.tv_service_type:
             case R.id.tv_service:

@@ -235,6 +235,6 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-
+        requestData(requestStatus,true);
     }
 }

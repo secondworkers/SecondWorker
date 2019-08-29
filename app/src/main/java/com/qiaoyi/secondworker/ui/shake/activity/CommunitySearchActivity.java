@@ -69,7 +69,6 @@ public class CommunitySearchActivity extends BaseActivity implements View.OnClic
         rv_list = (RecyclerView) findViewById(R.id.rv_list);
         view_back.setOnClickListener(this);
         tv_done.setOnClickListener(this);
-        tv_done.setClickable(false);
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -89,7 +88,7 @@ public class CommunitySearchActivity extends BaseActivity implements View.OnClic
     }
 
     private void searchCommunity(String c_name) {
-        ApiUserService.selectShequ(city_code, c_name, new ServiceCallBack<WrapCommunityBean>() {
+        ApiUserService.selectShequ(cityCode, c_name, new ServiceCallBack<WrapCommunityBean>() {
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
@@ -108,14 +107,14 @@ public class CommunitySearchActivity extends BaseActivity implements View.OnClic
                     public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                         CommunityBean item = (CommunityBean) adapter.getItem(position);
                         TextView tv_name = view.findViewById(R.id.tv_name);
-                        new SelectCommunityDialog(CommunitySearchActivity.this, new SelectCommunityDialog.DoneClickListener() {
+                        new SelectCommunityDialog(CommunitySearchActivity.this, "请确认选择的社区是否正确，选择后不能更改社区！",new SelectCommunityDialog.DoneClickListener() {
                             @Override
                             public void refreshUI() {
                                 item.setSelected(true);
                                 tv_name.setTextColor(getResources().getColor(R.color.text_blue));
                                 view.findViewById(R.id.iv_done).setVisibility(View.VISIBLE);
                                 communityId = item.id;
-                                ApiUserService.chooseShequ(communityId, new ServiceCallBack() {
+                                ApiUserService.chooseShequ(communityId,"","","","","", new ServiceCallBack() {
                                     @Override
                                     public void failed(String code, String errorInfo, String source) {
                                         ToastUtils.showShort(errorInfo);
@@ -147,18 +146,7 @@ public class CommunitySearchActivity extends BaseActivity implements View.OnClic
                 finish();
                 break;
             case R.id.tv_done:
-                ApiUserService.chooseShequ(communityId, new ServiceCallBack() {
-                    @Override
-                    public void failed(String code, String errorInfo, String source) {
-                        ToastUtils.showShort(errorInfo);
-                    }
-
-                    @Override
-                    public void success(RespBean resp, Response payload) {
-                        startActivity(new Intent(CommunitySearchActivity.this,OnePlanActivity.class));
-                        finish();
-                    }
-                });
+                startActivity(new Intent(this,AddCommunityActivity.class));
                 break;
         }
     }

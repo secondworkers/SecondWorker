@@ -6,9 +6,16 @@
 
     <!--审核状态:正在审核-->
 
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base15dp"
+        android:background="@drawable/shape_gradient_little_no_coners_deep_blue"
+        />
     <!--标题栏-->
     <RelativeLayout
         android:id="@+id/rl_audit_status"
+        android:layout_below="@id/view1"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/shape_gradient_little_no_coners_deep_blue">

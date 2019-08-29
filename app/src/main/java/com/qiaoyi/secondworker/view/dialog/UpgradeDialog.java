@@ -65,7 +65,7 @@ public class UpgradeDialog extends Dialog {
                     dialog.dismiss();
                 }
             });
-            create(version,fillsize,cancelable,cancelable);
+            create(version,fillsize,cancelable,canceledOnTouchOutside);
             return dialog;
         }
 

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.geocoder.GeocodeQuery;
 import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.SharePreferenceUtils;
 import cn.isif.alibs.utils.ToastUtils;
 
 /**
@@ -44,6 +46,7 @@ public class CityPickerActivity extends BaseActivity implements GeocodeSearch.On
         Intent intent = getIntent();
         location_city = intent.getStringExtra("location_city");
         initCityPicker();
+        toStartLocation();
     }
 
     private void initCityPicker() {
@@ -113,13 +116,17 @@ public class CityPickerActivity extends BaseActivity implements GeocodeSearch.On
     public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
         if (geocodeResult.getGeocodeAddressList()!=null && geocodeResult.getGeocodeAddressList().size()>0) {
             point = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint();
+            String city = geocodeResult.getGeocodeAddressList().get(0).getCity();
             String adcode = geocodeResult.getGeocodeAddressList().get(0).getAdcode();
+            String province = geocodeResult.getGeocodeAddressList().get(0).getProvince();
             ALog.e(point.getLatitude() + "++++++++++" + point.getLongitude());
             Intent intent = new Intent();
             intent.putExtra("city_lat", point.getLatitude());
             intent.putExtra("city_lng", point.getLongitude());
             intent.putExtra("select_city", city_name);
-            intent.putExtra("city_code", adcode);
+            intent.putExtra("city_code", cityCode);
+            intent.putExtra("province", province);
+            intent.putExtra("province_code", adcode);
             setResult(RESULT_OK, intent);
             finish();
         }else {

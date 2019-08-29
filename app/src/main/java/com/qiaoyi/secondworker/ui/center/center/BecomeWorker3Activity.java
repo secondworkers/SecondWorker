@@ -16,10 +16,12 @@ import com.qiaoyi.secondworker.BaseActivity;
 import com.qiaoyi.secondworker.R;
 import com.qiaoyi.secondworker.bean.LocationBean;
 import com.qiaoyi.secondworker.bean.WrapRequirementBean;
+import com.qiaoyi.secondworker.net.Contact;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.center.CenterFragment;
 import com.qiaoyi.secondworker.ui.center.address.CityPickerActivity;
 import com.qiaoyi.secondworker.ui.center.address.GetAddressActivity;
 import com.qiaoyi.secondworker.utlis.VwUtils;
@@ -32,6 +34,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 
 import cn.isif.alibs.utils.ALog;
+import cn.isif.alibs.utils.ToastUtils;
 
 /**
  * Created on 2019/5/15
@@ -41,7 +44,7 @@ import cn.isif.alibs.utils.ALog;
 
 public class BecomeWorker3Activity extends BaseActivity implements View.OnClickListener {
     private TextView tv_title_txt;
-    private RelativeLayout view_right;
+    private RelativeLayout view_back;
     private TextView et_select_city;
     private TextView et_select_enter_area;
     private EditText et_input_phone_number;
@@ -71,7 +74,7 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
     private void initView() {
         tv_title_txt = (TextView) findViewById(R.id.tv_title_txt);
         tv_title_txt.setText("申请成为秒工人");
-        view_right = (RelativeLayout) findViewById(R.id.view_back);
+        view_back = (RelativeLayout) findViewById(R.id.view_back);
         et_select_city = (TextView) findViewById(R.id.et_select_city);
         et_select_enter_area = (TextView) findViewById(R.id.et_select_enter_area);
         et_input_phone_number = (EditText) findViewById(R.id.et_input_phone_number);
@@ -80,7 +83,7 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
         tv_apply_immediately = (TextView) findViewById(R.id.tv_apply_immediately);
         tv_get_code = (TextView) findViewById(R.id.tv_get_code);
 
-        view_right.setOnClickListener(this);
+        view_back.setOnClickListener(this);
         et_select_city.setOnClickListener(this);
         et_select_enter_area.setOnClickListener(this);
         tv_apply_immediately.setOnClickListener(this);
@@ -90,7 +93,7 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.view_right:
+            case R.id.view_back:
                     finish();
                 break;
 //            case R.id.et_select_city:
@@ -189,12 +192,16 @@ public class BecomeWorker3Activity extends BaseActivity implements View.OnClickL
         }
         // TODO validate success, do something
         ApiUserService.applyWorker(name, number,
-                imgLists.get(0), imgLists.get(1), imgLists.get(2), imgLists.get(3),
+                Contact.QN_IMG+imgLists.get(0),
+                Contact.QN_IMG+imgLists.get(1),
+                Contact.QN_IMG+imgLists.get(2),
+                Contact.QN_IMG+imgLists.get(3),
                 city, address, city_lng, city_lat, phone,
                 "0", new ServiceCallBack() {
             @Override
             public void failed(String code, String errorInfo, String source) {
-
+                ToastUtils.showShort("已经申请过了，正在审核。。");
+                finish();
             }
 
             @Override

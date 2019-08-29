@@ -28,7 +28,7 @@ public class PaymentDetailsAdapter extends BaseQuickAdapter<PaymentDetailsBean,B
         helper.setText(R.id.tv_payment_time,item.createTime);
         TextView tv_payment_count = helper.getView(R.id.tv_payment_count);
         tv_payment_count.setText(String.valueOf(item.money));
-        if (item.type == 1||item.type ==3){
+        if (item.type == 1||item.type ==3||item.type ==6){
             tv_payment_count.setTextColor(context.getResources().getColor(R.color.text_red));
             tv_payment_count.setText("-"+item.money);
         }else {

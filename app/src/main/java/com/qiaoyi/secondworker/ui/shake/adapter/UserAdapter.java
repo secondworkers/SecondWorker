@@ -1,8 +1,6 @@
 package com.qiaoyi.secondworker.ui.shake.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -10,9 +8,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.qiaoyi.secondworker.R;
-import com.qiaoyi.secondworker.bean.OnePlanBean;
 import com.qiaoyi.secondworker.bean.OneUserInfo;
-import com.qiaoyi.secondworker.ui.shake.activity.OnePlanActivity;
 import com.qiaoyi.secondworker.utlis.GlideUtils;
 
 /**

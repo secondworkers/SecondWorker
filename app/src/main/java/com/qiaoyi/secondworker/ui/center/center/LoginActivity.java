@@ -249,6 +249,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             JSONObject result = jsonObject.getJSONObject("result");
             String id = result.getString("uid");
             String sheQuId = result.optString("sheQuId");
+            if (sheQuId.equals("null")){
+                sheQuId = "";
+            }
             SharePreferenceUtils.write("sqID","sqID",sheQuId);
             String message = result.optString("message");
             ToastUtils.showShort(message);

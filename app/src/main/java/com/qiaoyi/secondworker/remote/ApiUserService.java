@@ -401,6 +401,7 @@ public static Call applyWorker(String workerName,String idCard,String frontPhoto
     params.put("lat",lat);
     params.put("phone",phone);
     params.put("auditStatus",auditStatus);
+
     return IfOkNet.getInstance().post(Contact.APPLY_WORKER, params, callBack);
 }
 
@@ -634,9 +635,14 @@ public static Call bindBankCard(String realName,String idCardNo,String bankCardN
      * @param callBack
      * @return
      */
-    public static Call chooseShequ(String sheQuId,ServiceCallBack callBack){
+    public static Call chooseShequ(String sheQuId,String shequName,String cityCode,String cityName,String provinceCode,String province,ServiceCallBack callBack){
         Params params = new Params.Builder().json().build();
         params.put("sheQuId",sheQuId);
+        params.put("shequName",shequName);
+        params.put("cityCode",cityCode);
+        params.put("cityName",cityName);
+        params.put("provinceCode",provinceCode);
+        params.put("province",province);
         return IfOkNet.getInstance().post(Contact.CHOOSE_SHEQU, params, callBack);
     }
 

@@ -24,8 +24,9 @@ import com.qiaoyi.secondworker.R;
 public class SelectCommunityDialog extends Dialog implements View.OnClickListener {
     private Context context;
     private TextView tv_cancel;
-    private TextView tv_delete;
+    private TextView tv_delete,tv_tips;
     private RelativeLayout rl_bg;
+    private String tips;
     public interface DoneClickListener {
         /**
          * 回调函数，用于在Dialog的监听事件触发后刷新Activity的UI显示
@@ -40,11 +41,12 @@ public class SelectCommunityDialog extends Dialog implements View.OnClickListene
         void refreshUI();
     }
     private CancelClickListener clistener;
-    public SelectCommunityDialog(@NonNull Context context, DoneClickListener dlistener,CancelClickListener clistener) {
+    public SelectCommunityDialog(@NonNull Context context,String tips, DoneClickListener dlistener,CancelClickListener clistener) {
         super(context, R.style.date_dialog_style);
         this.context = context;
         this.dlistener = dlistener;
         this.clistener = clistener;
+        this.tips = tips;
     }
 
 
@@ -55,7 +57,9 @@ public class SelectCommunityDialog extends Dialog implements View.OnClickListene
         computeWeigth();
         tv_cancel = findViewById(R.id.tv_cancel);
         tv_delete = findViewById(R.id.tv_delete);
+        tv_tips = findViewById(R.id.tv_tips);
         rl_bg = findViewById(R.id.rl_bg);
+        tv_tips.setText(tips);
         rl_bg.setOnClickListener(this);
         tv_delete.setOnClickListener(this);
         tv_cancel.setOnClickListener(this);

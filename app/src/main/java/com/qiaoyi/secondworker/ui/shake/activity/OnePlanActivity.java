@@ -24,6 +24,8 @@ import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
 import com.qiaoyi.secondworker.remote.ApiUserService;
+import com.qiaoyi.secondworker.ui.homepage.activity.ServiceDetailsActivity;
+import com.qiaoyi.secondworker.ui.homepage.activity.ServiceListActivity;
 import com.qiaoyi.secondworker.ui.shake.adapter.UserAdapter;
 import com.qiaoyi.secondworker.utlis.GlideUtils;
 import com.qiaoyi.secondworker.utlis.VwUtils;
@@ -116,6 +118,9 @@ public class OnePlanActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void failed(String code, String errorInfo, String source) {
                 ToastUtils.showShort(errorInfo);
+                //
+                SharePreferenceUtils.write("sqID", "sqID","");
+                finish();
             }
 
             @Override
@@ -168,6 +173,11 @@ public class OnePlanActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(this,CommunityMoreActivity.class));
                 break;
             case R.id.tv_go_help:
+                //TODO: start serviceItem id，要么点击获取ID 要么写死ID
+                Intent intent = new Intent(this, ServiceListActivity.class);
+                intent.putExtra("service_name","超市");
+                intent.putExtra("item_id", "8ad6e1884ce34f6db3de7a84d0d1bf95");
+                startActivity(intent);
                 finish();
                 break;
         }

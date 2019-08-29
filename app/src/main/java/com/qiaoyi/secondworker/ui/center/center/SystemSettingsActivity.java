@@ -142,7 +142,6 @@ public class SystemSettingsActivity extends BaseActivity implements View.OnClick
             public void onClick(View v) {
                 if (result.isMustUpdate){
                     ToastUtils.showLong("必须更新此版本，否则app无法使用！");
-                    SecondWorkerApplication.getInstance().exit();
                     finish();
                 }
             }

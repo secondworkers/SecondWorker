@@ -64,6 +64,7 @@ public class BaseActivity extends AppCompatActivity {
   public String city;//定位城市
   public String province;
   private String title;
+  public String cityCode;
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState,
       @Nullable PersistableBundle persistentState) {
@@ -125,10 +126,12 @@ public class BaseActivity extends AppCompatActivity {
           //城市信息
           city = amapLocation.getCity();
           address = city + amapLocation.getDistrict();
+          amapLocation.getCityCode();
           //逆地理编码通过坐标获取地理位置
           GeocodeSearch geocoderSearch = new GeocodeSearch(getApplication());
 
           geocoderSearch.setOnGeocodeSearchListener(new GeocodeSearch.OnGeocodeSearchListener() {
+
             @Override
             public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
               formatAddress = regeocodeResult.getRegeocodeAddress().getFormatAddress();
@@ -139,12 +142,14 @@ public class BaseActivity extends AppCompatActivity {
               if (pois.size()>0){
                 PoiItem poiItem = pois.get(0);
                 title = poiItem.getTitle();
+                cityCode = poiItem.getCityCode();
                 SharePreferenceUtils.write("location_name","location", title);
               }
 
               ALog.e("formatAddress:"+ formatAddress);
               ALog.e("rCode:"+i);
               ALog.e("Township:"+ township);
+              ALog.e("cityCode:"+ cityCode);
 
             }
             @Override
@@ -178,7 +183,8 @@ public class BaseActivity extends AppCompatActivity {
           //          amapLocation.getDistrict();//城区信息
           //amapLocation.getStreet();//街道信息
           //amapLocation.getStreetNum();//街道门牌号信息
-//          amapLocation.getCityCode();//城市编码
+          cityCode = amapLocation.getCityCode();//城市编码
+          ALog.e("cityCode2222:"+ amapLocation.getCityCode());
 //          amapLocation.getAdCode();//地区编码
           amapLocation.getAoiName();//获取当前定位点的AOI信息
           //amapLocation.getBuildingId();//获取当前室内定位的建筑物Id

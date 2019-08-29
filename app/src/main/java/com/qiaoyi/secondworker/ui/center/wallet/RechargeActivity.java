@@ -77,6 +77,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.tv_recharge:
+                tv_recharge.setClickable(false);
                 pyqCode = et_invite.getText().toString().trim();
                 PayHandler.onRequest(this,"",actual_price,rewardPoint,"",2, pyqCode);
                 break;
@@ -97,5 +98,11 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                 rewardPoint = 100;
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tv_recharge.setClickable(true);
     }
 }

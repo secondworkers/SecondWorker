@@ -181,6 +181,7 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
                 //根据选择的支付方式 调起支付
                 if (cb_wechat_pay.isChecked()){
                     if (t_price > 0){
+                        tv_goto_pay.setClickable(false);
                         PayHandler.onRequest(this,order_id,t_price,0.0,service_name,1,"");
                     }else {
                         PostSuccessActivity.startSuccessActivity(this,String.valueOf(t_price),service_name,"pay");
@@ -256,5 +257,11 @@ public class PrePayActivity extends BaseActivity implements View.OnClickListener
             }
         };
         countDownTimer.start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tv_goto_pay.setClickable(true);
     }
 }

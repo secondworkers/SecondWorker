@@ -123,7 +123,7 @@
                 android:layout_marginTop="@dimen/base16dp"
                 android:drawableLeft="@mipmap/ic_location_gray"
                 android:drawablePadding="7dp"
-                android:text=""
+                android:text="选择地址"
                 android:textColor="#212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -167,6 +167,7 @@
                 android:layout_alignRight="@+id/iv_allow_go_1"
                 android:textColor="#333333"
                 android:textSize="14sp"
+                android:text="保洁"
                 android:clickable="true"
                 android:drawableRight="@mipmap/arrow_go"
                 android:drawablePadding="@dimen/base5dp"/>
@@ -202,6 +203,7 @@
                 android:textColor="#333333"
                 android:textSize="14sp"
                 android:clickable="true"
+                android:text="尽快到达"
                 android:drawableRight="@mipmap/arrow_go"
                 android:drawablePadding="@dimen/base5dp"/>
 

@@ -218,6 +218,7 @@
         <activity android:name=".ui.shake.activity.OnePlanActivity" />
         <activity android:name=".ui.shake.activity.OnePlanHelpActivity" />
         <activity android:name=".ui.shake.activity.CommunityMoreActivity" />
+        <activity android:name=".ui.shake.activity.AddCommunityActivity" />
     </application>
 
 </manifest>

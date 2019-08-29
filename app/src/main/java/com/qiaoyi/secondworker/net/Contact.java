@@ -3,13 +3,13 @@ package com.qiaoyi.secondworker.net;
 public class Contact {
 
   public static final String DB_NAME = "secondworker";
-  public static final String BASE_URL = "http://192.168.0.105:8080";//本地debug主机
-//  public static final String BASE_URL = "http://192.168.0.101:8010";//本地debug主机
-//public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//release主机
+//  public static final String BASE_URL = "http://192.168.0.105:8080";//本地debug主机
+ //public static final String BASE_URL = "http://192.168.0.101:8010";//本地debug主机
+ public static final String BASE_URL = "http://103.118.221.46:8066/mg_service";//release主机
 // public static final String BASE_URL = "http://103.118.221.46:8080";//debug主机
 
-  public static final String ANDROID = "android";
-  public static final String APP_ID = "wx43715d46bea8060f";//微信appid
+ public static final String ANDROID = "android";
+ public static final String APP_ID = "wx43715d46bea8060f";//微信appid
     /*static {
         switch (BuildConfig.ENV) {
             case "debug":

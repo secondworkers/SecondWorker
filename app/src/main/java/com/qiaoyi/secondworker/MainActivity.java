@@ -24,6 +24,7 @@ import com.qiaoyi.secondworker.bean.MessageEvent;
 import com.qiaoyi.secondworker.bean.UpdateBean;
 import com.qiaoyi.secondworker.bean.WrapUpdateBean;
 import com.qiaoyi.secondworker.local.AccountHandler;
+import com.qiaoyi.secondworker.local.Config;
 import com.qiaoyi.secondworker.net.RespBean;
 import com.qiaoyi.secondworker.net.Response;
 import com.qiaoyi.secondworker.net.ServiceCallBack;
@@ -120,7 +121,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     finish();
                 }
             }
-        }).createDialog("","",true,false);
+        }).createDialog(BuildConfig.VERSION_NAME,"",false,false);
         upgradeDialog.show();
     }
 

@@ -2,6 +2,7 @@ package com.qiaoyi.secondworker.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+import com.qiaoyi.secondworker.MainActivity;
 import com.qiaoyi.secondworker.R;
-
 
 /**
  * Created on 2018/8/9
@@ -63,9 +63,10 @@ public class ApplyDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tv_i_see:
-                dismiss();
+                context.startActivity(new Intent(context, MainActivity.class));
+               dismiss();
                 break;
         }
 

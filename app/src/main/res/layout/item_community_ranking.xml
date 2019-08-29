@@ -44,7 +44,7 @@
             android:layout_height="@dimen/base5dp"
             android:max="100"
             android:progressDrawable="@drawable/progressbar_bg"
-            android:progress="40" />
+            android:progress="0" />
 
         <TextView
             android:id="@+id/tv_text"
